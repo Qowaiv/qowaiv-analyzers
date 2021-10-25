@@ -2,7 +2,7 @@
 
 namespace Qowaiv.CodeAnalysis.Syntax
 {
-    public abstract class SyntaxNodes
+    public abstract class SyntaxAbstraction
     {
         public abstract string Language { get; }
 

@@ -5,7 +5,7 @@ using CS = Qowaiv.CodeAnalysis.CSharp.Syntax;
 
 namespace Qowaiv.CodeAnalysis.CSharp
 {
-    internal sealed class CSharpNodes : SyntaxNodes
+    internal sealed class CSharpAbstraction : SyntaxAbstraction
     {
         public override string Language => LanguageNames.CSharp;
 

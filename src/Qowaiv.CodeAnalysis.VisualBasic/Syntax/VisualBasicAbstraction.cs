@@ -5,7 +5,7 @@ using VB = Qowaiv.CodeAnalysis.VisualBasic.Syntax;
 
 namespace Qowaiv.CodeAnalysis.VisualBasic
 {
-    internal sealed class VisualBasicNodes : SyntaxNodes
+    internal sealed class VisualBasicAbstraction : SyntaxAbstraction
     {
         public override string Language => LanguageNames.VisualBasic;
 

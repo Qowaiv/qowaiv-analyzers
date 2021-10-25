@@ -16,7 +16,7 @@ namespace Qowaiv.CodeAnalysis.Syntax
         public static InvocationExpression InvocationExpression(this SyntaxNode node)
           => node.Abstraction().InvocationExpression(node);
 
-        private static SyntaxNodes Abstraction(this SyntaxNode node)
+        private static SyntaxAbstraction Abstraction(this SyntaxNode node)
         {
             var language = node.Language;
             var index = language == LanguageNames.CSharp ? 0 : 1;
@@ -26,12 +26,12 @@ namespace Qowaiv.CodeAnalysis.Syntax
             }
             else
             {
-                cache[0] = TypedActivator.Create<SyntaxNodes>(type => type.Assembly.FullName.Contains(".CSharp"));
-                cache[1] = TypedActivator.Create<SyntaxNodes>(type => type.Assembly.FullName.Contains(".VisualBasic"));
+                cache[0] = TypedActivator.Create<SyntaxAbstraction>(type => type.Assembly.FullName.Contains(".CSharp"));
+                cache[1] = TypedActivator.Create<SyntaxAbstraction>(type => type.Assembly.FullName.Contains(".VisualBasic"));
                 return cache[index] ?? throw new InvalidOperationException($"SyntaxNodes could not be resolved for {language}.");
             }
         }
 
-        private static readonly SyntaxNodes[] cache = new SyntaxNodes[2];
+        private static readonly SyntaxAbstraction[] cache = new SyntaxAbstraction[2];
     }
 }
