@@ -6,6 +6,7 @@ namespace Qowaiv.CodeAnalysis.Syntax
     {
         public abstract string Language { get; }
 
-        public abstract Identifier Identifier(SyntaxNode node);
+        public abstract string Name(SyntaxNode node);
+        public abstract InvocationExpression InvocationExpression(SyntaxNode node);
     }
 }

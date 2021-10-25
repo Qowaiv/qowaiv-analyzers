@@ -6,5 +6,6 @@ namespace Qowaiv.CodeAnalysis.CSharp.Syntax
     internal sealed class SyntaxKinds : SyntaxKinds<SyntaxKind>
     {
         public override SyntaxKind IdentifierName => SyntaxKind.IdentifierName;
+        public override SyntaxKind InvocationExpression => SyntaxKind.InvocationExpression;
     }
 }

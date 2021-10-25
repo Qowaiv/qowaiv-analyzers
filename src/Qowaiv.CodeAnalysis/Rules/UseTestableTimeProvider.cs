@@ -18,9 +18,9 @@ namespace Qowaiv.CodeAnalysis.Rules
             context.EnableConcurrentExecution();
             context.RegisterSyntaxNodeAction(c =>
             {
-                if (IsDateTimeProvider(c.Node.Identifier().Name)
+                if (IsDateTimeProvider(c.Node.Name())
                     && c.SemanticModel.GetSymbolInfo(c.Node).Symbol is IPropertySymbol property
-                    && property.IsInType(SystemType.System_DateTime))
+                    && property.MemberOf(SystemType.System_DateTime))
                 {
                     c.ReportDiagnostic(this, c.Node.Parent);
                 }

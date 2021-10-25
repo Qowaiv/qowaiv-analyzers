@@ -12,8 +12,11 @@ namespace Qowaiv.CodeAnalysis.Syntax
             => node as TNode 
             ?? throw new InvalidOperationException($"Unexpected {node.GetType().Name}, expected {typeof(TNode).Name}.");
 
-        public static Identifier Identifier(this SyntaxNode node)
-            => node.Abstraction().Identifier(node);
+        public static string Name(this SyntaxNode node)
+            => node.Abstraction().Name(node);
+
+        public static InvocationExpression InvocationExpression(this SyntaxNode node)
+          => node.Abstraction().InvocationExpression(node);
 
         private static SyntaxNodes Abstraction(this SyntaxNode node)
         {

@@ -16,6 +16,15 @@ namespace Qowaiv.CodeAnalysis.Diagnostics
                 "DateTime.Today lack this possibility.",
             category: Category.Testabilty);
 
+        public static readonly Descriptors ParseShouldNotFail = New(
+            id: 0002,
+            title: "Parse should not fail",
+            message: "{0}",
+            description:
+                "Parsing string literals should not fail.",
+            category: Category.Testabilty,
+            severity: DiagnosticSeverity.Error);
+
         private static Descriptors New(
             int id,
             string title,

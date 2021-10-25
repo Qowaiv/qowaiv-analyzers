@@ -25,5 +25,6 @@ namespace Qowaiv.CodeAnalysis.Syntax
     public abstract class SyntaxKinds<TSyntaxKind> where TSyntaxKind : struct
     {
         public abstract TSyntaxKind IdentifierName { get; }
+        public abstract TSyntaxKind InvocationExpression { get; }
     }
 }
