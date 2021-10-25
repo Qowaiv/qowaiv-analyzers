@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 
 namespace Qowaiv.CodeAnalysis.Syntax
 {
@@ -19,7 +18,7 @@ namespace Qowaiv.CodeAnalysis.Syntax
         }
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static readonly Dictionary<Type, object> cache = new Dictionary<Type, object>();
+        private static readonly Dictionary<Type, object> cache = new(2);
     }
 
     public abstract class SyntaxKinds<TSyntaxKind> where TSyntaxKind : struct

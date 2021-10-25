@@ -17,7 +17,7 @@ namespace Qowaiv.CodeAnalysis.Reflection
             var type = types.FirstOrDefault(predicate);
 
             return type is null
-                ? throw new InvalidOperationException($"{typeof(T).Name} could not be resolved.")
+                ? default
                 : (T)Activator.CreateInstance(type);
         }
     }

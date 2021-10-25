@@ -1,8 +1,6 @@
 ﻿using Microsoft.CodeAnalysis;
 using Qowaiv.CodeAnalysis.Reflection;
 using System;
-using System.Collections.Generic;
-using System.Reflection;
 
 namespace Qowaiv.CodeAnalysis.Syntax
 {
@@ -20,23 +18,20 @@ namespace Qowaiv.CodeAnalysis.Syntax
 
         private static SyntaxNodes Abstraction(this SyntaxNode node)
         {
-            var assembly = node.GetType().Assembly;
-            if(!cache.TryGetValue(assembly, out var cached))
+            var language = node.Language;
+            var index = language == LanguageNames.CSharp ? 0 : 1;
+            if (cache[index] is { } cached)
             {
-                if (assembly.FullName.Contains(".CSharp"))
-                {
-                    cached = TypedActivator.Create<SyntaxNodes>(type => type.Assembly.FullName.Contains(".CSharp"));
-                    cache[assembly] = cached;
-                }
-                else if (assembly.FullName.Contains(".VisualBasic"))
-                {
-                    cached = TypedActivator.Create<SyntaxNodes>(type => type.Assembly.FullName.Contains(".VisualBasic"));
-                    cache[assembly] = cached;
-                }
+                return cached;
             }
-            return cached;
+            else
+            {
+                cache[0] = TypedActivator.Create<SyntaxNodes>(type => type.Assembly.FullName.Contains(".CSharp"));
+                cache[1] = TypedActivator.Create<SyntaxNodes>(type => type.Assembly.FullName.Contains(".VisualBasic"));
+                return cache[index] ?? throw new InvalidOperationException($"SyntaxNodes could not be resolved for {language}.");
+            }
         }
 
-        private static readonly Dictionary<Assembly, SyntaxNodes> cache = new Dictionary<Assembly, SyntaxNodes>();
+        private static readonly SyntaxNodes[] cache = new SyntaxNodes[2];
     }
 }
