@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\props\nopackage.props" />
+  
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Cases\*.*" />
+    <None Include="Cases\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+    <PackageReference Include="NUnit" Version="3.13.2" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
+    <PackageReference Include="coverlet.collector" Version="3.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\roslyn-test-tools\src\CodeAnalysis.TestTools\CodeAnalysis.TestTools.csproj" />
+    <ProjectReference Include="..\..\src\Qowaiv.CodeAnalysis.CSharp\Qowaiv.CodeAnalysis.CSharp.csproj" />
+    <ProjectReference Include="..\..\src\Qowaiv.CodeAnalysis.VisualBasic\Qowaiv.CodeAnalysis.VisualBasic.csproj" />
+  </ItemGroup>
+
+</Project>
