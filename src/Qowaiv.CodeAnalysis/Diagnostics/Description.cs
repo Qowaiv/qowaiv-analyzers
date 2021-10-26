@@ -21,7 +21,7 @@ namespace Qowaiv.CodeAnalysis.Diagnostics
             title: "Parse should not fail",
             message: "{0}",
             description:
-                "Parsing string literals should not fail.",
+                "Parsing string literals should not fail, as it will crash at runtime.",
             category: Category.Testabilty,
             severity: DiagnosticSeverity.Error);
 
