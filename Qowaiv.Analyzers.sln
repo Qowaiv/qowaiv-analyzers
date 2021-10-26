@@ -43,6 +43,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rules", "rules", "{9DA1D8C8-76D3-4C94-8DB6-FF0F7C4D13DB}"
 	ProjectSection(SolutionItems) = preProject
 		rules\QW0001.md = rules\QW0001.md
+		rules\QW0002.md = rules\QW0002.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeAnalysis.TestTools.Specs", "..\roslyn-test-tools\specs\CodeAnalysis.TestTools.Specs\CodeAnalysis.TestTools.Specs.csproj", "{2770574B-7BB7-4F7B-9007-CEFBF90B0393}"
