@@ -1,36 +1,30 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="..\..\props\package.props" />
-  
+
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Qowaiv.Analyzers.VisualBasic</PackageId>
-    <PackageTargetFallback>portable-net45+win8+wp8+wpa81</PackageTargetFallback>
-    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <RootNamespace>Qowaiv.CodeAnalysis</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Label="Shared codes">
     <Compile Include="..\..\shared\Guard.cs" Link="Guard.cs" />
+    <Compile Include="..\..\shared\SystemType.cs" Link="SystemType.cs" />
+    <Compile Include="..\..\shared\SystemType.Instances.cs" Link="SystemType.Instances.cs" />
+    <Compile Include="..\..\shared\Diagnostics\Category.cs" Link="Diagnostics\Category.cs" />
+    <Compile Include="..\..\shared\Diagnostics\Description.cs" Link="Diagnostics\Description.cs" />
+    <Compile Include="..\..\shared\Extensions\DisplayNameExtensions.cs" Link="Extensions\DisplayNameExtensions.cs" />
+    <Compile Include="..\..\shared\Extensions\SpecialTypeExtensions.cs" Link="Extensions\SpecialTypeExtensions.cs" />
+    <Compile Include="..\..\shared\Extensions\SymbolExtensions.cs" Link="Extensions\SymbolExtensions.cs" />
+    <Compile Include="..\..\shared\Extensions\SyntaxNodeAnalysisContextExtensions.cs" Link="Extensions\SyntaxNodeAnalysisContextExtensions.cs" />
+    <Compile Include="..\..\shared\Rules\ParseShouldNotFail.cs" Link="Rules.Base\ParseShouldNotFail.cs" />
+    <Compile Include="..\..\shared\Rules\UseTestableTimeProvider.cs" Link="Rules.Base\UseTestableTimeProvider.cs" />
+    <Compile Include="..\..\shared\Syntax\SyntaxAbstraction.cs" Link="Syntax\SyntaxAbstraction.cs" />
+    <Compile Include="..\..\shared\Syntax\SyntaxNodeExtensions.cs" Link="Syntax\SyntaxNodeExtensions.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <None
-      Include="$(OutputPath)\Qowaiv.CodeAnalysis.dll"
-      Link="Package\analzyzers\Qowaiv.CodeAnalysis.dll"
-      Pack="true"
-      PackagePath="analyzers"
-      Visible="false"/>
-    <None
-      Include="$(OutputPath)\$(AssemblyName).dll"
-      Link="Package\analzyzers\$(AssemblyName).dll"
-      Pack="true"
-      PackagePath="analyzers"
-      Visible="false"/>
-    <None Update="tools\*.ps1" Pack="true" PackagePath="\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Qowaiv.CodeAnalysis\Qowaiv.CodeAnalysis.csproj" />
     <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic" Version="3.11.0" />
   </ItemGroup>
 

@@ -6,10 +6,9 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Reflection;
 
-namespace Qowaiv.CodeAnalysis.Rules
+namespace Qowaiv.CodeAnalysis
 {
-    public abstract class ParseShouldNotFail<TSyntaxKind> : DiagnosticAnalyzer
-        where TSyntaxKind : struct
+    public partial class ParseShouldNotFail : DiagnosticAnalyzer
     {
         public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => Description.ParseShouldNotFail;
 
@@ -31,7 +30,7 @@ namespace Qowaiv.CodeAnalysis.Rules
                     c.ReportDiagnostic(this, invocation, failure);
                 }
             },
-            SyntaxKinds.Of<TSyntaxKind>().InvocationExpression);
+            SyntaxKinds.InvocationExpression);
         }
 
         private static string Parse(IMethodSymbol symbol, string value)

@@ -1,10 +1,8 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
-using Microsoft.CodeAnalysis.VisualBasic;
-using Qowaiv.CodeAnalysis.Rules;
 
-namespace Qowaiv.CodeAnalysis.VisualBasic
+namespace Qowaiv.CodeAnalysis
 {
     [DiagnosticAnalyzer(LanguageNames.VisualBasic)]
-    public sealed class UseTestableTimeProvider : UseTestableTimeProvider<SyntaxKind> { }
+    public partial class UseTestableTimeProvider { }
 }

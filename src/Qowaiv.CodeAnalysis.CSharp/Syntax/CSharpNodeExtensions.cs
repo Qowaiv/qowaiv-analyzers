@@ -1,15 +1,11 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Qowaiv.CodeAnalysis.Syntax;
-using CS = Qowaiv.CodeAnalysis.CSharp.Syntax;
 
-namespace Qowaiv.CodeAnalysis.CSharp
+namespace Qowaiv.CodeAnalysis.Syntax
 {
-    internal sealed class CSharpAbstraction : SyntaxAbstraction
+    public static class CSharpNodeExtensions
     {
-        public override string Language => LanguageNames.CSharp;
-
-        public override string Name(SyntaxNode node)
+        public static string Name(this SyntaxNode node)
            => node switch
            {
                IdentifierNameSyntax identifier => identifier.Identifier.Text,
@@ -18,7 +14,5 @@ namespace Qowaiv.CodeAnalysis.CSharp
                SimpleNameSyntax simpleName => simpleName.Identifier.Text,
                _ => null,
            };
-
-        public override InvocationExpression InvocationExpression(SyntaxNode node) => new CS.InvocationExpression(node);
     }
 }

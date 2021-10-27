@@ -1,10 +1,8 @@
 ﻿using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Diagnostics;
-using Qowaiv.CodeAnalysis.Rules;
 
-namespace Qowaiv.CodeAnalysis.CSharp
+namespace Qowaiv.CodeAnalysis
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ParseShouldNotFail : ParseShouldNotFail<SyntaxKind> { }
+    public partial class ParseShouldNotFail { }
 }

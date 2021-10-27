@@ -1,15 +1,11 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
-using Qowaiv.CodeAnalysis.Syntax;
-using VB = Qowaiv.CodeAnalysis.VisualBasic.Syntax;
 
-namespace Qowaiv.CodeAnalysis.VisualBasic
+namespace Qowaiv.CodeAnalysis.Syntax
 {
-    internal sealed class VisualBasicAbstraction : SyntaxAbstraction
+    internal static class VisualNodeExtensions
     {
-        public override string Language => LanguageNames.VisualBasic;
-
-        public override string Name(SyntaxNode node)
+        public static string Name(this SyntaxNode node)
             => node switch
             {
                 IdentifierNameSyntax identifier => identifier.Identifier.Text,
@@ -18,7 +14,5 @@ namespace Qowaiv.CodeAnalysis.VisualBasic
                 SimpleNameSyntax simpleName => simpleName.Identifier.Text,
                 _ => null,
             };
-
-        public override InvocationExpression InvocationExpression(SyntaxNode node) => new VB.InvocationExpression(node);
     }
 }

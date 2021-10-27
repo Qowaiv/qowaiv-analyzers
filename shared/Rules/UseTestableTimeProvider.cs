@@ -5,10 +5,9 @@ using Qowaiv.CodeAnalysis.Syntax;
 using System;
 using System.Collections.Immutable;
 
-namespace Qowaiv.CodeAnalysis.Rules
+namespace Qowaiv.CodeAnalysis
 {
-    public abstract class UseTestableTimeProvider<TSyntaxKind> : DiagnosticAnalyzer
-        where TSyntaxKind : struct
+    public partial class UseTestableTimeProvider: DiagnosticAnalyzer
     {
         public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => Description.UseTestableTimeProvider;
 
@@ -25,7 +24,7 @@ namespace Qowaiv.CodeAnalysis.Rules
                     c.ReportDiagnostic(this, c.Node.Parent);
                 }
             },
-            SyntaxKinds.Of<TSyntaxKind>().IdentifierName);
+            SyntaxKinds.IdentifierName);
         }
 
         private bool IsDateTimeProvider(string name)

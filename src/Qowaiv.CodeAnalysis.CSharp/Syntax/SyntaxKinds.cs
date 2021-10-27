@@ -1,11 +1,10 @@
 ﻿using Microsoft.CodeAnalysis.CSharp;
-using Qowaiv.CodeAnalysis.Syntax;
 
-namespace Qowaiv.CodeAnalysis.CSharp.Syntax
+namespace Qowaiv.CodeAnalysis
 {
-    internal sealed class SyntaxKinds : SyntaxKinds<SyntaxKind>
+    internal static class SyntaxKinds
     {
-        public override SyntaxKind IdentifierName => SyntaxKind.IdentifierName;
-        public override SyntaxKind InvocationExpression => SyntaxKind.InvocationExpression;
+        public static SyntaxKind IdentifierName => SyntaxKind.IdentifierName;
+        public static SyntaxKind InvocationExpression => SyntaxKind.InvocationExpression;
     }
 }
