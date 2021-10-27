@@ -24,6 +24,10 @@
     <Compile Include="..\..\shared\Syntax\SyntaxNodeExtensions.cs" Link="Syntax\SyntaxNodeExtensions.cs" />
   </ItemGroup>
 
+  <ItemGroup Label="Package files">
+    <None Include="$(OutputPath)\Qowaiv.CodeAnalysis.CSharp.dll"  Pack="true" PackagePath="analyzers" Visible="false"  />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="2.9.8" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.3.1" />
