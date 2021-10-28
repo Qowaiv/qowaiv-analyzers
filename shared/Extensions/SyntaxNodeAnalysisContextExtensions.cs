@@ -8,12 +8,12 @@ namespace Microsoft.CodeAnalysis.Diagnostics
         /// <summary>Report a <see cref="Diagnostic"/> about a  <see cref="SyntaxNode"/>'.</summary>
         public static void ReportDiagnostic(
             this SyntaxNodeAnalysisContext context,
-            DiagnosticAnalyzer analyzer,
+            DiagnosticDescriptor descriptor,
             SyntaxNode node,
             params object[] messageArgs)
             => context.ReportDiagnostic(
                 Diagnostic.Create(
-                    analyzer.SupportedDiagnostics.First(),
+                    descriptor,
                     node.GetLocation(),
                     messageArgs));
     }

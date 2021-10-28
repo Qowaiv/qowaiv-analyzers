@@ -9,22 +9,24 @@ namespace Qowaiv.CodeAnalysis
 {
     public partial class UseTestableTimeProvider: DiagnosticAnalyzer
     {
-        public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => Description.UseTestableTimeProvider;
+        private static readonly DiagnosticDescriptor Rule = Description.UseTestableTimeProvider;
+        public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => Rule.Array();
 
         public override void Initialize(AnalysisContext context)
         {
             context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
             context.EnableConcurrentExecution();
-            context.RegisterSyntaxNodeAction(c =>
+            context.RegisterSyntaxNodeAction(Report, SyntaxKinds.IdentifierName);
+        }
+
+        private void Report(SyntaxNodeAnalysisContext context)
+        {
+            if (IsDateTimeProvider(context.Node.Name())
+                && context.SemanticModel.GetSymbolInfo(context.Node).Symbol is IPropertySymbol property
+                && property.MemberOf(SystemType.System_DateTime))
             {
-                if (IsDateTimeProvider(c.Node.Name())
-                    && c.SemanticModel.GetSymbolInfo(c.Node).Symbol is IPropertySymbol property
-                    && property.MemberOf(SystemType.System_DateTime))
-                {
-                    c.ReportDiagnostic(this, c.Node.Parent);
-                }
-            },
-            SyntaxKinds.IdentifierName);
+                context.ReportDiagnostic(Rule, context.Node.Parent);
+            }
         }
 
         private bool IsDateTimeProvider(string name)

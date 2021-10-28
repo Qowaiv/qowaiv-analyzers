@@ -18,6 +18,9 @@ namespace Qowaiv.CodeAnalysis.Syntax
         /// <summary>Gets the Name of the node or null if not supported for the syntax node type.</summary>
         public string Name() => Node.Name();
 
+        /// <inheritdoc />
+        public override string ToString() => Node.ToString();
+
         /// <summary>Implicitly casts to a <see cref="SyntaxNode"/>.</summary>
         public static implicit operator SyntaxNode(SyntaxAbstraction abstraction) => abstraction?.Node;
     }
