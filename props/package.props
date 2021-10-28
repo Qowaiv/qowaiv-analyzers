@@ -1,32 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project>
 
   <Import Project="common.props" />
 
-  <PropertyGroup>
-    <PackageVersion>0.0.1</PackageVersion>
+  <PropertyGroup Label="Build conditions">
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <DevelopmentDependency>true</DevelopmentDependency>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Package config">
+    <PackageVersion>0.0.1.1</PackageVersion>
     <PackageIcon>package-icon.png</PackageIcon>
-    <PackageProjectUrl>http://www.github.com/Qowaiv/qowaiv-analyzers</PackageProjectUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/Qowaiv/qowaiv-analyzers</RepositoryUrl>
-    <PackageTags>Qowaiv;Code Analysis</PackageTags>
     <PackageReleaseNotes>
 v0.0.1
 - QW0001: Use a testable time provider
 - QW0002: Parse() throws
     </PackageReleaseNotes>
-    <NoPackageAnalysis>true</NoPackageAnalysis>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <SignAssembly>true</SignAssembly>
-    <DelaySign>false</DelaySign>
-    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)..\build\Qowaiv.snk</AssemblyOriginatorKeyFile>
+    <PackageTargetFallback>portable-net45+win8+wp8+wpa81</PackageTargetFallback>
+    <PackageProjectUrl>http://www.github.com/Qowaiv/qowaiv-analyzers</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/Qowaiv/qowaiv-analyzers</RepositoryUrl>
+    <PackageTags>Qowaiv;Code Analysis</PackageTags>
   </PropertyGroup>
 
-  <ItemGroup>
-    <!-- Shared assembly tags. -->
-    <Compile Include="$(MSBuildThisFileDirectory)..\shared\ProductInfo.cs" Link="Properties\ProductInfo.cs" />
-    <!-- Package icon. -->
-    <None Include="$(MSBuildThisFileDirectory)..\design\package-icon.png" Pack="true" PackagePath="" Visible="false"/>
+  <ItemGroup Label="Shared codes">
+    <Compile Include="..\..\shared\Guard.cs" Link="Guard.cs" />
+    <Compile Include="..\..\shared\SystemType.cs" Link="SystemType.cs" />
+    <Compile Include="..\..\shared\SystemType.Instances.cs" Link="SystemType.Instances.cs" />
+    <Compile Include="..\..\shared\Diagnostics\Category.cs" Link="Diagnostics\Category.cs" />
+    <Compile Include="..\..\shared\Diagnostics\Description.cs" Link="Diagnostics\Description.cs" />
+    <Compile Include="..\..\shared\Extensions\DisplayNameExtensions.cs" Link="Extensions\DisplayNameExtensions.cs" />
+    <Compile Include="..\..\shared\Extensions\SpecialTypeExtensions.cs" Link="Extensions\SpecialTypeExtensions.cs" />
+    <Compile Include="..\..\shared\Extensions\SymbolExtensions.cs" Link="Extensions\SymbolExtensions.cs" />
+    <Compile Include="..\..\shared\Extensions\SyntaxNodeAnalysisContextExtensions.cs" Link="Extensions\SyntaxNodeAnalysisContextExtensions.cs" />
+    <Compile Include="..\..\shared\Rules\ParseShouldNotFail.cs" Link="Rules\ParseShouldNotFail.cs" />
+    <Compile Include="..\..\shared\Rules\UseTestableTimeProvider.cs" Link="Rules\UseTestableTimeProvider.cs" />
+    <Compile Include="..\..\shared\Syntax\SyntaxAbstraction.cs" Link="Syntax\SyntaxAbstraction.cs" />
+    <Compile Include="..\..\shared\Syntax\SyntaxNodeExtensions.cs" Link="Syntax\SyntaxNodeExtensions.cs" />
   </ItemGroup>
+
+
+  <ItemGroup Label="Package files">
+    <None Update="tools\*.ps1" Pack="true" PackagePath="\" />
+    <None Include="$(MSBuildThisFileDirectory)..\design\package-icon.png" Pack="true" PackagePath="" Visible="false "/>
+  </ItemGroup>
+
 </Project>

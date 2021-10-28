@@ -1,37 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="..\..\props\package.props" />
-  
+
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Qowaiv.Analyzers.VisualBasic</PackageId>
-    <PackageTargetFallback>portable-net45+win8+wp8+wpa81</PackageTargetFallback>
-    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <RootNamespace>Qowaiv.CodeAnalysis</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Include="..\..\shared\Guard.cs" Link="Guard.cs" />
+  <ItemGroup Label="Package files">
+    <None Include="$(OutputPath)\Qowaiv.CodeAnalysis.VisualBasic.dll"  Pack="true" PackagePath="analyzers" Visible="false"  />
   </ItemGroup>
 
   <ItemGroup>
-    <None
-      Include="$(OutputPath)\Qowaiv.CodeAnalysis.dll"
-      Link="Package\analzyzers\Qowaiv.CodeAnalysis.dll"
-      Pack="true"
-      PackagePath="analyzers"
-      Visible="false"/>
-    <None
-      Include="$(OutputPath)\$(AssemblyName).dll"
-      Link="Package\analzyzers\$(AssemblyName).dll"
-      Pack="true"
-      PackagePath="analyzers"
-      Visible="false"/>
-    <None Update="tools\*.ps1" Pack="true" PackagePath="\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Qowaiv.CodeAnalysis\Qowaiv.CodeAnalysis.csproj" />
-    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic" Version="3.11.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="3.11.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" Version="3.11.0" />
   </ItemGroup>
 
 </Project>

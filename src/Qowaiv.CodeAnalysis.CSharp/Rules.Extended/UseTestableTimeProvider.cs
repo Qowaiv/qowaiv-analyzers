@@ -3,6 +3,6 @@ using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace Qowaiv.CodeAnalysis
 {
-    [DiagnosticAnalyzer(LanguageNames.VisualBasic)]
+    [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public partial class UseTestableTimeProvider { }
 }
