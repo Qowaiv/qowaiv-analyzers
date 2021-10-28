@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -52,9 +53,9 @@ namespace Microsoft.CodeAnalysis
             {
                 lock (Locker)
                 {
-                    if (!MethodInfos.TryGetValue(symbol, out method))
+                    if (!MethodInfos.TryGetValue(symbol, out method)
+                        && symbol.ContainingType.GetRuntimeType() is { } type)
                     {
-                        var type = symbol.ContainingType.GetRuntimeType();
                         var bindings = symbol.IsStatic ? BindingFlags.Static : BindingFlags.Instance;
                         bindings |= symbol.IsPublic() ? BindingFlags.Public : BindingFlags.NonPublic;
                         var methods = type.GetMethods(bindings);
@@ -87,8 +88,8 @@ namespace Microsoft.CodeAnalysis
 
         public static Assembly GetAssembly(this ISymbol symbol)
             => symbol is IAssemblySymbol assemblySymbol
-            ? Assembly.Load(assemblySymbol?.MetadataName)
-            : Assembly.Load(symbol.ContainingAssembly?.MetadataName);
+            ? LoadAssembly(assemblySymbol)
+            : LoadAssembly(symbol.ContainingAssembly);
 
         public static Type GetRuntimeType(this ITypeSymbol symbol)
         {
@@ -101,10 +102,11 @@ namespace Microsoft.CodeAnalysis
             {
                 lock (Locker)
                 {
-                    if (!RuntimeTypes.TryGetValue(symbol, out type))
+                    if (!RuntimeTypes.TryGetValue(symbol, out type)
+                        && symbol.GetAssembly() is { } assembly)
                     {
-                        type = symbol.GetAssembly().GetType(symbol.GetFullMetadataName());
-                        type ??= Type.GetType(symbol.GetFullMetadataName());
+                        var fullName = symbol.GetFullMetadataName();
+                        type = assembly.GetTypes().FirstOrDefault(t => t.FullName == fullName);
                         RuntimeTypes[symbol] = type;
                     }
                     return type;
@@ -122,7 +124,34 @@ namespace Microsoft.CodeAnalysis
             => symbol is INamespaceSymbol ns
             && ns.IsGlobalNamespace;
 
-        private static readonly object Locker = new object();
+        private static Assembly LoadAssembly(IAssemblySymbol symbol)
+        {
+            var id = symbol.Identity;
+            return AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.GetName().Name == id.Name)
+                ?? Load(symbol)
+                ?? LoadFile(id);
+
+            static Assembly Load(IAssemblySymbol symbol)
+            {
+                try{ return Assembly.Load(symbol.MetadataName); }
+                catch { return null; }
+            }
+            static Assembly LoadFile(AssemblyIdentity id)
+            {
+                foreach (var root in AppDomain.CurrentDomain
+                    .GetAssemblies()
+                    .Where(a => !a.IsDynamic)
+                    .Select(a => Path.GetDirectoryName(a.Location))
+                    .Distinct())
+                {
+                    try { return Assembly.LoadFile(Path.Combine(root, $"{id.Name}.dll")); }
+                    catch { }
+                }
+                return null;
+            }
+        }
+
+        private static readonly object Locker = new();
         private static readonly Dictionary<ISymbol, Type> RuntimeTypes = new(SymbolEqualityComparer.Default);
         private static readonly Dictionary<IMethodSymbol, MethodInfo> MethodInfos = new(SymbolEqualityComparer.Default);
     }

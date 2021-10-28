@@ -15,7 +15,6 @@ public class ParseShouldNotFail
     {
         var validParse = Guid.Parse("A2C6EEFC-02B9-4895-A97C-76AE27EC3C18"); // Compliant
         var notALitteral = Guid.Parse(str); // Compliant
-        var uknownClass = UnknownClass.Parse("literal"); // ERROR [CS0103]
+        var uknownClass = UnknownClass.Parse("literal"); // Error [CS0103]
     }
 }
-
