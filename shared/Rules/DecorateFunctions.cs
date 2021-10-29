@@ -29,6 +29,7 @@ namespace Qowaiv.CodeAnalysis
                 && ReturnsResult(method.ReturnType)
                 && NoGuard(method)
                 && HasNoRefOutParemeter(method.Parameters)
+                && NotObsolete(method)
                 && NotDecorated(method.GetAttributes()))
             {
                 context.ReportDiagnostic(Rule, declaration);
@@ -47,20 +48,21 @@ namespace Qowaiv.CodeAnalysis
             => !method.Name.ToUpperInvariant().Contains("GUARD")
             && method.ContainingType.Name.ToUpperInvariant() != "GUARD";
 
+        private static bool NotObsolete(IMethodSymbol method)
+            => !method.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System_ObsoleteAttribute))
+            && !method.ContainingType.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System_ObsoleteAttribute));
+
         private static bool NotDecorated(IEnumerable<AttributeData> attributes)
             => !attributes.Any(attr => Decorated(attr.AttributeClass));
 
         private static bool Decorated(INamedTypeSymbol attr)
-            => attr.Is(SystemType.System_ObsoleteAttribute)
-            || attr.Is(SystemType.System_Diagnostics_Contracts_PureAttribute)
-            || attr.Is(SystemType.FluentAssertions_CustomAssertionAttribute)
-            || IsImpure(attr);
+            => attr.Is(SystemType.System_Diagnostics_Contracts_PureAttribute)
+            || DecoratedImpure(attr);
 
-        private static bool IsImpure(INamedTypeSymbol attr)
-            => "IMPURE" == attr.Name?.ToUpperInvariant()
-            || "IMPUREATTRIBUTE" == attr.Name?.ToUpperInvariant()
-            || attr.BaseType is { } && IsImpure(attr.BaseType);
-
-      
+        private static bool DecoratedImpure(INamedTypeSymbol attr)
+            => "IMPURE" == attr.Name.ToUpperInvariant()
+            || "IMPUREATTRIBUTE" == attr.Name.ToUpperInvariant()
+            || attr.Name.ToUpperInvariant().Contains("ASSERTION")
+            || attr.BaseType is { } && DecoratedImpure(attr.BaseType);
     }
 }

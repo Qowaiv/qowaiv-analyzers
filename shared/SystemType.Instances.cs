@@ -12,7 +12,5 @@ namespace Qowaiv.CodeAnalysis
 
         public static readonly SystemType System_Diagnostics_Contracts_PureAttribute = typeof(System.Diagnostics.Contracts.PureAttribute);
         public static readonly SystemType System_Threading_Task = typeof(System.Threading.Tasks.Task);
-
-        public static readonly SystemType FluentAssertions_CustomAssertionAttribute = new("FluentAssertions.CustomAssertionAttribute");
     }
 }
