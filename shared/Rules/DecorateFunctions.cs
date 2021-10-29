@@ -53,6 +53,7 @@ namespace Qowaiv.CodeAnalysis
         private static bool Decorated(INamedTypeSymbol attr)
             => attr.Is(SystemType.System_ObsoleteAttribute)
             || attr.Is(SystemType.System_Diagnostics_Contracts_PureAttribute)
+            || attr.Is(SystemType.FluentAssertions_CustomAssertionAttribute)
             || IsImpure(attr);
 
         private static bool IsImpure(INamedTypeSymbol attr)

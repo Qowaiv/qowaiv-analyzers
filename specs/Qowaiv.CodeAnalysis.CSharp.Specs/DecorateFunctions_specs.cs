@@ -11,6 +11,7 @@ namespace Rules.DecorateFunctions_specs
             => new DecorateFunctions()
             .ForCS()
             .AddSource(@"Cases\DecorateFunctions.cs")
+            .AddReference<FluentAssertions.CustomAssertionAttribute>()
             .Verify();
     }
 }

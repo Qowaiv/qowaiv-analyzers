@@ -6,7 +6,7 @@ namespace Qowaiv.CodeAnalysis
 {
     public sealed partial class SystemType
     {
-        private SystemType(string fullName, SpecialType specialType)
+        private SystemType(string fullName, SpecialType specialType = SpecialType.None)
         {
             FullName = fullName;
             ShortName = fullName.Split('.').Last();

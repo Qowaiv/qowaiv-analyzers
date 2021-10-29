@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
+using FluentAssertions;
 
 public class Noncompliant
 {
@@ -44,6 +45,9 @@ public class Compliant
 
     [FluenSyntax]
     public Compliant FluentSyntax() => this; // Compliant {{Decorated with something derived from an ImpureAttribute.}}
+
+    [CustomAssertion]
+    public T SomeAssertion<T>(T subject) => subject; // Compliant {{FluentAssertions custom assertions are expected to be impure.}}
 }
 
 public class Guard
