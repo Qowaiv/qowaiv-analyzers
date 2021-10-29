@@ -29,4 +29,10 @@
     <ProjectReference Include="..\..\src\Qowaiv.CodeAnalysis.VisualBasic\Qowaiv.CodeAnalysis.VisualBasic.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Cases\DecorateFunctions.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

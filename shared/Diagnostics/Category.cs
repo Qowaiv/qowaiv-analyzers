@@ -4,9 +4,11 @@ namespace Qowaiv.CodeAnalysis.Diagnostics
 {
     public enum Category
     {
-        Testabilty,
+        Design,
 
         [Display("Runtime Error")]
         RuntimeError,
+
+        Testabilty,
     }
 }
