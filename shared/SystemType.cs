@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace Qowaiv.CodeAnalysis
 {
-    public sealed  partial class SystemType
+    public sealed partial class SystemType
     {
-        private SystemType(string fullName, SpecialType specialType)
+        private SystemType(string fullName, SpecialType specialType = SpecialType.None)
         {
             FullName = fullName;
             ShortName = fullName.Split('.').Last();
@@ -21,7 +21,12 @@ namespace Qowaiv.CodeAnalysis
             => Type == SpecialType.None 
             && FullName == fullName;
 
-        internal bool Matches(SpecialType specialType) => Type == specialType;
+        internal bool Matches(SpecialType specialType) 
+            => specialType != SpecialType.None
+            && Type == specialType;
+
+        /// <inheritdoc />
+        public override string ToString() => FullName;
 
         /// <summary>Casts a <see cref="System.Type"/> to a <see cref="SystemType"/>.</summary>
         public static implicit operator SystemType(Type type) => new SystemType(type.FullName, default);

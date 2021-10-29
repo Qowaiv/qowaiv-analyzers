@@ -11,6 +11,9 @@ namespace Microsoft.CodeAnalysis
 {
     public static class SymbolExtensions
     {
+        public static bool IsNot(this ITypeSymbol typeSymbol, SystemType type)
+            => !typeSymbol.Is(type);
+
         public static bool Is(this ITypeSymbol typeSymbol, SystemType type)
             => !(typeSymbol is null) && typeSymbol.IsMatch(type);
 

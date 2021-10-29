@@ -27,6 +27,17 @@ namespace Qowaiv.CodeAnalysis.Diagnostics
             severity: DiagnosticSeverity.Error,
             tags: new[] { "Error" });
 
+        public static DiagnosticDescriptor DecorateFunctions => New(
+            id: 0003,
+            title: "Decorate pure functions",
+            message: "Decorate this method with a [Pure] or [Impure] attribute.",
+            description:
+                "To help the compiler and code analyzers determine the proper usage " +
+                "of pure functions.",
+            category: Category.Design,
+            tags: new[] { "Diagnostics", "Contracts", "Pure function" },
+            isEnabled: false);
+
         private static DiagnosticDescriptor New(
             int id,
             string title,

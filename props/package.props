@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Package config">
-    <PackageVersion>0.0.1.1</PackageVersion>
+    <PackageVersion>0.0.2.0</PackageVersion>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageReleaseNotes>
 v0.0.1
@@ -36,6 +36,7 @@ v0.0.1
     <Compile Include="..\..\shared\Extensions\SpecialTypeExtensions.cs" Link="Extensions\SpecialTypeExtensions.cs" />
     <Compile Include="..\..\shared\Extensions\SymbolExtensions.cs" Link="Extensions\SymbolExtensions.cs" />
     <Compile Include="..\..\shared\Extensions\SyntaxNodeAnalysisContextExtensions.cs" Link="Extensions\SyntaxNodeAnalysisContextExtensions.cs" />
+    <Compile Include="..\..\shared\Rules\DecorateFunctions.cs" Link="Rules\DecorateFunctions.cs" />
     <Compile Include="..\..\shared\Rules\ParseShouldNotFail.cs" Link="Rules\ParseShouldNotFail.cs" />
     <Compile Include="..\..\shared\Rules\UseTestableTimeProvider.cs" Link="Rules\UseTestableTimeProvider.cs" />
     <Compile Include="..\..\shared\Syntax\SyntaxAbstraction.cs" Link="Syntax\SyntaxAbstraction.cs" />
