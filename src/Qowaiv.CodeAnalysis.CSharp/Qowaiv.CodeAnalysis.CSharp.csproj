@@ -1,5 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <Import Project="..\Qowaiv.CodeAnalysis\Qowaiv.CodeAnalysis.projitems" Label="Shared" />
+
   <Import Project="..\..\props\package.props" />
   
   <PropertyGroup>

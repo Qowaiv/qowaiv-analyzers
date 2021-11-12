@@ -1,5 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <Import Project="..\Qowaiv.CodeAnalysis\Qowaiv.CodeAnalysis.projitems" Label="Shared" />
+
   <Import Project="..\..\props\package.props" />
 
   <PropertyGroup>
@@ -9,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup Label="Package files">
-    <None Include="$(OutputPath)\Qowaiv.CodeAnalysis.VisualBasic.dll"  Pack="true" PackagePath="analyzers" Visible="false"  />
+    <None Include="$(OutputPath)\Qowaiv.CodeAnalysis.VisualBasic.dll" Pack="true" PackagePath="analyzers" Visible="false" />
   </ItemGroup>
 
   <ItemGroup>

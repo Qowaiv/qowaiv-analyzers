@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31729.503
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Qowaiv.CodeAnalysis.CSharp", "src\Qowaiv.CodeAnalysis.CSharp\Qowaiv.CodeAnalysis.CSharp.csproj", "{ACA8E328-9D49-44DB-B8A1-F0CC366869BC}"
 EndProject
@@ -40,7 +40,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rules", "rules", "{00461C52
 		rules\QW0002.md = rules\QW0002.md
 	EndProjectSection
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Qowaiv.CodeAnalysis", "src\Qowaiv.CodeAnalysis\Qowaiv.CodeAnalysis.shproj", "{7DA57867-BC74-4A38-923F-63E445FAA036}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		src\Qowaiv.CodeAnalysis\Qowaiv.CodeAnalysis.projitems*{24204b53-8f39-47b2-a7d2-5ae1c5ee7c2d}*SharedItemsImports = 5
+		src\Qowaiv.CodeAnalysis\Qowaiv.CodeAnalysis.projitems*{7da57867-bc74-4a38-923f-63e445faa036}*SharedItemsImports = 13
+		src\Qowaiv.CodeAnalysis\Qowaiv.CodeAnalysis.projitems*{aca8e328-9d49-44db-b8a1-f0cc366869bc}*SharedItemsImports = 5
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

@@ -1,9 +1,4 @@
-﻿using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.VisualBasic.Syntax;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Qowaiv.CodeAnalysis.Syntax
+﻿namespace Qowaiv.CodeAnalysis.Syntax
 {
     public sealed class InvocationExpression : SyntaxAbstraction 
     { 

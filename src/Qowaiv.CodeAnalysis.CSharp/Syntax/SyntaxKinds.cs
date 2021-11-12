@@ -1,11 +1,8 @@
-﻿using Microsoft.CodeAnalysis.CSharp;
+﻿namespace Qowaiv.CodeAnalysis;
 
-namespace Qowaiv.CodeAnalysis
+internal static class SyntaxKinds
 {
-    internal static class SyntaxKinds
-    {
-        public static SyntaxKind IdentifierName => SyntaxKind.IdentifierName;
-        public static SyntaxKind InvocationExpression => SyntaxKind.InvocationExpression;
-        public static SyntaxKind MethodDecolartion => SyntaxKind.MethodDeclaration;
-    }
+    public static SyntaxKind IdentifierName => SyntaxKind.IdentifierName;
+    public static SyntaxKind InvocationExpression => SyntaxKind.InvocationExpression;
+    public static SyntaxKind MethodDecolartion => SyntaxKind.MethodDeclaration;
 }
