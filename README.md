@@ -7,8 +7,8 @@
 
 | version                                                                   | package                                                                                    |
 |---------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
-|![v](https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=3600)|[Qowaiv.Analyzers.CSharp](https://www.nuget.org/packages/Qowaiv.Analyzers.CSharp/)          |
-|![v](https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=3600)|[Qowaiv.Analyzers.VisualBasic](https://www.nuget.org/packages/Qowaiv.Analyzers.VisualBasic/)|
+|![v](https://img.shields.io/badge/version-0.0.3-blue.svg?cacheSeconds=3600)|[Qowaiv.Analyzers.CSharp](https://www.nuget.org/packages/Qowaiv.Analyzers.CSharp/)          |
+|![v](https://img.shields.io/badge/version-0.0.3-blue.svg?cacheSeconds=3600)|[Qowaiv.Analyzers.VisualBasic](https://www.nuget.org/packages/Qowaiv.Analyzers.VisualBasic/)|
 
 # Qowaiv (static code) analyzers
 Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)

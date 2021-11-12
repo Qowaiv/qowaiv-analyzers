@@ -38,6 +38,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rules", "rules", "{00461C52
 	ProjectSection(SolutionItems) = preProject
 		rules\QW0001.md = rules\QW0001.md
 		rules\QW0002.md = rules\QW0002.md
+		rules\QW0003.md = rules\QW0003.md
+		rules\QW0004.md = rules\QW0004.md
 	EndProjectSection
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Qowaiv.CodeAnalysis", "src\Qowaiv.CodeAnalysis\Qowaiv.CodeAnalysis.shproj", "{7DA57867-BC74-4A38-923F-63E445FAA036}"
