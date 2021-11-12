@@ -12,6 +12,7 @@
 
   <PropertyGroup Label="Package config">
     <PackageVersion>0.0.3</PackageVersion>
+    <AssemblyVersion>0.0.3</AssemblyVersion>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageReleaseNotes>
       v0.0.3

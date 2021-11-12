@@ -63,23 +63,23 @@ public partial class TrojanCharactersAreNotAllowed : DiagnosticAnalyzer
         || CJKUnifiedIdeographsExtensionF.Contains(utf32)
         || CyrillicExtendedC.Contains(utf32);
 
-    private static readonly Range Arabic = new Range(0x00600, 0x006FF);
-    private static readonly Range ArabicExtendedA = new Range(0x008A0, 0x008FF);
-    private static readonly Range ArabicExtendedB = new Range(0x00870, 0x0089F);
-    private static readonly Range ArabicPresentationFormsA = new Range(0x0FB50, 0x0FDFF);
-    private static readonly Range ArabicPresentationFormsB = new Range(0x0FE70, 0x0FEFF);
-    private static readonly Range RumiNumeralSymbols = new Range(0x10E60, 0x10E7F);
-    private static readonly Range IndicSiyaqNumbers = new Range(0x1EC70, 0x1ECBF);
-    private static readonly Range OttomanSiyaqNumbers = new Range(0x1ED00, 0x1ED4F);
-    private static readonly Range ArabicMathematicalAlphabeticSymbols = new Range(0x1EE00, 0x1EEFF);
-    private static readonly Range CJKUnifiedIdeographs = new Range(0x04E00, 0X09FEF);
-    private static readonly Range CJKUnifiedIdeographsExtensionA = new Range(0x03400, 0X04DBF);
-    private static readonly Range CJKUnifiedIdeographsExtensionB = new Range(0x20000, 0X2A6DF);
-    private static readonly Range CJKUnifiedIdeographsExtensionC = new Range(0x2A700, 0X2B73F);
-    private static readonly Range CJKUnifiedIdeographsExtensionD = new Range(0x2B740, 0X2B81F);
-    private static readonly Range CJKUnifiedIdeographsExtensionE = new Range(0x2B820, 0X2CEAF);
-    private static readonly Range CJKUnifiedIdeographsExtensionF = new Range(0x2CEB0, 0X2EBEF);
-    private static readonly Range CyrillicExtendedC = new Range(0x01C80, 0x01C8F);
+    private static readonly Range Arabic = new(0x00600, 0x006FF);
+    private static readonly Range ArabicExtendedA = new(0x008A0, 0x008FF);
+    private static readonly Range ArabicExtendedB = new(0x00870, 0x0089F);
+    private static readonly Range ArabicPresentationFormsA = new(0x0FB50, 0x0FDFF);
+    private static readonly Range ArabicPresentationFormsB = new(0x0FE70, 0x0FEFF);
+    private static readonly Range RumiNumeralSymbols = new(0x10E60, 0x10E7F);
+    private static readonly Range IndicSiyaqNumbers = new(0x1EC70, 0x1ECBF);
+    private static readonly Range OttomanSiyaqNumbers = new(0x1ED00, 0x1ED4F);
+    private static readonly Range ArabicMathematicalAlphabeticSymbols = new(0x1EE00, 0x1EEFF);
+    private static readonly Range CJKUnifiedIdeographs = new(0x04E00, 0X09FEF);
+    private static readonly Range CJKUnifiedIdeographsExtensionA = new(0x03400, 0X04DBF);
+    private static readonly Range CJKUnifiedIdeographsExtensionB = new(0x20000, 0X2A6DF);
+    private static readonly Range CJKUnifiedIdeographsExtensionC = new(0x2A700, 0X2B73F);
+    private static readonly Range CJKUnifiedIdeographsExtensionD = new(0x2B740, 0X2B81F);
+    private static readonly Range CJKUnifiedIdeographsExtensionE = new(0x2B820, 0X2CEAF);
+    private static readonly Range CJKUnifiedIdeographsExtensionF = new(0x2CEB0, 0X2EBEF);
+    private static readonly Range CyrillicExtendedC = new(0x01C80, 0x01C8F);
 
     private readonly struct Range
     {
@@ -95,26 +95,25 @@ public partial class TrojanCharactersAreNotAllowed : DiagnosticAnalyzer
 
     private readonly struct CodePoint
     {
-        public CodePoint(int utf32, int start, int size)
+        public CodePoint(int utf32, int start)
         {
             Utf32 = utf32;
-            Start = start;
-            Size = size;
+            Index = start;
         }
         public int Utf32 { get; }
-        public int Start { get; }
-        public int Size { get; }
-        public TextSpan TextSpan => TextSpan.FromBounds(Start, Start + Size);
+        public int Index { get; }
+        public TextSpan TextSpan => TextSpan.FromBounds(Index, Index +1);
 
         public static IEnumerable<CodePoint> Parse(string str, int offset)
         {
-            var codePoints = new List<CodePoint>(str.Length * 2);
+            var codePoints = new List<CodePoint>(str.Length + 8);
             var index = 0;
             while (index < str.Length)
             {
                 var utf32 = char.ConvertToUtf32(str, index);
                 var size = char.IsHighSurrogate(str[index]) ? 2 : 1;
-                codePoints.Add(new CodePoint(utf32, index + offset, size));
+                codePoints.Add(new CodePoint(utf32, index + offset));
+                offset -= size - 1;
                 index += size;
             }
             return codePoints;

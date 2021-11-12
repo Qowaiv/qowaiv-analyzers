@@ -3,7 +3,7 @@ namespace Rules.ParseShouldNotFail_specs;
 public class Verify
 {
     [Test]
-    public void CSharp()
+    public void Rule()
         => new ParseShouldNotFail()
         .ForCS()
         .AddSource(@"Cases\ParseShouldNotFail.cs")
