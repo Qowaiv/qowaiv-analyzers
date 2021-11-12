@@ -22,6 +22,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Rules\DecorateFunctions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rules\ParseShouldNotFail.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rules\UseTestableTimeProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rules\TrojanCharactersAreNotAllowed.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Syntax\SyntaxAbstraction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Syntax\SyntaxNodeExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SystemType.cs" />

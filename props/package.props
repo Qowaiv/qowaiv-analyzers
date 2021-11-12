@@ -11,12 +11,17 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Package config">
-    <PackageVersion>0.0.2.0</PackageVersion>
+    <PackageVersion>0.0.3</PackageVersion>
+    <AssemblyVersion>0.0.3</AssemblyVersion>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageReleaseNotes>
-v0.0.1
-- QW0001: Use a testable time provider
-- QW0002: Parse() throws
+      v0.0.3
+      - QW0004: Characters with Trojan Horse potential are not allowed
+      v0.0.2
+      - QW0003: Decorate pure functions
+      v0.0.1
+      - QW0001: Use a testable time provider
+      - QW0002: Parse() throws
     </PackageReleaseNotes>
     <PackageTargetFallback>portable-net45+win8+wp8+wpa81</PackageTargetFallback>
     <PackageProjectUrl>http://www.github.com/Qowaiv/qowaiv-analyzers</PackageProjectUrl>

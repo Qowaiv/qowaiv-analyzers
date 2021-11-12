@@ -9,6 +9,8 @@ namespace Qowaiv.CodeAnalysis.Diagnostics
         [Display("Runtime Error")]
         RuntimeError,
 
+        Security,
+
         Testabilty,
     }
 }
