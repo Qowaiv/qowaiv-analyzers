@@ -9,6 +9,7 @@ public class Verify
         .AddSource(@"Cases\TrojanCharactersAreNotAllowed.cs")
         .Verify();
 
+    [TestCase(0x00020, 0x0007E, "ASCII - space ... ~")]
     [TestCase(0x00600, 0x006FF, "Arabic")]
     [TestCase(0x00750, 0x0077F, "Arabic Supplement")]
     [TestCase(0x00870, 0x0089F, "Arabic Extended-B")]
