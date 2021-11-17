@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Cases\*.*" />
-    <None Include="Cases\*.*">
+    <Compile Remove="Cases/*.*" />
+    <None Include="Cases/*.*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

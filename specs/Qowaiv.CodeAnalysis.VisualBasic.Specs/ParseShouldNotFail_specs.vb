@@ -10,7 +10,7 @@ Namespace ParseShouldNotFail_specs
         Public Sub VisualBasic()
             Dim rule As New ParseShouldNotFail()
             rule.ForVB().
-                AddSource("Cases\ParseShouldNotFail.vb").
+                AddSource("Cases/ParseShouldNotFail.vb").
                 AddReference(Of Qowaiv.Percentage).
                 Verify()
         End Sub

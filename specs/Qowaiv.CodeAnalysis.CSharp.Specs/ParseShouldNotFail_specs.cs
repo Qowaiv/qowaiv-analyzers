@@ -6,7 +6,7 @@ public class Verify
     public void Rule()
         => new ParseShouldNotFail()
         .ForCS()
-        .AddSource(@"Cases\ParseShouldNotFail.cs")
+        .AddSource(@"Cases/ParseShouldNotFail.cs")
         .AddReference<Qowaiv.Percentage>()
         .Verify();
 }

@@ -10,7 +10,7 @@ Namespace UseTestableTimeProvider_specs
         Public Sub VisualBasic()
             Dim rule As New UseTestableTimeProvider()
             rule.ForVB().
-                AddSource("Cases\UseTestableTimeProvider.vb").
+                AddSource("Cases/UseTestableTimeProvider.vb").
                 AddReference(Of Qowaiv.Percentage).
                 Verify()
         End Sub

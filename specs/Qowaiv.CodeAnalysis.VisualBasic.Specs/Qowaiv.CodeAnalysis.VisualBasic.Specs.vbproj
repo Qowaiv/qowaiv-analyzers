@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Cases\*.*" />
-    <None Include="Cases\*.*">
+    <Compile Remove="Cases/*.*" />
+    <None Include="Cases/*.*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -31,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Cases\DecorateFunctions.vb">
+    <None Update="Cases/DecorateFunctions.vb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

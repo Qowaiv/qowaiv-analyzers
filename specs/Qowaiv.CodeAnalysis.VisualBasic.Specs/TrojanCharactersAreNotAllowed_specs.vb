@@ -10,7 +10,7 @@ Namespace TrojanCharactersAreNotAllowed_specs
         Public Sub VisualBasic()
             Dim rule As New TrojanCharactersAreNotAllowed()
             rule.ForVB().
-                AddSource("Cases\TrojanCharactersAreNotAllowed.vb").
+                AddSource("Cases/TrojanCharactersAreNotAllowed.vb").
                 Verify()
         End Sub
 
