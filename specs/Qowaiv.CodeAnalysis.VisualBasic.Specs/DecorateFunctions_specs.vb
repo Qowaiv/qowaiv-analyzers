@@ -10,7 +10,7 @@ Namespace DecorateFunctions_specs
         Public Sub VisualBasic()
             Dim rule As New DecorateFunctions()
             rule.ForVB().
-                AddSource("Cases\DecorateFunctions.vb").
+                AddSource("Cases/DecorateFunctions.vb").
                 AddReference(Of Qowaiv.Percentage).
                 Verify()
         End Sub

@@ -6,7 +6,7 @@ public class Verify
     public void CSharp()
         => new DecorateFunctions()
         .ForCS()
-        .AddSource(@"Cases\DecorateFunctions.cs")
+        .AddSource(@"Cases/DecorateFunctions.cs")
         .AddReference<FluentAssertions.CustomAssertionAttribute>()
         .Verify();
 }

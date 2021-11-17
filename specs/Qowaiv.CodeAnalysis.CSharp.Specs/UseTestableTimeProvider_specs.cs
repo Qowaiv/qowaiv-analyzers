@@ -6,6 +6,6 @@ public class Verify
     public void Rule()
         => new UseTestableTimeProvider()
         .ForCS()
-        .AddSource(@"Cases\UseTestableTimeProvider.cs")
+        .AddSource(@"Cases/UseTestableTimeProvider.cs")
         .Verify();
 }

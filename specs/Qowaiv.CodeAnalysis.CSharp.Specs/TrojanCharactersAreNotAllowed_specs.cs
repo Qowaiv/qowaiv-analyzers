@@ -6,7 +6,7 @@ public class Verify
     public void Rule()
         => new TrojanCharactersAreNotAllowed()
         .ForCS()
-        .AddSource(@"Cases\TrojanCharactersAreNotAllowed.cs")
+        .AddSource(@"Cases/TrojanCharactersAreNotAllowed.cs")
         .Verify();
 
     [TestCase(0x00020, 0x0007E, "ASCII - space ... ~")]

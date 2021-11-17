@@ -23,7 +23,6 @@
       - QW0001: Use a testable time provider
       - QW0002: Parse() throws
     </PackageReleaseNotes>
-    <PackageTargetFallback>portable-net45+win8+wp8+wpa81</PackageTargetFallback>
     <PackageProjectUrl>http://www.github.com/Qowaiv/qowaiv-analyzers</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>

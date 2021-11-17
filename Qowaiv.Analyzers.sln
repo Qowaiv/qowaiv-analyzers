@@ -28,10 +28,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Qowaiv.CodeAnalysis.CSharp.
 EndProject
 Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "Qowaiv.CodeAnalysis.VisualBasic.Specs", "specs\Qowaiv.CodeAnalysis.VisualBasic.Specs\Qowaiv.CodeAnalysis.VisualBasic.Specs.vbproj", "{871ECFC0-36E1-4D76-9771-9014B84DCB5A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeAnalysis.TestTools", "..\roslyn-test-tools\src\CodeAnalysis.TestTools\CodeAnalysis.TestTools.csproj", "{D1106826-85D0-4FDE-B1D5-78363A8AFACC}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeAnalysis.TestTools.Specs", "..\roslyn-test-tools\specs\CodeAnalysis.TestTools.Specs\CodeAnalysis.TestTools.Specs.csproj", "{DD085A11-0E8E-4659-A3C0-83E5F5C8AC97}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Qowaiv.CodeAnalysis.VisualBasic", "src\Qowaiv.CodeAnalysis.VisualBasic\Qowaiv.CodeAnalysis.VisualBasic.csproj", "{24204B53-8F39-47B2-A7D2-5AE1C5EE7C2D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rules", "rules", "{00461C52-E22D-4721-9093-46A8112C1B92}"
@@ -43,6 +39,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rules", "rules", "{00461C52
 	EndProjectSection
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Qowaiv.CodeAnalysis", "src\Qowaiv.CodeAnalysis\Qowaiv.CodeAnalysis.shproj", "{7DA57867-BC74-4A38-923F-63E445FAA036}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{EE67C148-3FE3-4DF4-8A91-C0BF7E3960AD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{B7DE1620-B38C-4394-BA11-D8ABBB9336C0}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build-test.yaml = .github\workflows\build-test.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -67,14 +70,6 @@ Global
 		{871ECFC0-36E1-4D76-9771-9014B84DCB5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{871ECFC0-36E1-4D76-9771-9014B84DCB5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{871ECFC0-36E1-4D76-9771-9014B84DCB5A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D1106826-85D0-4FDE-B1D5-78363A8AFACC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D1106826-85D0-4FDE-B1D5-78363A8AFACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D1106826-85D0-4FDE-B1D5-78363A8AFACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D1106826-85D0-4FDE-B1D5-78363A8AFACC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DD085A11-0E8E-4659-A3C0-83E5F5C8AC97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DD085A11-0E8E-4659-A3C0-83E5F5C8AC97}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DD085A11-0E8E-4659-A3C0-83E5F5C8AC97}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DD085A11-0E8E-4659-A3C0-83E5F5C8AC97}.Release|Any CPU.Build.0 = Release|Any CPU
 		{24204B53-8F39-47B2-A7D2-5AE1C5EE7C2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{24204B53-8F39-47B2-A7D2-5AE1C5EE7C2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24204B53-8F39-47B2-A7D2-5AE1C5EE7C2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -87,9 +82,9 @@ Global
 		{54F4E206-6075-4662-8F8B-0FF528E9DE39} = {FE8A03A8-8F5B-4A9E-8D10-4130CDDB1D39}
 		{D9C004D3-B8F6-47DD-AFF3-60C579868F97} = {FB45516E-0257-47D9-AC4F-B1597EB99D37}
 		{871ECFC0-36E1-4D76-9771-9014B84DCB5A} = {FB45516E-0257-47D9-AC4F-B1597EB99D37}
-		{D1106826-85D0-4FDE-B1D5-78363A8AFACC} = {FB45516E-0257-47D9-AC4F-B1597EB99D37}
-		{DD085A11-0E8E-4659-A3C0-83E5F5C8AC97} = {FB45516E-0257-47D9-AC4F-B1597EB99D37}
 		{00461C52-E22D-4721-9093-46A8112C1B92} = {FE8A03A8-8F5B-4A9E-8D10-4130CDDB1D39}
+		{EE67C148-3FE3-4DF4-8A91-C0BF7E3960AD} = {FE8A03A8-8F5B-4A9E-8D10-4130CDDB1D39}
+		{B7DE1620-B38C-4394-BA11-D8ABBB9336C0} = {EE67C148-3FE3-4DF4-8A91-C0BF7E3960AD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DF6FA993-3F39-4D4B-A865-88278DEE63FB}
