@@ -45,7 +45,8 @@ public partial class TrojanCharactersAreNotAllowed : DiagnosticAnalyzer
         || cat == UnicodeCategory.OtherNotAssigned;
 
     private static bool InAllowedRange(int utf32)
-        => Arabic.Contains(utf32)
+        => utf32 == '\t'
+        || Arabic.Contains(utf32)
         || ArabicExtendedA.Contains(utf32)
         || ArabicExtendedB.Contains(utf32)
         || ArabicPresentationFormsA.Contains(utf32)
