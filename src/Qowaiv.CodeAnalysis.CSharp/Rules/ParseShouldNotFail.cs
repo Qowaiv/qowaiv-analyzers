@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Qowaiv.CodeAnalysis;
+namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class ParseShouldNotFail : DiagnosticAnalyzer

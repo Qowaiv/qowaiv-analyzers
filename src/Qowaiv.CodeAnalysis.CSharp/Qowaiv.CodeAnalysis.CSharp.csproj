@@ -6,6 +6,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Qowaiv.Analyzers.CSharp</PackageId>
     <RootNamespace>Qowaiv.CodeAnalysis</RootNamespace>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup Label="Package files">

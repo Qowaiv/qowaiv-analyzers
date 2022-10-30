@@ -1,6 +1,6 @@
 ﻿using Microsoft.CodeAnalysis.Text;
 
-namespace Qowaiv.CodeAnalysis;
+namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class TrojanCharactersAreNotAllowed : DiagnosticAnalyzer

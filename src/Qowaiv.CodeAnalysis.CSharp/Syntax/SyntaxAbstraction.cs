@@ -11,10 +11,13 @@ public abstract class SyntaxAbstraction
     /// <summary>
     /// The node that contains this node in its <see cref="SyntaxNode.ChildNodes"/> collection.
     /// </summary>
-    public SyntaxNode Parent => Node.Parent;
+    public SyntaxNode? Parent => Node.Parent;
 
     /// <summary>Gets the Name of the node or null if not supported for the syntax node type.</summary>
     public string Name() => Node.Name();
+
+    /// <summary>Gets the direct child tokens of this node.</summary>
+    public IEnumerable<SyntaxToken> ChildTokens() => Node.ChildTokens();
 
     /// <inheritdoc />
     public override string ToString() => Node.ToString();
