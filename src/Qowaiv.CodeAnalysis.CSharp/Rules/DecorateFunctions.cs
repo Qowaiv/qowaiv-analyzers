@@ -24,7 +24,7 @@ public sealed class DecorateFunctions : DiagnosticAnalyzer
             && NotObsolete(method)
             && NotDecorated(method.GetAttributes()))
         {
-            context.ReportDiagnostic(Description.DecorateFunctions, declaration);
+            context.ReportDiagnostic(Description.DecorateFunctions, declaration.ChildTokens().First(t => t.IsKind(SyntaxKind.IdentifierToken)));
         }
     }
 

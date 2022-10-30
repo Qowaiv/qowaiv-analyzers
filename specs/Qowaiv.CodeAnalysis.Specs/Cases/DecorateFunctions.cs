@@ -6,11 +6,12 @@ using FluentAssertions;
 public class Noncompliant
 {
     public int PureFunction() => 42; // Noncompliant {{Decorate this method with a [Pure] or [Impure] attribute.}}
-//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    //         ^^^^^^^^^^^^
+    
     public int PureFunction(int scale) => scale * 42; // Noncompliant
 
     [Other]
-    public int DecoratedOtherwise() => 42; // Noncompliant@-1
+    public int DecoratedOtherwise() => 42; // Noncompliant
 }
 
 public class Compliant
