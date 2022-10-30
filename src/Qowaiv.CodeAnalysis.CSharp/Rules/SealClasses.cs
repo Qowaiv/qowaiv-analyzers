@@ -17,13 +17,27 @@ public sealed class SealClasses : DiagnosticAnalyzer
         var declaration = context.Node.MethodDeclaration(context.SemanticModel);
 
         if (declaration.IsConcrete
-            && declaration.Symbol is { } symbol
-            && !symbol.IsObsolete()
-            && !symbol.GetMembers().Any(IsVirtualOrProtected))
+            && declaration.Symbol is { } type
+            && !type.IsObsolete()
+            && !type.IsAttribute()
+            && !type.GetMembers().Any(IsVirtualOrProtected)
+            && NotDecorated(type.GetAttributes()))
         {
             context.ReportDiagnostic(Description.SealClasses, declaration.ChildTokens().First(t => t.IsKind(SyntaxKind.IdentifierToken)));
         }
     }
 
-    private bool IsVirtualOrProtected(ISymbol symbol)=> symbol.IsVirtual || symbol.IsProtected();
+    private static bool IsVirtualOrProtected(ISymbol symbol)=> symbol.IsVirtual || symbol.IsProtected();
+    
+    private static bool NotDecorated(IEnumerable<AttributeData> attributes)
+       => !attributes.Any(attr => Decorated(attr.AttributeClass));
+
+    private static bool Decorated(INamedTypeSymbol? attr)
+        => attr.Is(SystemType.System_Diagnostics_Contracts_PureAttribute)
+        || DecoratedInheritable(attr!);
+
+    private static bool DecoratedInheritable(INamedTypeSymbol attr)
+        => "INHERITABLE" == attr.Name.ToUpperInvariant()
+        || "INHERITABLEATTRIBUTE" == attr.Name.ToUpperInvariant()
+        || attr.BaseType is { } && DecoratedInheritable(attr.BaseType);
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace Noncompliant
 {
@@ -10,7 +11,7 @@ namespace Noncompliant
     public partial class PartialClass { } // Noncompliant
 
     public class NotAbstractWithProtectedBase : AbstractBase { } // Noncompliant
-    
+
     public abstract class AbstractBase
     {
         protected object Property { get; set; }
@@ -26,6 +27,14 @@ namespace Noncompliant
 
 namespace Compliant
 {
+    public class SomeAttribute : Attribute { } // Compliant {{Are ignored.}}
+
+    [Inheritable]
+    public class WithAttribute { } // Compliant {{Decorated with Inheritable attribute.}}
+
+    [SupportsMocking]
+    public class WithDerivedAttribute { } // Compliant  {{Decorated with derived Inheritable attribute.}}
+
     public abstract class AbstractClass { } // Compliant {{Abstract.}}
 
     public sealed class SealedClass { } // Compliant {{Sealed.}}
@@ -64,6 +73,10 @@ namespace Compliant
     public class ObsoleteClass { } // Compliant {{Obsolete classes are ignored.}}
 
     public partial class PartialSealedClass { } // Compliant
-    
+
     public sealed partial class PartialSealedClass { } // Compliant
+
+
+    public class InheritableAttribute : Attribute { }
+    public sealed class SupportsMockingAttribute : InheritableAttribute { }
 }

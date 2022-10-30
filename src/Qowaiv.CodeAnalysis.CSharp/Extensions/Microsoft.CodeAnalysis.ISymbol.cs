@@ -11,6 +11,10 @@ internal static class SymbolExtensions
     public static bool Is(this ITypeSymbol? symbol, SystemType type)
         => symbol is { } && symbol.IsMatch(type);
 
+    public static bool IsAttribute(this ITypeSymbol type)
+        => type.Is(SystemType.System_Attribute)
+        || (type.BaseType is { } @base && @base.IsAttribute());
+
     public static bool IsObsolete(this ITypeSymbol type)
         => type.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System_ObsoleteAttribute));
 
