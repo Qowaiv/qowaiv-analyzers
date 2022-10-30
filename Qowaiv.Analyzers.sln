@@ -24,11 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "props", "props", "{54F4E206
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Specs", "Specs", "{FB45516E-0257-47D9-AC4F-B1597EB99D37}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Qowaiv.CodeAnalysis.CSharp.Specs", "specs\Qowaiv.CodeAnalysis.CSharp.Specs\Qowaiv.CodeAnalysis.CSharp.Specs.csproj", "{D9C004D3-B8F6-47DD-AFF3-60C579868F97}"
-EndProject
-Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "Qowaiv.CodeAnalysis.VisualBasic.Specs", "specs\Qowaiv.CodeAnalysis.VisualBasic.Specs\Qowaiv.CodeAnalysis.VisualBasic.Specs.vbproj", "{871ECFC0-36E1-4D76-9771-9014B84DCB5A}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Qowaiv.CodeAnalysis.VisualBasic", "src\Qowaiv.CodeAnalysis.VisualBasic\Qowaiv.CodeAnalysis.VisualBasic.csproj", "{24204B53-8F39-47B2-A7D2-5AE1C5EE7C2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Qowaiv.CodeAnalysis.Specs", "specs\Qowaiv.CodeAnalysis.Specs\Qowaiv.CodeAnalysis.Specs.csproj", "{D9C004D3-B8F6-47DD-AFF3-60C579868F97}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rules", "rules", "{00461C52-E22D-4721-9093-46A8112C1B92}"
 	ProjectSection(SolutionItems) = preProject
@@ -38,8 +34,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rules", "rules", "{00461C52
 		rules\QW0004.md = rules\QW0004.md
 	EndProjectSection
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Qowaiv.CodeAnalysis", "src\Qowaiv.CodeAnalysis\Qowaiv.CodeAnalysis.shproj", "{7DA57867-BC74-4A38-923F-63E445FAA036}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{EE67C148-3FE3-4DF4-8A91-C0BF7E3960AD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{B7DE1620-B38C-4394-BA11-D8ABBB9336C0}"
@@ -48,11 +42,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 	EndProjectSection
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		src\Qowaiv.CodeAnalysis\Qowaiv.CodeAnalysis.projitems*{24204b53-8f39-47b2-a7d2-5ae1c5ee7c2d}*SharedItemsImports = 5
-		src\Qowaiv.CodeAnalysis\Qowaiv.CodeAnalysis.projitems*{7da57867-bc74-4a38-923f-63e445faa036}*SharedItemsImports = 13
-		src\Qowaiv.CodeAnalysis\Qowaiv.CodeAnalysis.projitems*{aca8e328-9d49-44db-b8a1-f0cc366869bc}*SharedItemsImports = 5
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -66,14 +55,6 @@ Global
 		{D9C004D3-B8F6-47DD-AFF3-60C579868F97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9C004D3-B8F6-47DD-AFF3-60C579868F97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9C004D3-B8F6-47DD-AFF3-60C579868F97}.Release|Any CPU.Build.0 = Release|Any CPU
-		{871ECFC0-36E1-4D76-9771-9014B84DCB5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{871ECFC0-36E1-4D76-9771-9014B84DCB5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{871ECFC0-36E1-4D76-9771-9014B84DCB5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{871ECFC0-36E1-4D76-9771-9014B84DCB5A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{24204B53-8F39-47B2-A7D2-5AE1C5EE7C2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{24204B53-8F39-47B2-A7D2-5AE1C5EE7C2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{24204B53-8F39-47B2-A7D2-5AE1C5EE7C2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{24204B53-8F39-47B2-A7D2-5AE1C5EE7C2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,7 +62,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{54F4E206-6075-4662-8F8B-0FF528E9DE39} = {FE8A03A8-8F5B-4A9E-8D10-4130CDDB1D39}
 		{D9C004D3-B8F6-47DD-AFF3-60C579868F97} = {FB45516E-0257-47D9-AC4F-B1597EB99D37}
-		{871ECFC0-36E1-4D76-9771-9014B84DCB5A} = {FB45516E-0257-47D9-AC4F-B1597EB99D37}
 		{00461C52-E22D-4721-9093-46A8112C1B92} = {FE8A03A8-8F5B-4A9E-8D10-4130CDDB1D39}
 		{EE67C148-3FE3-4DF4-8A91-C0BF7E3960AD} = {FE8A03A8-8F5B-4A9E-8D10-4130CDDB1D39}
 		{B7DE1620-B38C-4394-BA11-D8ABBB9336C0} = {EE67C148-3FE3-4DF4-8A91-C0BF7E3960AD}
