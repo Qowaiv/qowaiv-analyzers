@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup Label="Package files">
-    <None Include="$(OutputPath)\Qowaiv.CodeAnalysis.dll" Pack="true" PackagePath="analyzers" Visible="false" />
+    <None Include="$(OutputPath)\Qowaiv.CodeAnalysis.CSharp.dll" Pack="true" PackagePath="analyzers" Visible="false" />
   </ItemGroup>
 
   <ItemGroup>
