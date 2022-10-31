@@ -48,9 +48,10 @@ public static class Rule
         title: "Seal concrete classes unless designed for inheritance",
         message: "Seal this {0}.",
         description:
-            "Inheritance is a powerful thing in Object Oriented Programming. " +
-            "That being said, it should be cautious decision to allow " +
-            "inheritance on a class, as design for inheritance is hard.",
+            "Inheritance is one of the pillars of Object Oriented Programming. "+
+            "Designing a class to support inheritance however, is hard. As a " +
+            "consequence, it is considered a bad practice to unintentionally " +
+            "allowing a class to be inheritable.",
        category: Category.Design,
        tags: new[] { "Design" });
 

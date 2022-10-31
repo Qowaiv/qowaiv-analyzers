@@ -1,4 +1,4 @@
-﻿namespace Description_specs;
+﻿namespace Rule_description_specs;
 
 public class Rules_have
 {
@@ -11,5 +11,4 @@ public class Rules_have
     public void Category()
        => Rule.ParseShouldNotFail
        .Category.Should().Be("Runtime Error");
-
 }
