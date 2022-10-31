@@ -1,6 +1,6 @@
-﻿namespace Qowaiv.CodeAnalysis.Diagnostics;
+﻿namespace Qowaiv.CodeAnalysis;
 
-public static class Description
+public static class Rule
 {
     public static DiagnosticDescriptor UseTestableTimeProvider => New(
         id: 0001,

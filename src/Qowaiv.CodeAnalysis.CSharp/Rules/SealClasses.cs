@@ -3,7 +3,7 @@
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class SealClasses : DiagnosticAnalyzer
 {
-    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => Description.SealClasses.Array();
+    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => Rule.SealClasses.Array();
 
     public override void Initialize(AnalysisContext context)
     {
@@ -24,7 +24,7 @@ public sealed class SealClasses : DiagnosticAnalyzer
             && NotDecorated(type.GetAttributes()))
         {
             context.ReportDiagnostic(
-                Description.SealClasses,
+                Rule.SealClasses,
                 declaration.ChildTokens().First(t => t.IsKind(SyntaxKind.IdentifierToken)),
                 declaration.IsRecord ? "record" : "class");
         }

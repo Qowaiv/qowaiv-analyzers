@@ -3,7 +3,7 @@ namespace Qowaiv.CodeAnalysis;
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class DecorateFunctions : DiagnosticAnalyzer
 {
-    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => Description.DecorateFunctions.Array();
+    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => Rule.DecorateFunctions.Array();
 
     public override void Initialize(AnalysisContext context)
     {
@@ -24,7 +24,7 @@ public sealed class DecorateFunctions : DiagnosticAnalyzer
             && !method.IsObsolete()
             && NotDecorated(method.GetAttributes()))
         {
-            context.ReportDiagnostic(Description.DecorateFunctions, declaration.ChildTokens().First(t => t.IsKind(SyntaxKind.IdentifierToken)));
+            context.ReportDiagnostic(Rule.DecorateFunctions, declaration.ChildTokens().First(t => t.IsKind(SyntaxKind.IdentifierToken)));
         }
     }
 

@@ -3,7 +3,7 @@
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class UseTestableTimeProvider : DiagnosticAnalyzer
 {
-    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => Description.UseTestableTimeProvider.Array();
+    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => Rule.UseTestableTimeProvider.Array();
 
     public override void Initialize(AnalysisContext context)
     {
@@ -18,7 +18,7 @@ public sealed class UseTestableTimeProvider : DiagnosticAnalyzer
             && context.SemanticModel.GetSymbolInfo(context.Node).Symbol is IPropertySymbol property
             && property.MemberOf(SystemType.System_DateTime))
         {
-            context.ReportDiagnostic(Description.UseTestableTimeProvider, context.Node.Parent);
+            context.ReportDiagnostic(Rule.UseTestableTimeProvider, context.Node.Parent);
         }
     }
 

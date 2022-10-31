@@ -5,7 +5,7 @@ namespace Qowaiv.CodeAnalysis.Rules;
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class ParseShouldNotFail : DiagnosticAnalyzer
 {
-    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => Description.ParseShouldNotFail.Array();
+    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => Rule.ParseShouldNotFail.Array();
 
     public override void Initialize(AnalysisContext context)
     {
@@ -25,7 +25,7 @@ public sealed class ParseShouldNotFail : DiagnosticAnalyzer
             && SymbolEqualityComparer.Default.Equals(method.ContainingType, method.ReturnType)
             && Parse(method, literal) is { } failure)
         {
-            context.ReportDiagnostic(Description.ParseShouldNotFail, invocation, failure);
+            context.ReportDiagnostic(Rule.ParseShouldNotFail, invocation, failure);
         }
     }
 
