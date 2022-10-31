@@ -22,9 +22,9 @@ namespace Noncompliant
         protected object Property { get; set; }
     }
 
-    public record NotAbstractWithVirtualBase : VirutalBase { } // Noncompliant
+    public record NotAbstractWithVirtualBase : VirtualBase { } // Noncompliant
 
-    public abstract record VirutalBase
+    public abstract record VirtualBase
     {
         public virtual object Property { get; set; }
     }
