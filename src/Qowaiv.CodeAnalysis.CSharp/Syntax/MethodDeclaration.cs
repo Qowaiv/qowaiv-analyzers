@@ -22,6 +22,8 @@ public sealed class MethodDeclaration : SyntaxAbstraction
     
     public bool IsPartial => Modifiers.Contains(SyntaxKind.PartialKeyword);
 
+    public bool IsRecord => Node is RecordDeclarationSyntax;
+
     public IEnumerable<SyntaxKind> Modifiers
         => Node switch
         {

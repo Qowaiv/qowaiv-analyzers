@@ -15,7 +15,7 @@ public sealed class SealClasses : DiagnosticAnalyzer
     private void Report(SyntaxNodeAnalysisContext context)
     {
         var declaration = context.Node.MethodDeclaration(context.SemanticModel);
-
+       
         if (declaration.IsConcrete
             && declaration.Symbol is { } type
             && !type.IsObsolete()
@@ -23,11 +23,16 @@ public sealed class SealClasses : DiagnosticAnalyzer
             && !type.GetMembers().Any(IsVirtualOrProtected)
             && NotDecorated(type.GetAttributes()))
         {
-            context.ReportDiagnostic(Description.SealClasses, declaration.ChildTokens().First(t => t.IsKind(SyntaxKind.IdentifierToken)));
+            context.ReportDiagnostic(
+                Description.SealClasses,
+                declaration.ChildTokens().First(t => t.IsKind(SyntaxKind.IdentifierToken)),
+                declaration.IsRecord ? "record" : "class");
         }
     }
 
-    private static bool IsVirtualOrProtected(ISymbol symbol)=> symbol.IsVirtual || symbol.IsProtected();
+    private static bool IsVirtualOrProtected(ISymbol symbol) 
+        => (symbol.IsVirtual || symbol.IsProtected())
+        && !symbol.IsImplicitlyDeclared;
     
     private static bool NotDecorated(IEnumerable<AttributeData> attributes)
        => !attributes.Any(attr => Decorated(attr.AttributeClass));

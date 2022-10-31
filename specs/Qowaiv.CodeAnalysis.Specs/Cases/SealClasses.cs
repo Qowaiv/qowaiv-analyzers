@@ -10,6 +10,11 @@ namespace Noncompliant
 
     public partial class PartialClass { } // Noncompliant
 
+    public class ClassWithExplicitCtor // Noncompliant
+    {
+        public ClassWithExplicitCtor(object arg) { }
+    }
+
     public class NotAbstractWithProtectedBase : AbstractBase { } // Noncompliant
 
     public abstract class AbstractBase

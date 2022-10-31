@@ -46,7 +46,7 @@ public static class Description
     public static DiagnosticDescriptor SealClasses => New(
         id: 0005,
         title: "Seal concrete classes unless designed for inheritance",
-        message: "Seal this class.",
+        message: "Seal this {0}.",
         description:
             "Inheritance is a powerful thing in Object Oriented Programming. " +
             "That being said, it should be cautious decision to allow " +
