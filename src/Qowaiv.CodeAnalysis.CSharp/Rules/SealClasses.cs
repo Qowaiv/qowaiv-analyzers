@@ -20,13 +20,14 @@ public sealed class SealClasses : DiagnosticAnalyzer
     }
 
     private static void Report(SyntaxNodeAnalysisContext context)
-        => _ = ReportUnsealedClasses(context) 
-        || ReportInvalidDecorations(context);
-
-    private static bool ReportUnsealedClasses(SyntaxNodeAnalysisContext context)
     {
         var declaration = context.Node.MethodDeclaration(context.SemanticModel);
+        ReportUnsealedClasses(declaration, context);
+        ReportInvalidDecorations(declaration, context);
+    }
 
+    private static void ReportUnsealedClasses(MethodDeclaration declaration, SyntaxNodeAnalysisContext context)
+    {
         if (declaration.IsConcrete
             && declaration.Symbol is { } type
             && !type.IsObsolete()
@@ -38,16 +39,11 @@ public sealed class SealClasses : DiagnosticAnalyzer
                 Rule.SealClasses,
                 declaration.ChildTokens().First(t => t.IsKind(SyntaxKind.IdentifierToken)),
                 declaration.IsRecord ? "record" : "class");
-
-            return true;
         }
-        else return false;
     }
 
-    private static bool ReportInvalidDecorations(SyntaxNodeAnalysisContext context)
+    private static void ReportInvalidDecorations(MethodDeclaration declaration, SyntaxNodeAnalysisContext context)
     {
-        var declaration = context.Node.MethodDeclaration(context.SemanticModel);
-
         if (!declaration.IsConcrete
             && declaration.Symbol is { } type
             && !type.IsObsolete()
@@ -60,19 +56,22 @@ public sealed class SealClasses : DiagnosticAnalyzer
                 attr,
                 attr.Name()!);
         }
-        return true;
     }
 
+    [Pure]
     private static bool IsDecorated(AttributeSyntax attr, INamedTypeSymbol decorated)
         => decorated.Name.StartsWith(attr.Name());
 
+    [Pure]
     private static bool IsVirtualOrProtected(ISymbol symbol)
         => (symbol.IsVirtual || symbol.IsProtected())
         && !symbol.IsImplicitlyDeclared;
 
+    [Pure]
     private static INamedTypeSymbol? Decorated(IEnumerable<AttributeData> attributes)
        => attributes.FirstOrDefault(attr => IsDecorated(attr.AttributeClass!))?.AttributeClass;
 
+    [Pure]
     private static bool IsDecorated(INamedTypeSymbol attr)
         => "INHERITABLE" == attr.Name.ToUpperInvariant()
         || "INHERITABLEATTRIBUTE" == attr.Name.ToUpperInvariant()

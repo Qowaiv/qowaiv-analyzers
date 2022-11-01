@@ -11,6 +11,12 @@ namespace Noncompliant
     [SupportsMocking] //Noncompliant {{Remove the [SupportsMocking] attribute.}}
 //   ^^^^^^^^^^^^^^^ 
     public sealed class SealedClass { }
+
+    [Inheritable] // Noncompliant
+    public abstract record AbstractRecord{ }
+
+    [Inheritable] // Noncompliant
+    public static class StaticClass { }
 }
 
 namespace Compliant
