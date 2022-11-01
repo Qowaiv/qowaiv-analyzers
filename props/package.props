@@ -11,10 +11,12 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Package config">
-    <PackageVersion>0.0.3.1</PackageVersion>
-    <AssemblyVersion>0.0.3.1</AssemblyVersion>
+    <PackageVersion>0.0.4</PackageVersion>
+    <AssemblyVersion>0.0.4</AssemblyVersion>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageReleaseNotes>
+v0.0.4
+- QW0005: Seal concrete classes unless designed for inheritance (#9)
 v0.0.3.1
 - QW0004: Horizontal tab (U+9, \t) is allowed too (#6)
 v0.0.3

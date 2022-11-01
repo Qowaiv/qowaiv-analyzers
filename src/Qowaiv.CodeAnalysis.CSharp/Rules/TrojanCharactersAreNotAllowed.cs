@@ -1,11 +1,11 @@
 ﻿using Microsoft.CodeAnalysis.Text;
 
-namespace Qowaiv.CodeAnalysis;
+namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class TrojanCharactersAreNotAllowed : DiagnosticAnalyzer
 {
-    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => Description.TrojanCharactersAreNotAllowed.Array();
+    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => Rule.TrojanCharactersAreNotAllowed.Array();
 
     public override void Initialize(AnalysisContext context)
     {
@@ -22,7 +22,7 @@ public sealed class TrojanCharactersAreNotAllowed : DiagnosticAnalyzer
         {
             context.ReportDiagnostic(
                 Diagnostic.Create(
-                    Description.TrojanCharactersAreNotAllowed,
+                    Rule.TrojanCharactersAreNotAllowed,
                     context.Tree.GetLocation(point.TextSpan),
                     point.Utf32));
         }

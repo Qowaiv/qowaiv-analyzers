@@ -3,7 +3,7 @@ namespace Qowaiv.CodeAnalysis;
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class DecorateFunctions : DiagnosticAnalyzer
 {
-    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => Description.DecorateFunctions.Array();
+    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => Rule.DecorateFunctions.Array();
 
     public override void Initialize(AnalysisContext context)
     {
@@ -21,10 +21,10 @@ public sealed class DecorateFunctions : DiagnosticAnalyzer
             && ReturnsResult(method.ReturnType)
             && NoGuard(method)
             && HasNoRefOutParemeter(method.Parameters)
-            && NotObsolete(method)
+            && !method.IsObsolete()
             && NotDecorated(method.GetAttributes()))
         {
-            context.ReportDiagnostic(Description.DecorateFunctions, declaration.ChildTokens().First(t => t.IsKind(SyntaxKind.IdentifierToken)));
+            context.ReportDiagnostic(Rule.DecorateFunctions, declaration.ChildTokens().First(t => t.IsKind(SyntaxKind.IdentifierToken)));
         }
     }
 
@@ -39,10 +39,6 @@ public sealed class DecorateFunctions : DiagnosticAnalyzer
     private static bool NoGuard(IMethodSymbol method)
         => !method.Name.ToUpperInvariant().Contains("GUARD")
         && method.ContainingType.Name.ToUpperInvariant() != "GUARD";
-
-    private static bool NotObsolete(IMethodSymbol method)
-        => !method.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System_ObsoleteAttribute))
-        && !method.ContainingType.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System_ObsoleteAttribute));
 
     private static bool NotDecorated(IEnumerable<AttributeData> attributes)
         => !attributes.Any(attr => Decorated(attr.AttributeClass));

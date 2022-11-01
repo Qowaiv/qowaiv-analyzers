@@ -5,16 +5,29 @@ namespace Microsoft.CodeAnalysis;
 
 internal static class SymbolExtensions
 {
-    public static bool IsNot(this ITypeSymbol typeSymbol, SystemType type)
-        => !typeSymbol.Is(type);
+    public static bool IsNot(this ITypeSymbol symbol, SystemType type)
+        => !symbol.Is(type);
 
-    public static bool Is(this ITypeSymbol typeSymbol, SystemType type)
-        => !(typeSymbol is null) && typeSymbol.IsMatch(type);
+    public static bool Is(this ITypeSymbol? symbol, SystemType type)
+        => symbol is { } && symbol.IsMatch(type);
 
-    public static bool MemberOf(this ISymbol symbol, SystemType type)
-        => !(symbol is null) && symbol.ContainingType.Is(type);
+    public static bool IsAttribute(this ITypeSymbol type)
+        => type.Is(SystemType.System_Attribute)
+        || (type.BaseType is { } @base && @base.IsAttribute());
+
+    public static bool IsObsolete(this ITypeSymbol type)
+        => type.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System_ObsoleteAttribute));
+
+    public static bool IsObsolete(this IMethodSymbol method)
+        => method.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System_ObsoleteAttribute))
+        || method.ContainingType.IsObsolete();
 
     public static bool IsPublic(this ISymbol symbol) => symbol.DeclaredAccessibility == Accessibility.Public;
+
+    public static bool IsProtected(this ISymbol symbol) => symbol.DeclaredAccessibility == Accessibility.Protected;
+
+    public static bool MemberOf(this ISymbol? symbol, SystemType type)
+        => symbol is { } && symbol.ContainingType.Is(type);
 
     public static string GetFullMetadataName(this ISymbol symbol)
     {

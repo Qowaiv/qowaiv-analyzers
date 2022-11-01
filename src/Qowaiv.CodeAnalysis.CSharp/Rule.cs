@@ -1,6 +1,6 @@
-﻿namespace Qowaiv.CodeAnalysis.Diagnostics;
+﻿namespace Qowaiv.CodeAnalysis;
 
-public static class Description
+public static class Rule
 {
     public static DiagnosticDescriptor UseTestableTimeProvider => New(
         id: 0001,
@@ -42,6 +42,18 @@ public static class Description
             "When char",
         category: Category.Security,
         tags: new[] { "Trojan", "Unicode", "" });
+
+    public static DiagnosticDescriptor SealClasses => New(
+        id: 0005,
+        title: "Seal concrete classes unless designed for inheritance",
+        message: "Seal this {0}.",
+        description:
+            "Inheritance is one of the pillars of Object Oriented Programming. "+
+            "Designing a class to support inheritance however, is hard. As a " +
+            "consequence, it is considered a bad practice to unintentionally " +
+            "allowing a class to be inheritable.",
+       category: Category.Design,
+       tags: new[] { "Design" });
 
     private static DiagnosticDescriptor New(
         int id,

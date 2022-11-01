@@ -1,15 +1,14 @@
-﻿namespace Description_specs;
+﻿namespace Rule_description_specs;
 
 public class Rules_have
 {
     [Test]
     public void HelpLinkUri()
-        => Description.ParseShouldNotFail
+        => Rule.ParseShouldNotFail
         .HelpLinkUri.Should().Be("https://github.com/Qowaiv/qowaiv-analyzers/blob/main/rules/QW0002.md");
 
     [Test]
     public void Category()
-       => Description.ParseShouldNotFail
+       => Rule.ParseShouldNotFail
        .Category.Should().Be("Runtime Error");
-
 }
