@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace Noncompliant
 {
-    public class NotAbstractNotSealedClass { } // Noncompliant {{Seal this class.}}
+    public class NotAbstractNotSealedClass { } // Noncompliant {{Seal this class or make it explicit inheritable.}}
     //           ^^^^^^^^^^^^^^^^^^^^^^^^^
 
     public partial class PartialClass { } // Noncompliant
