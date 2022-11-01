@@ -8,7 +8,7 @@ public sealed class SealClasses : DiagnosticAnalyzer
     public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = new[]
     {
         Rule.SealClasses,
-        Rule.OnlyConcreteClassesDecoratedInheritable
+        Rule.OnlyConcreteClassesCanBeInheritable
     }
     .ToImmutableArray();
 
@@ -52,7 +52,7 @@ public sealed class SealClasses : DiagnosticAnalyzer
             && declaration.Attributes.FirstOrDefault(a => IsDecorated(a, decorated)) is { } attr)
         {
             context.ReportDiagnostic(
-                Rule.OnlyConcreteClassesDecoratedInheritable,
+                Rule.OnlyConcreteClassesCanBeInheritable,
                 attr,
                 attr.Name()!);
         }

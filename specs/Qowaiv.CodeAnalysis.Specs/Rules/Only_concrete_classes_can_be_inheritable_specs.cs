@@ -1,4 +1,4 @@
-﻿namespace Rules.Only_concrete_classes_decorate_inheritable_specs;
+﻿namespace Rules.Only_concrete_classes_can_be_inheritable_specs;
 
 public class Verify
 {
@@ -6,6 +6,6 @@ public class Verify
     public void Rule_rule_for_classes()
         => new SealClasses()
         .ForCS()
-        .AddSource(@"Cases/OnlyConcreteClassesDecorateInheritable.cs")
+        .AddSource(@"Cases/OnlyConcreteClassesCanBeInheritable.cs")
         .Verify();
 }
