@@ -1,14 +1,15 @@
 ﻿namespace Qowaiv.CodeAnalysis.Syntax;
 
-public sealed class MethodDeclaration : SyntaxAbstraction
+public abstract class MethodDeclaration : SyntaxAbstraction
 {
-    public MethodDeclaration(SyntaxNode node, Lazy<INamedTypeSymbol?> symbol) : base(node)
-    {
-        LazySymbol = symbol;
-    }
+    protected MethodDeclaration(SyntaxNode node, SemanticModel model)
+        : base(node) => LazySymbol = new(() => model.GetDeclaredSymbol(node) as INamedTypeSymbol);
 
     public INamedTypeSymbol? Symbol => LazySymbol.Value;
     private readonly Lazy<INamedTypeSymbol?> LazySymbol;
+
+    public abstract SyntaxList<AttributeListSyntax> AttributeLists { get; }
+    public IEnumerable<AttributeSyntax> Attributes => AttributeLists.SelectMany(a => a.Attributes);
 
     public bool IsConcrete => !IsSealed && !IsAbstract;
 
@@ -24,11 +25,29 @@ public sealed class MethodDeclaration : SyntaxAbstraction
 
     public bool IsRecord => Node is RecordDeclarationSyntax;
 
-    public IEnumerable<SyntaxKind> Modifiers
-        => Node switch
-        {
-            ClassDeclarationSyntax cls => cls.Modifiers.Select(m => m.Kind()),
-            RecordDeclarationSyntax rec => rec.Modifiers.Select(m => m.Kind()),
-            _ => throw new InvalidOperationException(),
-        };
+    public abstract IEnumerable<SyntaxKind> Modifiers { get; }
+  
+    internal sealed class Class : MethodDeclaration
+    {
+        private readonly ClassDeclarationSyntax TypedNode;
+
+        public Class(ClassDeclarationSyntax node, SemanticModel model)
+            : base(node, model) => TypedNode = node;
+
+        public override SyntaxList<AttributeListSyntax> AttributeLists => TypedNode.AttributeLists;
+        
+        public override IEnumerable<SyntaxKind> Modifiers => TypedNode.Modifiers.Select(m => m.Kind());
+    }
+
+    internal sealed class Record : MethodDeclaration
+    {
+        private readonly RecordDeclarationSyntax TypedNode;
+
+        public Record(RecordDeclarationSyntax node, SemanticModel model)
+            : base(node, model) => TypedNode = node;
+
+        public override SyntaxList<AttributeListSyntax> AttributeLists => TypedNode.AttributeLists;
+
+        public override IEnumerable<SyntaxKind> Modifiers => TypedNode.Modifiers.Select(m => m.Kind());
+    }
 }

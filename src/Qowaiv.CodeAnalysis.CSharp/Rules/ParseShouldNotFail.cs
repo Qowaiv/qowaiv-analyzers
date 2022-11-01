@@ -5,7 +5,7 @@ namespace Qowaiv.CodeAnalysis.Rules;
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class ParseShouldNotFail : DiagnosticAnalyzer
 {
-    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => Rule.ParseShouldNotFail.Array();
+    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = Rule.ParseShouldNotFail.Array();
 
     public override void Initialize(AnalysisContext context)
     {

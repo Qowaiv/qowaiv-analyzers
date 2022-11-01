@@ -5,7 +5,7 @@ namespace Qowaiv.CodeAnalysis.Rules;
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class TrojanCharactersAreNotAllowed : DiagnosticAnalyzer
 {
-    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => Rule.TrojanCharactersAreNotAllowed.Array();
+    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = Rule.TrojanCharactersAreNotAllowed.Array();
 
     public override void Initialize(AnalysisContext context)
     {
@@ -17,8 +17,8 @@ public sealed class TrojanCharactersAreNotAllowed : DiagnosticAnalyzer
     private void Report(SyntaxTreeAnalysisContext context)
     {
         foreach (var point in context.Tree.GetText().Lines
-                         .SelectMany(line => CodePoint.Parse(line.ToString(), line.Start))
-                         .Where(point => IsVulnerability(point.Utf32)))
+            .SelectMany(line => CodePoint.Parse(line.ToString(), line.Start))
+            .Where(point => IsVulnerability(point.Utf32)))
         {
             context.ReportDiagnostic(
                 Diagnostic.Create(
