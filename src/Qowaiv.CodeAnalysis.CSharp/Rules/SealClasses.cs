@@ -63,8 +63,11 @@ public sealed class SealClasses : DiagnosticAnalyzer
 
     [Pure]
     private static bool IsVirtualOrProtected(ISymbol symbol)
-        => (symbol.IsVirtual || symbol.IsProtected())
-        && !symbol.IsImplicitlyDeclared;
+        => !symbol.IsImplicitlyDeclared && (symbol.IsVirtual || IsProtected(symbol));
+
+    [Pure]
+    private static bool IsProtected(ISymbol symbol)
+        => symbol.IsProtected() && !symbol.IsOverride;
 
     [Pure]
     private static INamedTypeSymbol? Decorated(IEnumerable<AttributeData> attributes)

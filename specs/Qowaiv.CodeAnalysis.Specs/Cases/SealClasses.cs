@@ -24,9 +24,14 @@ namespace Noncompliant
 
     public class NotAbstractWithVirtualBase : VirtualBase { } // Noncompliant
 
+    public class WithProtectedOverride : VirtualBase // Noncompliant
+    {
+        protected override object Property { get; set; }
+    }
+
     public abstract class VirtualBase
     {
-        public virtual object Property { get; set; }
+        protected virtual object Property { get; set; }
     }
 }
 
