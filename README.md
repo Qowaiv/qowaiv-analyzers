@@ -18,5 +18,5 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 * [**QW0003** - Decorate pure functions](rules/QW0003.md)
 * [**QW0004** - Characters with Trojan Horse potential are not allowed](rules/QW0004.md)
 * [**QW0005** - Seal concrete classes unless designed for inheritance](rules/QW0005.md)
-* [**QW0006** - Only concrete classes should be decorated as inheritable](rules/QW0006.md)
+* [**QW0006** - Only unsealed concrete classes should be decorated as inheritable](rules/QW0006.md)
 

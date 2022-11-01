@@ -11,7 +11,7 @@ public abstract class MethodDeclaration : SyntaxAbstraction
     public abstract SyntaxList<AttributeListSyntax> AttributeLists { get; }
     public IEnumerable<AttributeSyntax> Attributes => AttributeLists.SelectMany(a => a.Attributes);
 
-    public bool IsConcrete => !IsSealed && !IsAbstract && !IsStatic;
+    public bool IsConcrete => !IsAbstract && !IsStatic;
 
     public bool IsStatic 
         => Modifiers.Contains(SyntaxKind.StaticKeyword)

@@ -1,6 +1,4 @@
-﻿using Microsoft.CodeAnalysis;
-
-namespace Qowaiv.CodeAnalysis.Rules;
+﻿namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class SealClasses : DiagnosticAnalyzer
@@ -8,7 +6,7 @@ public sealed class SealClasses : DiagnosticAnalyzer
     public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = new[]
     {
         Rule.SealClasses,
-        Rule.OnlyConcreteClassesCanBeInheritable
+        Rule.OnlyUnsealedConcreteClassesCanBeInheritable
     }
     .ToImmutableArray();
 
@@ -28,7 +26,8 @@ public sealed class SealClasses : DiagnosticAnalyzer
 
     private static void ReportUnsealedClasses(MethodDeclaration declaration, SyntaxNodeAnalysisContext context)
     {
-        if (declaration.IsConcrete
+        if (declaration.IsConcrete 
+            && !declaration.IsSealed
             && declaration.Symbol is { } type
             && !type.IsObsolete()
             && !type.IsAttribute()
@@ -44,7 +43,7 @@ public sealed class SealClasses : DiagnosticAnalyzer
 
     private static void ReportInvalidDecorations(MethodDeclaration declaration, SyntaxNodeAnalysisContext context)
     {
-        if (!declaration.IsConcrete
+        if ((!declaration.IsConcrete || declaration.IsSealed)
             && declaration.Symbol is { } type
             && !type.IsObsolete()
             && !type.IsAttribute()
@@ -52,7 +51,7 @@ public sealed class SealClasses : DiagnosticAnalyzer
             && declaration.Attributes.FirstOrDefault(a => IsDecorated(a, decorated)) is { } attr)
         {
             context.ReportDiagnostic(
-                Rule.OnlyConcreteClassesCanBeInheritable,
+                Rule.OnlyUnsealedConcreteClassesCanBeInheritable,
                 attr,
                 attr.Name()!);
         }

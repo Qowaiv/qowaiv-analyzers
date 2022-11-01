@@ -55,9 +55,9 @@ public static class Rule
        category: Category.Design,
        tags: new[] { "Design" });
 
-    public static DiagnosticDescriptor OnlyConcreteClassesCanBeInheritable => New(
+    public static DiagnosticDescriptor OnlyUnsealedConcreteClassesCanBeInheritable => New(
         id: 0006,
-        title: "Only concrete classes should be decorated as inheritable",
+        title: "Only unsealed concrete classes should be decorated as inheritable",
         message: "Remove the [{0}] attribute.",
         description:
             "The inheritable attribute is only meant to be used on concrete classes.",
