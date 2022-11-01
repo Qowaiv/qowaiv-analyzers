@@ -2,9 +2,8 @@
 
 internal static class SpecialTypeExtensions
 {
-    public static Type GetRuntimeType(this SpecialType specialType)
-    {
-        return specialType switch
+    public static Type? GetRuntimeType(this SpecialType specialType) 
+        => specialType switch
         {
             SpecialType.System_Object => typeof(object),
             SpecialType.System_Enum => typeof(Enum),
@@ -42,5 +41,4 @@ internal static class SpecialTypeExtensions
             SpecialType.System_AsyncCallback => typeof(AsyncCallback),
             _ => null,
         };
-    }
 }

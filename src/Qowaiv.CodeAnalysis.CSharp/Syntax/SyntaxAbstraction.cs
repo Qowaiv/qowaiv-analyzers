@@ -14,7 +14,7 @@ public abstract class SyntaxAbstraction
     public SyntaxNode? Parent => Node.Parent;
 
     /// <summary>Gets the Name of the node or null if not supported for the syntax node type.</summary>
-    public string Name() => Node.Name();
+    public string Name() => Node.Name() ?? string.Empty;
 
     /// <summary>Gets the direct child tokens of this node.</summary>
     public IEnumerable<SyntaxToken> ChildTokens() => Node.ChildTokens();
@@ -23,5 +23,5 @@ public abstract class SyntaxAbstraction
     public override string ToString() => Node.ToString();
 
     /// <summary>Implicitly casts to a <see cref="SyntaxNode"/>.</summary>
-    public static implicit operator SyntaxNode(SyntaxAbstraction abstraction) => abstraction?.Node;
+    public static implicit operator SyntaxNode?(SyntaxAbstraction? abstraction) => abstraction?.Node;
 }

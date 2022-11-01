@@ -18,11 +18,11 @@ public sealed class UseTestableTimeProvider : DiagnosticAnalyzer
             && context.SemanticModel.GetSymbolInfo(context.Node).Symbol is IPropertySymbol property
             && property.MemberOf(SystemType.System_DateTime))
         {
-            context.ReportDiagnostic(Rule.UseTestableTimeProvider, context.Node.Parent);
+            context.ReportDiagnostic(Rule.UseTestableTimeProvider, context.Node.Parent!);
         }
     }
 
-    private bool IsDateTimeProvider(string name)
+    private bool IsDateTimeProvider(string? name)
        => nameof(DateTime.Now).Equals(name)
        || nameof(DateTime.UtcNow).Equals(name)
        || nameof(DateTime.Today).Equals(name);

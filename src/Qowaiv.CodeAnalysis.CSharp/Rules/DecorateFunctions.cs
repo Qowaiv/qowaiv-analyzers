@@ -43,11 +43,11 @@ public sealed class DecorateFunctions : DiagnosticAnalyzer
     private static bool NotDecorated(IEnumerable<AttributeData> attributes)
         => !attributes.Any(attr => Decorated(attr.AttributeClass));
 
-    private static bool Decorated(INamedTypeSymbol attr)
+    private static bool Decorated(ITypeSymbol? attr)
         => attr.Is(SystemType.System_Diagnostics_Contracts_PureAttribute)
-        || DecoratedImpure(attr);
+        || DecoratedImpure(attr!);
 
-    private static bool DecoratedImpure(INamedTypeSymbol attr)
+    private static bool DecoratedImpure(ITypeSymbol attr)
         => "IMPURE" == attr.Name.ToUpperInvariant()
         || "IMPUREATTRIBUTE" == attr.Name.ToUpperInvariant()
         || attr.Name.ToUpperInvariant().Contains("ASSERTION")

@@ -14,7 +14,7 @@ internal static class TypedActivator
         var type = types.FirstOrDefault(predicate);
 
         return type is null
-            ? default
-            : (T)Activator.CreateInstance(type);
+            ? default!
+            : (T)Activator.CreateInstance(type)!;
     }
 }

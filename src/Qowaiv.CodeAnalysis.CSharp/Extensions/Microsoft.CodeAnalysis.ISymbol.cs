@@ -5,30 +5,39 @@ namespace Microsoft.CodeAnalysis;
 
 internal static class SymbolExtensions
 {
+    [Pure]
     public static bool IsNot(this ITypeSymbol symbol, SystemType type)
         => !symbol.Is(type);
 
+    [Pure]
     public static bool Is(this ITypeSymbol? symbol, SystemType type)
         => symbol is { } && symbol.IsMatch(type);
 
+    [Pure]
     public static bool IsAttribute(this ITypeSymbol type)
         => type.Is(SystemType.System_Attribute)
         || (type.BaseType is { } @base && @base.IsAttribute());
 
+    [Pure]
     public static bool IsObsolete(this ITypeSymbol type)
         => type.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System_ObsoleteAttribute));
 
+    [Pure]
     public static bool IsObsolete(this IMethodSymbol method)
         => method.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System_ObsoleteAttribute))
         || method.ContainingType.IsObsolete();
 
+    [Pure]
     public static bool IsPublic(this ISymbol symbol) => symbol.DeclaredAccessibility == Accessibility.Public;
 
+    [Pure]
     public static bool IsProtected(this ISymbol symbol) => symbol.DeclaredAccessibility == Accessibility.Protected;
 
+    [Pure]
     public static bool MemberOf(this ISymbol? symbol, SystemType type)
         => symbol is { } && symbol.ContainingType.Is(type);
 
+    [Pure]
     public static string GetFullMetadataName(this ISymbol symbol)
     {
         if (symbol is null || symbol.IsRootNamespace())
@@ -53,6 +62,7 @@ internal static class SymbolExtensions
         }
     }
 
+    [Pure]
     public static MethodInfo GetMethodInfo(this IMethodSymbol symbol)
     {
         if (MethodInfos.TryGetValue(symbol, out var method))
@@ -96,11 +106,13 @@ internal static class SymbolExtensions
         }
     }
 
-    public static Assembly GetAssembly(this ISymbol symbol)
+    [Pure]
+    public static Assembly? GetAssembly(this ISymbol symbol)
         => symbol is IAssemblySymbol assemblySymbol
         ? LoadAssembly(assemblySymbol)
         : LoadAssembly(symbol.ContainingAssembly);
 
+    [Pure]
     public static Type GetRuntimeType(this ITypeSymbol symbol)
     {
         if (symbol.SpecialType.GetRuntimeType() is { } type
@@ -124,29 +136,32 @@ internal static class SymbolExtensions
         }
     }
 
+    [Pure]
     private static bool IsMatch(this ITypeSymbol typeSymbol, SystemType type)
         => type.Matches(typeSymbol.SpecialType)
         || type.Matches(typeSymbol.OriginalDefinition.SpecialType)
         || type.Matches(typeSymbol.ToDisplayString())
         || type.Matches(typeSymbol.OriginalDefinition.ToDisplayString());
 
+    [Pure]
     private static bool IsRootNamespace(this ISymbol symbol)
         => symbol is INamespaceSymbol ns
         && ns.IsGlobalNamespace;
 
-    private static Assembly LoadAssembly(IAssemblySymbol symbol)
+    [Pure]
+    private static Assembly? LoadAssembly(IAssemblySymbol symbol)
     {
         var id = symbol.Identity;
         return AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.GetName().Name == id.Name)
             ?? Load(symbol)
             ?? LoadFile(id);
 
-        static Assembly Load(IAssemblySymbol symbol)
+        static Assembly? Load(IAssemblySymbol symbol)
         {
             try { return Assembly.Load(symbol.MetadataName); }
             catch { return null; }
         }
-        static Assembly LoadFile(AssemblyIdentity id)
+        static Assembly? LoadFile(AssemblyIdentity id)
         {
             foreach (var root in AppDomain.CurrentDomain
                 .GetAssemblies()

@@ -20,16 +20,16 @@ public sealed class ParseShouldNotFail : DiagnosticAnalyzer
         if (invocation.Name() == nameof(Parse)
             && invocation.Arguments.Count() == 1
             && context.SemanticModel.GetConstantValue(invocation.Expressions.First()).Value is string literal
-            && context.SemanticModel.GetSymbolInfo(invocation).Symbol is IMethodSymbol method
+            && context.SemanticModel.GetSymbolInfo(invocation!).Symbol is IMethodSymbol method
             && method.IsStatic
             && SymbolEqualityComparer.Default.Equals(method.ContainingType, method.ReturnType)
             && Parse(method, literal) is { } failure)
         {
-            context.ReportDiagnostic(Rule.ParseShouldNotFail, invocation, failure);
+            context.ReportDiagnostic(Rule.ParseShouldNotFail, invocation!, failure);
         }
     }
 
-    private static string Parse(IMethodSymbol symbol, string value)
+    private static string? Parse(IMethodSymbol symbol, string value)
     {
         if (symbol.GetMethodInfo() is { } method)
         {
