@@ -3,7 +3,7 @@
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class UseTestableTimeProvider : DiagnosticAnalyzer
 {
-    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => Rule.UseTestableTimeProvider.Array();
+    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = Rule.UseTestableTimeProvider.Array();
 
     public override void Initialize(AnalysisContext context)
     {

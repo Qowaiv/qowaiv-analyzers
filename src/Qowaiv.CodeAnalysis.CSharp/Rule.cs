@@ -46,12 +46,21 @@ public static class Rule
     public static DiagnosticDescriptor SealClasses => New(
         id: 0005,
         title: "Seal concrete classes unless designed for inheritance",
-        message: "Seal this {0}.",
+        message: "Seal this {0} or make it explicit inheritable.",
         description:
             "Inheritance is one of the pillars of Object Oriented Programming. "+
             "Designing a class to support inheritance however, is hard. As a " +
             "consequence, it is considered a bad practice to unintentionally " +
             "allowing a class to be inheritable.",
+       category: Category.Design,
+       tags: new[] { "Design" });
+
+    public static DiagnosticDescriptor OnlyUnsealedConcreteClassesCanBeInheritable => New(
+        id: 0006,
+        title: "Only unsealed concrete classes should be decorated as inheritable",
+        message: "Remove the [{0}] attribute.",
+        description:
+            "The inheritable attribute is only meant to be used on concrete classes.",
        category: Category.Design,
        tags: new[] { "Design" });
 

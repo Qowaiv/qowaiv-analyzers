@@ -3,7 +3,12 @@
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class SealClasses : DiagnosticAnalyzer
 {
-    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => Rule.SealClasses.Array();
+    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = new[]
+    {
+        Rule.SealClasses,
+        Rule.OnlyUnsealedConcreteClassesCanBeInheritable
+    }
+    .ToImmutableArray();
 
     public override void Initialize(AnalysisContext context)
     {
@@ -12,16 +17,22 @@ public sealed class SealClasses : DiagnosticAnalyzer
         context.RegisterSyntaxNodeAction(Report, SyntaxKind.ClassDeclaration, SyntaxKind.RecordDeclaration);
     }
 
-    private void Report(SyntaxNodeAnalysisContext context)
+    private static void Report(SyntaxNodeAnalysisContext context)
     {
         var declaration = context.Node.MethodDeclaration(context.SemanticModel);
-       
-        if (declaration.IsConcrete
+        ReportUnsealedClasses(declaration, context);
+        ReportInvalidDecorations(declaration, context);
+    }
+
+    private static void ReportUnsealedClasses(MethodDeclaration declaration, SyntaxNodeAnalysisContext context)
+    {
+        if (declaration.IsConcrete 
+            && !declaration.IsSealed
             && declaration.Symbol is { } type
             && !type.IsObsolete()
             && !type.IsAttribute()
             && !type.GetMembers().Any(IsVirtualOrProtected)
-            && NotDecorated(type.GetAttributes()))
+            && Decorated(type.GetAttributes()) is null)
         {
             context.ReportDiagnostic(
                 Rule.SealClasses,
@@ -30,19 +41,38 @@ public sealed class SealClasses : DiagnosticAnalyzer
         }
     }
 
-    private static bool IsVirtualOrProtected(ISymbol symbol) 
+    private static void ReportInvalidDecorations(MethodDeclaration declaration, SyntaxNodeAnalysisContext context)
+    {
+        if ((!declaration.IsConcrete || declaration.IsSealed)
+            && declaration.Symbol is { } type
+            && !type.IsObsolete()
+            && !type.IsAttribute()
+            && Decorated(type.GetAttributes()) is { } decorated
+            && declaration.Attributes.FirstOrDefault(a => IsDecorated(a, decorated)) is { } attr)
+        {
+            context.ReportDiagnostic(
+                Rule.OnlyUnsealedConcreteClassesCanBeInheritable,
+                attr,
+                attr.Name()!);
+        }
+    }
+
+    [Pure]
+    private static bool IsDecorated(AttributeSyntax attr, INamedTypeSymbol decorated)
+        => decorated.Name.StartsWith(attr.Name());
+
+    [Pure]
+    private static bool IsVirtualOrProtected(ISymbol symbol)
         => (symbol.IsVirtual || symbol.IsProtected())
         && !symbol.IsImplicitlyDeclared;
-    
-    private static bool NotDecorated(IEnumerable<AttributeData> attributes)
-       => !attributes.Any(attr => Decorated(attr.AttributeClass));
 
-    private static bool Decorated(INamedTypeSymbol? attr)
-        => attr.Is(SystemType.System_Diagnostics_Contracts_PureAttribute)
-        || DecoratedInheritable(attr!);
+    [Pure]
+    private static INamedTypeSymbol? Decorated(IEnumerable<AttributeData> attributes)
+       => attributes.FirstOrDefault(attr => IsDecorated(attr.AttributeClass!))?.AttributeClass;
 
-    private static bool DecoratedInheritable(INamedTypeSymbol attr)
+    [Pure]
+    private static bool IsDecorated(INamedTypeSymbol attr)
         => "INHERITABLE" == attr.Name.ToUpperInvariant()
         || "INHERITABLEATTRIBUTE" == attr.Name.ToUpperInvariant()
-        || attr.BaseType is { } && DecoratedInheritable(attr.BaseType);
+        || attr.BaseType is { } && IsDecorated(attr.BaseType);
 }

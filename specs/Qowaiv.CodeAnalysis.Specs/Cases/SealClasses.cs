@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace Noncompliant
 {
-    public class NotAbstractNotSealedClass { } // Noncompliant {{Seal this class.}}
+    public class NotAbstractNotSealedClass { } // Noncompliant {{Seal this class or make it explicit inheritable.}}
     //           ^^^^^^^^^^^^^^^^^^^^^^^^^
 
     public partial class PartialClass { } // Noncompliant
@@ -40,9 +40,11 @@ namespace Compliant
     [SupportsMocking]
     public class WithDerivedAttribute { } // Compliant  {{Decorated with derived Inheritable attribute.}}
 
-    public abstract class AbstractClass { } // Compliant {{Abstract.}}
+    public abstract class AbstractClass { } // Compliant {{Abstract classes should be inherited.}}
 
-    public sealed class SealedClass { } // Compliant {{Sealed.}}
+    public sealed class SealedClass { } // Compliant {{Sealed classes can not be inherited..}}
+
+    public static class StaticClass { } // Compliant {{Static classes can not be inherited.}}
 
     public class WithProtectedCtor // Compliant {{Designed for inheritance.}}
     {

@@ -11,10 +11,12 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Package config">
-    <PackageVersion>0.0.4</PackageVersion>
-    <AssemblyVersion>0.0.4</AssemblyVersion>
+    <PackageVersion>0.0.4.1</PackageVersion>
+    <AssemblyVersion>0.0.4.1</AssemblyVersion>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageReleaseNotes>
+v0.0.4.1
+- QW0006: Seal concrete classes unless designed for inheritance (#9)
 v0.0.4
 - QW0005: Seal concrete classes unless designed for inheritance (#9)
 v0.0.3.1
