@@ -37,7 +37,9 @@ namespace Noncompliant
 
 namespace Compliant
 {
-    public class SomeAttribute : Attribute { } // Compliant {{Are ignored.}}
+    public class SomeAttribute : Attribute { } // Compliant {{Attributes are ignored.}}
+
+    public class SomeExceptoin : Exception { } // Compliant {{Exceptions are ignored.}}
 
     [Inheritable]
     public class WithAttribute { } // Compliant {{Decorated with Inheritable attribute.}}

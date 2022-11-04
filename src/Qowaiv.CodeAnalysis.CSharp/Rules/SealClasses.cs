@@ -31,6 +31,7 @@ public sealed class SealClasses : DiagnosticAnalyzer
             && declaration.Symbol is { } type
             && !type.IsObsolete()
             && !type.IsAttribute()
+            && !type.IsException()
             && !type.GetMembers().Any(IsVirtualOrProtected)
             && Decorated(type.GetAttributes()) is null)
         {
@@ -47,6 +48,7 @@ public sealed class SealClasses : DiagnosticAnalyzer
             && declaration.Symbol is { } type
             && !type.IsObsolete()
             && !type.IsAttribute()
+            && !type.IsException()
             && Decorated(type.GetAttributes()) is { } decorated
             && declaration.Attributes.FirstOrDefault(a => IsDecorated(a, decorated)) is { } attr)
         {
