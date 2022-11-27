@@ -14,9 +14,17 @@ internal static class SymbolExtensions
         => symbol is { } && symbol.IsMatch(type);
 
     [Pure]
+    public static bool IsAssignableTo(this ITypeSymbol? symbol, SystemType type)
+        => symbol is { } && symbol.IsMatch(type)
+        || (symbol?.BaseType is { } @base && @base.Is(type));
+
+    [Pure]
     public static bool IsAttribute(this ITypeSymbol type)
-        => type.Is(SystemType.System_Attribute)
-        || (type.BaseType is { } @base && @base.IsAttribute());
+        => type.IsAssignableTo(SystemType.System_Attribute);
+
+    [Pure]
+    public static bool IsException(this ITypeSymbol type)
+        => type.IsAssignableTo(SystemType.System_Exception);
 
     [Pure]
     public static bool IsObsolete(this ITypeSymbol type)
