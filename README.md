@@ -19,4 +19,4 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 * [**QW0004** - Characters with Trojan Horse potential are not allowed](rules/QW0004.md)
 * [**QW0005** - Seal concrete classes unless designed for inheritance](rules/QW0005.md)
 * [**QW0006** - Only unsealed concrete classes should be decorated as inheritable](rules/QW0006.md)
-
+* [**QW0007** - Use file-scoped namespace declarations](rules/QW0007.md)
