@@ -5,7 +5,7 @@ namespace Qowaiv.CodeAnalysis.Rules;
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class TrojanCharactersAreNotAllowed : DiagnosticAnalyzer
 {
-    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = Rule.TrojanCharactersAreNotAllowed.Array();
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = Rule.TrojanCharactersAreNotAllowed.Array();
 
     public override void Initialize(AnalysisContext context)
     {

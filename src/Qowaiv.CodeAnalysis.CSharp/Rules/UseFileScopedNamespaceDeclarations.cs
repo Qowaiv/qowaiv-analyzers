@@ -3,7 +3,7 @@
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class UseFileScopedNamespaceDeclarations : DiagnosticAnalyzer
 {
-    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = Rule.UseFileScopedNamespaceDeclarations.Array();
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = Rule.UseFileScopedNamespaceDeclarations.Array();
 
     public override void Initialize(AnalysisContext context)
     {
@@ -22,21 +22,20 @@ public sealed class UseFileScopedNamespaceDeclarations : DiagnosticAnalyzer
         }
     }
 
-    static bool IsSingle(NamespaceDeclarationSyntax declaration)
+    private static bool IsSingle(NamespaceDeclarationSyntax declaration)
     {
-        var root = declaration.Ancestors().Last();
-        var walker = new NamespaceWalker();
-        walker.Visit(root);
-        return walker.Declarations == 1;
+        var counter = new DeclarationCounter();
+        counter.Visit(declaration.Ancestors().Last());
+        return counter.Count == 1;
     }
 
-    sealed class NamespaceWalker : CSharpSyntaxWalker
+    private sealed class DeclarationCounter : CSharpSyntaxWalker
     {
-        public int Declarations { get; private set; }
+        public int Count { get; private set; }
 
         public override void VisitNamespaceDeclaration(NamespaceDeclarationSyntax node)
         {
-            Declarations++;
+            Count++;
             base.VisitNamespaceDeclaration(node);
         }
     }

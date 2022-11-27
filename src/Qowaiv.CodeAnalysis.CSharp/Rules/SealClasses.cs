@@ -3,7 +3,7 @@
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class SealClasses : DiagnosticAnalyzer
 {
-    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = new[]
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = new[]
     {
         Rule.SealClasses,
         Rule.OnlyUnsealedConcreteClassesCanBeInheritable
