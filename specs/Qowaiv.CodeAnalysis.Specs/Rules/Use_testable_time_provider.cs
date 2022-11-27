@@ -1,4 +1,4 @@
-namespace Rules.UseTestableTimeProvider_specs;
+namespace Rules.Use_testable_time_provider;
 
 public class Verify
 {

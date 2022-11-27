@@ -1,12 +1,12 @@
-namespace Rules.DecorateFunctions_specs;
+namespace Rules.Decorate_pure_functions;
 
 public class Verify
 {
     [Test]
     public void CSharp()
-        => new DecorateFunctions()
+        => new DecoratePureFunctions()
         .ForCS()
-        .AddSource(@"Cases/DecorateFunctions.cs")
+        .AddSource(@"Cases/DecoratePureFunctions.cs")
         .AddReference<FluentAssertions.CustomAssertionAttribute>()
         .Verify();
 }

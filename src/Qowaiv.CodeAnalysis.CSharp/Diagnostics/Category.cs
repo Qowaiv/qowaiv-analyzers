@@ -1,16 +1,13 @@
-﻿using System;
+﻿namespace Qowaiv.CodeAnalysis.Diagnostics;
 
-namespace Qowaiv.CodeAnalysis.Diagnostics
+public enum Category
 {
-    public enum Category
-    {
-        Design,
+    Design,
 
-        [Display("Runtime Error")]
-        RuntimeError,
+    [Display("Runtime Error")]
+    RuntimeError,
 
-        Security,
+    Security,
 
-        Testabilty,
-    }
+    Testabilty,
 }

@@ -23,7 +23,7 @@ public static class Rule
         severity: DiagnosticSeverity.Error,
         tags: new[] { "Error" });
 
-    public static DiagnosticDescriptor DecorateFunctions => New(
+    public static DiagnosticDescriptor DecoratePureFunctions => New(
         id: 0003,
         title: "Decorate pure functions",
         message: "Decorate this method with a [Pure] or [Impure] attribute.",
