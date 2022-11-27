@@ -48,7 +48,7 @@ public static class Rule
         title: "Seal concrete classes unless designed for inheritance",
         message: "Seal this {0} or make it explicit inheritable.",
         description:
-            "Inheritance is one of the pillars of Object Oriented Programming. "+
+            "Inheritance is one of the pillars of Object Oriented Programming. " +
             "Designing a class to support inheritance however, is hard. As a " +
             "consequence, it is considered a bad practice to unintentionally " +
             "allowing a class to be inheritable.",
@@ -63,6 +63,17 @@ public static class Rule
             "The inheritable attribute is only meant to be used on concrete classes.",
        category: Category.Design,
        tags: new[] { "Design" });
+
+    public static DiagnosticDescriptor UseFileScopedNamespaceDeclarations => New(
+       id: 0007,
+       title: "Use file-scoped namespace declarations",
+       message: "Use a file-scoped namespace declaration instead.",
+         description:
+            "It reduces the number of braces in a file, and also eliminates the " +
+            "wasted horizontal space to the left of the class definition, since " +
+            "it no longer needs to be indented.",
+      category: Category.Design,
+      tags: new[] { "Design" });
 
     private static DiagnosticDescriptor New(
         int id,

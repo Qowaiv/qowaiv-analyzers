@@ -3,7 +3,7 @@ namespace Qowaiv.CodeAnalysis;
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class DecoratePureFunctions : DiagnosticAnalyzer
 {
-    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = Rule.DecoratePureFunctions.Array();
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = Rule.DecoratePureFunctions.Array();
 
     public override void Initialize(AnalysisContext context)
     {

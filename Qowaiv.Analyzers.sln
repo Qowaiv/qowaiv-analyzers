@@ -18,8 +18,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "props", "props", "{54F4E206-6075-4662-8F8B-0FF528E9DE39}"
 	ProjectSection(SolutionItems) = preProject
 		props\common.props = props\common.props
-		props\nopackage.props = props\nopackage.props
-		props\package.props = props\package.props
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Qowaiv.CodeAnalysis.Specs", "specs\Qowaiv.CodeAnalysis.Specs\Qowaiv.CodeAnalysis.Specs.csproj", "{D9C004D3-B8F6-47DD-AFF3-60C579868F97}"
@@ -32,6 +30,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rules", "rules", "{00461C52
 		rules\QW0004.md = rules\QW0004.md
 		rules\QW0005.md = rules\QW0005.md
 		rules\QW0006.md = rules\QW0006.md
+		rules\QW0007.md = rules\QW0007.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{EE67C148-3FE3-4DF4-8A91-C0BF7E3960AD}"

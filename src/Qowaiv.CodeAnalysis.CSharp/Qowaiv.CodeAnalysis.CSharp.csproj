@@ -1,15 +1,51 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\props\package.props" />
-  
+  <Import Project="..\..\props\common.props" />
+
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Qowaiv.Analyzers.CSharp</PackageId>
     <RootNamespace>Qowaiv.CodeAnalysis</RootNamespace>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  
+  <PropertyGroup Label="Build conditions">
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <DevelopmentDependency>true</DevelopmentDependency>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Package config">
+    <PackageVersion>0.0.5</PackageVersion>
+    <PackageIcon>package-icon.png</PackageIcon>
+    <PackageReleaseNotes>
+v0.0.5
+- QW0007: Use file-scoped namespace scopes (#13)
+v0.0.4.1
+- QW0006: Seal concrete classes unless designed for inheritance (#9)
+v0.0.4
+- QW0005: Seal concrete classes unless designed for inheritance (#9)
+v0.0.3.1
+- QW0004: Horizontal tab (U+9, \t) is allowed too (#6)
+v0.0.3
+- QW0004: Characters with Trojan Horse potential are not allowed
+v0.0.2
+- QW0003: Decorate pure functions
+v0.0.1
+- QW0001: Use a testable time provider
+- QW0002: Parse() throws
+    </PackageReleaseNotes>
+    <PackageProjectUrl>http://www.github.com/Qowaiv/qowaiv-analyzers</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/Qowaiv/qowaiv-analyzers</RepositoryUrl>
+    <PackageTags>Qowaiv;Code Analysis</PackageTags>
+  </PropertyGroup>
 
   <ItemGroup Label="Package files">
+    <None Update="tools\*.ps1" Pack="true" PackagePath="\" />
+    <None Include="$(MSBuildThisFileDirectory)..\..\design\package-icon.png" Pack="true" PackagePath="" Visible="false "/>
     <None Include="$(OutputPath)\Qowaiv.CodeAnalysis.CSharp.dll" Pack="true" PackagePath="analyzers" Visible="false" />
   </ItemGroup>
 
