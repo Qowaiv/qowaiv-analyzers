@@ -21,7 +21,7 @@
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageReleaseNotes>
 v0.0.5
-- QW0007: Use file-scoped namespace scopes (#11)
+- QW0007: Use file-scoped namespace scopes (#13)
 v0.0.4.1
 - QW0006: Seal concrete classes unless designed for inheritance (#9)
 v0.0.4
