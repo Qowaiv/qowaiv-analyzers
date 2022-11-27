@@ -1,4 +1,4 @@
-namespace Rules.TrojanCharactersAreNotAllowed_specs;
+namespace Rules.Trojan_characters_are_not_allowed;
 
 public class Verify
 {

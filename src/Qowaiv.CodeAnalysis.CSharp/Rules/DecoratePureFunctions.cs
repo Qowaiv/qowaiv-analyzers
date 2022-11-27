@@ -1,9 +1,9 @@
 namespace Qowaiv.CodeAnalysis;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class DecorateFunctions : DiagnosticAnalyzer
+public sealed class DecoratePureFunctions : DiagnosticAnalyzer
 {
-    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = Rule.DecorateFunctions.Array();
+    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = Rule.DecoratePureFunctions.Array();
 
     public override void Initialize(AnalysisContext context)
     {
@@ -24,7 +24,7 @@ public sealed class DecorateFunctions : DiagnosticAnalyzer
             && !method.IsObsolete()
             && NotDecorated(method.GetAttributes()))
         {
-            context.ReportDiagnostic(Rule.DecorateFunctions, declaration.ChildTokens().First(t => t.IsKind(SyntaxKind.IdentifierToken)));
+            context.ReportDiagnostic(Rule.DecoratePureFunctions, declaration.ChildTokens().First(t => t.IsKind(SyntaxKind.IdentifierToken)));
         }
     }
 

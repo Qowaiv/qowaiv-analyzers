@@ -1,4 +1,4 @@
-﻿namespace Rules.SealClasses_specs;
+﻿namespace Rules.Seal_classes;
 
 public class Verify
 {

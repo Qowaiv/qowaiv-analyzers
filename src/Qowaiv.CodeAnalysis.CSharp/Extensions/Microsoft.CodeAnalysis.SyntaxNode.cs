@@ -1,11 +1,8 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-
-namespace Microsoft.CodeAnalysis;
+﻿namespace Microsoft.CodeAnalysis;
 
 public static class SyntaxNodeExensions
 {
-    public static string? Name(this SyntaxNode node)
-    => node switch
+    public static string? Name(this SyntaxNode node) => node switch
     {
         AttributeSyntax attr => Name(attr.Name),
         IdentifierNameSyntax identifier => identifier.Identifier.Text,
@@ -22,11 +19,10 @@ public static class SyntaxNodeExensions
     
     public static InvocationExpression InvocationExpression(this SyntaxNode node) => new(node);
 
-    public static MethodDeclaration MethodDeclaration(this SyntaxNode node, SemanticModel model)
-        => node switch
-        {
-            ClassDeclarationSyntax @class => new MethodDeclaration.Class(@class, model),
-            RecordDeclarationSyntax record => new MethodDeclaration.Record(record, model),
-            _ => throw new InvalidOperationException($"Unexpected {node.GetType().Name}, expected MethodDeclarationSyntax or RecordDeclarationSyntax.")
-        };
+    public static MethodDeclaration MethodDeclaration(this SyntaxNode node, SemanticModel model) => node switch
+    {
+        ClassDeclarationSyntax @class => new MethodDeclaration.Class(@class, model),
+        RecordDeclarationSyntax record => new MethodDeclaration.Record(record, model),
+        _ => throw new InvalidOperationException($"Unexpected {node.GetType().Name}, expected MethodDeclarationSyntax or RecordDeclarationSyntax.")
+    };
 }
