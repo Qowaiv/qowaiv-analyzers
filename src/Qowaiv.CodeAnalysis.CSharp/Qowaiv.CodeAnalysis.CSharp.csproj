@@ -17,9 +17,11 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Package config">
-    <PackageVersion>0.0.5</PackageVersion>
+    <PackageVersion>0.0.5.1</PackageVersion>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageReleaseNotes>
+v0.0.5.1
+- QW0004: Mathematical Alphanumeric Symbols are not suspicious. (#14)
 v0.0.5
 - QW0007: Use file-scoped namespace scopes (#13)
 v0.0.4.1
@@ -45,7 +47,7 @@ v0.0.1
 
   <ItemGroup Label="Package files">
     <None Update="tools\*.ps1" Pack="true" PackagePath="\" />
-    <None Include="$(MSBuildThisFileDirectory)..\..\design\package-icon.png" Pack="true" PackagePath="" Visible="false "/>
+    <None Include="$(MSBuildThisFileDirectory)..\..\design\package-icon.png" Pack="true" PackagePath="" Visible="false " />
     <None Include="$(OutputPath)\Qowaiv.CodeAnalysis.CSharp.dll" Pack="true" PackagePath="analyzers" Visible="false" />
   </ItemGroup>
 

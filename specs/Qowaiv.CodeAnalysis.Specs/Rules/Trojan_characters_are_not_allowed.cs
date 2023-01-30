@@ -1,4 +1,4 @@
-namespace Rules.Trojan_characters_are_not_allowed;
+﻿namespace Rules.Trojan_characters_are_not_allowed;
 
 public class Verify
 {
@@ -8,6 +8,10 @@ public class Verify
         .ForCS()
         .AddSource(@"Cases/TrojanCharactersAreNotAllowed.cs")
         .Verify();
+
+    [TestCase(0x1D453, "𝑓 symbol")]
+    public void NoVulnerability(int utf32, string message)
+        => TrojanCharactersAreNotAllowed.IsVulnerability(utf32).Should().BeFalse(because: message);
 
     [TestCase('\t', "horizontal tab")]
     public void NoVulnerability(char ch, string message)

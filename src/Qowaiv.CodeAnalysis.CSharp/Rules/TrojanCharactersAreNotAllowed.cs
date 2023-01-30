@@ -62,7 +62,8 @@ public sealed class TrojanCharactersAreNotAllowed : DiagnosticAnalyzer
         || CJKUnifiedIdeographsExtensionD.Contains(utf32)
         || CJKUnifiedIdeographsExtensionE.Contains(utf32)
         || CJKUnifiedIdeographsExtensionF.Contains(utf32)
-        || CyrillicExtendedC.Contains(utf32);
+        || CyrillicExtendedC.Contains(utf32)
+        || MathematicalAlphanumeric.Contains(utf32);
 
     private static readonly Range Arabic = new(0x00600, 0x006FF);
     private static readonly Range ArabicExtendedA = new(0x008A0, 0x008FF);
@@ -81,6 +82,7 @@ public sealed class TrojanCharactersAreNotAllowed : DiagnosticAnalyzer
     private static readonly Range CJKUnifiedIdeographsExtensionE = new(0x2B820, 0X2CEAF);
     private static readonly Range CJKUnifiedIdeographsExtensionF = new(0x2CEB0, 0X2EBEF);
     private static readonly Range CyrillicExtendedC = new(0x01C80, 0x01C8F);
+    private static readonly Range MathematicalAlphanumeric = new(0x1D400, 0x01D7DD);
 
     private readonly struct Range
     {
