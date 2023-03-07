@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace Microsoft.CodeAnalysis;
+﻿namespace Microsoft.CodeAnalysis;
 
 internal static class SymbolExtensions
 {
@@ -15,7 +13,7 @@ internal static class SymbolExtensions
     [Pure]
     public static bool IsAssignableTo(this ITypeSymbol? symbol, SystemType type)
         => symbol is { } && symbol.IsMatch(type)
-        || (symbol?.BaseType is { } @base && @base.Is(type));
+        || (symbol?.BaseType is { } @base && @base.IsAssignableTo(type));
 
     [Pure]
     public static bool IsAttribute(this ITypeSymbol type)

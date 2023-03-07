@@ -105,7 +105,7 @@ internal static partial class Guard
         if (!allowedRange.Contains(parameter))
         {
             var allowed = string.Join(", ", allowedRange);
-            throw new ArgumentOutOfRangeException(paramName, string.Format(CultureInfo.CurrentCulture, Messages.ArgumentOutOfRangeException_NotInCollection, allowed));
+            throw new ArgumentOutOfRangeException(paramName, string.Format(Messages.ArgumentOutOfRangeException_NotInCollection, allowed));
         }
 
         return parameter;
@@ -126,7 +126,7 @@ internal static partial class Guard
         if (forbiddenRange.Contains(parameter))
         {
             var forbidden = string.Join(", ", forbiddenRange);
-            throw new ArgumentOutOfRangeException(paramName, string.Format(CultureInfo.CurrentCulture, Messages.ArgumentOutOfRangeException_InCollection, forbidden));
+            throw new ArgumentOutOfRangeException(paramName, string.Format(Messages.ArgumentOutOfRangeException_InCollection, forbidden));
         }
 
         return parameter;
@@ -150,7 +150,7 @@ internal static partial class Guard
             return parameter;
         }
 
-        throw new ArgumentOutOfRangeException(paramName, string.Format(CultureInfo.CurrentCulture, Messages.ArgumentOutOfRangeException_DefinedEnum, parameter, typeof(T)));
+        throw new ArgumentOutOfRangeException(paramName, string.Format(Messages.ArgumentOutOfRangeException_DefinedEnum, parameter, typeof(T)));
     }
 
     /// <summary>
@@ -165,14 +165,12 @@ internal static partial class Guard
     /// The guarded parameter.
     /// </returns>
     [DebuggerStepThrough]
-#pragma warning disable S4018 // Generic methods should provide type parameters, but here it provides casting.
     public static T IsInstanceOf<T>(object parameter, string paramName)
-#pragma warning restore S4018 // Generic methods should provide type parameters
     {
         NotNull(parameter, paramName);
-        if (!(parameter is T instance))
+        if (parameter is not T instance)
         {
-            throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Messages.ArgumentException_NotAnInstanceOf, typeof(T)), paramName);
+            throw new ArgumentException(string.Format(Messages.ArgumentException_NotAnInstanceOf, typeof(T)), paramName);
         }
 
         return instance;
@@ -524,8 +522,6 @@ internal static partial class Guard
     /// <summary>Messages class to group the constants.</summary>
     private static class Messages
     {
-#pragma warning disable SA1310 // Field names should not contain underscore
-
         public const string ArgumentException_EmptyCollection = "Argument cannot be an empty collection.";
         public const string ArgumentException_GuidEmpty = "Argument cannot be an empty GUID.";
         public const string ArgumentException_IsDefaultValue = "Argument is the not initialized/default value.";
@@ -540,8 +536,6 @@ internal static partial class Guard
 
         public const string ArgumentOutOfRangeException_Negative = "Argument should not be negative.";
         public const string ArgumentOutOfRangeException_NotPositive = "Argument should be positive.";
-
-#pragma warning restore SA1310 // Field names should not contain underscore
     }
 
     /// <summary>Marks the NotNull argument as being validated for not being null, to satisfy the static code analysis.</summary>
