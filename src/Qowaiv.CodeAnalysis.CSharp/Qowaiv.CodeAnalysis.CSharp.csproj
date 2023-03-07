@@ -17,9 +17,11 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Package config">
-    <PackageVersion>0.0.5.1</PackageVersion>
+    <PackageVersion>0.0.5.2</PackageVersion>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageReleaseNotes>
+v0.0.5.2
+- QW0005: All attributes should be excluded. (#15)
 v0.0.5.1
 - QW0004: Mathematical Alphanumeric Symbols are not suspicious. (#14)
 v0.0.5

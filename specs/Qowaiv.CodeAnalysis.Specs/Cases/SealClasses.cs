@@ -92,5 +92,6 @@ namespace Compliant
 
 
     public class InheritableAttribute : Attribute { }
-    public sealed class SupportsMockingAttribute : InheritableAttribute { }
+
+    public class SupportsMockingAttribute : InheritableAttribute { }
 }
