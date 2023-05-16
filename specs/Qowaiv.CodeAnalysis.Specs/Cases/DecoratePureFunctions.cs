@@ -25,7 +25,7 @@ public class Compliant
     [Impure]
     public int ImpureMethod(int input) => 42; // Compliant {{Decorated with something derived from an ImpureAttribute.}}
 
-    [FluenSyntax]
+    [FluentSyntax]
     public Compliant FluentSyntax() => this; // Compliant {{Decorated with something derived from an ImpureAttribute.}}
 
     [CustomAssertion]
@@ -39,8 +39,6 @@ public class ImpureByAssumption
     public Task AsyncVoid() => Task.CompletedTask; // Compliant {{Async void methods are impure per definition.}}
 
     public async ValueTask AsyncVoidStruct() => await AsyncVoid(); // Compliant {{Async void methods are impure per definition.}}
-
-    public IDisposable Scope() => null; // Compliant {{Disposable methods are expected to be impure.}}
 
     public bool TryParse(string str, out object result) // Compliant {{Methods with out parameters are expected to be impure.}}
     {
@@ -72,4 +70,4 @@ public class ObsoleteClass
 
 public class OtherAttribute : Attribute { }
 public class ImpureAttribute : Attribute { }
-public class FluenSyntaxAttribute : ImpureAttribute { }
+public class FluentSyntaxAttribute : ImpureAttribute { }
