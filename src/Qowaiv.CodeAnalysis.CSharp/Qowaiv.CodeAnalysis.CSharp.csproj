@@ -22,7 +22,8 @@
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageReleaseNotes>
 v0.0.5.3
-- QW0003: ValueTask is never a pure function. (#16)
+- QW0003: Returning ValueTask is never a pure function. (#16)
+- QW0003: Returning IDisposable can be a pure function. (#16)
 v0.0.5.2
 - QW0005: All attributes should be excluded. (#15)
 v0.0.5.1
