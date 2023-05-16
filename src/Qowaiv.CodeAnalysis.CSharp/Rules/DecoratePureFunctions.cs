@@ -31,7 +31,7 @@ public sealed class DecoratePureFunctions : DiagnosticAnalyzer
     private bool ReturnsResult(ITypeSymbol type)
         => type.IsNot(SystemType.System_Void)
         && type.IsNot(SystemType.System_Threading_Task)
-        && type.IsNot(SystemType.System_IDisposable);
+        && type.IsNot(SystemType.System_Threading_ValueTask);
 
     private static bool HasNoRefOutParemeter(IEnumerable<IParameterSymbol> parameters)
         => parameters.All(par => par.RefKind != RefKind.Out && par.RefKind != RefKind.Ref);

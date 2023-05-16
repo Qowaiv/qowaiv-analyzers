@@ -22,11 +22,23 @@ public class Compliant
     [Obsolete]
     public int Obsolete() => 0; // Compliant {{Obsolete methods are ignored.}}
 
+    [Impure]
+    public int ImpureMethod(int input) => 42; // Compliant {{Decorated with something derived from an ImpureAttribute.}}
+
+    [FluentSyntax]
+    public Compliant FluentSyntax() => this; // Compliant {{Decorated with something derived from an ImpureAttribute.}}
+
+    [CustomAssertion]
+    public T SomeAssertion<T>(T subject) => subject; // Compliant {{FluentAssertions custom assertions are expected to be impure.}}
+}
+
+public class ImpureByAssumption
+{
     public void Void() { } // Compliant {{Void methods are impure per definition.}}
 
-    public Task AsyncVoid() => Task.CompletedTask; // Compliant
+    public Task AsyncVoid() => Task.CompletedTask; // Compliant {{Async void methods are impure per definition.}}
 
-    public IDisposable Scope() => null; // Compliant {{Disposable methods are expected to be impure.}}
+    public async ValueTask AsyncVoidStruct() => await AsyncVoid(); // Compliant {{Async void methods are impure per definition.}}
 
     public bool TryParse(string str, out object result) // Compliant {{Methods with out parameters are expected to be impure.}}
     {
@@ -43,15 +55,6 @@ public class Compliant
     }
 
     public int GuardPositive(int number) => number; // Compliant {{Guarding is expected to be impure.}}
-
-    [Impure]
-    public int ImpureMethod(int input) => 69; // Compliant {{Decorated with something derived from an ImpureAttribute.}}
-
-    [FluenSyntax]
-    public Compliant FluentSyntax() => this; // Compliant {{Decorated with something derived from an ImpureAttribute.}}
-
-    [CustomAssertion]
-    public T SomeAssertion<T>(T subject) => subject; // Compliant {{FluentAssertions custom assertions are expected to be impure.}}
 }
 
 public class Guard
@@ -67,4 +70,4 @@ public class ObsoleteClass
 
 public class OtherAttribute : Attribute { }
 public class ImpureAttribute : Attribute { }
-public class FluenSyntaxAttribute : ImpureAttribute { }
+public class FluentSyntaxAttribute : ImpureAttribute { }
