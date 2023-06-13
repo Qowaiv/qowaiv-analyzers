@@ -2,7 +2,7 @@
 
 public class DateTimeAsProvider
 {
-    public void Noncompliant()
+    public void Issues()
     {
         var now = DateTime.Now;
         var utc = DateTime.UtcNow;

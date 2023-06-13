@@ -6,7 +6,7 @@ public class DateTimeAsProvider
     {
         var now = Clock.Now();
         var utc = Clock.UtcNow();
-        var today = Clock.Today()
+        var today = Clock.Today();
         var offset_now = Clock.NowWithOffset();
         var offset_utc = Clock.NowWithOffset(TimeZoneInfo.Utc);
     }
