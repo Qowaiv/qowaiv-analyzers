@@ -9,3 +9,15 @@ public class Verify
         .AddSource(@"Cases/UseTestableTimeProvider.cs")
         .Verify();
 }
+
+public class Fix
+{
+    [Test]
+    public void QW0001()
+        => new UseTestableTimeProvider()
+        .ForCS()
+        .AddSource(@"Cases/UseTestableTimeProvider.ToFix.cs")
+        .ForCodeFix<UseQowaivClock>()
+        .AddSource(@"Cases/UseTestableTimeProvider.Fixed.cs")
+        .Verify();
+}
