@@ -16,14 +16,14 @@ public sealed class UseTestableTimeProvider : DiagnosticAnalyzer
     {
         if (IsDateTimeProvider(context.Node.Name())
             && context.SemanticModel.GetSymbolInfo(context.Node).Symbol is IPropertySymbol property
-            && property.MemberOf(SystemType.System_DateTime))
+            && (property.MemberOf(SystemType.System_DateTime) || property.MemberOf(SystemType.System_DateTimeOffset)))
         {
             context.ReportDiagnostic(Rule.UseTestableTimeProvider, context.Node.Parent!);
         }
     }
 
     private bool IsDateTimeProvider(string? name)
-       => nameof(DateTime.Now).Equals(name)
-       || nameof(DateTime.UtcNow).Equals(name)
-       || nameof(DateTime.Today).Equals(name);
+        => nameof(DateTime.Now).Equals(name)
+        || nameof(DateTime.UtcNow).Equals(name)
+        || nameof(DateTime.Today).Equals(name);
 }

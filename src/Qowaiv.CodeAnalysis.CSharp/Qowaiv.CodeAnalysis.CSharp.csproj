@@ -18,9 +18,11 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Package config">
-    <PackageVersion>0.0.5.3</PackageVersion>
+    <PackageVersion>0.0.6</PackageVersion>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageReleaseNotes>
+v0.0.6
+- QW0001: Also reports on DateTime.Offset. (#17)
 v0.0.5.3
 - QW0003: Returning ValueTask is never a pure function. (#16)
 - QW0003: Returning IDisposable can be a pure function. (#16)

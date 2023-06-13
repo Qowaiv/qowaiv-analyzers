@@ -8,6 +8,8 @@ public class DateTimeAsProvider
         //        ^^^^^^^^^^^^
         var utc = DateTime.UtcNow; // Noncompliant
         var today = DateTime.Today; // Noncompliant
+        var offset_now = DateTimeOffset.Now; // Noncompliant
+        var offset_utc = DateTimeOffset.UtcNow; // Noncompliant
     }
 
     public void CompliantAre()
