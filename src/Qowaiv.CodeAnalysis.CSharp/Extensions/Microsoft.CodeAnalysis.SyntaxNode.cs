@@ -1,7 +1,10 @@
 ﻿namespace Microsoft.CodeAnalysis;
 
-public static class SyntaxNodeExensions
+public static class SyntaxNodeExtensions
 {
+    public static TNode? AncestorsAndSelf<TNode>(this SyntaxNode node) where TNode : SyntaxNode
+        => node.AncestorsAndSelf().OfType<TNode>().FirstOrDefault();
+
     public static string? Name(this SyntaxNode node) => node switch
     {
         AttributeSyntax attr => Name(attr.Name),
