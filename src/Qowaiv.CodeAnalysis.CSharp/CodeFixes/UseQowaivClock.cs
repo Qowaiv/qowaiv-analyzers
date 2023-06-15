@@ -5,6 +5,7 @@ using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace Qowaiv.CodeAnalysis.CodeFixes;
 
+[ExportCodeFixProvider(LanguageNames.CSharp)]
 public sealed class UseQowaivClock : CodeFixProvider
 {
     public override ImmutableArray<string> FixableDiagnosticIds => new[]
@@ -13,6 +14,8 @@ public sealed class UseQowaivClock : CodeFixProvider
         "S6354"
     }
     .ToImmutableArray();
+
+    public override FixAllProvider? GetFixAllProvider() => null;
 
     public override async Task RegisterCodeFixesAsync(CodeFixContext context)
     {
