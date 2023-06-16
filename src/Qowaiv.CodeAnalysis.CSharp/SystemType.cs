@@ -5,7 +5,7 @@ public sealed partial class SystemType
     private SystemType(string fullName, SpecialType specialType = SpecialType.None)
     {
         FullName = fullName;
-        ShortName = fullName.Split('.').Last();
+        ShortName = Last(fullName.Split('.'));
         Type = specialType;
     }
 
@@ -27,4 +27,6 @@ public sealed partial class SystemType
     /// <summary>Casts a <see cref="System.Type"/> to a <see cref="SystemType"/>.</summary>
     public static implicit operator SystemType(Type type) => new SystemType(type.FullName, default);
     private static SystemType New(Type type, SpecialType specialType) => new SystemType(type.FullName, specialType);
+
+    private static string Last(string[] array) => array[array.Length - 1];
 }
