@@ -12,9 +12,9 @@ internal static class DisplayNameExtensions
     [Pure]
     private static string DisplayName(object enumValue)
     {
-        var str = enumValue?.ToString() ?? string.Empty;
-        var attribute = enumValue?.GetType().GetMember(str)
-            .FirstOrDefault()?
+        var str = enumValue.ToString();
+        var attribute = enumValue.GetType().GetMember(str)
+            .Single()
             .GetCustomAttribute<DisplayAttribute>();
 
         return attribute is null ? str : attribute.ToString();
@@ -25,7 +25,7 @@ internal static class DisplayNameExtensions
 internal sealed class DisplayAttribute : Attribute
 {
     private readonly string Display;
-    
+
     public DisplayAttribute(string display) => Display = display;
 
     [Pure]

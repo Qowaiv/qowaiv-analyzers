@@ -1,8 +1,8 @@
 ﻿namespace Qowaiv.CodeAnalysis.Syntax;
 
-public abstract class SyntaxAbstraction
+public class SyntaxAbstraction
 {
-    /// <summary>Creates a new instance of the <see cref="SyntaxAbstraction"/> class.</summary>
+    /// <summary>Initializes a new instance of the <see cref="SyntaxAbstraction"/> class.</summary>
     protected SyntaxAbstraction(SyntaxNode node) => Node = Guard.NotNull(node, nameof(node));
 
     /// <summary>Gets the underlying node.</summary>

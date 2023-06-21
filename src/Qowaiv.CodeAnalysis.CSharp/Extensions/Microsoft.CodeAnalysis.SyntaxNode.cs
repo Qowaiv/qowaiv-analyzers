@@ -19,13 +19,13 @@ public static class SyntaxNodeExtensions
     public static TNode Cast<TNode>(this SyntaxNode node) where TNode : SyntaxNode
         => node as TNode
         ?? throw new InvalidOperationException($"Unexpected {node.GetType().Name}, expected {typeof(TNode).Name}.");
-    
+
     public static InvocationExpression InvocationExpression(this SyntaxNode node) => new(node);
 
     public static MethodDeclaration MethodDeclaration(this SyntaxNode node, SemanticModel model) => node switch
     {
         ClassDeclarationSyntax @class => new MethodDeclaration.Class(@class, model),
         RecordDeclarationSyntax record => new MethodDeclaration.Record(record, model),
-        _ => throw new InvalidOperationException($"Unexpected {node.GetType().Name}, expected MethodDeclarationSyntax or RecordDeclarationSyntax.")
+        _ => throw new InvalidOperationException($"Unexpected {node.GetType().Name}, expected MethodDeclarationSyntax or RecordDeclarationSyntax."),
     };
 }

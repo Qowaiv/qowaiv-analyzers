@@ -12,7 +12,7 @@ internal static class SymbolExtensions
 
     [Pure]
     public static bool IsAssignableTo(this ITypeSymbol? symbol, SystemType type)
-        => symbol is { } && symbol.IsMatch(type)
+        => (symbol is { } && symbol.IsMatch(type))
         || (symbol?.BaseType is { } @base && @base.IsAssignableTo(type));
 
     [Pure]

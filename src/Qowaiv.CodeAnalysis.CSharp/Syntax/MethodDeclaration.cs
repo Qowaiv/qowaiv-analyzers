@@ -6,14 +6,16 @@ public abstract class MethodDeclaration : SyntaxAbstraction
         : base(node) => LazySymbol = new(() => model.GetDeclaredSymbol(node) as INamedTypeSymbol);
 
     public INamedTypeSymbol? Symbol => LazySymbol.Value;
+
     private readonly Lazy<INamedTypeSymbol?> LazySymbol;
 
     public abstract SyntaxList<AttributeListSyntax> AttributeLists { get; }
+
     public IEnumerable<AttributeSyntax> Attributes => AttributeLists.SelectMany(a => a.Attributes);
 
     public bool IsConcrete => !IsAbstract && !IsStatic;
 
-    public bool IsStatic 
+    public bool IsStatic
         => Modifiers.Contains(SyntaxKind.StaticKeyword)
         || (IsPartial && Symbol?.IsStatic == true);
 
@@ -30,7 +32,7 @@ public abstract class MethodDeclaration : SyntaxAbstraction
     public abstract bool IsRecord { get; }
 
     public abstract IEnumerable<SyntaxKind> Modifiers { get; }
-  
+
     internal sealed class Class : MethodDeclaration
     {
         private readonly ClassDeclarationSyntax TypedNode;
@@ -41,7 +43,7 @@ public abstract class MethodDeclaration : SyntaxAbstraction
         public override bool IsRecord => false;
 
         public override SyntaxList<AttributeListSyntax> AttributeLists => TypedNode.AttributeLists;
-        
+
         public override IEnumerable<SyntaxKind> Modifiers => TypedNode.Modifiers.Select(m => m.Kind());
     }
 

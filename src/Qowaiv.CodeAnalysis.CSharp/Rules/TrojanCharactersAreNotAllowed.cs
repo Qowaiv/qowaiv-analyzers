@@ -91,8 +91,11 @@ public sealed class TrojanCharactersAreNotAllowed : DiagnosticAnalyzer
             Start = start;
             End = end;
         }
+
         public int Start { get; }
+
         public int End { get; }
+
         public bool Contains(int utf32) => utf32 >= Start && utf32 <= End;
     }
 
@@ -104,8 +107,10 @@ public sealed class TrojanCharactersAreNotAllowed : DiagnosticAnalyzer
             Index = start;
         }
         public int Utf32 { get; }
+
         public int Index { get; }
-        public TextSpan TextSpan => TextSpan.FromBounds(Index, Index +1);
+
+        public TextSpan TextSpan => TextSpan.FromBounds(Index, Index + 1);
 
         public static IEnumerable<CodePoint> Parse(string str, int offset)
         {

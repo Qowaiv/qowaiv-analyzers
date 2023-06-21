@@ -6,7 +6,7 @@ public sealed class SealClasses : DiagnosticAnalyzer
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = new[]
     {
         Rule.SealClasses,
-        Rule.OnlyUnsealedConcreteClassesCanBeInheritable
+        Rule.OnlyUnsealedConcreteClassesCanBeInheritable,
     }
     .ToImmutableArray();
 
@@ -26,7 +26,7 @@ public sealed class SealClasses : DiagnosticAnalyzer
 
     private static void ReportUnsealedClasses(MethodDeclaration declaration, SyntaxNodeAnalysisContext context)
     {
-        if (declaration.IsConcrete 
+        if (declaration.IsConcrete
             && !declaration.IsSealed
             && declaration.Symbol is { } type
             && !type.IsObsolete()
@@ -76,7 +76,7 @@ public sealed class SealClasses : DiagnosticAnalyzer
 
     [Pure]
     private static bool IsDecorated(INamedTypeSymbol attr)
-        => "INHERITABLE" == attr.Name.ToUpperInvariant()
-        || "INHERITABLEATTRIBUTE" == attr.Name.ToUpperInvariant()
-        || attr.BaseType is { } && IsDecorated(attr.BaseType);
+        => attr.Name.ToUpperInvariant() == "INHERITABLE"
+        || attr.Name.ToUpperInvariant() == "INHERITABLEATTRIBUTE"
+        || (attr.BaseType is { } && IsDecorated(attr.BaseType));
 }

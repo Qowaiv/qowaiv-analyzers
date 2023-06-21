@@ -15,13 +15,22 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Label="Test Tools">
     <PackageReference Include="CodeAnalysis.TestTools" Version="0.*" />
+    <PackageReference Include="coverlet.collector" Version="*" />
+    <PackageReference Include="coverlet.msbuild" Version="*" />
     <PackageReference Include="FluentAssertions" Version="6.*" />
-    <PackageReference Include="FluentAssertions.Analyzers" Version="0.*" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
     <PackageReference Include="NUnit" Version="3.*" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.*" />
+  </ItemGroup>
+
+  <ItemGroup Label="Analyzers">
+    <PackageReference Include="FluentAssertions.Analyzers" Version="*" />
+    <PackageReference Include="NUnit.Analyzers" Version="*" />
+  </ItemGroup>
+
+  <ItemGroup Label="Other">
     <PackageReference Include="Qowaiv" Version="6.*" />
   </ItemGroup>
 

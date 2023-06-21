@@ -60,6 +60,13 @@ v0.0.1
     <None Include="$(OutputPath)\Qowaiv.CodeAnalysis.CSharp.dll" Pack="true" PackagePath="analyzers" Visible="false" />
   </ItemGroup>
 
+  <ItemGroup Label="Analyzers">
+    <PackageReference Include="StyleCop.Analyzers" Version="*-*">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="3.*" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.*" />
