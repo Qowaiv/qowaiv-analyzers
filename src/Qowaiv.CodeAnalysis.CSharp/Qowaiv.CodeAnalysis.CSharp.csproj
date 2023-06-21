@@ -22,6 +22,7 @@
     <PackageReleaseNotes>
 ToBeReleased
 - QW0008: Define properties as not-nullable for types with an empty state. #21
+- QW0008: Value Types with an empty state should be used as nullable properties. #18
 v0.0.6.1
 - QW0001: Provide a fix to suggest the usage of Qowaiv.Clock. #17
 v0.0.6
