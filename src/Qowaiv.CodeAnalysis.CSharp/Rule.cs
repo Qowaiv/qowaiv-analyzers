@@ -1,4 +1,7 @@
-﻿namespace Qowaiv.CodeAnalysis;
+﻿#pragma warning disable SA1118 // Parameter should not span multiple lines.
+// For readability, here it is preferred.
+
+namespace Qowaiv.CodeAnalysis;
 
 public static class Rule
 {
@@ -41,7 +44,7 @@ public static class Rule
         description:
             "When char",
         category: Category.Security,
-        tags: new[] { "Trojan", "Unicode", "" });
+        tags: new[] { "Trojan", "Unicode" });
 
     public static DiagnosticDescriptor SealClasses => New(
         id: 0005,
@@ -77,12 +80,17 @@ public static class Rule
 
     public static DiagnosticDescriptor UseEmptyInsteadOfNullable => New(
         id: 0008,
-        title: "Use empty value of type instead of ",
-        message: "Type should not be nullable.",
-        description: "",
+        title: "Define properties as not-nullable for types with an empty state",
+        message: "Define the property as not-nullable as its type has an empty state.",
+        description:
+            "Value types with an empty state do not benefit from adding nullability " +
+            "to it, because the nullable that has a value can still represent an " +
+            "empty state.",
         category: Category.Design,
         tags: new[] { "Design", "SVO", "Value Type", "Value Object" });
 
+#pragma warning disable S107 // Methods should not have too many parameters
+    // it calls a ctor with even more arguments.
     private static DiagnosticDescriptor New(
         int id,
         string title,
@@ -92,6 +100,7 @@ public static class Rule
         Category category,
         DiagnosticSeverity severity = DiagnosticSeverity.Warning,
         bool isEnabled = true)
+#pragma warning restore S107 // Methods should not have too many parameters
         => new(
             id: $"QW{id:0000}",
             title: title,
