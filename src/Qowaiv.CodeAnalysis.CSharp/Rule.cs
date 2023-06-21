@@ -1,6 +1,4 @@
-﻿using System.Net.Http.Headers;
-
-namespace Qowaiv.CodeAnalysis;
+﻿namespace Qowaiv.CodeAnalysis;
 
 public static class Rule
 {
@@ -83,7 +81,7 @@ public static class Rule
         message: "Type should not be nullable.",
         description: "",
         category: Category.Design,
-        tags: new[] { "Desing", "SVO", "Value Type", "Value Object" });
+        tags: new[] { "Design", "SVO", "Value Type", "Value Object" });
 
     private static DiagnosticDescriptor New(
         int id,
