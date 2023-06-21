@@ -1,7 +1,4 @@
 ﻿using Microsoft.CodeAnalysis.CodeActions;
-using Microsoft.CodeAnalysis.CodeFixes;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Qowaiv.CodeAnalysis.Syntax;
 
