@@ -8,7 +8,7 @@ class Compliant<T> where T : struct
     public int? Number { get; } //        Compliant
     public Percentage? Factor { get; } // Compliant
     public T Value { get; } //            Compliant
-    public T? NullableValue { get; } //   Compliant {{We can not know if this struct has a Empty state.}}
+    public T? NullableValue { get; } //   Compliant {{We can not know if this struct defines an Empty state.}}
     private Guid? Field; //               Compliant
     void MethodArguments(Guid? id) { } // Compliant
 
@@ -25,9 +25,9 @@ class Compliant<T> where T : struct
     public NoField? NoField { get; } //             Compliant
 }
 
-class Noncompliant<T> where T : struct
+class Noncompliant
 {
-    public Guid? Id { get; } //                 Noncompliant {{Type should not be nullable.}}
+    public Guid? Id { get; } //                 Noncompliant {{Define the property as not-nullable as its type has an empty state.}}
     //     ^^^^^
     public EmailAddress? Email { get; } //      Noncompliant
 
