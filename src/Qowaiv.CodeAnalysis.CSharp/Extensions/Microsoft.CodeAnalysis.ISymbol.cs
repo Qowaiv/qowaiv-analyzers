@@ -3,6 +3,10 @@
 internal static class SymbolExtensions
 {
     [Pure]
+    public static bool Equals(this ITypeSymbol type, ITypeSymbol other, bool IncludeNullability)
+        => type.Equals(other, IncludeNullability ? SymbolEqualityComparer.IncludeNullability : SymbolEqualityComparer.Default);
+
+    [Pure]
     public static bool IsNot(this ITypeSymbol symbol, SystemType type)
         => !symbol.Is(type);
 
@@ -22,6 +26,11 @@ internal static class SymbolExtensions
     [Pure]
     public static bool IsException(this ITypeSymbol type)
         => type.IsAssignableTo(SystemType.System_Exception);
+
+    [Pure]
+    public static bool IsNullableValueType(this ITypeSymbol type) 
+        => type.IsValueType 
+        && type is { SpecialType: SpecialType.System_Nullable_T } or { OriginalDefinition.SpecialType: SpecialType.System_Nullable_T };
 
     [Pure]
     public static bool IsObsolete(this ITypeSymbol type)

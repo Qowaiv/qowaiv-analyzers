@@ -1,4 +1,6 @@
-﻿namespace Qowaiv.CodeAnalysis;
+﻿using System.Net.Http.Headers;
+
+namespace Qowaiv.CodeAnalysis;
 
 public static class Rule
 {
@@ -52,8 +54,8 @@ public static class Rule
             "Designing a class to support inheritance however, is hard. As a " +
             "consequence, it is considered a bad practice to unintentionally " +
             "allowing a class to be inheritable.",
-       category: Category.Design,
-       tags: new[] { "Design" });
+        category: Category.Design,
+        tags: new[] { "Design" });
 
     public static DiagnosticDescriptor OnlyUnsealedConcreteClassesCanBeInheritable => New(
         id: 0006,
@@ -61,19 +63,27 @@ public static class Rule
         message: "Remove the [{0}] attribute.",
         description:
             "The inheritable attribute is only meant to be used on concrete classes.",
-       category: Category.Design,
-       tags: new[] { "Design" });
+        category: Category.Design,
+        tags: new[] { "Design" });
 
     public static DiagnosticDescriptor UseFileScopedNamespaceDeclarations => New(
-       id: 0007,
-       title: "Use file-scoped namespace declarations",
-       message: "Use a file-scoped namespace declaration instead.",
-         description:
+        id: 0007,
+        title: "Use file-scoped namespace declarations",
+        message: "Use a file-scoped namespace declaration instead.",
+        description:
             "It reduces the number of braces in a file, and also eliminates the " +
             "wasted horizontal space to the left of the class definition, since " +
             "it no longer needs to be indented.",
-      category: Category.Design,
-      tags: new[] { "Design" });
+        category: Category.Design,
+        tags: new[] { "Design" });
+
+    public static DiagnosticDescriptor UseEmptyInsteadOfNullable => New(
+        id: 0008,
+        title: "Use empty value of type instead of ",
+        message: "Type should not be nullable.",
+        description: "",
+        category: Category.Design,
+        tags: new[] { "Desing", "SVO", "Value Type", "Value Object" });
 
     private static DiagnosticDescriptor New(
         int id,
