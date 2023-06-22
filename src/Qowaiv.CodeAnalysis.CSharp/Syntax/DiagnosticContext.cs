@@ -1,7 +1,4 @@
 ﻿using Microsoft.CodeAnalysis.CodeActions;
-using Microsoft.CodeAnalysis.CodeFixes;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Qowaiv.CodeAnalysis.Syntax;
 
@@ -17,7 +14,7 @@ internal sealed class DiagnosticContext
     public Document Document { get; }
 
     public Diagnostic Diagnostic { get; }
-    
+
     public SyntaxNode Root { get; }
 
     public async Task<SemanticModel> GetSemanticModelAsync(CancellationToken cancellation = default)

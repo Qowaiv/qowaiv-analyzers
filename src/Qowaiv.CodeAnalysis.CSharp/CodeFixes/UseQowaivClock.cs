@@ -1,7 +1,4 @@
-﻿using Microsoft.CodeAnalysis.CodeFixes;
-using System.Threading;
-using System.Threading.Tasks;
-using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
+﻿using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace Qowaiv.CodeAnalysis.CodeFixes;
 

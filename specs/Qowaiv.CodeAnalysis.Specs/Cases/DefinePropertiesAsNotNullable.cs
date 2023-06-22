@@ -1,8 +1,11 @@
-﻿using Qowaiv;
+﻿#nullable enable
+
+using Qowaiv;
 using System;
 
 class Compliant<T> where T : struct
 {
+    public string? Name { get; } //       Compliant
     public Guid Id { get; } //            Compliant
     public EmailAddress Email { get; } // Compliant
     public int? Number { get; } //        Compliant
@@ -37,12 +40,16 @@ class Noncompliant
     //     ^^^^^^^^^^^^^^
 }
 
-record NoncompliantRecord(
+record NoncompliantRecordMultiLine(
     Guid? Id, //                Noncompliant
 //  ^^^^^
     Nullable<Guid> Reference // Noncompliant
 //  ^^^^^^^^^^^^^^
 );
+
+record NoncompliantRecord(Guid? Id, EmailAddress? Email);
+//                        ^^^^^
+//                                  ^^^^^^^^^^^^^ @-1
 
 struct NoMembers
 {
