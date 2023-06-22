@@ -28,8 +28,8 @@ internal static class SymbolExtensions
         => type.IsAssignableTo(SystemType.System_Exception);
 
     [Pure]
-    public static bool IsNullableValueType(this ITypeSymbol type) 
-        => type.IsValueType 
+    public static bool IsNullableValueType(this ITypeSymbol type)
+        => type.IsValueType
         && type is { SpecialType: SpecialType.System_Nullable_T } or { OriginalDefinition.SpecialType: SpecialType.System_Nullable_T };
 
     [Pure]

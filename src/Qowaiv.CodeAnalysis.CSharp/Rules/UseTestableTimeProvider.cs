@@ -1,16 +1,12 @@
 ﻿namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class UseTestableTimeProvider : DiagnosticAnalyzer
+public sealed class UseTestableTimeProvider : CodingRule
 {
-    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = Rule.UseTestableTimeProvider.Array();
+    public UseTestableTimeProvider() : base(Rule.UseTestableTimeProvider) { }
 
-    public override void Initialize(AnalysisContext context)
-    {
-        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
-        context.EnableConcurrentExecution();
-        context.RegisterSyntaxNodeAction(Report, SyntaxKind.IdentifierName);
-    }
+    protected override void Register(AnalysisContext context)
+        => context.RegisterSyntaxNodeAction(Report, SyntaxKind.IdentifierName);
 
     private void Report(SyntaxNodeAnalysisContext context)
     {
@@ -18,7 +14,7 @@ public sealed class UseTestableTimeProvider : DiagnosticAnalyzer
             && context.SemanticModel.GetSymbolInfo(context.Node).Symbol is IPropertySymbol property
             && (property.MemberOf(SystemType.System_DateTime) || property.MemberOf(SystemType.System_DateTimeOffset)))
         {
-            context.ReportDiagnostic(Rule.UseTestableTimeProvider, context.Node.Parent!);
+            context.ReportDiagnostic(Diagnostic, context.Node.Parent!);
         }
     }
 

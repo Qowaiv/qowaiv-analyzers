@@ -1,14 +1,13 @@
 ﻿namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class DefinePropertiesAsNotNullable : DiagnosticAnalyzer
+public sealed class DefinePropertiesAsNotNullable : CodingRule
 {
-    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = Rule.DefinePropertiesAsNotNullable.Array();
+    public DefinePropertiesAsNotNullable()
+        : base(Rule.DefinePropertiesAsNotNullable) { }
 
-    public override void Initialize(AnalysisContext context)
+    protected override void Register(AnalysisContext context)
     {
-        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
-        context.EnableConcurrentExecution();
         context.RegisterSyntaxNodeAction(ReportProperty, SyntaxKind.PropertyDeclaration);
         context.RegisterSyntaxNodeAction(ReportRecord, SyntaxKind.RecordDeclaration);
     }

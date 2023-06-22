@@ -1,8 +1,13 @@
 ﻿global using CodeAnalysis.TestTools;
 global using FluentAssertions;
+global using Microsoft.CodeAnalysis;
+global using Microsoft.CodeAnalysis.CodeFixes;
 global using Microsoft.CodeAnalysis.CSharp;
+global using Microsoft.CodeAnalysis.Diagnostics;
 global using NUnit.Framework;
 global using Qowaiv.CodeAnalysis;
 global using Qowaiv.CodeAnalysis.CodeFixes;
 global using Qowaiv.CodeAnalysis.Rules;
+global using System;
+global using System.Collections.Generic;
 global using System.Linq;

@@ -1,8 +1,4 @@
-﻿using Microsoft.CodeAnalysis.CodeFixes;
-using Microsoft.CodeAnalysis.Diagnostics;
-using System;
-using System.Collections.Generic;
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace Design_specs;
 
@@ -20,7 +16,7 @@ public class Rules
     private static IEnumerable<Type> Types
         => typeof(global::Qowaiv.CodeAnalysis.Rule).Assembly
         .GetTypes()
-        .Where(t => t.IsAssignableTo(typeof(DiagnosticAnalyzer)));
+        .Where(t => !t.IsAbstract && t.IsAssignableTo(typeof(DiagnosticAnalyzer)));
 }
 
 public class CodeFixes

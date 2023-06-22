@@ -1,16 +1,12 @@
 namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class DecoratePureFunctions : DiagnosticAnalyzer
+public sealed class DecoratePureFunctions : CodingRule
 {
-    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = Rule.DecoratePureFunctions.Array();
+    public DecoratePureFunctions() : base(Rule.DecoratePureFunctions) { }
 
-    public override void Initialize(AnalysisContext context)
-    {
-        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
-        context.EnableConcurrentExecution();
-        context.RegisterSyntaxNodeAction(Report, SyntaxKind.MethodDeclaration);
-    }
+    protected override void Register(AnalysisContext context)
+        => context.RegisterSyntaxNodeAction(Report, SyntaxKind.MethodDeclaration);
 
     private void Report(SyntaxNodeAnalysisContext context)
     {
@@ -28,7 +24,7 @@ public sealed class DecoratePureFunctions : DiagnosticAnalyzer
         }
     }
 
-    private bool ReturnsResult(ITypeSymbol type)
+    private static bool ReturnsResult(ITypeSymbol type)
         => type.IsNot(SystemType.System_Void)
         && type.IsNot(SystemType.System_Threading_Task)
         && type.IsNot(SystemType.System_Threading_ValueTask);
@@ -48,8 +44,8 @@ public sealed class DecoratePureFunctions : DiagnosticAnalyzer
         || DecoratedImpure(attr!);
 
     private static bool DecoratedImpure(ITypeSymbol attr)
-        => "IMPURE" == attr.Name.ToUpperInvariant()
-        || "IMPUREATTRIBUTE" == attr.Name.ToUpperInvariant()
+        => attr.Name.ToUpperInvariant() == "IMPURE"
+        || attr.Name.ToUpperInvariant() == "IMPUREATTRIBUTE"
         || attr.Name.ToUpperInvariant().Contains("ASSERTION")
-        || attr.BaseType is { } && DecoratedImpure(attr.BaseType);
+        || (attr.BaseType is { } && DecoratedImpure(attr.BaseType));
 }

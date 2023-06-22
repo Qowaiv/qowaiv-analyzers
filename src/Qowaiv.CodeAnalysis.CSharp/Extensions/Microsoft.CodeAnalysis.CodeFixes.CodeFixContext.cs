@@ -1,7 +1,7 @@
 ﻿namespace Microsoft.CodeAnalysis.CodeFixes;
 
 /// <summary>Extensions on <see cref="CodeFixContext"/>.</summary>
-internal static  class CodeFixContextExtensions
+internal static class CodeFixContextExtensions
 {
     public static async Task<DiagnosticContext?> DiagnosticContext(this CodeFixContext context)
         => context.Diagnostics.FirstOrDefault() is { } diagnostic

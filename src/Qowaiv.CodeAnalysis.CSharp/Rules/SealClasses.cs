@@ -1,21 +1,15 @@
 ﻿namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class SealClasses : DiagnosticAnalyzer
+public sealed class SealClasses : CodingRule
 {
-    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = new[]
-    {
+    public SealClasses() : base(
         Rule.SealClasses,
-        Rule.OnlyUnsealedConcreteClassesCanBeInheritable,
-    }
-    .ToImmutableArray();
+        Rule.OnlyUnsealedConcreteClassesCanBeInheritable)
+    { }
 
-    public override void Initialize(AnalysisContext context)
-    {
-        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
-        context.EnableConcurrentExecution();
-        context.RegisterSyntaxNodeAction(Report, SyntaxKind.ClassDeclaration, SyntaxKind.RecordDeclaration);
-    }
+    protected override void Register(AnalysisContext context)
+        => context.RegisterSyntaxNodeAction(Report, SyntaxKind.ClassDeclaration, SyntaxKind.RecordDeclaration);
 
     private static void Report(SyntaxNodeAnalysisContext context)
     {

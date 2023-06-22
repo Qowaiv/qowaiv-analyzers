@@ -1,16 +1,12 @@
 ﻿namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class UseFileScopedNamespaceDeclarations : DiagnosticAnalyzer
+public sealed class UseFileScopedNamespaceDeclarations : CodingRule
 {
-    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = Rule.UseFileScopedNamespaceDeclarations.Array();
+    public UseFileScopedNamespaceDeclarations() : base(Rule.UseFileScopedNamespaceDeclarations) { }
 
-    public override void Initialize(AnalysisContext context)
-    {
-        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
-        context.EnableConcurrentExecution();
-        context.RegisterSyntaxNodeAction(Report, SyntaxKind.NamespaceDeclaration);
-    }
+    protected override void Register(AnalysisContext context)
+        => context.RegisterSyntaxNodeAction(Report, SyntaxKind.NamespaceDeclaration);
 
     private void Report(SyntaxNodeAnalysisContext context)
     {
@@ -18,7 +14,7 @@ public sealed class UseFileScopedNamespaceDeclarations : DiagnosticAnalyzer
             && context.Compilation.LanguageVersion() >= CSharpLanguageVersion.CSharp10
             && IsSingle(declaration))
         {
-            context.ReportDiagnostic(Rule.UseFileScopedNamespaceDeclarations, declaration.Name);
+            context.ReportDiagnostic(Diagnostic, declaration.Name);
         }
     }
 

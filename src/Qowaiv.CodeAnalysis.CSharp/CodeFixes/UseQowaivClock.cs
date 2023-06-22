@@ -8,7 +8,7 @@ public sealed class UseQowaivClock : CodeFixProvider
     public override ImmutableArray<string> FixableDiagnosticIds => new[]
     {
         Rule.UseTestableTimeProvider.Id,
-        "S6354"
+        "S6354",
     }
     .ToImmutableArray();
 
@@ -23,10 +23,10 @@ public sealed class UseQowaivClock : CodeFixProvider
         }
     }
 
-    private async Task<Document> ChangeDocument(DiagnosticContext context, MemberAccessExpressionSyntax oldNode, CancellationToken cancellation)
+    private static async Task<Document> ChangeDocument(DiagnosticContext context, MemberAccessExpressionSyntax oldNode, CancellationToken cancellation)
     {
         var model = await context.GetSemanticModelAsync(cancellation);
-        var property = (IPropertySymbol)model.GetSymbolInfo(oldNode).Symbol!;
+        var property = (IPropertySymbol)model.GetSymbolInfo(oldNode, cancellation).Symbol!;
 
         var clock = IdentifierName("Clock");
         var method = Method(property);
@@ -38,9 +38,9 @@ public sealed class UseQowaivClock : CodeFixProvider
         return context.Document.WithSyntaxRoot(context.Root.ReplaceNode(oldNode, newNode));
     }
 
-    private static IdentifierNameSyntax Method(IPropertySymbol property) 
+    private static IdentifierNameSyntax Method(IPropertySymbol property)
         => property.MemberOf(SystemType.System_DateTimeOffset)
-        ? IdentifierName("NowWithOffset") 
+        ? IdentifierName("NowWithOffset")
         : IdentifierName(property.Name);
 
     private static ArgumentListSyntax Arguments(IPropertySymbol property)
@@ -52,5 +52,4 @@ public sealed class UseQowaivClock : CodeFixProvider
         SyntaxKind.SimpleMemberAccessExpression,
         IdentifierName(nameof(TimeZoneInfo)),
         IdentifierName(nameof(TimeZoneInfo.Utc)));
-
 }

@@ -3,16 +3,12 @@
 namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class TrojanCharactersAreNotAllowed : DiagnosticAnalyzer
+public sealed class TrojanCharactersAreNotAllowed : CodingRule
 {
-    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = Rule.TrojanCharactersAreNotAllowed.Array();
+    public TrojanCharactersAreNotAllowed() : base(Rule.TrojanCharactersAreNotAllowed) { }
 
-    public override void Initialize(AnalysisContext context)
-    {
-        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
-        context.EnableConcurrentExecution();
-        context.RegisterSyntaxTreeAction(Report);
-    }
+    protected override void Register(AnalysisContext context)
+        => context.RegisterSyntaxTreeAction(Report);
 
     private void Report(SyntaxTreeAnalysisContext context)
     {
@@ -21,22 +17,20 @@ public sealed class TrojanCharactersAreNotAllowed : DiagnosticAnalyzer
             .Where(point => IsVulnerability(point.Utf32)))
         {
             context.ReportDiagnostic(
-                Diagnostic.Create(
-                    Rule.TrojanCharactersAreNotAllowed,
+                 Microsoft.CodeAnalysis.Diagnostic.Create(
+                    Diagnostic,
                     context.Tree.GetLocation(point.TextSpan),
                     point.Utf32));
         }
     }
 
     public static bool IsVulnerability(int utf32)
-            => IsSuspiciousCategory(utf32)
-            && !InAllowedRange(utf32);
+        => IsSuspiciousCategory(utf32)
+        && !InAllowedRange(utf32);
 
     private static bool IsSuspiciousCategory(int utf32)
-    {
-        var str = char.ConvertFromUtf32(utf32);
-        return str.Any(ch => IsSuspiciousCategory(char.GetUnicodeCategory(ch)));
-    }
+        => char.ConvertFromUtf32(utf32)
+        .Any(ch => IsSuspiciousCategory(char.GetUnicodeCategory(ch)));
 
     private static bool IsSuspiciousCategory(UnicodeCategory cat)
         => cat == UnicodeCategory.Control
@@ -106,6 +100,7 @@ public sealed class TrojanCharactersAreNotAllowed : DiagnosticAnalyzer
             Utf32 = utf32;
             Index = start;
         }
+
         public int Utf32 { get; }
 
         public int Index { get; }
