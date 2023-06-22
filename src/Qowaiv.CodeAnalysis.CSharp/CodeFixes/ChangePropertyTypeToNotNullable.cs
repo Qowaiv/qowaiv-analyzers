@@ -13,7 +13,6 @@ public sealed class ChangePropertyTypeToNotNullable : CodeFixProvider
 
     public override async Task RegisterCodeFixesAsync(CodeFixContext context)
     {
-        var parent = (await context.DiagnosticContext()).Token.Parent;
         if (await context.DiagnosticContext() is { } diagnostic
             && GetTypeSyntax(diagnostic.Token.Parent) is { } type)
         {
@@ -32,11 +31,11 @@ public sealed class ChangePropertyTypeToNotNullable : CodeFixProvider
 
     private static async Task<Document> ChangeDocument(DiagnosticContext context, TypeSyntax type, CancellationToken cancellation)
     {
-        var newName = Trim(type is IdentifierNameSyntax alias
+        var fullName = type is IdentifierNameSyntax alias
             ? await ResolveAlias(alias, context, cancellation)
-            : type.ToFullString().Trim());
+            : type.ToFullString();
 
-        return context.Document.WithSyntaxRoot(context.Root.ReplaceNode(type, IdentifierName(newName)));
+        return context.Document.WithSyntaxRoot(context.Root.ReplaceNode(type, NewName(fullName.Trim())));
     }
 
     private static async Task<string> ResolveAlias(IdentifierNameSyntax alias, DiagnosticContext context, CancellationToken cancellation)
@@ -47,9 +46,9 @@ public sealed class ChangePropertyTypeToNotNullable : CodeFixProvider
     /// This trim works both for Nullable&lt;T&gt;
     /// as for T?.
     /// </remarks>
-    private static string Trim(string fullName)
+    private static IdentifierNameSyntax NewName(string fullName)
     {
         var index = fullName.IndexOf('<');
-        return fullName.Substring(index + 1, fullName.Length - index - 2);
+        return IdentifierName(fullName.Substring(index + 1, fullName.Length - index - 2));
     }
 }
