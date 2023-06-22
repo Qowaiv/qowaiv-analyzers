@@ -3,11 +3,11 @@
 namespace Qowaiv.CodeAnalysis.CodeFixes;
 
 [ExportCodeFixProvider(LanguageNames.CSharp)]
-public sealed class MakePropertyNotNullable : CodeFixProvider
+public sealed class ChangePropertyTypeToNotNullable : CodeFixProvider
 {
     public override ImmutableArray<string> FixableDiagnosticIds => new[]
     {
-        Rule.UseEmptyInsteadOfNullable.Id,
+        Rule.DefinePropertiesAsNotNullable.Id,
     }
     .ToImmutableArray();
 
@@ -20,7 +20,7 @@ public sealed class MakePropertyNotNullable : CodeFixProvider
         }
     }
 
-    private async Task<Document> ChangeDocument(DiagnosticContext context, PropertyDeclarationSyntax declaration, CancellationToken cancellation)
+    private static async Task<Document> ChangeDocument(DiagnosticContext context, PropertyDeclarationSyntax declaration, CancellationToken cancellation)
     {
         var oldNode = declaration.Type;
         var newName = Trim(oldNode is IdentifierNameSyntax alias
@@ -30,7 +30,7 @@ public sealed class MakePropertyNotNullable : CodeFixProvider
         return context.Document.WithSyntaxRoot(context.Root.ReplaceNode(oldNode, IdentifierName(newName)));
     }
 
-    private static async Task<string> ResolveAlias(IdentifierNameSyntax alias, DiagnosticContext context, CancellationToken cancellation) 
+    private static async Task<string> ResolveAlias(IdentifierNameSyntax alias, DiagnosticContext context, CancellationToken cancellation)
         => (await context.GetSemanticModelAsync(cancellation))
             .GetAliasInfo(alias, cancellation)!.Target.ToDisplayString();
 

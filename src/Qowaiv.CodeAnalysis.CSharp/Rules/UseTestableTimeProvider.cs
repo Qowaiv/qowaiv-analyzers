@@ -22,7 +22,7 @@ public sealed class UseTestableTimeProvider : DiagnosticAnalyzer
         }
     }
 
-    private bool IsDateTimeProvider(string? name)
+    private static bool IsDateTimeProvider(string? name)
         => nameof(DateTime.Now).Equals(name)
         || nameof(DateTime.UtcNow).Equals(name)
         || nameof(DateTime.Today).Equals(name);
