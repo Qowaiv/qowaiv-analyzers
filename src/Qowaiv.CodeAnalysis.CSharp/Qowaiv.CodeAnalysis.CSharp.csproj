@@ -20,25 +20,27 @@
     <PackageVersion>0.0.6.1</PackageVersion>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageReleaseNotes>
+ToBeReleased
+- QW0008: Define properties as not-nullable for types with an empty state. #21
 v0.0.6.1
-- QW0001: Provide a fix to suggest the usage of Qowaiv.Clock. (#17)
+- QW0001: Provide a fix to suggest the usage of Qowaiv.Clock. #17
 v0.0.6
-- QW0001: Also reports on DateTime.Offset. (#17)
+- QW0001: Also reports on DateTime.Offset. #17
 v0.0.5.3
-- QW0003: Returning ValueTask is never a pure function. (#16)
-- QW0003: Returning IDisposable can be a pure function. (#16)
+- QW0003: Returning ValueTask is never a pure function. #16
+- QW0003: Returning IDisposable can be a pure function. #16
 v0.0.5.2
-- QW0005: All attributes should be excluded. (#15)
+- QW0005: All attributes should be excluded. #15
 v0.0.5.1
-- QW0004: Mathematical Alphanumeric Symbols are not suspicious. (#14)
+- QW0004: Mathematical Alphanumeric Symbols are not suspicious. #14
 v0.0.5
-- QW0007: Use file-scoped namespace scopes (#13)
+- QW0007: Use file-scoped namespace scopes #13
 v0.0.4.1
-- QW0006: Seal concrete classes unless designed for inheritance (#9)
+- QW0006: Seal concrete classes unless designed for inheritance #9
 v0.0.4
-- QW0005: Seal concrete classes unless designed for inheritance (#9)
+- QW0005: Seal concrete classes unless designed for inheritance #9
 v0.0.3.1
-- QW0004: Horizontal tab (U+9, \t) is allowed too (#6)
+- QW0004: Horizontal tab (U+9, \t) is allowed too #6
 v0.0.3
 - QW0004: Characters with Trojan Horse potential are not allowed
 v0.0.2
