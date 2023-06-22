@@ -3,7 +3,7 @@
 public class Fixes
 {
     [Test]
-    public void Code()
+    public void Nullable_properties()
         => new DefinePropertiesAsNotNullable()
         .ForCS()
         .AddSource(@"Cases/ChangePropertyTypeToNotNullable.ToFix.cs")
