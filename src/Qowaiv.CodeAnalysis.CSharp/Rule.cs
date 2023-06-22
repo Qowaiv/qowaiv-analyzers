@@ -78,7 +78,7 @@ public static class Rule
         category: Category.Design,
         tags: new[] { "Design" });
 
-    public static DiagnosticDescriptor UseEmptyInsteadOfNullable => New(
+    public static DiagnosticDescriptor DefinePropertiesAsNotNullable => New(
         id: 0008,
         title: "Define properties as not-nullable for types with an empty state",
         message: "Define the property as not-nullable as its type has an empty state.",

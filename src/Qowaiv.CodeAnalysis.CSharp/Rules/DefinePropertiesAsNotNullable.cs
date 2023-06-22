@@ -1,9 +1,9 @@
 ﻿namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class UseEmptyInsteadOfNullable : DiagnosticAnalyzer
+public sealed class DefinePropertiesAsNotNullable : DiagnosticAnalyzer
 {
-    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = Rule.UseEmptyInsteadOfNullable.Array();
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = Rule.DefinePropertiesAsNotNullable.Array();
 
     public override void Initialize(AnalysisContext context)
     {
@@ -19,7 +19,7 @@ public sealed class UseEmptyInsteadOfNullable : DiagnosticAnalyzer
             && type.IsValueType
             && DefaultIsEmpty(type))
         {
-            context.ReportDiagnostic(Rule.UseEmptyInsteadOfNullable, declaration.Type);
+            context.ReportDiagnostic(Rule.DefinePropertiesAsNotNullable, declaration.Type);
         }
     }
 
