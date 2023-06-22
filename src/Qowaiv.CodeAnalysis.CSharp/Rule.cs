@@ -80,8 +80,8 @@ public static class Rule
 
     public static DiagnosticDescriptor DefinePropertiesAsNotNullable => New(
         id: 0008,
-        title: "Define properties as not-nullable for types with an empty state",
-        message: "Define the property as not-nullable as its type has an empty state.",
+        title: "Define properties as not-nullable for types with a defined empty state",
+        message: "Define the property as not-nullable as its type has a defined empty state.",
         description:
             "Value types with an empty state do not benefit from adding nullability " +
             "to it, because the nullable that has a value can still represent an " +
