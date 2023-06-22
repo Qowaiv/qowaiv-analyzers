@@ -41,13 +41,12 @@ public sealed class DefinePropertiesAsNotNullable : DiagnosticAnalyzer
     private static bool DefaultIsEmpty(INamedTypeSymbol type)
         => type.IsNullableValueType()
         && type.TypeArguments[0] is INamedTypeSymbol tp
-        && tp.GetMembers().Any(HasEmpty);
+        && tp.GetMembers("Empty").Any(IsReadOnlyField);
 
-    private static bool HasEmpty(ISymbol member)
+    private static bool IsReadOnlyField(ISymbol member)
         => member is IFieldSymbol field
         && field.IsReadOnly
         && field.IsStatic
         && field.Type.Equals(field.ContainingType, IncludeNullability: false)
-        && field.IsPublic()
-        && field.Name == "Empty";
+        && field.IsPublic();
 }

@@ -14,7 +14,7 @@ internal sealed class DiagnosticContext
     public Document Document { get; }
 
     public Diagnostic Diagnostic { get; }
-    
+
     public SyntaxNode Root { get; }
 
     public async Task<SemanticModel> GetSemanticModelAsync(CancellationToken cancellation = default)

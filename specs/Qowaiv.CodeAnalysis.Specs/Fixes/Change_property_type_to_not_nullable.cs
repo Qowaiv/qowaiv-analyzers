@@ -7,6 +7,7 @@ public class Fixes
         => new DefinePropertiesAsNotNullable()
         .ForCS()
         .AddSource(@"Cases/ChangePropertyTypeToNotNullable.ToFix.cs")
+        .AddReference<Qowaiv.EmailAddress>()
         .ForCodeFix<ChangePropertyTypeToNotNullable>()
         .AddSource(@"Cases/ChangePropertyTypeToNotNullable.Fixed.cs")
         .Verify();

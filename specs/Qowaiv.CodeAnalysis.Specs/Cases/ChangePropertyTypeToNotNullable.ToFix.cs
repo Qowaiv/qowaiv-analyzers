@@ -8,7 +8,7 @@ class WithQuestionToken
 {
     public global::System.Guid? GobalDefined { get; }
     public System.Guid? WithFullNamespace { get; }
-    public Guid? TypeOnly { get; }
+    public EmailAddress? TypeOnly { get; }
 }
 
 class WithNullableGenerics
@@ -26,4 +26,4 @@ class WithNullableGenericsAlternatives
     public Alias WithAlias { get; }
 }
 
-record WithNullables(string? Name, Guid? Id, EmailAddress? Email);
+record WithNullables(EmailAddress? Email, Guid? Id);

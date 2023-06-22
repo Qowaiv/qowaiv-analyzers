@@ -40,12 +40,16 @@ class Noncompliant
     //     ^^^^^^^^^^^^^^
 }
 
-record NoncompliantRecord(
+record NoncompliantRecordMultiLine(
     Guid? Id, //                Noncompliant
 //  ^^^^^
     Nullable<Guid> Reference // Noncompliant
 //  ^^^^^^^^^^^^^^
 );
+
+record NoncompliantRecord(Guid? Id, EmailAddress? Email);
+//                        ^^^^^
+//                                  ^^^^^^^^^^^^^ @-1
 
 struct NoMembers
 {

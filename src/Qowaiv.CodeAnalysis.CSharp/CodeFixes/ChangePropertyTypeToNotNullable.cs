@@ -13,21 +13,30 @@ public sealed class ChangePropertyTypeToNotNullable : CodeFixProvider
 
     public override async Task RegisterCodeFixesAsync(CodeFixContext context)
     {
+        var parent = (await context.DiagnosticContext()).Token.Parent;
         if (await context.DiagnosticContext() is { } diagnostic
-            && diagnostic.Token.Parent!.AncestorsAndSelf<PropertyDeclarationSyntax>() is { } declaration)
+            && GetTypeSyntax(diagnostic.Token.Parent) is { } type)
         {
-            diagnostic.RegisterCodeFix("Make not-nullable.", context, (d, c) => ChangeDocument(d, declaration, c));
+            diagnostic.RegisterCodeFix("Change property type to not-nullable.", context, (d, c) => ChangeDocument(d, type, c));
         }
     }
 
-    private static async Task<Document> ChangeDocument(DiagnosticContext context, PropertyDeclarationSyntax declaration, CancellationToken cancellation)
-    {
-        var oldNode = declaration.Type;
-        var newName = Trim(oldNode is IdentifierNameSyntax alias
-            ? await ResolveAlias(alias, context, cancellation)
-            : oldNode.ToFullString().Trim());
+    private static TypeSyntax? GetTypeSyntax(SyntaxNode? node)
+        => node switch
+        {
+            null => null,
+            PropertyDeclarationSyntax property => property.Type,
+            ParameterSyntax parameter => parameter.Type,
+            _ => GetTypeSyntax(node.Parent),
+        };
 
-        return context.Document.WithSyntaxRoot(context.Root.ReplaceNode(oldNode, IdentifierName(newName)));
+    private static async Task<Document> ChangeDocument(DiagnosticContext context, TypeSyntax type, CancellationToken cancellation)
+    {
+        var newName = Trim(type is IdentifierNameSyntax alias
+            ? await ResolveAlias(alias, context, cancellation)
+            : type.ToFullString().Trim());
+
+        return context.Document.WithSyntaxRoot(context.Root.ReplaceNode(type, IdentifierName(newName)));
     }
 
     private static async Task<string> ResolveAlias(IdentifierNameSyntax alias, DiagnosticContext context, CancellationToken cancellation)
