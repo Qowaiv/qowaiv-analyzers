@@ -9,26 +9,41 @@ public sealed class DefinePropertiesAsNotNullable : DiagnosticAnalyzer
     {
         context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
         context.EnableConcurrentExecution();
-        context.RegisterSyntaxNodeAction(Report, SyntaxKind.PropertyDeclaration);
+        context.RegisterSyntaxNodeAction(ReportProperty, SyntaxKind.PropertyDeclaration);
+        context.RegisterSyntaxNodeAction(ReportRecord, SyntaxKind.RecordDeclaration);
     }
 
-    private void Report(SyntaxNodeAnalysisContext context)
+    private void ReportProperty(SyntaxNodeAnalysisContext context)
+        => Report(context.Node.Cast<PropertyDeclarationSyntax>().Type, context);
+
+    private void ReportRecord(SyntaxNodeAnalysisContext context)
     {
-        if (context.Node is PropertyDeclarationSyntax declaration
-            && context.SemanticModel.GetTypeInfo(declaration.Type).Type is INamedTypeSymbol type
-            && type.IsValueType
-            && DefaultIsEmpty(type))
+        var types = context.Node.Cast<RecordDeclarationSyntax>()
+            .ParameterList?.Parameters.Select(p => p.Type)
+            .OfType<TypeSyntax>();
+
+        foreach (var type in types ?? Array.Empty<TypeSyntax>())
         {
-            context.ReportDiagnostic(Rule.DefinePropertiesAsNotNullable, declaration.Type);
+            Report(type, context);
         }
     }
 
-    private bool DefaultIsEmpty(INamedTypeSymbol type)
+    private static void Report(TypeSyntax syntax, SyntaxNodeAnalysisContext context)
+    {
+        if (context.SemanticModel.GetTypeInfo(syntax).Type is INamedTypeSymbol type
+            && type.IsValueType
+            && DefaultIsEmpty(type))
+        {
+            context.ReportDiagnostic(Rule.DefinePropertiesAsNotNullable, syntax);
+        }
+    }
+
+    private static bool DefaultIsEmpty(INamedTypeSymbol type)
         => type.IsNullableValueType()
         && type.TypeArguments[0] is INamedTypeSymbol tp
         && tp.GetMembers().Any(HasEmpty);
 
-    public bool HasEmpty(ISymbol member)
+    private static bool HasEmpty(ISymbol member)
         => member is IFieldSymbol field
         && field.IsReadOnly
         && field.IsStatic

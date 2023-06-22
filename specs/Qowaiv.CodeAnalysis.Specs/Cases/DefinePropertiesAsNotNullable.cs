@@ -25,6 +25,8 @@ class Compliant<T> where T : struct
     public NoField? NoField { get; } //             Compliant
 }
 
+record CompliantRecord(Guid Id, int? Number);
+
 class Noncompliant
 {
     public Guid? Id { get; } //                 Noncompliant {{Define the property as not-nullable as its type has an empty state.}}
@@ -34,6 +36,13 @@ class Noncompliant
     public Nullable<Guid> Reference { get; } // Noncompliant
     //     ^^^^^^^^^^^^^^
 }
+
+record NoncompliantRecord(
+    Guid? Id, //                Noncompliant
+//  ^^^^^
+    Nullable<Guid> Reference // Noncompliant
+//  ^^^^^^^^^^^^^^
+);
 
 struct NoMembers
 {
