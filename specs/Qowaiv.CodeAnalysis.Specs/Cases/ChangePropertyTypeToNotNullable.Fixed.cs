@@ -1,4 +1,6 @@
-﻿using Qowaiv;
+﻿#nullable enable
+
+using Qowaiv;
 using System;
 using Alias = System.Nullable<System.Guid>;
 
@@ -23,3 +25,5 @@ class WithNullableGenericsAlternatives
     public Guid TypeOnly { get; }
     public System.Guid WithAlias { get; }
 }
+
+record WithNullables(string? Name, Guid Id, EmailAddress Email);
