@@ -11,6 +11,14 @@ public class Verify
         .Verify();
 
     [Test]
+    public void Properties_with_generics()
+       => new DefinePropertiesAsNotNullable()
+       .ForCS()
+       .AddSource(@"Cases/DefinePropertiesAsNotNullable.generics.cs")
+       .AddReference<Qowaiv.Percentage>()
+       .Verify();
+
+    [Test]
     public void Properties_with_enums()
        => new DefinePropertiesAsNotNullable()
        .ForCS()

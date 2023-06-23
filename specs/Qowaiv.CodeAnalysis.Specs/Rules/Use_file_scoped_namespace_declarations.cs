@@ -26,7 +26,7 @@ public class Verify
         .Verify();
 
     [Test]
-    public void Classic_scope_is_noncomplaint()
+    public void Classic_scope_is_nonCompliant()
          => new UseFileScopedNamespaceDeclarations()
         .ForCS()
         .AddSnippet(@"

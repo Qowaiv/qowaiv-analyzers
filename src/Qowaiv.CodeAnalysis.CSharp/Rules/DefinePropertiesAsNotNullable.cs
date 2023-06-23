@@ -5,9 +5,10 @@ namespace Qowaiv.CodeAnalysis.Rules;
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class DefinePropertiesAsNotNullable : CodingRule
 {
-    public DefinePropertiesAsNotNullable(): base(
+    public DefinePropertiesAsNotNullable() : base(
         Rule.DefinePropertiesAsNotNullable,
-        Rule.DefineEnumPropertiesAsNotNullable) { }
+        Rule.DefineEnumPropertiesAsNotNullable)
+    { }
 
     protected override void Register(AnalysisContext context)
     {
@@ -20,22 +21,40 @@ public sealed class DefinePropertiesAsNotNullable : CodingRule
 
     private void ReportRecord(SyntaxNodeAnalysisContext context)
     {
-        var types = context.Node.Cast<RecordDeclarationSyntax>()
-            .ParameterList?.Parameters.Select(p => p.Type)
-            .OfType<TypeSyntax>();
-
-        foreach (var type in types ?? Array.Empty<TypeSyntax>())
+        if (context.Node.Cast<RecordDeclarationSyntax>().ParameterList is { } pars)
         {
-            Report(type, context);
+            foreach (var type in pars.Parameters.Select(p => p.Type))
+            {
+                Report(type, context);
+            }
         }
     }
 
-    private static void Report(TypeSyntax syntax, SyntaxNodeAnalysisContext context)
+    private static void Report(TypeSyntax? syntax, SyntaxNodeAnalysisContext context)
     {
-        if (context.SemanticModel.GetTypeInfo(syntax).Type is INamedTypeSymbol type
-            && NotNullable(type) is { } diagnostic)
+        foreach (var sub in Types(syntax))
         {
-            context.ReportDiagnostic(diagnostic, syntax);
+            if (context.SemanticModel.GetTypeInfo(sub).Type is INamedTypeSymbol type
+                && NotNullable(type) is { } diagnostic)
+            {
+                context.ReportDiagnostic(diagnostic, sub);
+            }
+        }
+    }
+
+    private static IEnumerable<TypeSyntax> Types(TypeSyntax? type)
+    {
+        if (type is ArrayTypeSyntax array)
+        {
+            return Types(array.ElementType);
+        }
+        else if (type is GenericNameSyntax generic)
+        {
+            return type.Singleton().Concat(generic.TypeArgumentList.Arguments.SelectMany(Types));
+        }
+        else
+        {
+            return type.Singleton();
         }
     }
 
@@ -47,25 +66,28 @@ public sealed class DefinePropertiesAsNotNullable : CodingRule
             : null;
 
     private static DiagnosticDescriptor? EnumDefaultIsNoneOrEmpty(INamedTypeSymbol type)
-        => type.TypeKind == TypeKind.Enum
-        && type.GetMembers().Any(IsNoneOrEmpty)
-        ? Rule.DefineEnumPropertiesAsNotNullable : null;
+    {
+        return type.TypeKind == TypeKind.Enum && type.GetMembers().Any(IsNoneOrEmpty)
+            ? Rule.DefineEnumPropertiesAsNotNullable
+            : null;
+
+        static bool IsNoneOrEmpty(ISymbol member)
+             => member is IFieldSymbol field
+             && Convert.ToInt64(field.ConstantValue) == 0
+             && (field.Name.ToUpperInvariant() == "NONE" || field.Name.ToUpperInvariant() == "EMPTY");
+    }
 
     private static DiagnosticDescriptor? DefaultIsEmpty(INamedTypeSymbol type)
-        => type.GetMembers("Empty").Any(IsReadOnlyField)
-        ? Rule.DefinePropertiesAsNotNullable : null;
+    {
+        return type.GetMembers("Empty").Any(IsReadOnlyField)
+            ? Rule.DefinePropertiesAsNotNullable
+            : null;
 
-    private static bool IsNoneOrEmpty(ISymbol member)
-        => member is IFieldSymbol field
-        && IsZero(field.ConstantValue)
-        && (field.Name.ToUpperInvariant() == "NONE" || field.Name.ToUpperInvariant() == "EMPTY");
-
-    private static bool IsZero(object? value) => Convert.ToInt64(value) == 0;
-
-    private static bool IsReadOnlyField(ISymbol member)
-        => member is IFieldSymbol field
-        && field.IsReadOnly
-        && field.IsStatic
-        && field.Type.Equals(field.ContainingType, IncludeNullability: false)
-        && field.IsPublic();
+        static bool IsReadOnlyField(ISymbol member)
+           => member is IFieldSymbol field
+           && field.IsReadOnly
+           && field.IsStatic
+           && field.Type.Equals(field.ContainingType, IncludeNullability: false)
+           && field.IsPublic();
+    }
 }
