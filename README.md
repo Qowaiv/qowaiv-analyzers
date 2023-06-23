@@ -6,7 +6,7 @@
 
 | version                                                                   | package                                                                                    |
 |---------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
-|![v](https://img.shields.io/badge/version-0.0.6.1-blue.svg?cacheSeconds=3600)|[Qowaiv.Analyzers.CSharp](https://www.nuget.org/packages/Qowaiv.Analyzers.CSharp/)          |
+|![v](https://img.shields.io/badge/version-0.0.7-blue.svg?cacheSeconds=3600)|[Qowaiv.Analyzers.CSharp](https://www.nuget.org/packages/Qowaiv.Analyzers.CSharp/)          |
 
 # Qowaiv (static code) analyzers
 Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
@@ -20,3 +20,4 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 * [**QW0006** - Only unsealed concrete classes should be decorated as inheritable](rules/QW0006.md)
 * [**QW0007** - Use file-scoped namespace declarations](rules/QW0007.md)
 * [**QW0008** - Define properties as not-nullable for types with a defined empty state](rules/QW0008.md)
+* [**QW0009** - Define properties as not-nullable for enums with a defined none/empty value](rules/QW0009.md)

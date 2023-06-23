@@ -6,7 +6,14 @@ public class Verify
     public void Properties_with_value_types()
         => new DefinePropertiesAsNotNullable()
         .ForCS()
-        .AddSource(@"Cases/DefinePropertiesAsNotNullable.cs")
+        .AddSource(@"Cases/DefinePropertiesAsNotNullable.svo.cs")
         .AddReference<Qowaiv.Percentage>()
         .Verify();
+
+    [Test]
+    public void Properties_with_enums()
+       => new DefinePropertiesAsNotNullable()
+       .ForCS()
+       .AddSource(@"Cases/DefinePropertiesAsNotNullable.enum.cs")
+       .Verify();
 }

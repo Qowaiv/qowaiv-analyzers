@@ -8,6 +8,7 @@ public sealed class ChangePropertyTypeToNotNullable : CodeFixProvider
     public override ImmutableArray<string> FixableDiagnosticIds => new[]
     {
         Rule.DefinePropertiesAsNotNullable.Id,
+        Rule.DefineEnumPropertiesAsNotNullable.Id,
     }
     .ToImmutableArray();
 

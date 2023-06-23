@@ -89,6 +89,17 @@ public static class Rule
         category: Category.Design,
         tags: new[] { "Design", "SVO", "Value Type", "Value Object" });
 
+    public static DiagnosticDescriptor DefineEnumPropertiesAsNotNullable => New(
+        id: 0009,
+        title: "Define properties as not-nullable for enums with a defined none/empty value",
+        message: "Define the property as not-nullable as its type has a defined none/empty value.",
+        description:
+            "Enums with a none value do not benefit from adding nullability " +
+            "to it, because the nullable that has a value can still represent an " +
+            "none/empty state.",
+        category: Category.Design,
+        tags: new[] { "Design", "Enum", "Enumeration" });
+
 #pragma warning disable S107 // Methods should not have too many parameters
     // it calls a ctor with even more arguments.
     private static DiagnosticDescriptor New(
