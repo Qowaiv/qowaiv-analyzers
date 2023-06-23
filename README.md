@@ -6,7 +6,7 @@
 
 | version                                                                   | package                                                                                    |
 |---------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
-|![v](https://img.shields.io/badge/version-0.0.6.1-blue.svg?cacheSeconds=3600)|[Qowaiv.Analyzers.CSharp](https://www.nuget.org/packages/Qowaiv.Analyzers.CSharp/)          |
+|![v](https://img.shields.io/badge/version-0.0.7-blue.svg?cacheSeconds=3600)|[Qowaiv.Analyzers.CSharp](https://www.nuget.org/packages/Qowaiv.Analyzers.CSharp/)          |
 
 # Qowaiv (static code) analyzers
 Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
