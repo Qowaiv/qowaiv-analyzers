@@ -17,7 +17,7 @@ public sealed class UseQowaivClock : CodeFixProvider
     public override async Task RegisterCodeFixesAsync(CodeFixContext context)
     {
         if (await context.DiagnosticContext() is { } diagnostic
-            && diagnostic.Token.Parent!.AncestorsAndSelf<MemberAccessExpressionSyntax>() is { } member)
+            && diagnostic.Node!.AncestorsAndSelf<MemberAccessExpressionSyntax>() is { } member)
         {
             diagnostic.RegisterCodeFix("Use Qowaiv.Clock.", context, (d, c) => ChangeDocument(d, member, c));
         }

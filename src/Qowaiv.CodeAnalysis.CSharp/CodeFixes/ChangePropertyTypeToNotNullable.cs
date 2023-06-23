@@ -15,7 +15,7 @@ public sealed class ChangePropertyTypeToNotNullable : CodeFixProvider
     public override async Task RegisterCodeFixesAsync(CodeFixContext context)
     {
         if (await context.DiagnosticContext() is { } diagnostic
-            && GetTypeSyntax(diagnostic.Token.Parent) is { } type)
+            && GetTypeSyntax(diagnostic.Node) is { } type)
         {
             diagnostic.RegisterCodeFix("Change property type to not-nullable.", context, (d, c) => ChangeDocument(d, type, c));
         }
@@ -25,6 +25,7 @@ public sealed class ChangePropertyTypeToNotNullable : CodeFixProvider
         => node switch
         {
             null => null,
+            NullableTypeSyntax nullable => nullable,
             PropertyDeclarationSyntax property => property.Type,
             ParameterSyntax parameter => parameter.Type,
             _ => GetTypeSyntax(node.Parent),

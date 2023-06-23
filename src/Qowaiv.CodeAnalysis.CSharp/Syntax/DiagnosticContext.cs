@@ -28,6 +28,21 @@ internal sealed class DiagnosticContext
 
     public SyntaxToken Token => Root.FindToken(Diagnostic.Location.SourceSpan.Start);
 
+    public SyntaxNode? Node
+    {
+        get
+        {
+            var node = Token.Parent;
+            var span = Diagnostic.Location.SourceSpan;
+
+            while (node?.Parent is { } parent && parent.FullSpan.Start == span.Start && parent.FullSpan.End <= span.End)
+            {
+                node = parent;
+            }
+            return node;
+        }
+    }
+
     public void RegisterCodeFix(
             string title,
             CodeFixContext context,
