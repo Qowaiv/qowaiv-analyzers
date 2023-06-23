@@ -91,10 +91,10 @@ public static class Rule
 
     public static DiagnosticDescriptor DefineEnumPropertiesAsNotNullable => New(
         id: 0009,
-        title: "Define properties as not-nullable for enums with a defined none value",
-        message: "Define the property as not-nullable as its type has a defined none value.",
+        title: "Define properties as not-nullable for enums with a defined none/empty value",
+        message: "Define the property as not-nullable as its type has a defined none/empty value.",
         description:
-            "Enums with an none value do not benefit from adding nullability " +
+            "Enums with a none value do not benefit from adding nullability " +
             "to it, because the nullable that has a value can still represent an " +
             "none/empty state.",
         category: Category.Design,
