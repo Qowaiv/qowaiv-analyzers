@@ -21,7 +21,7 @@
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageReleaseNotes>
 v0.0.7.1
-- FN: Generics containing types that should not be nullable are now taken into account. #24
+- FN: Generics containing types that should not be nullable are now taken into account. #25
 v0.0.7
 - Code fix for QW0008 and QW0009. #22
 - QW0009: Define properties as not-nullable for enums with a defined none value. #23
