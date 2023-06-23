@@ -26,7 +26,7 @@ record CompliantRecord(WithNone Value, int? Number);
 
 class Noncompliant
 {
-    public WithNone? Value { get; } //              Noncompliant {{Define the property as not-nullable as its type has a defined none value.}}
+    public WithNone? Value { get; } //              Noncompliant {{Define the property as not-nullable as its type has a defined none/empty value.}}
     //     ^^^^^^^^^
     public Nullable<WithNone> Reference { get; } // Noncompliant
     //     ^^^^^^^^^^^^^^^^^^
