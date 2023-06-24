@@ -14,10 +14,10 @@ public sealed class ChangePropertyTypeToNotNullable : CodeFixProvider
 
     public override async Task RegisterCodeFixesAsync(CodeFixContext context)
     {
-        if (await context.DiagnosticContext() is { } diagnostic
-            && GetTypeSyntax(diagnostic.Token.Parent) is { } type)
+        if (await context.ChangeDocumentContext() is { } changeDoc
+            && GetTypeSyntax(changeDoc.Node) is { } type)
         {
-            diagnostic.RegisterCodeFix("Change property type to not-nullable.", context, (d, c) => ChangeDocument(d, type, c));
+            changeDoc.RegisterCodeFix("Change property type to not-nullable.", context, c => ChangeDocument(type, c));
         }
     }
 
@@ -30,18 +30,18 @@ public sealed class ChangePropertyTypeToNotNullable : CodeFixProvider
             _ => GetTypeSyntax(node.Parent),
         };
 
-    private static async Task<Document> ChangeDocument(DiagnosticContext context, TypeSyntax type, CancellationToken cancellation)
+    private static async Task<Document> ChangeDocument(TypeSyntax type, ChangeDocumentContext context)
     {
         var fullName = type is IdentifierNameSyntax alias
-            ? await ResolveAlias(alias, context, cancellation)
+            ? await ResolveAlias(alias, context)
             : type.ToFullString();
 
-        return context.Document.WithSyntaxRoot(context.Root.ReplaceNode(type, NewName(fullName.Trim())));
+        return await context.ReplaceNode(type, NewName(fullName.Trim()));
     }
 
-    private static async Task<string> ResolveAlias(IdentifierNameSyntax alias, DiagnosticContext context, CancellationToken cancellation)
-        => (await context.GetSemanticModelAsync(cancellation))
-            .GetAliasInfo(alias, cancellation)!.Target.ToDisplayString();
+    private static async Task<string> ResolveAlias(IdentifierNameSyntax alias, ChangeDocumentContext context)
+        => (await context.GetSemanticModelAsync())
+            .GetAliasInfo(alias, context.Cancellation)!.Target.ToDisplayString();
 
     /// <remarks>
     /// This trim works both for Nullable&lt;T&gt;
