@@ -28,15 +28,15 @@ public sealed class SealClass : CodeFixProvider
 
     private static Task<Document> ChangeClass(ClassDeclarationSyntax @class, ChangeDocumentContext context)
     {
-        var modiefiers = @class.Modifiers.Add(Token(SyntaxKind.SealedKeyword));
-        var newNode = @class.WithModifiers(modiefiers);
+        var modifiers = @class.Modifiers.Add(Token(SyntaxKind.SealedKeyword));
+        var newNode = @class.WithModifiers(modifiers);
         return context.ReplaceNode(@class, newNode);
     }
 
     private static Task<Document> ChangeRecord(RecordDeclarationSyntax record, ChangeDocumentContext context)
     {
-        var modiefiers = record.Modifiers.Add(Token(SyntaxKind.SealedKeyword));
-        var newNode = record.WithModifiers(modiefiers);
+        var modifiers = record.Modifiers.Add(Token(SyntaxKind.SealedKeyword));
+        var newNode = record.WithModifiers(modifiers);
         return context.ReplaceNode(record, newNode);
     }
 }
