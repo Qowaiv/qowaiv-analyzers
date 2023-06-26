@@ -16,17 +16,17 @@ public sealed class UseQowaivClock : CodeFixProvider
 
     public override async Task RegisterCodeFixesAsync(CodeFixContext context)
     {
-        if (await context.DiagnosticContext() is { } diagnostic
-            && diagnostic.Node!.AncestorsAndSelf<MemberAccessExpressionSyntax>() is { } member)
+        if (await context.ChangeDocumentContext() is { Node: { } } changeDoc
+            && changeDoc.Node.AncestorsAndSelf<MemberAccessExpressionSyntax>() is { } member)
         {
-            diagnostic.RegisterCodeFix("Use Qowaiv.Clock.", context, (d, c) => ChangeDocument(d, member, c));
+            changeDoc.RegisterCodeFix("Use Qowaiv.Clock.", context, c => ChangeDocument(member, c));
         }
     }
 
-    private static async Task<Document> ChangeDocument(DiagnosticContext context, MemberAccessExpressionSyntax oldNode, CancellationToken cancellation)
+    private static async Task<Document> ChangeDocument(MemberAccessExpressionSyntax oldNode, ChangeDocumentContext context)
     {
-        var model = await context.GetSemanticModelAsync(cancellation);
-        var property = (IPropertySymbol)model.GetSymbolInfo(oldNode, cancellation).Symbol!;
+        var model = await context.GetSemanticModelAsync();
+        var property = (IPropertySymbol)model.GetSymbolInfo(oldNode, context.Cancellation).Symbol!;
 
         var clock = IdentifierName("Clock");
         var method = Method(property);
@@ -35,7 +35,7 @@ public sealed class UseQowaivClock : CodeFixProvider
             MemberAccessExpression(SyntaxKind.SimpleMemberAccessExpression, clock, method),
             Arguments(property));
 
-        return context.Document.WithSyntaxRoot(context.Root.ReplaceNode(oldNode, newNode));
+        return await context.ReplaceNode(oldNode, newNode);
     }
 
     private static IdentifierNameSyntax Method(IPropertySymbol property)
