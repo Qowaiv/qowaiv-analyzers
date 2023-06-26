@@ -27,6 +27,13 @@ class WithNullableGenericsAlternatives
     public Alias WithAlias { get; }
 }
 
+class WithGenerics
+{
+    public Guid?[] Ids { get; }
+    public Dictionary<Guid?, SomeEnum?> Enums { get; }
+    public Nullable<Nullable<Guid>> Nested { get; }
+}
+
 record WithNullables(EmailAddress? Email, Guid? Id);
 
 public enum SomeEnum { None }

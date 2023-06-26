@@ -11,6 +11,8 @@ public sealed class SealClass : CodeFixProvider
     }
     .ToImmutableArray();
 
+    public override FixAllProvider? GetFixAllProvider() => null;
+
     public override async Task RegisterCodeFixesAsync(CodeFixContext context)
     {
         if (await context.ChangeDocumentContext() is { } changeDoc)

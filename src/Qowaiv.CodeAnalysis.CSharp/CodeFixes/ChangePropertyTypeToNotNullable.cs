@@ -12,6 +12,8 @@ public sealed class ChangePropertyTypeToNotNullable : CodeFixProvider
     }
     .ToImmutableArray();
 
+    public override FixAllProvider? GetFixAllProvider() => null;
+
     public override async Task RegisterCodeFixesAsync(CodeFixContext context)
     {
         if (await context.ChangeDocumentContext() is { } changeDoc
@@ -25,6 +27,7 @@ public sealed class ChangePropertyTypeToNotNullable : CodeFixProvider
         => node switch
         {
             null => null,
+            NullableTypeSyntax nullable => nullable,
             PropertyDeclarationSyntax property => property.Type,
             ParameterSyntax parameter => parameter.Type,
             _ => GetTypeSyntax(node.Parent),

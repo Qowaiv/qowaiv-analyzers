@@ -122,7 +122,4 @@ public static class Rule
             isEnabledByDefault: isEnabled,
             description: description,
             helpLinkUri: $"https://github.com/Qowaiv/qowaiv-analyzers/blob/main/rules/QW{id:0000}.md");
-
-    public static ImmutableArray<DiagnosticDescriptor> Array(this DiagnosticDescriptor descriptor)
-        => ImmutableArray.Create(descriptor);
 }
