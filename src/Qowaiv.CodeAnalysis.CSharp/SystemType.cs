@@ -27,9 +27,9 @@ public sealed partial class SystemType
     public override string ToString() => FullName;
 
     /// <summary>Casts a <see cref="System.Type"/> to a <see cref="SystemType"/>.</summary>
-    public static implicit operator SystemType(Type type) => new SystemType(type.FullName, default);
+    public static implicit operator SystemType(Type type) => new(type.FullName, default);
 
-    private static SystemType New(Type type, SpecialType specialType) => new SystemType(type.FullName, specialType);
+    private static SystemType New(Type type, SpecialType specialType) => new(type.FullName, specialType);
 
     private static string Last(string[] array) => array[array.Length - 1];
 }

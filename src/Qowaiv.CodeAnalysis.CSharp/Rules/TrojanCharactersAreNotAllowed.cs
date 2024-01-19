@@ -78,44 +78,32 @@ public sealed class TrojanCharactersAreNotAllowed : CodingRule
     private static readonly Range CyrillicExtendedC = new(0x01C80, 0x01C8F);
     private static readonly Range MathematicalAlphanumeric = new(0x1D400, 0x01D7DD);
 
-    private readonly struct Range
+    private readonly struct Range(int start, int end)
     {
-        public Range(int start, int end)
-        {
-            Start = start;
-            End = end;
-        }
+        public int Start { get; } = start;
 
-        public int Start { get; }
-
-        public int End { get; }
+        public int End { get; } = end;
 
         public bool Contains(int utf32) => utf32 >= Start && utf32 <= End;
     }
 
-    private readonly struct CodePoint
+    private readonly struct CodePoint(int utf32, int start)
     {
-        public CodePoint(int utf32, int start)
-        {
-            Utf32 = utf32;
-            Index = start;
-        }
+        public int Utf32 { get; } = utf32;
 
-        public int Utf32 { get; }
-
-        public int Index { get; }
+        public int Index { get; } = start;
 
         public TextSpan TextSpan => TextSpan.FromBounds(Index, Index + 1);
 
-        public static IEnumerable<CodePoint> Parse(string str, int offset)
+        public static IReadOnlyList<CodePoint> Parse(string str, int offset)
         {
             var codePoints = new List<CodePoint>(str.Length + 8);
             var index = 0;
             while (index < str.Length)
             {
-                var utf32 = char.ConvertToUtf32(str, index);
+                var point = char.ConvertToUtf32(str, index);
                 var size = char.IsHighSurrogate(str[index]) ? 2 : 1;
-                codePoints.Add(new CodePoint(utf32, index + offset));
+                codePoints.Add(new CodePoint(point, index + offset));
                 offset -= size - 1;
                 index += size;
             }

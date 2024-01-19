@@ -14,7 +14,7 @@ public static class Rule
             "be adjustable under test. DateTime.Now, DateTime.UtcNow, " +
             "and DateTime.Today lack this possibility.",
         category: Category.Testabilty,
-        tags: new[] { "Test" });
+        tags: ["Test"]);
 
     public static DiagnosticDescriptor ParseShouldNotFail => New(
         id: 0002,
@@ -24,7 +24,7 @@ public static class Rule
             "Parsing string literals should not fail, as it will crash at runtime.",
         category: Category.RuntimeError,
         severity: DiagnosticSeverity.Error,
-        tags: new[] { "Error" });
+        tags: ["Error"]);
 
     public static DiagnosticDescriptor DecoratePureFunctions => New(
         id: 0003,
@@ -34,7 +34,7 @@ public static class Rule
             "To help the compiler and code analyzers determine the proper usage " +
             "of pure functions.",
         category: Category.Design,
-        tags: new[] { "Diagnostics", "Contracts", "Pure function" },
+        tags: ["Diagnostics", "Contracts", "Pure function"],
         isEnabled: false);
 
     public static DiagnosticDescriptor TrojanCharactersAreNotAllowed => New(
@@ -44,7 +44,7 @@ public static class Rule
         description:
             "When char",
         category: Category.Security,
-        tags: new[] { "Trojan", "Unicode" });
+        tags: ["Trojan", "Unicode"]);
 
     public static DiagnosticDescriptor SealClasses => New(
         id: 0005,
@@ -56,7 +56,7 @@ public static class Rule
             "consequence, it is considered a bad practice to unintentionally " +
             "allowing a class to be inheritable.",
         category: Category.Design,
-        tags: new[] { "Design" });
+        tags: ["Design"]);
 
     public static DiagnosticDescriptor OnlyUnsealedConcreteClassesCanBeInheritable => New(
         id: 0006,
@@ -65,7 +65,7 @@ public static class Rule
         description:
             "The inheritable attribute is only meant to be used on concrete classes.",
         category: Category.Design,
-        tags: new[] { "Design" });
+        tags: ["Design"]);
 
     public static DiagnosticDescriptor UseFileScopedNamespaceDeclarations => New(
         id: 0007,
@@ -76,7 +76,7 @@ public static class Rule
             "wasted horizontal space to the left of the class definition, since " +
             "it no longer needs to be indented.",
         category: Category.Design,
-        tags: new[] { "Design" });
+        tags: ["Design"]);
 
     public static DiagnosticDescriptor DefinePropertiesAsNotNullable => New(
         id: 0008,
@@ -87,7 +87,7 @@ public static class Rule
             "to it, because the nullable that has a value can still represent an " +
             "empty state.",
         category: Category.Design,
-        tags: new[] { "Design", "SVO", "Value Type", "Value Object" });
+        tags: ["Design", "SVO", "Value Type", "Value Object"]);
 
     public static DiagnosticDescriptor DefineEnumPropertiesAsNotNullable => New(
         id: 0009,
@@ -98,7 +98,7 @@ public static class Rule
             "to it, because the nullable that has a value can still represent an " +
             "none/empty state.",
         category: Category.Design,
-        tags: new[] { "Design", "Enum", "Enumeration" });
+        tags: ["Design", "Enum", "Enumeration"]);
 
 #pragma warning disable S107 // Methods should not have too many parameters
     // it calls a ctor with even more arguments.

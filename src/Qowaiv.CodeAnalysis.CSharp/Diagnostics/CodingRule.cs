@@ -2,8 +2,11 @@
 
 public abstract class CodingRule : DiagnosticAnalyzer
 {
-    protected CodingRule(params DiagnosticDescriptor[] supportedDiagnostics)
-        => SupportedDiagnostics = supportedDiagnostics.ToImmutableArray();
+    protected CodingRule(DiagnosticDescriptor supportedDiagnostic)
+        => SupportedDiagnostics = ImmutableArray.Create(supportedDiagnostic);
+
+    protected CodingRule(DiagnosticDescriptor supportedDiagnostic, params DiagnosticDescriptor[] additional)
+        => SupportedDiagnostics = ImmutableArray.Create(supportedDiagnostic.Singleton().Concat(additional).ToArray());
 
     public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; }
 
