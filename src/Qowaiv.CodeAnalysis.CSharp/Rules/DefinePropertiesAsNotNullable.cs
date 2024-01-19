@@ -74,7 +74,7 @@ public sealed class DefinePropertiesAsNotNullable : CodingRule
         static bool IsNoneOrEmpty(ISymbol member)
              => member is IFieldSymbol field
              && Convert.ToInt64(field.ConstantValue) == 0
-             && (field.Name.ToUpperInvariant() == "NONE" || field.Name.ToUpperInvariant() == "EMPTY");
+             && ("NONE".Matches(field.Name) || "EMPTY".Matches(field.Name));
     }
 
     private static DiagnosticDescriptor? DefaultIsEmpty(INamedTypeSymbol type)

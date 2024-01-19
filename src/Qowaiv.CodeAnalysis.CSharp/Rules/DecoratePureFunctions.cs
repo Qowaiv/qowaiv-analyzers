@@ -33,8 +33,8 @@ public sealed class DecoratePureFunctions : CodingRule
         => parameters.All(par => par.RefKind != RefKind.Out && par.RefKind != RefKind.Ref);
 
     private static bool NoGuard(IMethodSymbol method)
-        => !method.Name.ToUpperInvariant().Contains("GUARD")
-        && method.ContainingType.Name.ToUpperInvariant() != "GUARD";
+        => !"GUARD".IsContainedBy(method.Name)
+        && !"GUARD".IsContainedBy(method.ContainingType.Name);
 
     private static bool NotDecorated(IEnumerable<AttributeData> attributes)
         => !attributes.Any(attr => Decorated(attr.AttributeClass));
@@ -44,8 +44,8 @@ public sealed class DecoratePureFunctions : CodingRule
         || DecoratedImpure(attr!);
 
     private static bool DecoratedImpure(ITypeSymbol attr)
-        => attr.Name.ToUpperInvariant() == "IMPURE"
-        || attr.Name.ToUpperInvariant() == "IMPUREATTRIBUTE"
-        || attr.Name.ToUpperInvariant().Contains("ASSERTION")
+        => "IMPURE".Matches(attr.Name)
+        || "IMPUREATTRIBUTE".Matches(attr.Name)
+        || "ASSERTION".IsContainedBy(attr.Name)
         || (attr.BaseType is { } && DecoratedImpure(attr.BaseType));
 }

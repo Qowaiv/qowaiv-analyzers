@@ -1,9 +1,7 @@
 ﻿namespace Qowaiv.CodeAnalysis.Syntax;
 
-public sealed class InvocationExpression : SyntaxAbstraction
+public sealed class InvocationExpression(SyntaxNode node) : SyntaxAbstraction(node)
 {
-    public InvocationExpression(SyntaxNode node) : base(node) { }
-
     public IEnumerable<SyntaxNode> Arguments
        => Node.Cast<InvocationExpressionSyntax>().ArgumentList?.Arguments
        ?? Enumerable.Empty<SyntaxNode>();

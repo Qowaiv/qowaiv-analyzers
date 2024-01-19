@@ -70,7 +70,7 @@ public sealed class SealClasses : CodingRule
 
     [Pure]
     private static bool IsDecorated(INamedTypeSymbol attr)
-        => attr.Name.ToUpperInvariant() == "INHERITABLE"
-        || attr.Name.ToUpperInvariant() == "INHERITABLEATTRIBUTE"
+        => "INHERITABLE".Matches(attr.Name)
+        || "INHERITABLEATTRIBUTE".Matches(attr.Name)
         || (attr.BaseType is { } && IsDecorated(attr.BaseType));
 }

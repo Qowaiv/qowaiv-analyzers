@@ -2,23 +2,19 @@
 
 namespace Qowaiv.CodeAnalysis.CodeFixes;
 
-internal sealed class ChangeDocumentContext
+internal sealed class ChangeDocumentContext(
+    Document document,
+    Diagnostic diagnostic,
+    SyntaxNode root,
+    CancellationToken cancellation)
 {
-    public ChangeDocumentContext(Document document, Diagnostic diagnostic, SyntaxNode root, CancellationToken cancellation)
-    {
-        Document = document;
-        Diagnostic = diagnostic;
-        Root = root;
-        Cancellation = cancellation;
-    }
+    public Document Document { get; } = document;
 
-    public Document Document { get; }
+    public Diagnostic Diagnostic { get; } = diagnostic;
 
-    public Diagnostic Diagnostic { get; }
+    public SyntaxNode Root { get; } = root;
 
-    public SyntaxNode Root { get; }
-
-    public CancellationToken Cancellation { get; }
+    public CancellationToken Cancellation { get; } = cancellation;
 
     public async Task<SemanticModel> GetSemanticModelAsync()
     {

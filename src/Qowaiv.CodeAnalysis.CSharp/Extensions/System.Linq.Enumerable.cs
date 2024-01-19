@@ -3,5 +3,5 @@
 internal static class EnumerableExtensions
 {
     public static IReadOnlyList<T> Singleton<T>(this T? item)
-        => item is { } ? new[] { item } : Array.Empty<T>();
+        => item is { } ? [item] : Array.Empty<T>();
 }

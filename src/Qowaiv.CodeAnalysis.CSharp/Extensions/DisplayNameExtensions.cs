@@ -22,11 +22,9 @@ internal static class DisplayNameExtensions
 }
 
 [AttributeUsage(AttributeTargets.Field)]
-internal sealed class DisplayAttribute : Attribute
+internal sealed class DisplayAttribute(string display) : Attribute
 {
-    private readonly string Display;
-
-    public DisplayAttribute(string display) => Display = display;
+    private readonly string Display = display;
 
     [Pure]
     public override string ToString() => Display ?? string.Empty;

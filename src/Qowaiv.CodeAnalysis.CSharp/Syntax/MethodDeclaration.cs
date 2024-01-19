@@ -33,12 +33,9 @@ public abstract class MethodDeclaration : SyntaxAbstraction
 
     public abstract IEnumerable<SyntaxKind> Modifiers { get; }
 
-    internal sealed class Class : MethodDeclaration
+    internal sealed class Class(ClassDeclarationSyntax node, SemanticModel model) : MethodDeclaration(node, model)
     {
-        private readonly ClassDeclarationSyntax TypedNode;
-
-        public Class(ClassDeclarationSyntax node, SemanticModel model)
-            : base(node, model) => TypedNode = node;
+        private readonly ClassDeclarationSyntax TypedNode = node;
 
         public override bool IsRecord => false;
 
@@ -47,12 +44,9 @@ public abstract class MethodDeclaration : SyntaxAbstraction
         public override IEnumerable<SyntaxKind> Modifiers => TypedNode.Modifiers.Select(m => m.Kind());
     }
 
-    internal sealed class Record : MethodDeclaration
+    internal sealed class Record(RecordDeclarationSyntax node, SemanticModel model) : MethodDeclaration(node, model)
     {
-        private readonly RecordDeclarationSyntax TypedNode;
-
-        public Record(RecordDeclarationSyntax node, SemanticModel model)
-            : base(node, model) => TypedNode = node;
+        private readonly RecordDeclarationSyntax TypedNode = node;
 
         public override bool IsRecord => true;
 

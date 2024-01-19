@@ -52,7 +52,7 @@ internal static class SymbolExtensions
         => symbol is { } && symbol.ContainingType.Is(type);
 
     [Pure]
-    public static string GetFullMetadataName(this ISymbol symbol)
+    public static string GetFullMetaDataName(this ISymbol symbol)
     {
         if (symbol is null || symbol.IsRootNamespace())
         {
