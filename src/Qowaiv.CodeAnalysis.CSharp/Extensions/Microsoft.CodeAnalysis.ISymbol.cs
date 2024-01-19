@@ -77,6 +77,13 @@ internal static class SymbolExtensions
     }
 
     [Pure]
+    public static INamedTypeSymbol? NotNullable(this INamedTypeSymbol type)
+        => type.IsNullableValueType()
+        && type.TypeArguments[0] is INamedTypeSymbol inner
+            ? inner
+            : null;
+
+    [Pure]
     private static bool IsMatch(this ITypeSymbol typeSymbol, SystemType type)
         => type.Matches(typeSymbol.SpecialType)
         || type.Matches(typeSymbol.OriginalDefinition.SpecialType)

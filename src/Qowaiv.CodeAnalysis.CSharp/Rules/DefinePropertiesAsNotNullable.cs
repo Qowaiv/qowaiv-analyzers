@@ -1,14 +1,11 @@
-﻿using System.Reflection;
-
-namespace Qowaiv.CodeAnalysis.Rules;
+﻿namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class DefinePropertiesAsNotNullable : CodingRule
 {
     public DefinePropertiesAsNotNullable() : base(
         Rule.DefinePropertiesAsNotNullable,
-        Rule.DefineEnumPropertiesAsNotNullable)
-    { }
+        Rule.DefineEnumPropertiesAsNotNullable) { }
 
     protected override void Register(AnalysisContext context)
     {
@@ -21,49 +18,27 @@ public sealed class DefinePropertiesAsNotNullable : CodingRule
 
     private void ReportRecord(SyntaxNodeAnalysisContext context)
     {
-        if (context.Node.Cast<RecordDeclarationSyntax>().ParameterList is { } pars)
+        foreach (var type in context.Node.Cast<RecordDeclarationSyntax>().ParameterTypes())
         {
-            foreach (var type in pars.Parameters.Select(p => p.Type))
-            {
-                Report(type, context);
-            }
+            Report(type, context);
         }
     }
 
     private static void Report(TypeSyntax? syntax, SyntaxNodeAnalysisContext context)
     {
-        foreach (var sub in Types(syntax))
+        foreach (var sub in syntax.SubTypes())
         {
             if (context.SemanticModel.GetTypeInfo(sub).Type is INamedTypeSymbol type
-                && NotNullable(type) is { } diagnostic)
+                && type.NotNullable() is { } inner
+                && Description(inner) is { } diagnostic)
             {
                 context.ReportDiagnostic(diagnostic, sub);
             }
         }
     }
 
-    private static IEnumerable<TypeSyntax> Types(TypeSyntax? type)
-    {
-        if (type is ArrayTypeSyntax array)
-        {
-            return Types(array.ElementType);
-        }
-        else if (type is GenericNameSyntax generic)
-        {
-            return type.Singleton().Concat(generic.TypeArgumentList.Arguments.SelectMany(Types));
-        }
-        else
-        {
-            return type.Singleton();
-        }
-    }
-
-    private static DiagnosticDescriptor? NotNullable(INamedTypeSymbol type)
-        => type.IsValueType
-        && type.IsNullableValueType()
-        && type.TypeArguments[0] is INamedTypeSymbol inner
-            ? EnumDefaultIsNoneOrEmpty(inner) ?? DefaultIsEmpty(inner)
-            : null;
+    private static DiagnosticDescriptor? Description(INamedTypeSymbol type)
+        => EnumDefaultIsNoneOrEmpty(type) ?? DefaultIsEmpty(type);
 
     private static DiagnosticDescriptor? EnumDefaultIsNoneOrEmpty(INamedTypeSymbol type)
     {
