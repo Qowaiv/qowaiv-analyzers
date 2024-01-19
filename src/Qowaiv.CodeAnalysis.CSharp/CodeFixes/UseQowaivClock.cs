@@ -40,8 +40,8 @@ public sealed class UseQowaivClock : CodeFixProvider
 
     private static IdentifierNameSyntax Method(IPropertySymbol property)
         => property.MemberOf(SystemType.System_DateTimeOffset)
-        ? IdentifierName("NowWithOffset")
-        : IdentifierName(property.Name);
+            ? IdentifierName("NowWithOffset")
+            : IdentifierName(property.Name);
 
     private static ArgumentListSyntax Arguments(IPropertySymbol property)
         => property.MemberOf(SystemType.System_DateTimeOffset) && property.Name == "UtcNow"
