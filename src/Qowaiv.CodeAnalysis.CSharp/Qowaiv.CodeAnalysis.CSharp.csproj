@@ -75,8 +75,8 @@ v0.0.1
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="3.*" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.*" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.*" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.*" />
   </ItemGroup>
 
 </Project>

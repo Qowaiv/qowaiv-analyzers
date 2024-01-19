@@ -45,8 +45,8 @@ public sealed class UseQowaivClock : CodeFixProvider
 
     private static ArgumentListSyntax Arguments(IPropertySymbol property)
         => property.MemberOf(SystemType.System_DateTimeOffset) && property.Name == "UtcNow"
-        ? ArgumentList(SeparatedList(new SyntaxNode[] { TimeZoneInfo_Utc() }))
-        : ArgumentList(default);
+           ? ArgumentList(SeparatedList(new[] { Argument(TimeZoneInfo_Utc()) }))
+           : ArgumentList(default);
 
     private static MemberAccessExpressionSyntax TimeZoneInfo_Utc() => MemberAccessExpression(
         SyntaxKind.SimpleMemberAccessExpression,
