@@ -95,7 +95,7 @@ public sealed class TrojanCharactersAreNotAllowed : CodingRule
 
         public TextSpan TextSpan => TextSpan.FromBounds(Index, Index + 1);
 
-        public static IReadOnlyList<CodePoint> Parse(string str, int offset)
+        public static List<CodePoint> Parse(string str, int offset)
         {
             var codePoints = new List<CodePoint>(str.Length + 8);
             var index = 0;
