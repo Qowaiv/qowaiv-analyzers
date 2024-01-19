@@ -3,7 +3,7 @@
   <Import Project="..\..\props\common.props" />
   
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <IsPackable>false</IsPackable>
     <RootNamespace>Specs</RootNamespace>
   </PropertyGroup>
@@ -16,13 +16,16 @@
   </ItemGroup>
 
   <ItemGroup Label="Test Tools">
-    <PackageReference Include="CodeAnalysis.TestTools" Version="0.*" />
-    <PackageReference Include="coverlet.collector" Version="*" />
-    <PackageReference Include="coverlet.msbuild" Version="*" />
+    <PackageReference Include="CodeAnalysis.TestTools" Version="2.0.0" />
     <PackageReference Include="FluentAssertions" Version="6.*" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
-    <PackageReference Include="NUnit" Version="3.*" />
-    <PackageReference Include="NUnit3TestAdapter" Version="4.*" />
+    <PackageReference Include="NUnit" Version="4.*" />
+  </ItemGroup>
+
+  <ItemGroup Label="Build Tools">
+    <PackageReference Include="coverlet.collector" Version="*" PrivateAssets="all" />
+    <PackageReference Include="coverlet.msbuild" Version="*"  PrivateAssets="all" />
+    <PackageReference Include="NUnit3TestAdapter" Version="*" PrivateAssets="all"  />
   </ItemGroup>
 
   <ItemGroup Label="Analyzers">

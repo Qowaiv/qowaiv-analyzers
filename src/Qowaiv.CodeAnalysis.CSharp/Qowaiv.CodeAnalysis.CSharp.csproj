@@ -17,9 +17,11 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Package config">
-    <PackageVersion>0.0.8</PackageVersion>
+    <PackageVersion>1.0.0</PackageVersion>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageReleaseNotes>
+v1.0.0
+ - Depend on Microsoft.CodeAnalysis 4.*.
 v0.0.8
 - Code fix for QW0005: Seal class. #26
 - FN: Generics containing types that should not be nullable are now taken into account. #25
@@ -69,10 +71,7 @@ v0.0.1
   </ItemGroup>
 
   <ItemGroup Label="Analyzers">
-    <PackageReference Include="StyleCop.Analyzers" Version="*-*">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers" Version="*-*" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
