@@ -9,8 +9,8 @@ public sealed class UseSystemDateOnly : CodingRule
     {
         context.RegisterSyntaxNodeAction(ReportField, SyntaxKind.FieldDeclaration);
         context.RegisterSyntaxNodeAction(ReportMethod, SyntaxKind.MethodDeclaration);
+        context.RegisterSyntaxNodeAction(ReportParameterList, SyntaxKind.ParameterList);
         context.RegisterSyntaxNodeAction(ReportProperty, SyntaxKind.PropertyDeclaration);
-        context.RegisterSyntaxNodeAction(ReportRecord, SyntaxKind.RecordDeclaration);
     }
 
     private void ReportField(SyntaxNodeAnalysisContext context)
@@ -19,19 +19,16 @@ public sealed class UseSystemDateOnly : CodingRule
     private void ReportMethod(SyntaxNodeAnalysisContext context)
         => Report(context.Node.Cast<MethodDeclarationSyntax>().ReturnType, context);
 
-    private void ReportProperty(SyntaxNodeAnalysisContext context)
-        => Report(context.Node.Cast<PropertyDeclarationSyntax>().Type, context);
-
-    private void ReportRecord(SyntaxNodeAnalysisContext context)
+    private void ReportParameterList(SyntaxNodeAnalysisContext context)
     {
-        if (context.Node.Cast<RecordDeclarationSyntax>().ParameterList is { } pars)
+        foreach (var type in context.Node.Cast<ParameterListSyntax>().Parameters.Select(p => p.Type))
         {
-            foreach (var type in pars.Parameters.Select(p => p.Type))
-            {
-                Report(type, context);
-            }
+            Report(type, context);
         }
     }
+
+    private void ReportProperty(SyntaxNodeAnalysisContext context)
+        => Report(context.Node.Cast<PropertyDeclarationSyntax>().Type, context);
 
     private static void Report(TypeSyntax? syntax, SyntaxNodeAnalysisContext context)
     {

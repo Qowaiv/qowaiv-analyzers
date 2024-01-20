@@ -17,6 +17,8 @@ public class SomeModel
     public DateOnly SomeMethod() => default;
 
     public DateOnly? SomeNullableMethod() => default;
+
+    public void Arguments(DateOnly argument) { }
 }
 
 public record SomeRecord(DateOnly Property);

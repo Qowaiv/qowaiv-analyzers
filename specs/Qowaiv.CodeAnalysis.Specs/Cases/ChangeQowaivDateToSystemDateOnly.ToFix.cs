@@ -17,6 +17,8 @@ public class SomeModel
     public Date SomeMethod() => default;
 
     public Qowaiv.Date? SomeNullableMethod() => default;
+
+    public void Arguments(Qowaiv.Date argument) { }
 }
 
 public record SomeRecord(Qowaiv.Date Property);

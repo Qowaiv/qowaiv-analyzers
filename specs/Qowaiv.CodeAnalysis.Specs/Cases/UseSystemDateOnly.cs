@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Compliant;
+using System;
 
 namespace Noncompliant
 {
@@ -18,6 +19,9 @@ namespace Noncompliant
         //     ^^^^^^^^^^^
 
         public Qowaiv.Date? SomeNullableMethod() => default; // Noncompliant
+
+        public void Arguments(Qowaiv.Date argument) { } // Noncompliant
+        //                    ^^^^^^^^^^^
     }
 
     public record SomeRecord(Qowaiv.Date Property); // Noncompliant
