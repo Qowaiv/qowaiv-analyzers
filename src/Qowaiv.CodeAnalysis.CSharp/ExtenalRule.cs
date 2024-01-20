@@ -2,11 +2,11 @@
 
 internal static class ExtenalRule
 {
-    /// <summary>Compiler warning CS0162: Member is obsolete.</summary>
+    /// <summary>Compiler warning CS0618: Member is obsolete.</summary>
     /// <remarks>
-    /// See https://learn.microsoft.com/en-us/dotnet/csharp/misc/cs0612.
+    /// See https://learn.microsoft.com/en-us/dotnet/csharp/misc/cs0618.
     /// </remarks>
-    public static readonly string CS0162 = nameof(CS0162);
+    public static readonly string CS0618 = nameof(CS0618);
 
     /// <summary>Sonar 6354: Use a testable date/time provider.</summary>
     /// <remarks>

@@ -8,6 +8,7 @@ global using NUnit.Framework;
 global using Qowaiv.CodeAnalysis;
 global using Qowaiv.CodeAnalysis.CodeFixes;
 global using Qowaiv.CodeAnalysis.Rules;
+global using Specs.TestTools;
 global using System;
 global using System.Collections.Generic;
 global using System.Linq;
