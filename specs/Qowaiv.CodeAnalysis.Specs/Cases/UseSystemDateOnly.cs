@@ -11,6 +11,9 @@ namespace Noncompliant
         public Qowaiv.Date? NullableProperty { get; set; } // Noncompliant
         //     ^^^^^^^^^^^^
 
+        public Qowaiv.Date[] Properties { get; set; } // Noncompliant
+        //     ^^^^^^^^^^^
+
         public Qowaiv.Date SomeMethod() => default; // Noncompliant
         //     ^^^^^^^^^^^
 
