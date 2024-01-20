@@ -3,15 +3,9 @@
 namespace Qowaiv.CodeAnalysis.CodeFixes;
 
 [ExportCodeFixProvider(LanguageNames.CSharp)]
-public sealed class SealClass : CodeFixProvider
+public sealed class SealClass : CodeFix
 {
-    public override ImmutableArray<string> FixableDiagnosticIds => new[]
-    {
-        Rule.SealClasses.Id,
-    }
-    .ToImmutableArray();
-
-    public override FixAllProvider? GetFixAllProvider() => null;
+    public SealClass() : base(Rule.SealClasses.Id) { }
 
     public override async Task RegisterCodeFixesAsync(CodeFixContext context)
     {
@@ -19,11 +13,11 @@ public sealed class SealClass : CodeFixProvider
         {
             if (changeDoc.Node is ClassDeclarationSyntax @class)
             {
-                changeDoc.RegisterCodeFix("Seal class.", context, d => ChangeClass(@class, d));
+                changeDoc.RegisterFix("Seal class.", context, d => ChangeClass(@class, d));
             }
             else if (changeDoc.Node is RecordDeclarationSyntax @record)
             {
-                changeDoc.RegisterCodeFix("Seal record.", context, d => ChangeRecord(@record, d));
+                changeDoc.RegisterFix("Seal record.", context, d => ChangeRecord(@record, d));
             }
         }
     }

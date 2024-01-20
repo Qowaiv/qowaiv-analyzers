@@ -3,23 +3,18 @@
 namespace Qowaiv.CodeAnalysis.CodeFixes;
 
 [ExportCodeFixProvider(LanguageNames.CSharp)]
-public sealed class UseQowaivClock : CodeFixProvider
+public sealed class UseQowaivClock : CodeFix
 {
-    public override ImmutableArray<string> FixableDiagnosticIds => new[]
-    {
+    public UseQowaivClock() : base(
         Rule.UseTestableTimeProvider.Id,
-        "S6354",
-    }
-    .ToImmutableArray();
-
-    public override FixAllProvider? GetFixAllProvider() => null;
+        ExtenalRule.S6354) { }
 
     public override async Task RegisterCodeFixesAsync(CodeFixContext context)
     {
         if (await context.ChangeDocumentContext() is { Node: { } } changeDoc
             && changeDoc.Node.AncestorsAndSelf<MemberAccessExpressionSyntax>() is { } member)
         {
-            changeDoc.RegisterCodeFix("Use Qowaiv.Clock.", context, c => ChangeDocument(member, c));
+            changeDoc.RegisterFix("Use Qowaiv.Clock.", context, c => ChangeDocument(member, c));
         }
     }
 

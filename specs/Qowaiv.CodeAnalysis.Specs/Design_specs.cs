@@ -9,6 +9,10 @@ public class Rules
         => type.Namespace.Should().Be("Qowaiv.CodeAnalysis.Rules");
 
     [TestCaseSource(nameof(Types))]
+    public void inherits_from_CodeFix(Type type)
+       => type.Should().BeAssignableTo<Qowaiv.CodeAnalysis.Diagnostics.CodingRule>();
+
+    [TestCaseSource(nameof(Types))]
     public void for_CSharp(Type type)
         => type.GetCustomAttribute<DiagnosticAnalyzerAttribute>()!
         .Languages.Should().BeEquivalentTo("C#");
@@ -26,6 +30,10 @@ public class CodeFixes
         => type.Namespace.Should().Be("Qowaiv.CodeAnalysis.CodeFixes");
 
     [TestCaseSource(nameof(Types))]
+    public void inherits_from_CodeFix(Type type)
+        => type.Should().BeAssignableTo<Qowaiv.CodeAnalysis.Diagnostics.CodeFix>();
+
+    [TestCaseSource(nameof(Types))]
     public void for_CSharp(Type type)
         => type.GetCustomAttribute<ExportCodeFixProviderAttribute>()!
         .Languages.Should().BeEquivalentTo("C#");
@@ -33,5 +41,5 @@ public class CodeFixes
     private static IEnumerable<Type> Types
         => typeof(global::Qowaiv.CodeAnalysis.Rule).Assembly
         .GetTypes()
-        .Where(t => t.IsAssignableTo(typeof(CodeFixProvider)));
+        .Where(t =>!t.IsAbstract && t.IsAssignableTo(typeof(CodeFixProvider)));
 }

@@ -3,23 +3,18 @@
 namespace Qowaiv.CodeAnalysis.CodeFixes;
 
 [ExportCodeFixProvider(LanguageNames.CSharp)]
-public sealed class ChangePropertyTypeToNotNullable : CodeFixProvider
+public sealed class ChangePropertyTypeToNotNullable : CodeFix
 {
-    public override ImmutableArray<string> FixableDiagnosticIds => new[]
-    {
+    public ChangePropertyTypeToNotNullable() : base(
         Rule.DefinePropertiesAsNotNullable.Id,
-        Rule.DefineEnumPropertiesAsNotNullable.Id,
-    }
-    .ToImmutableArray();
-
-    public override FixAllProvider? GetFixAllProvider() => null;
+        Rule.DefineEnumPropertiesAsNotNullable.Id) { }
 
     public override async Task RegisterCodeFixesAsync(CodeFixContext context)
     {
         if (await context.ChangeDocumentContext() is { } changeDoc
             && GetTypeSyntax(changeDoc.Node) is { } type)
         {
-            changeDoc.RegisterCodeFix("Change property type to not-nullable.", context, c => ChangeDocument(type, c));
+            changeDoc.RegisterFix("Change property type to not-nullable.", context, c => ChangeDocument(type, c));
         }
     }
 

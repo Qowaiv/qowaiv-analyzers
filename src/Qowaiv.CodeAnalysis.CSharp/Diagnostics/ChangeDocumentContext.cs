@@ -1,6 +1,6 @@
 ﻿using Microsoft.CodeAnalysis.CodeActions;
 
-namespace Qowaiv.CodeAnalysis.CodeFixes;
+namespace Qowaiv.CodeAnalysis.Diagnostics;
 
 internal sealed class ChangeDocumentContext(
     Document document,
@@ -27,9 +27,12 @@ internal sealed class ChangeDocumentContext(
 
     public SyntaxToken Token => Root.FindToken(Diagnostic.Location.SourceSpan.Start);
 
-    public SyntaxNode? Node => Root.FindNode(Diagnostic.Location.SourceSpan);
+    public SyntaxNode? Node => node ??= Root.FindNode(Diagnostic.Location.SourceSpan);
 
-    public void RegisterCodeFix(
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    private SyntaxNode? node;
+
+    public void RegisterFix(
             string title,
             CodeFixContext context,
             Func<ChangeDocumentContext, Task<Document>> createChangedDocument)
