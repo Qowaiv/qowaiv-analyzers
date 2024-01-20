@@ -3,19 +3,13 @@
 namespace Qowaiv.CodeAnalysis.CodeFixes;
 
 [ExportCodeFixProvider(LanguageNames.CSharp)]
-public sealed class ChangeQowaivDateToSystemDateOnly : CodeFixProvider
+public sealed class ChangeQowaivDateToSystemDateOnly() : CodeFix(Rule.UseSystemDateOnly.Id)
 {
-    public override ImmutableArray<string> FixableDiagnosticIds => new[]
-    {
-        Rule.UseSystemDateOnly.Id,
-    }
-    .ToImmutableArray();
-
     public override async Task RegisterCodeFixesAsync(CodeFixContext context)
     {
         if (await context.ChangeDocumentContext() is { Node: { } } change)
         {
-            change.RegisterCodeFix("Change type to System.DateOnly.", context, ChangeDocument);
+            change.RegisterFix("Change type to System.DateOnly.", context, ChangeDocument);
         }
     }
 
