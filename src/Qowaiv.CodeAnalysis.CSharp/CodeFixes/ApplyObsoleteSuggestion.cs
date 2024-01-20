@@ -4,7 +4,7 @@ using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 namespace Qowaiv.CodeAnalysis.CodeFixes;
 
 [ExportCodeFixProvider(LanguageNames.CSharp)]
-public sealed class ApplyObsoleteSuggestion() : CodeFix(ExtenalRule.CS0618)
+public sealed class ApplyObsoleteSuggestion() : CodeFix(Rule.CS0618, Rule.CS0619)
 {
     public override async Task RegisterCodeFixesAsync(CodeFixContext context)
     {
@@ -15,7 +15,7 @@ public sealed class ApplyObsoleteSuggestion() : CodeFix(ExtenalRule.CS0618)
         }
     }
 
-    private static Task<Document> ApplySuggestion(ChangeDocumentContext context, string suggestion) 
+    private static Task<Document> ApplySuggestion(ChangeDocumentContext context, string suggestion)
         => context.ReplaceNode(context.Node!, IdentifierName(suggestion));
 
     [Pure]
@@ -25,8 +25,7 @@ public sealed class ApplyObsoleteSuggestion() : CodeFix(ExtenalRule.CS0618)
             : null;
 
     private static readonly Regex Pattern = new(
-        @"Use (?<Suggestion>.+?) instead\.",
+        @"Use (?<Suggestion>.+) instead",
         RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture | RegexOptions.Compiled,
         TimeSpan.FromMilliseconds(100));
-
 }

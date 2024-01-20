@@ -10,6 +10,11 @@ class Applied
     public ObsoleteClass Property { }
 
     public ObsoleteClass ReturnType() => new();
+
+    void Call()
+    {
+        var issue = new CompilerError();
+    }
 }
 
 class NotApplied
@@ -35,3 +40,8 @@ static class Clock
     [Obsolete("Use Qowaiv.Clock.UtcNow() instead.")]
     public static DateTime UtcNow => DateTime.UtcNow;
 }
+
+class NoError { }
+
+[Obsolete("Use NoError instead.", true)]
+class CompilerError { }

@@ -3,7 +3,7 @@
 
 namespace Qowaiv.CodeAnalysis;
 
-public static class Rule
+public static partial class Rule
 {
     public static DiagnosticDescriptor UseTestableTimeProvider => New(
         id: 0001,
