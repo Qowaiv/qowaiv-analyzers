@@ -3,12 +3,10 @@
 namespace Qowaiv.CodeAnalysis.CodeFixes;
 
 [ExportCodeFixProvider(LanguageNames.CSharp)]
-public sealed class ChangePropertyTypeToNotNullable : CodeFix
+public sealed class ChangePropertyTypeToNotNullable() : CodeFix(
+    Rule.DefinePropertiesAsNotNullable.Id,
+    Rule.DefineEnumPropertiesAsNotNullable.Id)
 {
-    public ChangePropertyTypeToNotNullable() : base(
-        Rule.DefinePropertiesAsNotNullable.Id,
-        Rule.DefineEnumPropertiesAsNotNullable.Id) { }
-
     public override async Task RegisterCodeFixesAsync(CodeFixContext context)
     {
         if (await context.ChangeDocumentContext() is { } changeDoc

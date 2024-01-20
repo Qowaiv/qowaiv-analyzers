@@ -1,13 +1,10 @@
 ﻿namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class SealClasses : CodingRule
+public sealed class SealClasses() : CodingRule(
+    Rule.SealClasses,
+    Rule.OnlyUnsealedConcreteClassesCanBeInheritable)
 {
-    public SealClasses() : base(
-        Rule.SealClasses,
-        Rule.OnlyUnsealedConcreteClassesCanBeInheritable)
-    { }
-
     protected override void Register(AnalysisContext context)
         => context.RegisterSyntaxNodeAction(Report, SyntaxKind.ClassDeclaration, SyntaxKind.RecordDeclaration);
 

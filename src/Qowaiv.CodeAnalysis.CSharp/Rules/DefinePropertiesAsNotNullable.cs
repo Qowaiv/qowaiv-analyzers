@@ -1,12 +1,10 @@
 ﻿namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class DefinePropertiesAsNotNullable : CodingRule
+public sealed class DefinePropertiesAsNotNullable() : CodingRule(
+    Rule.DefinePropertiesAsNotNullable,
+    Rule.DefineEnumPropertiesAsNotNullable)
 {
-    public DefinePropertiesAsNotNullable() : base(
-        Rule.DefinePropertiesAsNotNullable,
-        Rule.DefineEnumPropertiesAsNotNullable) { }
-
     protected override void Register(AnalysisContext context)
     {
         context.RegisterSyntaxNodeAction(ReportProperty, SyntaxKind.PropertyDeclaration);

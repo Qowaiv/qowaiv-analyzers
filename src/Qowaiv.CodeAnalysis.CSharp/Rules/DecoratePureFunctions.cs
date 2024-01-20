@@ -1,10 +1,8 @@
 namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class DecoratePureFunctions : CodingRule
+public sealed class DecoratePureFunctions() : CodingRule(Rule.DecoratePureFunctions)
 {
-    public DecoratePureFunctions() : base(Rule.DecoratePureFunctions) { }
-
     protected override void Register(AnalysisContext context)
         => context.RegisterSyntaxNodeAction(Report, SyntaxKind.MethodDeclaration);
 

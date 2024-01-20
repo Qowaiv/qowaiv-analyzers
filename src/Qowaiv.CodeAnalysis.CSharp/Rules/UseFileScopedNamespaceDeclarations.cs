@@ -1,10 +1,8 @@
 ﻿namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class UseFileScopedNamespaceDeclarations : CodingRule
+public sealed class UseFileScopedNamespaceDeclarations() : CodingRule(Rule.UseFileScopedNamespaceDeclarations)
 {
-    public UseFileScopedNamespaceDeclarations() : base(Rule.UseFileScopedNamespaceDeclarations) { }
-
     protected override void Register(AnalysisContext context)
         => context.RegisterSyntaxNodeAction(Report, SyntaxKind.NamespaceDeclaration);
 

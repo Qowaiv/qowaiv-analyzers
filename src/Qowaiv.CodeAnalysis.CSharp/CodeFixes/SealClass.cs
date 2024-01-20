@@ -3,10 +3,8 @@
 namespace Qowaiv.CodeAnalysis.CodeFixes;
 
 [ExportCodeFixProvider(LanguageNames.CSharp)]
-public sealed class SealClass : CodeFix
+public sealed class SealClass() : CodeFix(Rule.SealClasses.Id)
 {
-    public SealClass() : base(Rule.SealClasses.Id) { }
-
     public override async Task RegisterCodeFixesAsync(CodeFixContext context)
     {
         if (await context.ChangeDocumentContext() is { } changeDoc)

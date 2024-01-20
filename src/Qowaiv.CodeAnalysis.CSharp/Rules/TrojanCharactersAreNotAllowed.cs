@@ -3,10 +3,8 @@
 namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class TrojanCharactersAreNotAllowed : CodingRule
+public sealed class TrojanCharactersAreNotAllowed() : CodingRule(Rule.TrojanCharactersAreNotAllowed)
 {
-    public TrojanCharactersAreNotAllowed() : base(Rule.TrojanCharactersAreNotAllowed) { }
-
     protected override void Register(AnalysisContext context)
         => context.RegisterSyntaxTreeAction(Report);
 
