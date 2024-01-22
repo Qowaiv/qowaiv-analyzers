@@ -22,6 +22,7 @@
     <PackageReleaseNotes>
 v1.0.0
 - QW0010: Use System.DateOnly instead of Qowaiv.Date. #29
+- CS0618, CS0619: Code fix for obsolete code with a suggestion. #30
 - Depend on Microsoft.CodeAnalysis 4.*. #27
 v0.0.8
 - Code fix for QW0005: Seal class. #26
