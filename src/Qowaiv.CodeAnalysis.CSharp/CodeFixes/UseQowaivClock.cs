@@ -3,9 +3,7 @@
 namespace Qowaiv.CodeAnalysis.CodeFixes;
 
 [ExportCodeFixProvider(LanguageNames.CSharp)]
-public sealed class UseQowaivClock() : CodeFix(
-    Rule.UseTestableTimeProvider.Id,
-    ExtenalRule.S6354)
+public sealed class UseQowaivClock() : CodeFix(Rule.UseTestableTimeProvider.Id, Rule.S6354)
 {
     public override async Task RegisterCodeFixesAsync(CodeFixContext context)
     {

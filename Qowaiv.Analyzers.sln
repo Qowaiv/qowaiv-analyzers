@@ -26,6 +26,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rules", "rules", "{00461C52-E22D-4721-9093-46A8112C1B92}"
 	ProjectSection(SolutionItems) = preProject
 		rules\QW0001.md = rules\QW0001.md
+		rules\ObsoleteCode.md = rules\ObsoleteCode.md
 		rules\QW0002.md = rules\QW0002.md
 		rules\QW0003.md = rules\QW0003.md
 		rules\QW0004.md = rules\QW0004.md
