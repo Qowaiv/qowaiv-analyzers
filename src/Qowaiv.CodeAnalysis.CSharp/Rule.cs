@@ -1,4 +1,4 @@
-﻿#pragma warning disable SA1118 // Parameter should not span multiple lines.
+#pragma warning disable SA1118 // Parameter should not span multiple lines.
 // For readability, here it is preferred.
 
 namespace Qowaiv.CodeAnalysis;
@@ -99,6 +99,16 @@ public static partial class Rule
             "none/empty state.",
         category: Category.Design,
         tags: ["Design", "Enum", "Enumeration"]);
+
+    public static DiagnosticDescriptor UseSystemDateOnly => New(
+       id: 0010,
+       title: "Use System.DateOnly instead of Qowaiv.Date",
+       message: "Use DateOnly instead of Date.",
+       description:
+            "The purpose of `Qowaiv.Date` is to provide a date (only) alternative to DateTime. " +
+            "Since .NET 6.0, Microsoft provides DateOnly.",
+       category: Category.Design,
+       tags: ["Design", "SVO"]);
 
 #pragma warning disable S107 // Methods should not have too many parameters
     // it calls a ctor with even more arguments.
