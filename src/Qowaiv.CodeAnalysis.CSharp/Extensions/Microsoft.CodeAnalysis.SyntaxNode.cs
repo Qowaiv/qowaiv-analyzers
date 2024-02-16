@@ -22,10 +22,10 @@ public static class SyntaxNodeExtensions
 
     public static InvocationExpression InvocationExpression(this SyntaxNode node) => new(node);
 
-    public static MethodDeclaration MethodDeclaration(this SyntaxNode node, SemanticModel model) => node switch
+    public static TypeDeclaration TypeDeclaration(this SyntaxNode node, SemanticModel model) => node switch
     {
-        ClassDeclarationSyntax @class => new MethodDeclaration.Class(@class, model),
-        RecordDeclarationSyntax record => new MethodDeclaration.Record(record, model),
-        _ => throw new InvalidOperationException($"Unexpected {node.GetType().Name}, expected MethodDeclarationSyntax or RecordDeclarationSyntax."),
+        ClassDeclarationSyntax @class => new TypeDeclaration.Class(@class, model),
+        RecordDeclarationSyntax record => new TypeDeclaration.Record(record, model),
+        _ => throw new InvalidOperationException($"Unexpected {node.GetType().Name}, expected ClassDeclarationSyntax or RecordDeclarationSyntax."),
     };
 }

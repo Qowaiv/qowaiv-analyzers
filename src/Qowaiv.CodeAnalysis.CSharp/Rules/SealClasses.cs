@@ -10,12 +10,12 @@ public sealed class SealClasses() : CodingRule(
 
     private static void Report(SyntaxNodeAnalysisContext context)
     {
-        var declaration = context.Node.MethodDeclaration(context.SemanticModel);
+        var declaration = context.Node.TypeDeclaration(context.SemanticModel);
         ReportUnsealedClasses(declaration, context);
         ReportInvalidDecorations(declaration, context);
     }
 
-    private static void ReportUnsealedClasses(MethodDeclaration declaration, SyntaxNodeAnalysisContext context)
+    private static void ReportUnsealedClasses(TypeDeclaration declaration, SyntaxNodeAnalysisContext context)
     {
         if (declaration.IsConcrete
             && !declaration.IsSealed
@@ -33,7 +33,7 @@ public sealed class SealClasses() : CodingRule(
         }
     }
 
-    private static void ReportInvalidDecorations(MethodDeclaration declaration, SyntaxNodeAnalysisContext context)
+    private static void ReportInvalidDecorations(TypeDeclaration declaration, SyntaxNodeAnalysisContext context)
     {
         if ((!declaration.IsConcrete || declaration.IsSealed)
             && declaration.Symbol is { } type

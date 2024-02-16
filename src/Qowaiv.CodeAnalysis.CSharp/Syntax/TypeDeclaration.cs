@@ -1,8 +1,8 @@
 ﻿namespace Qowaiv.CodeAnalysis.Syntax;
 
-public abstract class MethodDeclaration : SyntaxAbstraction
+public abstract class TypeDeclaration : SyntaxAbstraction
 {
-    protected MethodDeclaration(SyntaxNode node, SemanticModel model)
+    protected TypeDeclaration(SyntaxNode node, SemanticModel model)
         : base(node) => LazySymbol = new(() => model.GetDeclaredSymbol(node) as INamedTypeSymbol);
 
     public INamedTypeSymbol? Symbol => LazySymbol.Value;
@@ -33,7 +33,7 @@ public abstract class MethodDeclaration : SyntaxAbstraction
 
     public abstract IEnumerable<SyntaxKind> Modifiers { get; }
 
-    internal sealed class Class(ClassDeclarationSyntax node, SemanticModel model) : MethodDeclaration(node, model)
+    internal sealed class Class(ClassDeclarationSyntax node, SemanticModel model) : TypeDeclaration(node, model)
     {
         private readonly ClassDeclarationSyntax TypedNode = node;
 
@@ -44,7 +44,7 @@ public abstract class MethodDeclaration : SyntaxAbstraction
         public override IEnumerable<SyntaxKind> Modifiers => TypedNode.Modifiers.Select(m => m.Kind());
     }
 
-    internal sealed class Record(RecordDeclarationSyntax node, SemanticModel model) : MethodDeclaration(node, model)
+    internal sealed class Record(RecordDeclarationSyntax node, SemanticModel model) : TypeDeclaration(node, model)
     {
         private readonly RecordDeclarationSyntax TypedNode = node;
 
