@@ -9,7 +9,7 @@ public sealed class UseFileScopedNamespaceDeclarations() : CodingRule(Rule.UseFi
     private void Report(SyntaxNodeAnalysisContext context)
     {
         if (context.Node is NamespaceDeclarationSyntax declaration
-            && context.Compilation.LanguageVersion() >= CSharpLanguageVersion.CSharp10
+            && context.Compilation.LanguageVersion() >= LanguageVersion.CSharp10
             && IsSingle(declaration))
         {
             context.ReportDiagnostic(Diagnostic, declaration.Name);
