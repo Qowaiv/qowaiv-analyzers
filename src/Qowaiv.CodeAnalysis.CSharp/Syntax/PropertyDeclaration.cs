@@ -21,6 +21,11 @@ public sealed class PropertyDeclaration(PropertyDeclarationSyntax propertyNode, 
         => Symbol is { } symbol
         && symbol.IsObsolete();
 
+    public TypeNode PropertyType => propertyType ??= TypedNode.Type.TypeNode(SemanticModel);
+
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    private TypeNode? propertyType;
+
     public TypeDeclaration DeclaringType
         => declaringType ??= TypedNode
             .Ancestors()
@@ -34,4 +39,4 @@ public sealed class PropertyDeclaration(PropertyDeclarationSyntax propertyNode, 
     [Pure]
     protected override IPropertySymbol? GetSymbol(SemanticModel semanticModel)
         => semanticModel.GetDeclaredSymbol(TypedNode);
-    }
+}

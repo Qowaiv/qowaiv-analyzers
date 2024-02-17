@@ -15,6 +15,10 @@ internal static class SymbolExtensions
         => symbol is { } && symbol.IsMatch(type);
 
     [Pure]
+    public static bool IsAny(this ITypeSymbol? symbol, params SystemType[] types)
+        => Array.Exists(types, symbol.Is);
+
+    [Pure]
     public static bool IsAssignableTo(this ITypeSymbol? symbol, SystemType type)
         => (symbol is { } && symbol.IsMatch(type))
         || (symbol?.BaseType is { } @base && @base.IsAssignableTo(type));
@@ -57,7 +61,11 @@ internal static class SymbolExtensions
         => symbol is { } && symbol.ContainingType.Is(type);
 
     [Pure]
-    public static string GetFullMetaDataName(this ISymbol symbol)
+    public static IEnumerable<IPropertySymbol> GetProperties(this ITypeSymbol? type)
+        => type?.GetMembers().OfType<IPropertySymbol>() ?? [];
+
+    [Pure]
+    public static string GetFullMetaDataName(this ISymbol? symbol)
     {
         if (symbol is null || symbol.IsRootNamespace())
         {
@@ -87,6 +95,18 @@ internal static class SymbolExtensions
         && type.TypeArguments[0] is INamedTypeSymbol inner
             ? inner
             : null;
+
+    [Pure]
+    public static IEnumerable<INamedTypeSymbol> SelfAndAncestorTypes(this INamedTypeSymbol? type)
+    {
+        var current = type;
+
+        while (current is { })
+        {
+            yield return current;
+            current = current.BaseType;
+        }
+    }
 
     [Pure]
     private static bool IsMatch(this ITypeSymbol typeSymbol, SystemType type)

@@ -38,11 +38,11 @@ public sealed class DefinePropertiesAsImmutables() : CodingRule(Rule.DefinePrope
 
     [Pure]
     private static bool IsDecorated(IEnumerable<AttributeData> attributes)
-     => attributes.Any(attr => IsDecorated(attr.AttributeClass!));
+     => attributes.Any(attr => IsDecoratedAttribute(attr.AttributeClass!));
 
     [Pure]
-    private static bool IsDecorated(INamedTypeSymbol attr)
+    private static bool IsDecoratedAttribute(INamedTypeSymbol attr)
        => "MUTABLE".Matches(attr.Name)
        || "MUTABLEATTRIBUTE".Matches(attr.Name)
-       || (attr.BaseType is { } && IsDecorated(attr.BaseType));
+       || (attr.BaseType is { } && IsDecoratedAttribute(attr.BaseType));
 }

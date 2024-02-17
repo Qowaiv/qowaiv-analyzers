@@ -29,7 +29,7 @@ public static class SyntaxNodeExtensions
     [Pure]
     public static TypeDeclaration TypeDeclaration(this SyntaxNode node, SemanticModel model)
         => TryTypeDeclaration(node, model)
-        ?? throw new InvalidOperationException($"Unexpected {node.GetType().Name}, expected ClassDeclarationSyntax or RecordDeclarationSyntax.");
+        ?? throw new InvalidOperationException($"Unexpected {node.GetType().Name}, expected a type declaration.");
 
     [Pure]
     public static TypeDeclaration? TryTypeDeclaration(this SyntaxNode node, SemanticModel model) => node switch
@@ -38,6 +38,20 @@ public static class SyntaxNodeExtensions
         InterfaceDeclarationSyntax @interface => new TypeDeclaration.Interface(@interface, model),
         RecordDeclarationSyntax record => new TypeDeclaration.Record(record, model),
         StructDeclarationSyntax @struct => new TypeDeclaration.Struct(@struct, model),
+        _ => null,
+    };
+
+    [Pure]
+    public static TypeNode TypeNode(this SyntaxNode node, SemanticModel model)
+        => TryTypeNode(node, model)
+        ?? throw new InvalidOperationException($"Unexpected {node.GetType().Name}, expected a type declaration.");
+
+    [Pure]
+    public static TypeNode? TryTypeNode(this SyntaxNode node, SemanticModel model) => node switch
+    {
+        ArrayTypeSyntax @array => new TypeNode.Array(@array, model),
+        GenericNameSyntax generic => new TypeNode.Generic(generic, model),
+        TypeSyntax @type => new TypeNode(type, model),
         _ => null,
     };
 }

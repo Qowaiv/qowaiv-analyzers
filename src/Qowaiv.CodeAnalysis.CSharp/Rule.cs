@@ -120,6 +120,15 @@ public static partial class Rule
         category: Category.Design,
         tags: ["Design", "Immutability"]);
 
+    public static DiagnosticDescriptor UseImmutableTypesForProperties => New(
+        id: 0012,
+        title: "Use immutable types for properties",
+        message: "Use an immutable type.",
+        description:
+            "",
+        category: Category.Design,
+        tags: ["Design", "Immutability"]);
+
 #pragma warning disable S107 // Methods should not have too many parameters
     // it calls a ctor with even more arguments.
     private static DiagnosticDescriptor New(

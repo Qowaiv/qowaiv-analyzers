@@ -46,5 +46,5 @@ public abstract class SyntaxAbstraction<TSymbol> where TSymbol : ISymbol
     public bool IsKind(SyntaxKind kind) => Node.IsKind(kind);
 
     /// <summary>Implicitly casts to a <see cref="SyntaxNode"/>.</summary>
-    public static implicit operator SyntaxNode?(SyntaxAbstraction<TSymbol>? abstraction) => abstraction?.Node;
+    public static implicit operator SyntaxNode(SyntaxAbstraction<TSymbol> abstraction) => abstraction.Node;
 }

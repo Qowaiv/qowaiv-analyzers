@@ -22,6 +22,8 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 * [**QW0008** - Define properties as not-nullable for types with a defined empty state](rules/QW0008.md)
 * [**QW0009** - Define properties as not-nullable for enums with a defined none/empty value](rules/QW0009.md)
 * [**QW0010** - Use System.DateOnly instead of Qowaiv.Date](rules/QW0010.md)
+* [**QW0011** - Define properties as immutables](rules/QW0011.md)
+* [**QW0012** - Use immutable types for properties](rules/QW0012.md)
 
 ## Code fixes
 * Use Qowaiv.Clock ([QW0001](rules/QW0001.md), [S6354](https://rules.sonarsource.com/csharp/RSPEC-6354))
