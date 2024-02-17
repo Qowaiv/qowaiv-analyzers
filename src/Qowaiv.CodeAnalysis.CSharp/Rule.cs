@@ -110,6 +110,16 @@ public static partial class Rule
        category: Category.Design,
        tags: ["Design", "SVO"]);
 
+    public static DiagnosticDescriptor DefinePropertiesAsImmutables => New(
+        id: 0011,
+        title: "Define properties as immutables",
+        message: "Remove this setter, or make this property init-only.",
+        description:
+            "Immutable types (classes, interfaces, records, structs) have multiple advantages. " +
+            "To benefit from this, all properties should be defined as immutable.",
+        category: Category.Design,
+        tags: ["Design", "Immutability"]);
+
 #pragma warning disable S107 // Methods should not have too many parameters
     // it calls a ctor with even more arguments.
     private static DiagnosticDescriptor New(

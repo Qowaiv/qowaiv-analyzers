@@ -42,6 +42,11 @@ internal static class SymbolExtensions
         || method.ContainingType.IsObsolete();
 
     [Pure]
+    public static bool IsObsolete(this IPropertySymbol method)
+        => method.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System_ObsoleteAttribute))
+        || method.ContainingType.IsObsolete();
+
+    [Pure]
     public static bool IsPublic(this ISymbol symbol) => symbol.DeclaredAccessibility == Accessibility.Public;
 
     [Pure]
