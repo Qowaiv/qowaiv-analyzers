@@ -33,6 +33,10 @@ public sealed class UseImmutableTypesForProperties() : CodingRule(Rule.UseImmuta
         {
             return mutability;
         }
+        else if (type.IsAny(Immutables))
+        {
+            return false;
+        }
         else
         {
             var next = new Dictionary<ITypeSymbol, bool>(todo ?? [], SymbolEqualityComparer.Default);
@@ -77,7 +81,7 @@ public sealed class UseImmutableTypesForProperties() : CodingRule(Rule.UseImmuta
         || HasEditableProperty(type);
 
     [Pure]
-    private static bool HasEditableProperty(ITypeSymbol type) 
+    private static bool HasEditableProperty(ITypeSymbol type)
         => AccessableProperties(type).Any(p => p.SetMethod is { IsInitOnly: false });
 
     [Pure]
@@ -106,8 +110,7 @@ public sealed class UseImmutableTypesForProperties() : CodingRule(Rule.UseImmuta
 
     [Pure]
     private static bool IsAccessable(Accessibility accessibility)
-        => accessibility == Accessibility.Protected
-        || accessibility == Accessibility.Public;
+        => accessibility == Accessibility.Public;
 
     [Pure]
     private static bool IsDecoratedAttribute(ITypeSymbol attr)
@@ -116,4 +119,9 @@ public sealed class UseImmutableTypesForProperties() : CodingRule(Rule.UseImmuta
         || (attr.BaseType is { } && IsDecoratedAttribute(attr.BaseType));
 
     private ConcurrentDictionary<ITypeSymbol, bool> Mutability = new(SymbolEqualityComparer.Default);
+
+    private static readonly SystemType[] Immutables =
+    [
+        SystemType.System_Text_Encoding,
+    ];
 }
