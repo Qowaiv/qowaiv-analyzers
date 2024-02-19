@@ -17,9 +17,12 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Package config">
-    <PackageVersion>1.0.0</PackageVersion>
+    <PackageVersion>1.0.1</PackageVersion>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageReleaseNotes>
+v1.0.1
+- QW0011: Define properties as immutables. #31
+- QW0012: Use immutable types for properties. #31
 v1.0.0
 - QW0010: Use System.DateOnly instead of Qowaiv.Date. #29
 - CS0618, CS0619: Code fix for obsolete code with a suggestion. #30

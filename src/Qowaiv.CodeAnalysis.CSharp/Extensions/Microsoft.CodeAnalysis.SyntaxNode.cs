@@ -5,6 +5,7 @@ public static class SyntaxNodeExtensions
     public static TNode? AncestorsAndSelf<TNode>(this SyntaxNode node) where TNode : SyntaxNode
         => node.AncestorsAndSelf().OfType<TNode>().FirstOrDefault();
 
+    [Pure]
     public static string? Name(this SyntaxNode node) => node switch
     {
         AttributeSyntax attr => Name(attr.Name),
@@ -16,16 +17,41 @@ public static class SyntaxNodeExtensions
         _ => null,
     };
 
+    [Pure]
     public static TNode Cast<TNode>(this SyntaxNode node) where TNode : SyntaxNode
         => node as TNode
         ?? throw new InvalidOperationException($"Unexpected {node.GetType().Name}, expected {typeof(TNode).Name}.");
 
-    public static InvocationExpression InvocationExpression(this SyntaxNode node) => new(node);
+    [Pure]
+    public static PropertyDeclaration PropertyDeclaration(this SyntaxNode node, SemanticModel model)
+        => new(node.Cast<PropertyDeclarationSyntax>(), model);
 
-    public static TypeDeclaration TypeDeclaration(this SyntaxNode node, SemanticModel model) => node switch
+    [Pure]
+    public static TypeDeclaration TypeDeclaration(this SyntaxNode node, SemanticModel model)
+        => TryTypeDeclaration(node, model)
+        ?? throw new InvalidOperationException($"Unexpected {node.GetType().Name}, expected a type declaration.");
+
+    [Pure]
+    public static TypeDeclaration? TryTypeDeclaration(this SyntaxNode node, SemanticModel model) => node switch
     {
         ClassDeclarationSyntax @class => new TypeDeclaration.Class(@class, model),
+        InterfaceDeclarationSyntax @interface => new TypeDeclaration.Interface(@interface, model),
         RecordDeclarationSyntax record => new TypeDeclaration.Record(record, model),
-        _ => throw new InvalidOperationException($"Unexpected {node.GetType().Name}, expected ClassDeclarationSyntax or RecordDeclarationSyntax."),
+        StructDeclarationSyntax @struct => new TypeDeclaration.Struct(@struct, model),
+        _ => null,
+    };
+
+    [Pure]
+    public static TypeNode TypeNode(this SyntaxNode node, SemanticModel model)
+        => TryTypeNode(node, model)
+        ?? throw new InvalidOperationException($"Unexpected {node.GetType().Name}, expected a type declaration.");
+
+    [Pure]
+    public static TypeNode? TryTypeNode(this SyntaxNode node, SemanticModel model) => node switch
+    {
+        ArrayTypeSyntax @array => new TypeNode.Array(@array, model),
+        GenericNameSyntax generic => new TypeNode.Generic(generic, model),
+        TypeSyntax @type => new TypeNode(type, model),
+        _ => null,
     };
 }

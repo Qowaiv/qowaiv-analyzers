@@ -1,13 +1,11 @@
 ﻿namespace Qowaiv.CodeAnalysis.Syntax;
 
-public abstract class TypeDeclaration : SyntaxAbstraction
+public abstract partial class TypeDeclaration : SyntaxAbstraction<INamedTypeSymbol>
 {
-    protected TypeDeclaration(SyntaxNode node, SemanticModel model)
-        : base(node) => LazySymbol = new(() => model.GetDeclaredSymbol(node) as INamedTypeSymbol);
-
-    public INamedTypeSymbol? Symbol => LazySymbol.Value;
-
-    private readonly Lazy<INamedTypeSymbol?> LazySymbol;
+    protected TypeDeclaration(SyntaxNode node, SemanticModel semanticModel)
+        : base(node, semanticModel)
+    {
+    }
 
     public abstract SyntaxList<AttributeListSyntax> AttributeLists { get; }
 
@@ -23,35 +21,24 @@ public abstract class TypeDeclaration : SyntaxAbstraction
         => Modifiers.Contains(SyntaxKind.SealedKeyword)
         || (IsPartial && Symbol?.IsSealed == true);
 
+    public Accessibility Accessibility
+        => IsPartial && Symbol is { } s
+            ? s.DeclaredAccessibility
+            : Modifiers.GetAccessibility();
+
     public bool IsAbstract
         => Modifiers.Contains(SyntaxKind.AbstractKeyword)
         || (IsPartial && Symbol?.IsAbstract == true);
 
     public bool IsPartial => Modifiers.Contains(SyntaxKind.PartialKeyword);
 
-    public abstract bool IsRecord { get; }
+    public bool IsObsolete
+        => Symbol is { } symbol
+        && symbol.IsObsolete();
 
     public abstract IEnumerable<SyntaxKind> Modifiers { get; }
 
-    internal sealed class Class(ClassDeclarationSyntax node, SemanticModel model) : TypeDeclaration(node, model)
-    {
-        private readonly ClassDeclarationSyntax TypedNode = node;
-
-        public override bool IsRecord => false;
-
-        public override SyntaxList<AttributeListSyntax> AttributeLists => TypedNode.AttributeLists;
-
-        public override IEnumerable<SyntaxKind> Modifiers => TypedNode.Modifiers.Select(m => m.Kind());
-    }
-
-    internal sealed class Record(RecordDeclarationSyntax node, SemanticModel model) : TypeDeclaration(node, model)
-    {
-        private readonly RecordDeclarationSyntax TypedNode = node;
-
-        public override bool IsRecord => true;
-
-        public override SyntaxList<AttributeListSyntax> AttributeLists => TypedNode.AttributeLists;
-
-        public override IEnumerable<SyntaxKind> Modifiers => TypedNode.Modifiers.Select(m => m.Kind());
-    }
+    [Pure]
+    protected override INamedTypeSymbol? GetSymbol(SemanticModel semanticModel)
+        => semanticModel.GetDeclaredSymbol(Node) as INamedTypeSymbol;
 }

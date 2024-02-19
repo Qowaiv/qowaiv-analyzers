@@ -19,8 +19,8 @@ public sealed class SealClasses() : CodingRule(
     {
         if (declaration.IsConcrete
             && !declaration.IsSealed
+            && !declaration.IsObsolete
             && declaration.Symbol is { } type
-            && !type.IsObsolete()
             && !type.IsAttribute()
             && !type.IsException()
             && !type.GetMembers().Any(IsVirtualOrProtected)
@@ -29,15 +29,15 @@ public sealed class SealClasses() : CodingRule(
             context.ReportDiagnostic(
                 Rule.SealClasses,
                 declaration.ChildTokens().First(t => t.IsKind(SyntaxKind.IdentifierToken)),
-                declaration.IsRecord ? "record" : "class");
+                declaration.IsKind(SyntaxKind.RecordDeclaration) ? "record" : "class");
         }
     }
 
     private static void ReportInvalidDecorations(TypeDeclaration declaration, SyntaxNodeAnalysisContext context)
     {
         if ((!declaration.IsConcrete || declaration.IsSealed)
+            && !declaration.IsObsolete
             && declaration.Symbol is { } type
-            && !type.IsObsolete()
             && !type.IsAttribute()
             && Decorated(type.GetAttributes()) is { } decorated
             && declaration.Attributes.FirstOrDefault(a => IsDecorated(a, decorated)) is { } attr)
