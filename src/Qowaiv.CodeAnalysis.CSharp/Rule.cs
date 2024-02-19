@@ -125,7 +125,8 @@ public static partial class Rule
         title: "Use immutable types for properties",
         message: "Use an immutable type.",
         description:
-            "",
+            "Immutable types (classes, interfaces, records, structs) have multiple advantages. " +
+            "To benefit from this, the type of properties should be immutable.",
         category: Category.Design,
         tags: ["Design", "Immutability"]);
 

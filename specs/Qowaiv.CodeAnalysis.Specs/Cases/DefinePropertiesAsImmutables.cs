@@ -31,7 +31,7 @@ namespace Compliant
 
         public int PublicField; // Compliant {{Fields are ignored.}}
 
-        public int InitOnly { get; init; } // Compliant {{Property is can only be changed during the init phase.}}
+        public int InitOnly { get; init; } // Compliant {{Property can only be changed during the init phase.}}
 
         public int Caclulated => 42 * PublicField; // Compliant {{Calculated properties are considered immutable.}}
 
@@ -52,7 +52,7 @@ namespace Compliant
 
         public int GetOnly { get; } // Compliant {{Property is set during construction.}}
 
-        public int InitOnly { get; init; } // Compliant {{Property is can only be changed during the init phase.}}
+        public int InitOnly { get; init; } // Compliant {{Property can only be changed during the init phase.}}
     }
 
     public struct Struct
@@ -115,7 +115,7 @@ namespace Noncompliant
 //          ^^^^^^^^^^^^^^^^^^^^^^^^^^
         }
 
-        public int WithUnderlyingFieldClasci
+        public int WithUnderlyingFieldClassic
         {
             get
             {

@@ -35,7 +35,7 @@ namespace Compliant
 
         public ImmutableList ImmutableList { get; } // Compliant
         
-        public RecuriveImmutableClass Recurive { get; } // Compliant
+        public RecursiveImmutableClass Recursive { get; } // Compliant
 
         public Guid ReadOnly { get; } // Compliant {{Guids are read-only.}}
     }
@@ -136,14 +136,14 @@ public class ImmutableClass
     public int Value { get; init; }
 }
 
-public class RecuriveImmutableClass
+public class RecursiveImmutableClass
 {
-    public RecuriveImmutableClass2 Parent { get; init; }
+    public RecursiveImmutableClass2 Parent { get; init; }
 }
 
-public class RecuriveImmutableClass2
+public class RecursiveImmutableClass2
 {
-    public RecuriveImmutableClass Parent { get; init; }
+    public RecursiveImmutableClass Parent { get; init; }
 }
 
 [Mutable]
