@@ -1,6 +1,4 @@
-﻿using System.Collections.Concurrent;
-
-namespace Qowaiv.CodeAnalysis.Rules;
+﻿namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class UseImmutableTypesForProperties() : CodingRule(Rule.UseImmutableTypesForProperties)
@@ -22,67 +20,17 @@ public sealed class UseImmutableTypesForProperties() : CodingRule(Rule.UseImmuta
     }
 
     [Pure]
-    private bool IsMutable(TypeNode type)
+    private static bool IsMutable(TypeNode type)
         => type.IsArray
         || (type.Symbol is { } symbol && IsMutable(symbol));
 
     [Pure]
-    private bool IsMutable(INamedTypeSymbol type, Dictionary<ITypeSymbol, bool>? todo = null)
-    {
-        if (Mutability.TryGetValue(type, out var mutability))
-        {
-            return mutability;
-        }
-        else if (type.IsAny(Immutables))
-        {
-            return false;
-        }
-        else
-        {
-            var next = new Dictionary<ITypeSymbol, bool>(todo ?? [], SymbolEqualityComparer.Default);
-
-            foreach (var sub in type.SelfAndAncestorTypes()
-                .Concat(type.AllInterfaces)
-                .Concat(type.TypeArguments)
-                .Concat(AccessableProperties(type).Select(p => p.Type)))
-            {
-                next[sub] = false;
-
-                if (sub.SpecialType != SpecialType.None || sub.IsReadOnly)
-                {
-                    Mutability[sub] = false;
-                }
-                else if (Mutability.TryGetValue(sub, out mutability) && mutability)
-                {
-                    return true;
-                }
-                else if (TestMutable(sub))
-                {
-                    return Mutability[sub] = true;
-                }
-                else if (!SymbolEqualityComparer.Default.Equals(sub, type) && !next.ContainsKey(sub))
-                {
-                    next[sub] = true;
-                }
-            }
-
-            if (next.Values.Any(v => v))
-            {
-                return next.Where(kvp => kvp.Value).Select(kvp => kvp.Key).OfType<INamedTypeSymbol>().Any(t => IsMutable(t, next));
-            }
-        }
-        return Mutability[type] = false;
-    }
-
-    [Pure]
-    private static bool TestMutable(ITypeSymbol type)
-        => IsDecorated(type.GetAttributes())
-        || DefinesMutableInterface(type)
-        || HasEditableProperty(type);
-
-    [Pure]
-    private static bool HasEditableProperty(ITypeSymbol type)
-        => AccessableProperties(type).Any(p => p.SetMethod is { IsInitOnly: false });
+    private static bool IsMutable(INamedTypeSymbol type) => type
+        .SelfAndAncestorTypes()
+        .Concat(type.AllInterfaces)
+        .Concat(type.TypeArguments)
+        .Concat(AccessableProperties(type).Select(p => p.Type))
+        .Any(t => IsDecorated(t.GetAttributes()) || DefinesMutableInterface(t));
 
     [Pure]
     private static IEnumerable<IPropertySymbol> AccessableProperties(ITypeSymbol type)
@@ -106,22 +54,16 @@ public sealed class UseImmutableTypesForProperties() : CodingRule(Rule.UseImmuta
 
     [Pure]
     private static bool IsDecorated(IEnumerable<AttributeData> attributes)
-    => attributes.Any(attr => IsDecoratedAttribute(attr.AttributeClass!));
+        => attributes.Any(attr => IsDecoratedAttribute(attr.AttributeClass!));
 
     [Pure]
     private static bool IsAccessable(Accessibility accessibility)
-        => accessibility == Accessibility.Public;
+        => accessibility == Accessibility.Public
+        || accessibility == Accessibility.Protected;
 
     [Pure]
     private static bool IsDecoratedAttribute(ITypeSymbol attr)
         => "MUTABLE".Matches(attr.Name)
         || "MUTABLEATTRIBUTE".Matches(attr.Name)
         || (attr.BaseType is { } && IsDecoratedAttribute(attr.BaseType));
-
-    private ConcurrentDictionary<ITypeSymbol, bool> Mutability = new(SymbolEqualityComparer.Default);
-
-    private static readonly SystemType[] Immutables =
-    [
-        SystemType.System_Text_Encoding,
-    ];
 }

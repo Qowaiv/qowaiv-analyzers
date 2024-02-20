@@ -8,12 +8,4 @@ public class Verify
         .ForCS()
         .AddSource(@"Cases/UseImmutableTypesForProperties.cs")
         .Verify();
-
-    [Test]
-    public void Known_types()
-         => new UseImmutableTypesForProperties()
-        .ForCS()
-        .AddSource(@"Cases/UseImmutableTypesForProperties.KnownTypes.cs")
-        .AddReference<System.Text.RegularExpressions.Regex>()
-        .Verify();
 }

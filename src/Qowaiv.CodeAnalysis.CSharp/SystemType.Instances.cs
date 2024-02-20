@@ -3,6 +3,7 @@
 public partial class SystemType
 {
     public static readonly SystemType System_Object = New(typeof(object), SpecialType.System_Object);
+    public static readonly SystemType System_String = New(typeof(string), SpecialType.System_String);
     public static readonly SystemType System_DateTime = New(typeof(System.DateTime), SpecialType.System_DateTime);
     public static readonly SystemType System_Void = New(typeof(void), SpecialType.System_Void);
 
@@ -22,8 +23,6 @@ public partial class SystemType
     public static readonly SystemType System_Exception = typeof(System.Exception);
     public static readonly SystemType System_IDisposable = typeof(System.IDisposable);
     public static readonly SystemType System_ObsoleteAttribute = typeof(System.ObsoleteAttribute);
-
-    public static readonly SystemType System_Text_Encoding = typeof(System.Text.Encoding);
 
     public static readonly SystemType System_Diagnostics_Contracts_PureAttribute = typeof(System.Diagnostics.Contracts.PureAttribute);
     public static readonly SystemType System_Threading_Task = typeof(System.Threading.Tasks.Task);
