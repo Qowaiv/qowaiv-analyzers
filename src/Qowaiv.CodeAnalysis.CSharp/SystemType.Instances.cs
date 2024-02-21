@@ -3,6 +3,7 @@
 public partial class SystemType
 {
     public static readonly SystemType System_Object = New(typeof(object), SpecialType.System_Object);
+    public static readonly SystemType System_String = New(typeof(string), SpecialType.System_String);
     public static readonly SystemType System_DateTime = New(typeof(System.DateTime), SpecialType.System_DateTime);
     public static readonly SystemType System_Void = New(typeof(void), SpecialType.System_Void);
 

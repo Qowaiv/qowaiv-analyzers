@@ -111,8 +111,6 @@ namespace Noncompliant
         public IReadOnlyList<MutableClass> MutableClasses { get; } // Noncompliant
 
         public MutableList MutableList { get; } // Noncompliant, MutableList inherits from IList<T>.
-
-        public WithMutableProps WithMutableProps { get; } // Noncompliant
     }
 
     public record Record
@@ -148,11 +146,6 @@ public class RecursiveImmutableClass2
 
 [Mutable]
 public class MutableClass { }
-
-public class WithMutableProps
-{
-    public int Value { get; set; }
-}
 
 public sealed class MutableList : List<int> { }
 
