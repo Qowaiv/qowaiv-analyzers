@@ -24,7 +24,9 @@ public partial class SystemType
     public static readonly SystemType System_IDisposable = typeof(System.IDisposable);
     public static readonly SystemType System_ObsoleteAttribute = typeof(System.ObsoleteAttribute);
 
+    public static readonly SystemType System_Diagnostics_CodeAnalysis_DoesNotReturnAttribute = new("System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute");
     public static readonly SystemType System_Diagnostics_Contracts_PureAttribute = typeof(System.Diagnostics.Contracts.PureAttribute);
+
     public static readonly SystemType System_Threading_Task = typeof(System.Threading.Tasks.Task);
     public static readonly SystemType System_Threading_ValueTask = typeof(System.Threading.Tasks.ValueTask);
 
