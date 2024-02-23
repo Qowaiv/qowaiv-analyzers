@@ -1,9 +1,8 @@
-﻿
-namespace Qowaiv.CodeAnalysis.Syntax;
+﻿namespace Qowaiv.CodeAnalysis.Syntax;
 
 public partial class TypeNode
 {
-    internal sealed class Generic(GenericNameSyntax genericNode, SemanticModel semanticModel) : TypeNode(genericNode, semanticModel) 
+    internal sealed class Generic(GenericNameSyntax genericNode, SemanticModel semanticModel) : TypeNode(genericNode, semanticModel)
     {
         public override bool IsGenericType => true;
 

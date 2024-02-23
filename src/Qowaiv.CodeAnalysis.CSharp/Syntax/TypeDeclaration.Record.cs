@@ -10,5 +10,4 @@ public partial class TypeDeclaration
 
         public override IEnumerable<SyntaxKind> Modifiers => TypedNode.Modifiers.Select(m => m.Kind());
     }
-
 }

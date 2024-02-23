@@ -22,7 +22,7 @@ public sealed class UseImmutableTypesForProperties() : CodingRule(Rule.UseImmuta
     [Pure]
     private static bool IsMutable(TypeNode type)
         => type.IsArray
-        || (type.Symbol is { } symbol 
+        || (type.Symbol is { } symbol
             && !symbol.Name.StartsWith("Immutable")
             && IsMutable(symbol));
 
