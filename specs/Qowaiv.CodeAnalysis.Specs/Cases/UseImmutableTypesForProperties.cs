@@ -33,8 +33,11 @@ namespace Compliant
         
         public IReadOnlySet<int> Set { get; } // Compliant
 
-        public ImmutableList ImmutableList { get; } // Compliant
-        
+        public ReadOnlyList ReadOnlyList { get; } // Compliant
+
+        public System.Collections.Immutable.ImmutableArray<int> ImmutableCollection { get; } // Compliant
+
+
         public RecursiveImmutableClass Recursive { get; } // Compliant
 
         public Guid ReadOnly { get; } // Compliant {{Guids are read-only.}}
@@ -149,7 +152,7 @@ public class MutableClass { }
 
 public sealed class MutableList : List<int> { }
 
-public sealed class ImmutableList : IReadOnlyList<int>
+public sealed class ReadOnlyList : IReadOnlyList<int>
 {
     public int this[int index] => 42;
 

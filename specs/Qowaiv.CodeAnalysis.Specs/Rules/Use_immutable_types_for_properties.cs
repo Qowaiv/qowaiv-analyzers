@@ -7,5 +7,6 @@ public class Verify
          => new UseImmutableTypesForProperties()
         .ForCS()
         .AddSource(@"Cases/UseImmutableTypesForProperties.cs")
+        .AddReference<System.Collections.Immutable.ImmutableArray<int>>()
         .Verify();
 }
