@@ -17,11 +17,12 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Package config">
-    <PackageVersion>1.0.2</PackageVersion>
+    <PackageVersion>1.0.3</PackageVersion>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageReleaseNotes>
-ToBeReleased:
+-v1.0.3
 - QW0012: Types that have Immutable in there name are considered immutable. #34
+- QW0003: [DoesNotReturn] should be valid alternative for [Pure]. #33
 v1.0.2
 - QW0012: Reduce FP's by ignoring potential mutable property types. #32
 v1.0.1

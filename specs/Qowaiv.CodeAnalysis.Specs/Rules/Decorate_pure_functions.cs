@@ -8,5 +8,6 @@ public class Verify
         .ForCS()
         .AddSource(@"Cases/DecoratePureFunctions.cs")
         .AddReference<FluentAssertions.CustomAssertionAttribute>()
+        .AddReference<System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute>()
         .Verify();
 }

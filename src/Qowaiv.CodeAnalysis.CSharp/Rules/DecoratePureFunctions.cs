@@ -38,7 +38,9 @@ public sealed class DecoratePureFunctions() : CodingRule(Rule.DecoratePureFuncti
         => !attributes.Any(attr => Decorated(attr.AttributeClass));
 
     private static bool Decorated(ITypeSymbol? attr)
-        => attr.Is(SystemType.System_Diagnostics_Contracts_PureAttribute)
+        => attr.IsAny(
+            SystemType.System_Diagnostics_Contracts_PureAttribute,
+            SystemType.System_Diagnostics_CodeAnalysis_DoesNotReturnAttribute)
         || DecoratedImpure(attr!);
 
     private static bool DecoratedImpure(ITypeSymbol attr)
