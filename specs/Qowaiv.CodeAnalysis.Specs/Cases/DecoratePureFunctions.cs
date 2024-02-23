@@ -30,6 +30,9 @@ public class Compliant
 
     [CustomAssertion]
     public T SomeAssertion<T>(T subject) => subject; // Compliant {{FluentAssertions custom assertions are expected to be impure.}}
+
+    [System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute()]
+    public int WhenItNeverReturns() => throw new NotSupportedException(); // Compliant {{DoesNotReturn also indicates cleary what to expect.}}
 }
 
 public class ImpureByAssumption
