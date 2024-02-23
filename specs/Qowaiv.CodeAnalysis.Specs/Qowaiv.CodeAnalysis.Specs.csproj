@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\props\common.props" />
+  <Import Project="../../props/common.props" />
   
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <IsPackable>false</IsPackable>
     <RootNamespace>Specs</RootNamespace>
+    <OutputType>library</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,8 +29,8 @@
   </ItemGroup>
 
   <ItemGroup Label="Analyzers">
-    <PackageReference Include="FluentAssertions.Analyzers" Version="*" />
-    <PackageReference Include="NUnit.Analyzers" Version="*" />
+    <PackageReference Include="FluentAssertions.Analyzers" Version="*" PrivateAssets="all" />
+    <PackageReference Include="NUnit.Analyzers" Version="*" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup Label="Other">
@@ -38,7 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Qowaiv.CodeAnalysis.CSharp\Qowaiv.CodeAnalysis.CSharp.csproj" />
+    <ProjectReference Include="../../src/Qowaiv.CodeAnalysis.CSharp/Qowaiv.CodeAnalysis.CSharp.csproj" />
   </ItemGroup>
 
 </Project>

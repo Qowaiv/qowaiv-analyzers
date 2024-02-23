@@ -13,7 +13,7 @@ public sealed class ChangeQowaivDateToSystemDateOnly() : CodeFix(Rule.UseSystemD
         }
     }
 
-    private static Task<Document> ChangeDocument(ChangeDocumentContext context) 
+    private static Task<Document> ChangeDocument(ChangeDocumentContext context)
         => context.ReplaceNode(
             Identifier(context.Node) ?? context.Node!,
             IdentifierName("DateOnly"));

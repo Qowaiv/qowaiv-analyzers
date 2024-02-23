@@ -1,24 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\props\common.props" />
+  <Import Project="../../props/common.props" />
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Qowaiv.Analyzers.CSharp</PackageId>
     <RootNamespace>Qowaiv.CodeAnalysis</RootNamespace>
+    <OutputType>library</OutputType>
   </PropertyGroup>
 
   <PropertyGroup Label="Build conditions">
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">true</GeneratePackageOnBuild>
     <DevelopmentDependency>true</DevelopmentDependency>
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
   </PropertyGroup>
 
   <PropertyGroup Label="Package config">
-    <PackageVersion>1.0.3</PackageVersion>
+    <IsPackable>true</IsPackable>
+    <Version>1.0.3</Version>
     <PackageIcon>package-icon.png</PackageIcon>
+    <PackageIconUrl>https://github.com/Qowaiv/qowaiv-analyzers/blob/main/design/package-icon.png</PackageIconUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>
 -v1.0.3
 - QW0012: Types that have Immutable in there name are considered immutable. #34
@@ -75,9 +79,10 @@ v0.0.1
   </PropertyGroup>
 
   <ItemGroup Label="Package files">
-    <None Update="tools\*.ps1" Pack="true" PackagePath="\" />
-    <None Include="$(MSBuildThisFileDirectory)..\..\design\package-icon.png" Pack="true" PackagePath="" Visible="false " />
-    <None Include="$(OutputPath)\Qowaiv.CodeAnalysis.CSharp.dll" Pack="true" PackagePath="analyzers" Visible="false" />
+    <None Update="tools/*.ps1" Pack="true" PackagePath="/" />
+    <None Include="$(MSBuildThisFileDirectory)../../design/package-icon.png" Pack="true" PackagePath="" Visible="false " />
+    <None Include="$(OutputPath)/Qowaiv.CodeAnalysis.CSharp.dll" Pack="true" PackagePath="analyzers" Visible="false" />
+    <None Include="README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup Label="Analyzers">
@@ -85,8 +90,8 @@ v0.0.1
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.*" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.*" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.*" />
   </ItemGroup>
 
 </Project>
