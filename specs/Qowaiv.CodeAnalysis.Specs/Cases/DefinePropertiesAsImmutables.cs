@@ -95,6 +95,13 @@ namespace Compliant
     {
         public int Value { get; set; } // Compliant {{Base class is mutable.}}
     }
+
+    public class QowaivAggregate : Qowaiv.DomainModel.Aggregate<QowaivAggregate, int>
+    {
+        public QowaivAggregate() : base(42, null) { }
+
+        public string Property { get; private set; } // Compliant {{Base class is Qowaiv Aggregate.}}
+    }
 }
 
 namespace Noncompliant
