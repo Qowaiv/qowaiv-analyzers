@@ -7,5 +7,7 @@ public class Verify
          => new DefinePropertiesAsImmutables()
         .ForCS()
         .AddSource(@"Cases/DefinePropertiesAsImmutables.cs")
+        .AddReference<Qowaiv.DomainModel.EventDispatcher>()
+        .AddReference<Qowaiv.Validation.Abstractions.IValidationMessage>()
         .Verify();
 }

@@ -19,11 +19,13 @@
 
   <PropertyGroup Label="Package config">
     <IsPackable>true</IsPackable>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageIconUrl>https://github.com/Qowaiv/qowaiv-analyzers/blob/main/design/package-icon.png</PackageIconUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>
+-v1.0.4
+- QW0011, QW0012: Ignore types with a mutable base. #36
 -v1.0.3
 - QW0012: Types that have Immutable in there name are considered immutable. #34
 - QW0003: [DoesNotReturn] should be valid alternative for [Pure]. #33
@@ -90,8 +92,8 @@ v0.0.1
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.*" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.*" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.1" AllowedVersions="[4.*)" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.0.1" AllowedVersions="[4.*)" />
   </ItemGroup>
 
 </Project>

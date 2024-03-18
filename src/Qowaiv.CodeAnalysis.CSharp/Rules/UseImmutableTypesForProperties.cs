@@ -1,7 +1,7 @@
 ﻿namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class UseImmutableTypesForProperties() : CodingRule(Rule.UseImmutableTypesForProperties)
+public sealed class UseImmutableTypesForProperties() : ImmutablePropertiesBase(Rule.UseImmutableTypesForProperties)
 {
     protected override void Register(AnalysisContext context)
         => context.RegisterSyntaxNodeAction(Report, SyntaxKind.PropertyDeclaration);
@@ -9,10 +9,7 @@ public sealed class UseImmutableTypesForProperties() : CodingRule(Rule.UseImmuta
     private void Report(SyntaxNodeAnalysisContext context)
     {
         var property = context.Node.PropertyDeclaration(context.SemanticModel);
-        if (IsAccessable(property.Accessibility)
-            && !property.IsStatic
-            && !property.IsObsolete
-            && IsApplicable(property.DeclaringType)
+        if (IsApplicable(property)
             && IsMutable(property.PropertyType))
         {
             context.ReportDiagnostic(Diagnostic, property.PropertyType);
@@ -36,7 +33,7 @@ public sealed class UseImmutableTypesForProperties() : CodingRule(Rule.UseImmuta
 
     [Pure]
     private static IEnumerable<IPropertySymbol> AccessableProperties(ITypeSymbol type)
-        => type.GetProperties().Where(p => !p.IsStatic && IsAccessable(p.DeclaredAccessibility));
+        => type.GetProperties().Where(p => !p.IsStatic && IsAccessible(p.DeclaredAccessibility));
 
     [Pure]
     private static bool DefinesMutableInterface(ITypeSymbol type)
@@ -45,27 +42,4 @@ public sealed class UseImmutableTypesForProperties() : CodingRule(Rule.UseImmuta
             SystemType.System_Collections_Generic_IDictionary_TKey_TValue,
             SystemType.System_Collections_Generic_IList_T,
             SystemType.System_Collections_Generic_ISet_T);
-
-    [Pure]
-    private static bool IsApplicable(TypeDeclaration declaration)
-        => !declaration.Modifiers.Contains(SyntaxKind.RefKeyword)
-        && !declaration.IsObsolete
-        && IsAccessable(declaration.Accessibility)
-        && declaration.Symbol is { } declaring
-        && !IsDecorated(declaring.GetAttributes());
-
-    [Pure]
-    private static bool IsDecorated(IEnumerable<AttributeData> attributes)
-        => attributes.Any(attr => IsDecoratedAttribute(attr.AttributeClass!));
-
-    [Pure]
-    private static bool IsAccessable(Accessibility accessibility)
-        => accessibility == Accessibility.Public
-        || accessibility == Accessibility.Protected;
-
-    [Pure]
-    private static bool IsDecoratedAttribute(ITypeSymbol attr)
-        => "MUTABLE".Matches(attr.Name)
-        || "MUTABLEATTRIBUTE".Matches(attr.Name)
-        || (attr.BaseType is { } && IsDecoratedAttribute(attr.BaseType));
 }

@@ -1,11 +1,21 @@
 ﻿namespace Qowaiv.CodeAnalysis.Syntax;
 
-public sealed class PropertyDeclaration(PropertyDeclarationSyntax propertyNode, SemanticModel semanticModel)
-    : SyntaxAbstraction<IPropertySymbol>(propertyNode, semanticModel)
+public sealed class PropertyDeclaration : SyntaxAbstraction<IPropertySymbol>
 {
-    public PropertyDeclarationSyntax TypedNode { get; } = propertyNode;
+    public PropertyDeclaration(PropertyDeclarationSyntax propertyNode, SemanticModel semanticModel) : base(propertyNode, semanticModel)
+    {
+        TypedNode = propertyNode;
+        LazyContainingSymbol = new(() => Symbol?.ContainingSymbol as INamedTypeSymbol);
+    }
+
+    public PropertyDeclarationSyntax TypedNode { get; }
 
     public bool IsStatic => Modifiers.Contains(SyntaxKind.StaticKeyword);
+
+    public INamedTypeSymbol? ContainingSymbol => LazyContainingSymbol.Value;
+
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    private readonly Lazy<INamedTypeSymbol?> LazyContainingSymbol;
 
     public IEnumerable<SyntaxKind> Modifiers => TypedNode.Modifiers.Select(m => m.Kind());
 
