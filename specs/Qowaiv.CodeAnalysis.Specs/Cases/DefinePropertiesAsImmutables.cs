@@ -90,6 +90,11 @@ namespace Compliant
         [Obsolete]
         public int Value { get; set; } // Compliant {{Class is obsolete.}}
     }
+
+    public class InheritsFromMutableClass : Noncompliant.Class
+    {
+        public int Value { get; set; } // Compliant {{Base class is mutable.}}
+    }
 }
 
 namespace Noncompliant
