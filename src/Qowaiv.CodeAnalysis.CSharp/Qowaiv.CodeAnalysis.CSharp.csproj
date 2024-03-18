@@ -25,7 +25,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>
 -v1.0.4
-- QW0011, QW0012: Ignore types with a mutable base. #35
+- QW0011, QW0012: Ignore types with a mutable base. #36
 -v1.0.3
 - QW0012: Types that have Immutable in there name are considered immutable. #34
 - QW0003: [DoesNotReturn] should be valid alternative for [Pure]. #33
