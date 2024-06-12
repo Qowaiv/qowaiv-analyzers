@@ -11,26 +11,19 @@ public sealed class SealClass() : CodeFix(Rule.SealClasses.Id)
         {
             if (changeDoc.Node is ClassDeclarationSyntax @class)
             {
-                changeDoc.RegisterFix("Seal class.", context, d => ChangeClass(@class, d));
+                changeDoc.RegisterFix("Seal class.", context, d => Change(@class, d));
             }
             else if (changeDoc.Node is RecordDeclarationSyntax @record)
             {
-                changeDoc.RegisterFix("Seal record.", context, d => ChangeRecord(@record, d));
+                changeDoc.RegisterFix("Seal record.", context, d => Change(@record, d));
             }
         }
     }
 
-    private static Task<Document> ChangeClass(ClassDeclarationSyntax @class, ChangeDocumentContext context)
+    private static Task<Document> Change(TypeDeclarationSyntax declaration, ChangeDocumentContext context)
     {
-        var modifiers = @class.Modifiers.Add(Token(SyntaxKind.SealedKeyword));
-        var newNode = @class.WithModifiers(modifiers);
-        return context.ReplaceNode(@class, newNode);
-    }
-
-    private static Task<Document> ChangeRecord(RecordDeclarationSyntax record, ChangeDocumentContext context)
-    {
-        var modifiers = record.Modifiers.Add(Token(SyntaxKind.SealedKeyword));
-        var newNode = record.WithModifiers(modifiers);
-        return context.ReplaceNode(record, newNode);
+        var modifiers = declaration.Modifiers.Add(Token(SyntaxKind.SealedKeyword));
+        var newNode = declaration.WithModifiers(modifiers);
+        return context.ReplaceNode(declaration, newNode);
     }
 }
