@@ -23,6 +23,25 @@ namespace Compliant
         int Value { get; } // Compliant {{Interface with get only property.}}
     }
 
+    public class Iterator : System.Collections.Generic.IEnumerator<int>
+    {
+        public int Current { get; private set; }  // Compliant {{IEnumerator are ignored.}}
+        object System.Collections.IEnumerator.Current => Current;
+
+        public bool MoveNext() => true;
+        public void Dispose() { }
+        public void Reset() { }
+    }
+
+    public class XmlSerializable : System.Xml.Serialization.IXmlSerializable
+    {
+        public string Value { get; private set; } // Compliant {{IXmlSerializables are ignored.}}
+
+        public void ReadXml(System.Xml.XmlReader reader) { /* Read. */ }
+        public void WriteXml(System.Xml.XmlWriter writer) { /* Write. */ }
+        public System.Xml.Schema.XmlSchema? GetSchema() => null;
+    }
+
     public class Class
     {
         public Class(int val) => GetOnly = val;
