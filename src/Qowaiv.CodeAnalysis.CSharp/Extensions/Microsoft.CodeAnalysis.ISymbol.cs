@@ -24,6 +24,22 @@ internal static class SymbolExtensions
         || (symbol?.BaseType is { } @base && @base.IsAssignableTo(type));
 
     [Pure]
+    public static bool Implements(this ITypeSymbol? symbol, SystemType @interface)
+        => symbol is { } && symbol.AllInterfaces().Any(i => i.Is(@interface));
+    //{
+    //    var faces = symbol.Interfaces.SelectMany(i => i.Interfaces).ToArray();
+
+    //    foreach (var f in faces)
+    //    {
+    //        if (f.Is(@interface))
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    return false;
+    //}
+
+    [Pure]
     public static bool IsAttribute(this ITypeSymbol type)
         => type.IsAssignableTo(SystemType.System_Attribute);
 
@@ -105,6 +121,22 @@ internal static class SymbolExtensions
         {
             yield return current;
             current = current.BaseType;
+        }
+    }
+
+    [Pure]
+    public static IEnumerable<INamedTypeSymbol> AllInterfaces(this ITypeSymbol? type)
+    {
+        if (type is null) yield break;
+
+        foreach (var @interface in type.Interfaces)
+        {
+            yield return @interface;
+
+            foreach (var sub in @interface.AllInterfaces())
+            {
+                yield return sub;
+            }
         }
     }
 

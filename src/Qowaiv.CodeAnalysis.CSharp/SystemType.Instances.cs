@@ -7,6 +7,7 @@ public partial class SystemType
     public static readonly SystemType System_DateTime = New(typeof(System.DateTime), SpecialType.System_DateTime);
     public static readonly SystemType System_Void = New(typeof(void), SpecialType.System_Void);
 
+    public static readonly SystemType System_Collections_IEnumerator = typeof(System.Collections.IEnumerator);
     public static readonly SystemType System_Collections_Generic_ICollection_T = New(typeof(System.Collections.Generic.ICollection<>), SpecialType.System_Collections_Generic_ICollection_T);
     public static readonly SystemType System_Collections_Generic_IDictionary_TKey_TValue = new("System.Collections.Generic.IDictionary<TKey, TValue>");
     public static readonly SystemType System_Collections_Generic_IList_T = New(typeof(System.Collections.Generic.IList<>), SpecialType.System_Collections_Generic_IList_T);
@@ -29,6 +30,8 @@ public partial class SystemType
 
     public static readonly SystemType System_Threading_Task = typeof(System.Threading.Tasks.Task);
     public static readonly SystemType System_Threading_ValueTask = typeof(System.Threading.Tasks.ValueTask);
+
+    public static readonly SystemType System_Xml_Serialization_IXmlSerializable = typeof(System.Xml.Serialization.IXmlSerializable);
 
     public static readonly SystemType Qowaiv_Date = new("Qowaiv.Date");
 }

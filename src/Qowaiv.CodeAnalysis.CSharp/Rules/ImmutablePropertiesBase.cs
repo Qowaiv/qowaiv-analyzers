@@ -17,7 +17,13 @@ public abstract class ImmutablePropertiesBase(DiagnosticDescriptor supportedDiag
         && !declaration.IsObsolete
         && IsAccessible(declaration.Accessibility)
         && declaration.Symbol is { } declaring
+        && !IsExcluded(declaring)
         && !IsDecorated(declaring.GetAttributes());
+
+    [Pure]
+    public static bool IsExcluded(INamedTypeSymbol type)
+        => type.Implements(SystemType.System_Collections_IEnumerator)
+        || type.Implements(SystemType.System_Xml_Serialization_IXmlSerializable);
 
     [Pure]
     private static bool HasImmutableBase(INamedTypeSymbol? containing)
