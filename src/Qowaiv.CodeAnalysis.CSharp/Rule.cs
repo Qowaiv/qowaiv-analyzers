@@ -130,6 +130,15 @@ public static partial class Rule
         category: Category.Design,
         tags: ["Design", "Immutability"]);
 
+    public static DiagnosticDescriptor UseQowaivDecimalRounding => New(
+        id: 0013,
+        title: "Use Qowaiv decimal rounding",
+        message: "Use Qowaiv decimal rounding.",
+        description:
+            "Both the extended functionality and the extension method are reasons to adopt Qowaiv decimal rounding.",
+        category: Category.Design,
+        tags: ["Design", "Readability"]);
+
 #pragma warning disable S107 // Methods should not have too many parameters
     // it calls a ctor with even more arguments.
     private static DiagnosticDescriptor New(

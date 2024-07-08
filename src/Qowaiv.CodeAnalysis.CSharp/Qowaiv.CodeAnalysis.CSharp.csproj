@@ -19,12 +19,13 @@
 
   <PropertyGroup Label="Package config">
     <IsPackable>true</IsPackable>
-    <Version>1.0.5</Version>
+    <Version>1.0.6</Version>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageIconUrl>https://github.com/Qowaiv/qowaiv-analyzers/blob/main/design/package-icon.png</PackageIconUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>
-ToBeReleased
+v1.0.6
+- QW0013: Use Qowaiv decimal rounding (New Rule). #39
 - QW0008: Take static read-only Empty properties into account (FN). #38
 v1.0.5
 - QW0011, QW0012: Ingore IEnumerator and IXmlSerialable (FP). #37

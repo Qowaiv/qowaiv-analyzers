@@ -4,6 +4,7 @@ public partial class SystemType
 {
     public static readonly SystemType System_Object = New(typeof(object), SpecialType.System_Object);
     public static readonly SystemType System_String = New(typeof(string), SpecialType.System_String);
+    public static readonly SystemType System_Decimal = New(typeof(decimal), SpecialType.System_Decimal);
     public static readonly SystemType System_DateTime = New(typeof(System.DateTime), SpecialType.System_DateTime);
     public static readonly SystemType System_Void = New(typeof(void), SpecialType.System_Void);
 
@@ -23,6 +24,7 @@ public partial class SystemType
     public static readonly SystemType System_DateTimeOffset = typeof(System.DateTimeOffset);
     public static readonly SystemType System_Exception = typeof(System.Exception);
     public static readonly SystemType System_IDisposable = typeof(System.IDisposable);
+    public static readonly SystemType System_Math = typeof(System.Math);
     public static readonly SystemType System_ObsoleteAttribute = typeof(System.ObsoleteAttribute);
 
     public static readonly SystemType System_Diagnostics_CodeAnalysis_DoesNotReturnAttribute = new("System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute");

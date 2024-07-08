@@ -24,6 +24,7 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 * [**QW0010** - Use System.DateOnly instead of Qowaiv.Date](rules/QW0010.md)
 * [**QW0011** - Define properties as immutables](rules/QW0011.md)
 * [**QW0012** - Use immutable types for properties](rules/QW0012.md)
+* [**QW0013** - Use Qowaiv decimal rounding](rules/QW0013.md)
 
 ## Code fixes
 * Use Qowaiv.Clock ([QW0001](rules/QW0001.md), [S6354](https://rules.sonarsource.com/csharp/RSPEC-6354))
@@ -31,3 +32,4 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 * Change property type to not-nullable ([QW0008](rules/QW0008.md), [QW0009](rules/QW0009.md))
 * Change type System.DateOnly ([QW0010](rules/QW0010.md))
 * Apply suggestions of obsolete code attribute ([CS0618, CS0619])/rules/ObsoleteCode.md))
+* Use Qowiav round extensions ([QW0013](rules/QW0013.md))
