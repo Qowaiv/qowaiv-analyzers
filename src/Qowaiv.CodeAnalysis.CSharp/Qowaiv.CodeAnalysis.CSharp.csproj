@@ -19,7 +19,7 @@
 
   <PropertyGroup Label="Package config">
     <IsPackable>true</IsPackable>
-    <Version>1.0.5</Version>
+    <Version>1.0.6</Version>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageIconUrl>https://github.com/Qowaiv/qowaiv-analyzers/blob/main/design/package-icon.png</PackageIconUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>

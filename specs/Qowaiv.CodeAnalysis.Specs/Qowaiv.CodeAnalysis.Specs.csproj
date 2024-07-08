@@ -38,7 +38,7 @@
     <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.8.0" AllowedVersions="[4.8.0]" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.8.0" AllowedVersions="[4.8.0]" />
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.8.0" AllowedVersions="[4.8.0]" />
-    <PackageReference Include="Qowaiv" Version="6.*" />
+    <PackageReference Include="Qowaiv" Version="7.*" />
     <PackageReference Include="Qowaiv.DomainModel" Version="1.*" />
     <PackageReference Include="System.Drawing.Common" Version="8.*" />
     <PackageReference Include="System.Security.Cryptography.Xml" Version="8.*" />
