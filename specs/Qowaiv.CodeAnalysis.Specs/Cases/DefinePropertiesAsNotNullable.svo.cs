@@ -38,6 +38,10 @@ class Noncompliant
 
     public Nullable<Guid> Reference { get; } // Noncompliant
     //     ^^^^^^^^^^^^^^
+
+    public AsReturningProperty? AsReturningProperty { get; } // Noncompliant
+    public AsReadOnlyProperty? AsReadOnlyProperty { get; } //   Noncompliant
+    public AsField? AsField { get; } //                         Noncompliant
 }
 
 record NoncompliantRecordMultiLine(
@@ -50,6 +54,22 @@ record NoncompliantRecordMultiLine(
 record NoncompliantRecord(Guid? Id, EmailAddress? Email);
 //                        ^^^^^
 //                                  ^^^^^^^^^^^^^ @-1
+
+
+struct AsReturningProperty
+{
+    public static AsReturningProperty Empty => default;
+}
+
+struct AsReadOnlyProperty
+{
+    public static AsReadOnlyProperty Empty { get; }
+}
+
+struct AsField
+{
+    public static readonly AsField Empty;
+}
 
 struct NoMembers
 {

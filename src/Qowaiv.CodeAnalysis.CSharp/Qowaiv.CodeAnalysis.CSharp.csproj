@@ -24,15 +24,17 @@
     <PackageIconUrl>https://github.com/Qowaiv/qowaiv-analyzers/blob/main/design/package-icon.png</PackageIconUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>
+ToBeReleased
+- QW0008: Take static read-only Empty properties into account (FN). #38
 v1.0.5
-- QW0011, QW0012: Ingore IEnumerator and IXmlSerialable. #37
+- QW0011, QW0012: Ingore IEnumerator and IXmlSerialable (FP). #37
 v1.0.4
-- QW0011, QW0012: Ignore types with a mutable base. #36
+- QW0011, QW0012: Ignore types with a mutable base (FP). #36
 v1.0.3
-- QW0012: Types that have Immutable in there name are considered immutable. #34
-- QW0003: [DoesNotReturn] should be valid alternative for [Pure]. #33
+- QW0012: Types that have Immutable in there name are considered immutable (FP). #34
+- QW0003: [DoesNotReturn] should be valid alternative for [Pure] (FP). #33
 v1.0.2
-- QW0012: Reduce FP's by ignoring potential mutable property types. #32
+- QW0012: Reduce FP's by ignoring potential mutable property types (FP). #32
 v1.0.1
 - QW0011: Define properties as immutables. #31
 - QW0012: Use immutable types for properties. #31
