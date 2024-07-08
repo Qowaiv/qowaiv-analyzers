@@ -1,9 +1,9 @@
 ﻿namespace Fixes.Seal_class;
 
-public class Seal_class
+public class Fixes
 {
     [Test]
-    public void Seals_classes_and_records()
+    public void Code()
         => new SealClasses()
         .ForCS()
         .AddSource(@"Cases/SealClass.ToFix.cs")
