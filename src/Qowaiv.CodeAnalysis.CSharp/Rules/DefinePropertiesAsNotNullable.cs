@@ -52,15 +52,22 @@ public sealed class DefinePropertiesAsNotNullable() : CodingRule(
 
     private static DiagnosticDescriptor? DefaultIsEmpty(INamedTypeSymbol type)
     {
-        return type.GetMembers("Empty").Any(IsReadOnlyField)
+        return type.GetMembers("Empty").Any(s => IsReadOnlyProperty(s) || IsReadOnlyField(s))
             ? Rule.DefinePropertiesAsNotNullable
             : null;
 
+        static bool IsReadOnlyProperty(ISymbol member)
+            => member is IPropertySymbol prop
+            && prop.IsReadOnly
+            && prop.IsStatic
+            && prop.Type.Equals(prop.ContainingType, IncludeNullability: false)
+            && prop.IsPublic();
+
         static bool IsReadOnlyField(ISymbol member)
-           => member is IFieldSymbol field
-           && field.IsReadOnly
-           && field.IsStatic
-           && field.Type.Equals(field.ContainingType, IncludeNullability: false)
-           && field.IsPublic();
+            => member is IFieldSymbol field
+            && field.IsReadOnly
+            && field.IsStatic
+            && field.Type.Equals(field.ContainingType, IncludeNullability: false)
+            && field.IsPublic();
     }
 }
