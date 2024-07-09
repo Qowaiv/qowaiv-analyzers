@@ -142,7 +142,16 @@ public static partial class Rule
     public static DiagnosticDescriptor DefineGlobalUsingStatementsSeparately => New(
         id: 0014,
         title: "Define global using statements separately",
-        message: "Define global using statement in a separate file.",
+        message: "Define global using statements in a separate file.",
+        description:
+            "For design and maintainability reasons, it is key that all global usings statements are grouped.",
+        category: Category.Design,
+        tags: ["Design", "Maintainability"]);
+
+    public static DiagnosticDescriptor DefineGlobalUsingStatementsInSingleFile => New(
+        id: 0015,
+        title: "Define global using statements in single file",
+        message: "Define global using statements in '{0}' only.",
         description:
             "For design and maintainability reasons, it is key that all global usings statements are grouped.",
         category: Category.Design,

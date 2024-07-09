@@ -26,4 +26,16 @@ internal static class SyntaxNodeAnalysisContextExtensions
                 descriptor,
                 token.GetLocation(),
                 messageArgs));
+
+    /// <summary>Tries to read the `dotnet_diagnostic.{descriptor.Id}.{property}` option.</summary>
+    public static string? TryGetConfiguredProperty(
+        this SyntaxNodeAnalysisContext context,
+        DiagnosticDescriptor descriptor,
+        string property)
+        => context.Options.AnalyzerConfigOptionsProvider
+            .GetOptions(context.Node.SyntaxTree)
+            .TryGetValue($"dotnet_diagnostic.{descriptor.Id}.{property}", out var value)
+            ? value
+            : null;
+
 }
