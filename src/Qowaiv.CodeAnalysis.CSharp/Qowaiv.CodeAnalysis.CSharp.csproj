@@ -24,6 +24,8 @@
     <PackageIconUrl>https://github.com/Qowaiv/qowaiv-analyzers/blob/main/design/package-icon.png</PackageIconUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>
+ToBeReleased
+- QW0014: Define global using statements separately (New Rule). #40
 v1.0.6
 - QW0013: Use Qowaiv decimal rounding (New Rule). #39
 - QW0008: Take static read-only Empty properties into account (FN). #38
