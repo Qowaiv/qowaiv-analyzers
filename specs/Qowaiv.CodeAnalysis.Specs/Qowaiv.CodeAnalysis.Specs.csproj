@@ -7,7 +7,7 @@
     <RootNamespace>Specs</RootNamespace>
     <OutputType>library</OutputType>
   </PropertyGroup>
-
+ 
   <ItemGroup>
     <Compile Remove="Cases/*.*" />
     <None Include="Cases/*.*">

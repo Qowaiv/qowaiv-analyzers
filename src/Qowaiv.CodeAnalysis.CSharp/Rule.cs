@@ -139,6 +139,15 @@ public static partial class Rule
         category: Category.Design,
         tags: ["Design", "Readability"]);
 
+    public static DiagnosticDescriptor DefineGlobalUsingStatementsSeparately => New(
+        id: 0014,
+        title: "Define global using statements separately",
+        message: "Define global using statement in a separate file.",
+        description:
+            "For design and maintainability reasons, it is key that all global usings statements are grouped.",
+        category: Category.Design,
+        tags: ["Design", "Maintainability"]);
+
 #pragma warning disable S107 // Methods should not have too many parameters
     // it calls a ctor with even more arguments.
     private static DiagnosticDescriptor New(
