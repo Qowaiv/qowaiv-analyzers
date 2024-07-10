@@ -37,5 +37,4 @@ internal static class SyntaxNodeAnalysisContextExtensions
             .TryGetValue($"dotnet_diagnostic.{descriptor.Id}.{property}", out var value)
             ? value
             : null;
-
 }

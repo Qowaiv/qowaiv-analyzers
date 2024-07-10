@@ -26,18 +26,6 @@ internal static class SymbolExtensions
     [Pure]
     public static bool Implements(this ITypeSymbol? symbol, SystemType @interface)
         => symbol is { } && symbol.AllInterfaces().Any(i => i.Is(@interface));
-    //{
-    //    var faces = symbol.Interfaces.SelectMany(i => i.Interfaces).ToArray();
-
-    //    foreach (var f in faces)
-    //    {
-    //        if (f.Is(@interface))
-    //        {
-    //            return true;
-    //        }
-    //    }
-    //    return false;
-    //}
 
     [Pure]
     public static bool IsAttribute(this ITypeSymbol type)
