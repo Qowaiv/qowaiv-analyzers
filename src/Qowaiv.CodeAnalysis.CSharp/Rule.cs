@@ -50,7 +50,7 @@ public static partial class Rule
     public static DiagnosticDescriptor SealClasses => New(
         id: 0005,
         title: "Seal concrete classes unless designed for inheritance",
-        message: "Seal this {0} or make it explicitly inheritable.",
+        message: "Seal this {0} or make it explicit inheritable.",
         description:
             "Inheritance is one of the pillars of Object Oriented Programming. " +
             "Designing a class to support inheritance however, is hard. As a " +
