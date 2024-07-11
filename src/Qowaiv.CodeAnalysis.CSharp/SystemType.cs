@@ -14,7 +14,6 @@ public sealed partial class SystemType
     public string ShortName { get; }
 
     public SpecialType Type { get; }
-    
 
     internal bool Matches(string fullName)
         => Type == SpecialType.None
