@@ -42,14 +42,15 @@ public static partial class Rule
         title: "Characters with Trojan Horse potential are not allowed",
         message: "Trojan Horse character U+{0:X} detected.",
         description:
-            "When char",
+            "When characters with Trojan Horse potential are found, they should be blocked " +
+            "to avoid security risks to the application.",
         category: Category.Security,
         tags: ["Trojan", "Unicode"]);
 
     public static DiagnosticDescriptor SealClasses => New(
         id: 0005,
         title: "Seal concrete classes unless designed for inheritance",
-        message: "Seal this {0} or make it explicit inheritable.",
+        message: "Seal this {0} or make it explicitly inheritable.",
         description:
             "Inheritance is one of the pillars of Object Oriented Programming. " +
             "Designing a class to support inheritance however, is hard. As a " +
