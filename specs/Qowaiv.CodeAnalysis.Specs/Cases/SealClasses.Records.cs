@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace Noncompliant
 {
-    public record NotAbstractNotSealedRecord { } // Noncompliant {{Seal this record or make it explicit inheritable.}}
+    public record NotAbstractNotSealedRecord { } // Noncompliant {{Seal this record or make it explicitly inheritable.}}
     //            ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
     public partial record PartialRecord { } // Noncompliant

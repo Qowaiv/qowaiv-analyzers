@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace Noncompliant
 {
-    public class NotAbstractNotSealedClass { } // Noncompliant {{Seal this class or make it explicit inheritable.}}
+    public class NotAbstractNotSealedClass { } // Noncompliant {{Seal this class or make it explicitly inheritable.}}
     //           ^^^^^^^^^^^^^^^^^^^^^^^^^
 
     public partial class PartialClass { } // Noncompliant
@@ -39,7 +39,7 @@ namespace Compliant
 {
     public class SomeAttribute : Attribute { } // Compliant {{Attributes are ignored.}}
 
-    public class SomeExceptoin : Exception { } // Compliant {{Exceptions are ignored.}}
+    public class SomeException : Exception { } // Compliant {{Exceptions are ignored.}}
 
     [Inheritable]
     public class WithAttribute { } // Compliant {{Decorated with Inheritable attribute.}}
@@ -49,7 +49,7 @@ namespace Compliant
 
     public abstract class AbstractClass { } // Compliant {{Abstract classes should be inherited.}}
 
-    public sealed class SealedClass { } // Compliant {{Sealed classes can not be inherited..}}
+    public sealed class SealedClass { } // Compliant {{Sealed classes can not be inherited.}}
 
     public static class StaticClass { } // Compliant {{Static classes can not be inherited.}}
 

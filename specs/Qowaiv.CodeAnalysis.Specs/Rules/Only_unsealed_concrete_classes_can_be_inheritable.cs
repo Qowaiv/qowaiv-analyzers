@@ -3,7 +3,7 @@
 public class Verify
 {
     [Test]
-    public void Rule_rule_for_classes()
+    public void Rule_for_classes()
         => new SealClasses()
         .ForCS()
         .AddSource(@"Cases/OnlyUnsealedConcreteClassesCanBeInheritable.cs")
