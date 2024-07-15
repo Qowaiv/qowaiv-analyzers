@@ -19,11 +19,13 @@
 
   <PropertyGroup Label="Package config">
     <IsPackable>true</IsPackable>
-    <Version>1.0.7</Version>
+    <Version>1.0.8</Version>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageIconUrl>https://github.com/Qowaiv/qowaiv-analyzers/blob/main/design/package-icon.png</PackageIconUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>
+v1.0.8
+- QW0015: Locations are commonly past through as full paths (FP). #42
 v1.0.7
 - QW0015: Define global using statements in single file (New Rule). #41
 - QW0014: Define global using statements separately (New Rule). #40
