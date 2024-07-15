@@ -2,8 +2,10 @@
 
 public class Verify
 {
-    [Test]
-    public void Properties_GlobalUsings_cs() => new DefineGlobalUsingStatementsInSingleFile("Cases/GlobalUsings.cs")
+    [TestCase("GlobalUsings.cs")]
+    [TestCase("Cases/GlobalUsings.cs")]
+    [TestCase("Cases\\GlobalUsings.cs")]
+    public void Properties_GlobalUsings_cs(string globalConfigFile) => new DefineGlobalUsingStatementsInSingleFile(globalConfigFile)
         .ForCS()
         .AddSource(@"Cases/GlobalUsings.cs")
         .Verify();

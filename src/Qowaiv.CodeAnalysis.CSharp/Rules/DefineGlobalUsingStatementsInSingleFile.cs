@@ -23,7 +23,11 @@ public sealed class DefineGlobalUsingStatementsInSingleFile(string globalConfigF
 
     private static bool IsDifferentFile(string? filepath, string globalConfig)
         => Split(filepath) is not { Length: > 0 } splitted
-        || !splitted.SequenceEqual(Split(globalConfig));
+        || !EndsWith(Split(globalConfig), splitted);
+
+    private static bool EndsWith(string[] globalConfig, string[] filePath)
+        => globalConfig.Length <= filePath.Length
+        && globalConfig.SequenceEqual(filePath.Skip(filePath.Length - globalConfig.Length));
 
     private static string[] Split(string? path) => (path ?? string.Empty).Split('/', '\\');
 }
