@@ -158,6 +158,17 @@ public static partial class Rule
         category: Category.Design,
         tags: ["Design", "Maintainability"]);
 
+    public static DiagnosticDescriptor PreferRegularOverPositionalProperties => New(
+        id: 0016,
+        title: "Prefer regular over positional properties",
+        message: "Define {0} as {1}.",
+        description:
+            "The usage of positional properties, defined in a primary constructor, " +
+            "turns out to be cumbersome for public API's. Therefor the use of " +
+            "regular properties is preferred in those cases.",
+        category: Category.Design,
+        tags: ["Design", "Maintainability"]);
+
 #pragma warning disable S107 // Methods should not have too many parameters
     // it calls a ctor with even more arguments.
     private static DiagnosticDescriptor New(
