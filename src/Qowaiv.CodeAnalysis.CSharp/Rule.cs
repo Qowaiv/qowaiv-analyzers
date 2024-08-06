@@ -164,7 +164,7 @@ public static partial class Rule
         message: "Define {0} as {1}.",
         description:
             "The usage of positional properties, defined in a primary constructor, " +
-            "turns out to be cumbersome for public API's. Therefor the use of " +
+            "turns out to be cumbersome for public APIs. Therefor the use of " +
             "regular properties is preferred in those cases.",
         category: Category.Design,
         tags: ["Design", "Maintainability"]);
