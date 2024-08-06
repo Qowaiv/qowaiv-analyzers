@@ -41,6 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rules", "rules", "{00461C52
 		rules\QW0013.md = rules\QW0013.md
 		rules\QW0014.md = rules\QW0014.md
 		rules\QW0015.md = rules\QW0015.md
+		rules\QW0016.md = rules\QW0016.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{EE67C148-3FE3-4DF4-8A91-C0BF7E3960AD}"

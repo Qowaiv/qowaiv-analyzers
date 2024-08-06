@@ -19,18 +19,20 @@
 
   <PropertyGroup Label="Package config">
     <IsPackable>true</IsPackable>
-    <Version>1.0.8</Version>
+    <Version>1.0.9</Version>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageIconUrl>https://github.com/Qowaiv/qowaiv-analyzers/blob/main/design/package-icon.png</PackageIconUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>
+v1.0.9
+- QW0016: Locations are commonly past through as full paths (NEW RULE). #45
 v1.0.8
 - QW0015: Locations are commonly past through as full paths (FP). #42
 v1.0.7
-- QW0015: Define global using statements in single file (New Rule). #41
-- QW0014: Define global using statements separately (New Rule). #40
+- QW0015: Define global using statements in single file (NEW RULE). #41
+- QW0014: Define global using statements separately (NEW RULE). #40
 v1.0.6
-- QW0013: Use Qowaiv decimal rounding (New Rule). #39
+- QW0013: Use Qowaiv decimal rounding (NEW RULE). #39
 - QW0008: Take static read-only Empty properties into account (FN). #38
 v1.0.5
 - QW0011, QW0012: Ingore IEnumerator and IXmlSerialable (FP). #37
