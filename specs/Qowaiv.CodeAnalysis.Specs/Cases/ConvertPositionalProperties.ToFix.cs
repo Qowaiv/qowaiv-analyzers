@@ -15,5 +15,10 @@ public record WithMultiple(int? Value0, int Value1, string Value2, string? Value
 
 public sealed record WithAttribute([Prop] object First, [property: Prop] string Second);
 
+public sealed record ChildRecord(string? Extra, string Message) : BaseRecord(Message);
+
+[Obsolete]
+public abstract record BaseRecord(string Message);
+
 [AttributeUsage(AttributeTargets.Property)]
 public sealed class PropAttribute : Attribute { }

@@ -8,10 +8,12 @@ public static class SyntaxNodeExtensions
     [Pure]
     public static string? Name(this SyntaxNode node) => node switch
     {
+        ArgumentSyntax arg => Name(arg.Expression),
         AttributeSyntax attr => Name(attr.Name),
         IdentifierNameSyntax identifier => identifier.Identifier.Text,
         InvocationExpressionSyntax invocation => Name(invocation.Expression),
         MemberAccessExpressionSyntax memberAccess => Name(memberAccess.Name),
+        ParameterSyntax param => param.Identifier.Text,
         SimpleNameSyntax simpleName => simpleName.Identifier.Text,
         NameSyntax name => name.ToFullString(),
         _ => null,

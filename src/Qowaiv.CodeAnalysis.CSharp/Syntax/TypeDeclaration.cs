@@ -33,7 +33,8 @@ public abstract partial class TypeDeclaration : SyntaxAbstraction<INamedTypeSymb
     public bool IsPartial => Modifiers.Contains(SyntaxKind.PartialKeyword);
 
     public bool IsObsolete
-        => Symbol is { } symbol
+        => (IsPartial || Attributes.Any())
+        && Symbol is { } symbol
         && symbol.IsObsolete();
 
     public abstract IEnumerable<SyntaxKind> Modifiers { get; }
