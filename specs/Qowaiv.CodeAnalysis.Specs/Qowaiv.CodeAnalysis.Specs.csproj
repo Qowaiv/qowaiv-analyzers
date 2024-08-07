@@ -49,7 +49,6 @@
 
   <ItemGroup>
     <ProjectReference Include="../../src/Qowaiv.CodeAnalysis.CSharp/Qowaiv.CodeAnalysis.CSharp.csproj" />
-    <ProjectReference Include="..\..\..\roslyn-test-tools\src\CodeAnalysis.TestTools\CodeAnalysis.TestTools.csproj" />
   </ItemGroup>
 
 </Project>
