@@ -42,5 +42,13 @@ public sealed record WithAttribute()
     public required string Second { get; init; }
 }
 
+public sealed record ChildRecord(string Message) : BaseRecord(Message)
+{
+    public string? Extra { get; init; }
+}
+
+[Obsolete]
+public abstract record BaseRecord(string Message);
+
 [AttributeUsage(AttributeTargets.Property)]
 public sealed class PropAttribute : Attribute { }

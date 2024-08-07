@@ -10,14 +10,26 @@
     //                                                             ^^^^^^^^^ @-1
     {
     }
+
+    public sealed record Inherit(string New, string BaseProp) : Base(BaseProp);
+    //                           ^^^^^^^^^^
+
+    public record Base(string BaseProp); // Noncompliant
 }
 
 namespace Compliant
 {
+    public sealed record Inherit(string BaseProp) : Base(BaseProp); // Compliant {{Can only besolved after the base has been fixed.}}
+
+    public record Base(string BaseProp); // Noncompliant
+
     public class ClassWithPrimary(string value) { }
 
     public record RecordWithoutPrimary
     {
         public string Message { get; init; }
     }
+
+    [System.Obsolete]
+    public record ObsoleteCode(string Message);
 }

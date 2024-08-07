@@ -1,4 +1,6 @@
 ﻿
+using System.Linq.Expressions;
+
 namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
@@ -9,16 +11,27 @@ public sealed class PreferRegularOverPositionalProperties() : CodingRule(Rule.Pr
 
     private void Report(SyntaxNodeAnalysisContext context)
     {
-        if (context.Compilation.LanguageVersion() >= LanguageVersionExt.CSharp11
-            && context.Node is RecordDeclarationSyntax declaration
-            && declaration.ParameterList is { } list)
+        if (context.Compilation.LanguageVersion() < LanguageVersionExt.CSharp11) { return; }
+
+        if (context.Node is RecordDeclarationSyntax declaration
+            && declaration.ParameterList is { } list
+            && !context.Node.TypeDeclaration(context.SemanticModel).IsObsolete)
         {
-            foreach (var parameter in list.Parameters)
+            foreach (ParameterSyntax parameter in list.Parameters)
             {
-                context.ReportDiagnostic(Diagnostic, parameter, parameter.Identifier, Message(parameter));
+                if (!Contains(declaration.BaseList, parameter))
+                {
+                    context.ReportDiagnostic(Diagnostic, parameter, parameter.Identifier, Message(parameter));
+                }
             }
         }
     }
+
+    private static bool Contains(BaseListSyntax? @base, ParameterSyntax parameter) 
+        => @base?.Types is { Count: 1 } types
+        && types[0] is PrimaryConstructorBaseTypeSyntax primary
+        && primary.ArgumentList?.Arguments is { } arguments
+        && arguments.Any(a => a.Name() == parameter.Name());
 
     private static string Message(ParameterSyntax parameter) => parameter switch
     {
