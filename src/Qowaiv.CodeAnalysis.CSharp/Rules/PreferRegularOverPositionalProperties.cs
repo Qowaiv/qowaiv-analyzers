@@ -15,7 +15,7 @@ public sealed class PreferRegularOverPositionalProperties() : CodingRule(Rule.Pr
 
         if (context.Node is RecordDeclarationSyntax declaration
             && declaration.ParameterList is { } list
-            && !context.Node.TypeDeclaration(context.SemanticModel).IsObsolete)
+            && context.Node.TypeDeclaration(context.SemanticModel) is { IsPublic: true, IsObsolete: false })
         {
             foreach (ParameterSyntax parameter in list.Parameters)
             {
