@@ -30,6 +30,16 @@ namespace Compliant
         public string Message { get; init; }
     }
 
+    internal record Internal(string Message);
+
+    public static class Container
+    {
+        protected record Protected(string Message);
+
+        private record Private(string Message);
+    }
+    file record File(string Message);
+
     [System.Obsolete]
     public record ObsoleteCode(string Message);
 }

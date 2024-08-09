@@ -32,6 +32,10 @@ public abstract partial class TypeDeclaration : SyntaxAbstraction<INamedTypeSymb
 
     public bool IsPartial => Modifiers.Contains(SyntaxKind.PartialKeyword);
 
+    public bool IsPublic
+        => Modifiers.Contains(SyntaxKind.PublicKeyword)
+        || (IsPartial && Symbol?.IsPublic() == true);
+
     public bool IsObsolete
         => (IsPartial || Attributes.Any())
         && Symbol is { } symbol
