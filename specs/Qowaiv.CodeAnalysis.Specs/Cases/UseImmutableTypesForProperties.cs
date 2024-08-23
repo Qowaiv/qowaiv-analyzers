@@ -92,7 +92,7 @@ namespace Noncompliant
 {
     public class Class
     {
-        public int[] Array { get; } // Noncompliant {{Use an immutable type.}}
+        public int[] Array { get; } // Noncompliant {{Use an immutable type, or decorate the type being mutable.}}
         //     ^^^^^
         public ICollection<int> ICollection { get; } // Noncompliant
         //     ^^^^^^^^^^^^^^^^

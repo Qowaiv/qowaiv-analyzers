@@ -24,6 +24,8 @@
     <PackageIconUrl>https://github.com/Qowaiv/qowaiv-analyzers/blob/main/design/package-icon.png</PackageIconUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>
+ToBeReleased
+- QW0011, QW0012: Improve messages. #50 
 v2.0.1
 - QW0016: Only take public records into account (FP). #48
 v2.0.0

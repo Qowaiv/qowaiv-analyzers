@@ -127,7 +127,7 @@ namespace Noncompliant
 {
     public class Class
     {
-        public int PublicSet { get; set; } // Noncompliant {{Remove this setter, or make this property init-only.}}
+        public int PublicSet { get; set; } // Noncompliant {{Remove this setter, make this property init-only, or decorate the type being mutable.}}
         //                          ^^^^
         
         public int ProtectedSet { get; protected set; } // Noncompliant 
