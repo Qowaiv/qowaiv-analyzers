@@ -114,7 +114,7 @@ public static partial class Rule
     public static DiagnosticDescriptor DefinePropertiesAsImmutables => New(
         id: 0011,
         title: "Define properties as immutables",
-        message: "Remove this setter, make this property init-only, or decorate the type being mutable.",
+        message: "Remove this setter, make this property init-only, or decorate the type with the mutable attribute.",
         description:
             "Immutable types (classes, interfaces, records, structs) have multiple advantages. " +
             "To benefit from this, all properties should be defined as immutable.",
@@ -124,7 +124,7 @@ public static partial class Rule
     public static DiagnosticDescriptor UseImmutableTypesForProperties => New(
         id: 0012,
         title: "Use immutable types for properties",
-        message: "Use an immutable type, or decorate the type being mutable.",
+        message: "Use an immutable type, or decorate the type with the mutable attribute.",
         description:
             "Immutable types (classes, interfaces, records, structs) have multiple advantages. " +
             "To benefit from this, the type of properties should be immutable.",
