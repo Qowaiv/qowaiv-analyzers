@@ -13,13 +13,13 @@ public sealed class UseSystemDateOnly : CodingRule
         context.RegisterSyntaxNodeAction(ReportProperty, SyntaxKind.PropertyDeclaration);
     }
 
-    private void ReportField(SyntaxNodeAnalysisContext context)
+    private static void ReportField(SyntaxNodeAnalysisContext context)
         => Report(context.Node.Cast<FieldDeclarationSyntax>().Declaration?.Type, context);
 
-    private void ReportMethod(SyntaxNodeAnalysisContext context)
+    private static void ReportMethod(SyntaxNodeAnalysisContext context)
         => Report(context.Node.Cast<MethodDeclarationSyntax>().ReturnType, context);
 
-    private void ReportParameterList(SyntaxNodeAnalysisContext context)
+    private static void ReportParameterList(SyntaxNodeAnalysisContext context)
     {
         foreach (var type in context.Node.Cast<ParameterListSyntax>().Parameters.Select(p => p.Type))
         {
@@ -27,7 +27,7 @@ public sealed class UseSystemDateOnly : CodingRule
         }
     }
 
-    private void ReportProperty(SyntaxNodeAnalysisContext context)
+    private static void ReportProperty(SyntaxNodeAnalysisContext context)
         => Report(context.Node.Cast<PropertyDeclarationSyntax>().Type, context);
 
     private static void Report(TypeSyntax? syntax, SyntaxNodeAnalysisContext context)

@@ -11,10 +11,10 @@ public sealed class DefinePropertiesAsNotNullable() : CodingRule(
         context.RegisterSyntaxNodeAction(ReportRecord, SyntaxKind.RecordDeclaration);
     }
 
-    private void ReportProperty(SyntaxNodeAnalysisContext context)
+    private static void ReportProperty(SyntaxNodeAnalysisContext context)
         => Report(context.Node.Cast<PropertyDeclarationSyntax>().Type, context);
 
-    private void ReportRecord(SyntaxNodeAnalysisContext context)
+    private static void ReportRecord(SyntaxNodeAnalysisContext context)
     {
         foreach (var type in context.Node.Cast<RecordDeclarationSyntax>().ParameterTypes())
         {
