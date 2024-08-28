@@ -6,7 +6,7 @@ public sealed class DecoratePureFunctions() : CodingRule(Rule.DecoratePureFuncti
     protected override void Register(AnalysisContext context)
         => context.RegisterSyntaxNodeAction(Report, SyntaxKind.MethodDeclaration);
 
-    private void Report(SyntaxNodeAnalysisContext context)
+    private static void Report(SyntaxNodeAnalysisContext context)
     {
         var declaration = context.Node;
         var symbol = context.SemanticModel.GetDeclaredSymbol(declaration);

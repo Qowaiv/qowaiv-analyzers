@@ -19,12 +19,12 @@
 
   <PropertyGroup Label="Package config">
     <IsPackable>true</IsPackable>
-    <Version>2.0.1</Version>
+    <Version>2.0.2</Version>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageIconUrl>https://github.com/Qowaiv/qowaiv-analyzers/blob/main/design/package-icon.png</PackageIconUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>
-ToBeReleased
+v2.0.2
 - QW0011, QW0012: Improve messages. #50 
 v2.0.1
 - QW0016: Only take public records into account (FP). #48
@@ -113,8 +113,6 @@ v0.0.1
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.10.0" AllowedVersions="[4.10.*)" />
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.10.0" AllowedVersions="[4.10.*)" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.10.0" AllowedVersions="[4.*)" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.10.0" AllowedVersions="[4.*)" />
   </ItemGroup>
 
 </Project>
