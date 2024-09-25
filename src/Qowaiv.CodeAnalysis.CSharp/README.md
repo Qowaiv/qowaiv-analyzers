@@ -23,6 +23,6 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/) (s
 * Seal class ([QW0005](rules/QW0005.md))
 * Change property type to not-nullable ([QW0008](rules/QW0008.md), [QW0009](rules/QW0009.md))
 * Change type System.DateOnly ([QW0010](rules/QW0010.md))
-* Apply suggestions of obsolete code attribute ([CS0618, CS0619])/rules/ObsoleteCode.md))
+* Apply suggestions of obsolete code attribute [CS0618, CS0619](rules/ObsoleteCode.md))
 * Use Qowaiv round extensions ([QW0013](rules/QW0013.md))
 * Convert positional properties ([QW0016](rules/QW0016.md))
