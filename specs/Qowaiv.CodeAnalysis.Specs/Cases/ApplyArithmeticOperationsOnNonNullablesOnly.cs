@@ -1,4 +1,3 @@
-﻿
 using Qowaiv.Financial;
 
 class Noncompliant
