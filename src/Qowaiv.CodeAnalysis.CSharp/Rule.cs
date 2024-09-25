@@ -169,6 +169,17 @@ public static partial class Rule
         category: Category.Design,
         tags: ["Design", "Maintainability"]);
 
+    public static DiagnosticDescriptor ApplyArithmeticOperationsOnNonNullablesOnly => New(
+        id: 17,
+        title: "Apply arithmetic operations on non-nullables only",
+        message: "{0} is potentially null.",
+        description:
+            ".NET allows arithmetic operations between nullable value types. The " +
+            "outcome will be null if any of the arguments turns out to be null, " +
+            "which can be confusing or a bug.",
+        category: Category.Bug,
+        tags: ["nullabillity", "arithmetic"]);
+
 #pragma warning disable S107 // Methods should not have too many parameters
     // it calls a ctor with even more arguments.
     private static DiagnosticDescriptor New(

@@ -2,6 +2,8 @@
 
 public enum Category
 {
+    Bug,
+
     Design,
 
     [Display("Runtime Error")]
