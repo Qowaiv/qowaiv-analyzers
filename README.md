@@ -28,6 +28,7 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 * [**QW0014** - Define global using statements separately](rules/QW0014.md)
 * [**QW0015** - Define global using statements in single file](rules/QW0015.md)
 * [**QW0016** - Prefer regular over positional properties](rules/QW0016.md)
+* [**QW0017** - Apply arithmetic operations on non-nullables only](rules/QW0017.md)
 
 ## Code fixes
 * Use Qowaiv.Clock ([QW0001](rules/QW0001.md), [S6354](https://rules.sonarsource.com/csharp/RSPEC-6354))
