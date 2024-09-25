@@ -5,19 +5,19 @@ class Noncompliant
 {
     void LeftIsNullable(decimal? left)
     {
-        var result = left + 42m; // Noncompliant
+        var result = left + 42m; // Noncompliant {{Value of operand is potentially null.}}
         //           ^^^^
     }
 
     void RightIsNullable(decimal? right)
     {
-        var result = 42 + right; // Noncompliant
+        var result = 42 + right; // Noncompliant {{Value of operand is potentially null.}}
         //                ^^^^^
     }
 
     void BothAreNullable(decimal? left, decimal? right)
     {
-        var result = left + right; // Noncompliant
+        var result = left + right; // Noncompliant {{Result of operation is potentially null.}}
         //           ^^^^^^^^^^^^
     }
 

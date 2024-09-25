@@ -1,5 +1,4 @@
-﻿
-namespace Qowaiv.CodeAnalysis.Rules;
+﻿namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class ApplyArithmeticOperationsOnNonNullablesOnly() : CodingRule(Rule.ApplyArithmeticOperationsOnNonNullablesOnly)
@@ -23,29 +22,28 @@ public sealed class ApplyArithmeticOperationsOnNonNullablesOnly() : CodingRule(R
 
     private void Report(SyntaxNodeAnalysisContext context)
     {
-        if (context.Node is BinaryExpressionSyntax binary
-            && Nullable(binary.Left,binary.Right) is { } nullBinary)
+        if (context.Node is BinaryExpressionSyntax binary)
         {
-            context.ReportDiagnostic(Diagnostic, nullBinary);
+            Report(context, binary.Left, binary.Right);
         }
-        else if (context.Node is AssignmentExpressionSyntax assign
-             && Nullable(assign.Left, assign.Right) is { } nullAssign)
+        else if (context.Node is AssignmentExpressionSyntax assign)
         {
-            context.ReportDiagnostic(Diagnostic, nullAssign);
+            Report(context, assign.Left, assign.Right);
         }
+    }
 
-        SyntaxNode? Nullable(ExpressionSyntax left, ExpressionSyntax right)
+    private void Report(SyntaxNodeAnalysisContext context, ExpressionSyntax left, ExpressionSyntax right)
+    {
+        var l = IsNullable(left);
+        var r = IsNullable(right);
+
+        if (l && r)
         {
-            var l = IsNullable(left);
-            var r = IsNullable(right);
-
-            return context switch
-            {
-                _ when l && r => context.Node,
-                _ when l => left,
-                _ when r => right,
-                _ => null,
-            };
+            context.ReportDiagnostic(Diagnostic, context.Node, "Result of operation");
+        }
+        else if (l || r)
+        {
+            context.ReportDiagnostic(Diagnostic, l ? left : right, "Value of operand");
         }
 
         bool IsNullable(ExpressionSyntax expression)

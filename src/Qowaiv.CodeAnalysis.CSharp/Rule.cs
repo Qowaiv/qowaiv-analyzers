@@ -172,7 +172,7 @@ public static partial class Rule
     public static DiagnosticDescriptor ApplyArithmeticOperationsOnNonNullablesOnly => New(
         id: 17,
         title: "Apply arithmetic operations on non-nullables only",
-        message: "This arithmetic operation potentially has null result.",
+        message: "{0} is potentially null.",
         description:
             ".NET allows arithmetic operations between nullable value types. The " +
             "outcome will be null if any of the arguments turns out to be null, " +
