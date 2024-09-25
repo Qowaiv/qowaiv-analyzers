@@ -1,10 +1,8 @@
 ﻿namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class UseSystemDateOnly : CodingRule
+public sealed class UseSystemDateOnly() : CodingRule(Rule.UseSystemDateOnly)
 {
-    public UseSystemDateOnly() : base(Rule.UseSystemDateOnly) { }
-
     protected override void Register(AnalysisContext context)
     {
         context.RegisterSyntaxNodeAction(ReportField, SyntaxKind.FieldDeclaration);

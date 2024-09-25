@@ -23,12 +23,14 @@
 
   <PropertyGroup Label="Package config">
     <IsPackable>true</IsPackable>
-    <Version>2.0.2</Version>
+    <Version>2.0.3</Version>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageIconUrl>https://github.com/Qowaiv/qowaiv-analyzers/blob/main/design/package-icon.png</PackageIconUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>
       <![CDATA[
+v2.0.3
+- QW0017: Apply arithmetic operations on non-nullables only (NEW RULE). #51
 v2.0.2
 - QW0011, QW0012: Improve messages. #50 
 v2.0.1
