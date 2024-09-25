@@ -12,9 +12,13 @@
   <PropertyGroup Label="Build conditions">
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
-    <GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">true</GeneratePackageOnBuild>
+
     <DevelopmentDependency>true</DevelopmentDependency>
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <GeneratePackageOnBuild >true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <PropertyGroup Label="Package config">
@@ -24,6 +28,7 @@
     <PackageIconUrl>https://github.com/Qowaiv/qowaiv-analyzers/blob/main/design/package-icon.png</PackageIconUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>
+      <![CDATA[
 v2.0.2
 - QW0011, QW0012: Improve messages. #50 
 v2.0.1
@@ -91,6 +96,7 @@ v0.0.2
 v0.0.1
 - QW0001: Use a testable time provider.
 - QW0002: Parse() throws.
+]]>
     </PackageReleaseNotes>
     <PackageProjectUrl>http://www.github.com/Qowaiv/qowaiv-analyzers</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
