@@ -37,7 +37,7 @@ namespace Compliant
 
         public System.Collections.Immutable.ImmutableArray<int> ImmutableCollection { get; } // Compliant
 
-        public System.Collections.Frozen.FrozenSet<int> ForzenSet { get; } // Compliant
+        public System.Collections.Frozen.FrozenSet<int> FrozenSet { get; } // Compliant
 
 
         public RecursiveImmutableClass Recursive { get; } // Compliant
