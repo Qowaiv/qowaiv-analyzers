@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <None Include="build/**" />
+    <None Include="design/**" />
+    <None Include="rules/**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="props/**" />
+    <AdditionalFiles Include="dictionary.dic" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="DotNetProjectFile.Analyzers.Sdk" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>
