@@ -1,4 +1,4 @@
-<Project>
+﻿<Project>
 
   <PropertyGroup>
     <Description>Qowaiv (static) code analysis rules built on Roslyn.</Description>
