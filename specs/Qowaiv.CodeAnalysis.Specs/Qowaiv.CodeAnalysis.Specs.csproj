@@ -40,6 +40,7 @@
     <PackageReference Include="Qowaiv.DomainModel" />
     <PackageReference Include="System.Drawing.Common" />
     <PackageReference Include="System.Security.Cryptography.Xml" />
+    <PackageReference Include="System.Text.Json" />
   </ItemGroup>
 
   <ItemGroup>
