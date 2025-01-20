@@ -20,8 +20,13 @@ public sealed class UseImmutableTypesForProperties() : ImmutablePropertiesBase(R
     private static bool IsMutable(TypeNode type)
         => type.IsArray
         || (type.Symbol is { } symbol
-            && !symbol.Name.StartsWith("Immutable")
+            && !ExcludeType(symbol)
             && IsMutable(symbol));
+
+    [Pure]
+    private static bool ExcludeType(INamedTypeSymbol symbol)
+        => symbol.Name.StartsWith("Immutable")
+        || symbol.ContainingNamespace.GetFullMetaDataName() == "System.Collections.Frozen";
 
     [Pure]
     private static bool IsMutable(INamedTypeSymbol type) => type
