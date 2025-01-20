@@ -21,12 +21,15 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Package config">
-    <Version>2.0.3</Version>
+    <Version>2.0.4</Version>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageIconUrl>https://github.com/Qowaiv/qowaiv-analyzers/blob/main/design/package-icon.png</PackageIconUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>
       <![CDATA[
+v2.0.4
+- QWO0012: Exclude types form System.Collections.Frozen namespace (FP). #55
+- Generate SBOM. #54
 v2.0.3
 - QW0017: Apply arithmetic operations on non-nullables only (NEW RULE). #51
 v2.0.2
