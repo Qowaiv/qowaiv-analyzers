@@ -16,6 +16,7 @@
 
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <GeneratePackageOnBuild >true</GeneratePackageOnBuild>
+    <GenerateSBOM>true</GenerateSBOM>
   </PropertyGroup>
 
   <PropertyGroup Label="Package config">
@@ -118,6 +119,10 @@ v0.0.1
 
   <ItemGroup Label="Analyzers">
     <PackageReference Include="StyleCop.Analyzers" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup Label="Build extensions" Condition="'$(Configuration)' == 'Release'">
+    <PackageReference Include="Microsoft.Sbom.Targets" PrivateAssets="all" />
   </ItemGroup>
 
 </Project>
