@@ -24,6 +24,7 @@
     <Version>2.0.4</Version>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageIconUrl>https://github.com/Qowaiv/qowaiv-analyzers/blob/main/design/package-icon.png</PackageIconUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>
       <![CDATA[
