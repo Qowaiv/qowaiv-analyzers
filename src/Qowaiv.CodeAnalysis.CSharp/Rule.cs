@@ -188,7 +188,7 @@ public static partial class Rule
             "The compiler can not enforce single usages for overrriden implementations " +
             "of the [Required] attribute, but would otherwise disallow it.",
         category: Category.Bug,
-        tags: ["nullabillity", "arithmetic"]);
+        tags: ["Data Annotations", "AttributeUsage", "Validation", "RequiredAttribute"]);
 
 #pragma warning disable S107 // Methods should not have too many parameters
     // it calls a ctor with even more arguments.
