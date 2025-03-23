@@ -1,4 +1,4 @@
-﻿namespace Qowaiv.CodeAnalysis.Rules;
+namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class DefineOnlyOneRequiredAttribute() : CodingRule(Rule.DefineOnlyOneRequiredAttribute)

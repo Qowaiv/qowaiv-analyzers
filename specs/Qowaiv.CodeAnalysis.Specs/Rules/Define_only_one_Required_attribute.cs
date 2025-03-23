@@ -1,4 +1,4 @@
-﻿namespace Rules.Define_only_one_Required_attribute;
+namespace Rules.Define_only_one_Required_attribute;
 
 public class Verify
 {
