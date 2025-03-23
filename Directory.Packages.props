@@ -13,9 +13,7 @@
     <PackageVersion Include="DotNetProjectFile.Analyzers" Version="1.5.11" />
     <PackageVersion Include="DotNetProjectFile.Analyzers.Sdk" Version="1.5.11" />
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="*" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.Common" Version="4.10.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.10.0" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.10.0" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="*" />
     <PackageVersion Include="Microsoft.Sbom.Targets" Version="*" />
     <PackageVersion Include="NuGet.Packaging" Version="6.*" />

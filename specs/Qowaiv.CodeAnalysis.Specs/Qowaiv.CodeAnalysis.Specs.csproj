@@ -34,9 +34,6 @@
   </ItemGroup>
 
   <ItemGroup Label="Other">
-    <PackageReference Include="Microsoft.CodeAnalysis.Common" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" />
     <PackageReference Include="Qowaiv" />
     <PackageReference Include="Qowaiv.DomainModel" />
     <PackageReference Include="System.Drawing.Common" />
