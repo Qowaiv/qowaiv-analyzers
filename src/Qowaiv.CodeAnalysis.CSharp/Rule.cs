@@ -170,7 +170,7 @@ public static partial class Rule
         tags: ["Design", "Maintainability"]);
 
     public static DiagnosticDescriptor ApplyArithmeticOperationsOnNonNullablesOnly => New(
-        id: 17,
+        id: 0017,
         title: "Apply arithmetic operations on non-nullables only",
         message: "{0} is potentially null.",
         description:
@@ -178,7 +178,17 @@ public static partial class Rule
             "outcome will be null if any of the arguments turns out to be null, " +
             "which can be confusing or a bug.",
         category: Category.Bug,
-        tags: ["nullabillity", "arithmetic"]);
+        tags: ["nullability", "arithmetic"]);
+
+    public static DiagnosticDescriptor DefineOnlyOneRequiredAttribute => New(
+        id: 0100,
+        title: "Define only one Required attribute",
+        message: "{0} should not be decorated with more than one required attribute",
+        description:
+            "The compiler cannot enforce single usages for overridden implementations " +
+            "of the [Required] attribute, but would otherwise disallow it.",
+        category: Category.Bug,
+        tags: ["Data Annotations", "AttributeUsage", "Validation", "RequiredAttribute"]);
 
 #pragma warning disable S107 // Methods should not have too many parameters
     // it calls a ctor with even more arguments.

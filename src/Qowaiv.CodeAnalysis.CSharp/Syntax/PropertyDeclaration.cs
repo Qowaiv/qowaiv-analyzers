@@ -27,6 +27,8 @@ public sealed class PropertyDeclaration : SyntaxAbstraction<IPropertySymbol>
     public IEnumerable<SyntaxKind> Accessors
         => TypedNode.AccessorList?.Accessors.Select(s => s.Kind()) ?? [];
 
+    public IEnumerable<AttributeSyntax> Attributes => TypedNode.AttributeLists.SelectMany(a => a.Attributes);
+
     public bool IsObsolete
         => Symbol is { } symbol
         && symbol.IsObsolete();

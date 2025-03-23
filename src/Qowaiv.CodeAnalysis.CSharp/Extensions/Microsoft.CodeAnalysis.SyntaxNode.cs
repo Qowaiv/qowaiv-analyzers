@@ -6,16 +6,20 @@ public static class SyntaxNodeExtensions
         => node.AncestorsAndSelf().OfType<TNode>().FirstOrDefault();
 
     [Pure]
-    public static string? Name(this SyntaxNode node) => node switch
+    public static string? Name(this SyntaxNode? node) => node switch
     {
-        ArgumentSyntax arg => Name(arg.Expression),
-        AttributeSyntax attr => Name(attr.Name),
-        IdentifierNameSyntax identifier => identifier.Identifier.Text,
-        InvocationExpressionSyntax invocation => Name(invocation.Expression),
-        MemberAccessExpressionSyntax memberAccess => Name(memberAccess.Name),
-        ParameterSyntax param => param.Identifier.Text,
-        SimpleNameSyntax simpleName => simpleName.Identifier.Text,
-        NameSyntax name => name.ToFullString(),
+        ArgumentSyntax n /*...............*/ => Name(n.Expression),
+        AttributeSyntax n /*..............*/ => Name(n.Name),
+        FieldDeclarationSyntax n /*.......*/ => Name(n.Declaration),
+        IdentifierNameSyntax n /*.........*/ => n.Identifier.Text,
+        InvocationExpressionSyntax n /*...*/ => Name(n.Expression),
+        MemberAccessExpressionSyntax n /*.*/ => Name(n.Name),
+        ParameterSyntax n /*..............*/ => n.Identifier.Text,
+        SimpleNameSyntax n /*.............*/ => n.Identifier.Text,
+        NameSyntax n /*...................*/ => n.ToFullString(),
+        PropertyDeclarationSyntax n /*....*/ => n.Identifier.Text,
+        VariableDeclarationSyntax n /*....*/ => Name(n.Variables.FirstOrDefault()),
+        VariableDeclaratorSyntax n /*.....*/ => n.Identifier.Text,
         _ => null,
     };
 
@@ -40,6 +44,20 @@ public static class SyntaxNodeExtensions
         InterfaceDeclarationSyntax @interface => new TypeDeclaration.Interface(@interface, model),
         RecordDeclarationSyntax record => new TypeDeclaration.Record(record, model),
         StructDeclarationSyntax @struct => new TypeDeclaration.Struct(@struct, model),
+        _ => null,
+    };
+
+    [Pure]
+    public static MemberDeclaration MemberDeclaration(this SyntaxNode node, SemanticModel model)
+        => TryMemberDeclaration(node, model)
+        ?? throw new InvalidOperationException($"Unexpected {node.GetType().Name}, expected a member declaration.");
+
+    [Pure]
+    public static MemberDeclaration? TryMemberDeclaration(this SyntaxNode node, SemanticModel model) => node switch
+    {
+        FieldDeclarationSyntax field => new MemberDeclaration.Field(field, model),
+        ParameterSyntax param => new MemberDeclaration.Parameter(param, model),
+        PropertyDeclarationSyntax prop => new MemberDeclaration.Property(prop, model),
         _ => null,
     };
 
