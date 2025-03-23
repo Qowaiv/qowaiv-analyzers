@@ -35,14 +35,16 @@ class OnProperties
     public string WithMultipleAndOthers { get; init; }
 }
 
-class onFields
+class OnFields
 {
     [Required]
     [Optional] // Noncompliant {{WithMultiple should not be decorated with more than one required attribute}} 
-               //   ^^^^^^^^
+//   ^^^^^^^^
     public string WithMultiple;
 }
 
+record OnRecords([Required, Optional] string WithMultiple, [Required] string WithSingle); // Noncompliant {{WithMultiple should not be decorated with more than one required attribute}} 
+//                          ^^^^^^^^
 
 public sealed class OptionalAttribute : RequiredAttribute
 {
