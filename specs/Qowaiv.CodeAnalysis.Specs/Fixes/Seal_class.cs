@@ -1,4 +1,4 @@
-﻿namespace Fixes.Seal_class;
+namespace Fixes.Seal_class;
 
 public class Fixes
 {

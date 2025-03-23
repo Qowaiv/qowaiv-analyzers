@@ -1,4 +1,4 @@
-﻿namespace Qowaiv.CodeAnalysis;
+namespace Qowaiv.CodeAnalysis;
 
 public static partial class Rule
 {

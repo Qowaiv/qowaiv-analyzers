@@ -1,4 +1,4 @@
-﻿using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace Rules.Use_file_scoped_namespace_declarations_specs;
 

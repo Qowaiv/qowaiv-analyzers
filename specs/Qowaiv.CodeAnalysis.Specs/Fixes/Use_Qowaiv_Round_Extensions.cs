@@ -1,4 +1,4 @@
-﻿using Qowaiv;
+using Qowaiv;
 
 namespace Fixes.Use_Qowaiv_Round_Extensions;
 

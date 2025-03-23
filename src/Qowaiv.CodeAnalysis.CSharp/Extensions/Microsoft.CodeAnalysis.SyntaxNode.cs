@@ -1,4 +1,4 @@
-﻿namespace Microsoft.CodeAnalysis;
+namespace Microsoft.CodeAnalysis;
 
 public static class SyntaxNodeExtensions
 {

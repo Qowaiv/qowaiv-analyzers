@@ -1,4 +1,4 @@
-﻿using System.Text.RegularExpressions;
+using System.Text.RegularExpressions;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace Qowaiv.CodeAnalysis.CodeFixes;

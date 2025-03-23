@@ -1,4 +1,4 @@
-﻿class Controller
+class Controller
 {
     bool Accéss() // Compliant {{'é' might be not desired, but is not a Trojan Horse.}}
     {

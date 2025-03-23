@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -24,6 +24,7 @@
     <Version>2.0.4</Version>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageIconUrl>https://github.com/Qowaiv/qowaiv-analyzers/blob/main/design/package-icon.png</PackageIconUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>
       <![CDATA[
@@ -116,9 +117,7 @@ v0.0.1
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.Common" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" ExcludeAssets="runtime" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" ExcludeAssets="runtime" />
   </ItemGroup>
 
   <ItemGroup Label="Analyzers">

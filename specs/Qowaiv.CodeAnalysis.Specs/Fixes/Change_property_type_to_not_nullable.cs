@@ -1,4 +1,4 @@
-﻿namespace Fixes.Change_property_type_to_not_nullable;
+namespace Fixes.Change_property_type_to_not_nullable;
 
 public class Fixes
 {

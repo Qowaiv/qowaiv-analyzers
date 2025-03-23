@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 public record WithoutBody(string Message);
 

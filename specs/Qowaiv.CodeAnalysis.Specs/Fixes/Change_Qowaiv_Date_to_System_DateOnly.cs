@@ -1,4 +1,4 @@
-﻿namespace Fixes.Change_Qowaiv_Date_to_System_DateOnly;
+namespace Fixes.Change_Qowaiv_Date_to_System_DateOnly;
 
 public class Fixes
 {

@@ -1,4 +1,4 @@
-﻿global using CodeAnalysis.TestTools;
+global using CodeAnalysis.TestTools;
 global using FluentAssertions;
 global using Microsoft.CodeAnalysis;
 global using Microsoft.CodeAnalysis.CodeFixes;

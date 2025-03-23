@@ -1,4 +1,4 @@
-﻿namespace Rules.Prefer_regular_over_positional_properties;
+namespace Rules.Prefer_regular_over_positional_properties;
 
 public class Verify
 {

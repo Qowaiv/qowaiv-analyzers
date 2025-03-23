@@ -1,4 +1,4 @@
-﻿namespace Rules.Define_properties_as_not_nullable;
+namespace Rules.Define_properties_as_not_nullable;
 
 public class Verify
 {

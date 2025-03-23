@@ -1,4 +1,4 @@
-﻿#pragma warning disable RS1036 // Specify analyzer banned API enforcement setting
+#pragma warning disable RS1036 // Specify analyzer banned API enforcement setting
 
 using Qowaiv.CodeAnalysis.Diagnostics;
 

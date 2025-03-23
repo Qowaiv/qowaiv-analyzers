@@ -1,4 +1,4 @@
-﻿using Qowaiv.CodeAnalysis.CodeFixes;
+using Qowaiv.CodeAnalysis.CodeFixes;
 
 namespace Microsoft.CodeAnalysis.CodeFixes;
 

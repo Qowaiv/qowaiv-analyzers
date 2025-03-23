@@ -1,4 +1,4 @@
-﻿namespace Fixes.Apply_Obsolete_attribute_suggestion;
+namespace Fixes.Apply_Obsolete_attribute_suggestion;
 
 public class Finds
 {

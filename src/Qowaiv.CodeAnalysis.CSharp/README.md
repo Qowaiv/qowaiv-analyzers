@@ -1,4 +1,4 @@
-﻿# Qowaiv (static code) analyzers
+# Qowaiv (static code) analyzers
 Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/) (static code) [diagnostic analyzers](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.diagnostics.diagnosticanalyzer).
 
 ## Rules

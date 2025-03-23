@@ -1,4 +1,4 @@
-﻿namespace Qowaiv.CodeAnalysis.Syntax;
+namespace Qowaiv.CodeAnalysis.Syntax;
 
 public abstract class SyntaxAbstraction<TSymbol> where TSymbol : ISymbol
 {

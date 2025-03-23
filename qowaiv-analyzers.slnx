@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path=".net.csproj" />
+  <Project Path="specs/Qowaiv.CodeAnalysis.Specs/Qowaiv.CodeAnalysis.Specs.csproj" />
+  <Project Path="src/Qowaiv.CodeAnalysis.CSharp/Qowaiv.CodeAnalysis.CSharp.csproj" />
+</Solution>
