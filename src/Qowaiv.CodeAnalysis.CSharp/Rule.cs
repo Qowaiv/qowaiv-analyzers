@@ -170,13 +170,23 @@ public static partial class Rule
         tags: ["Design", "Maintainability"]);
 
     public static DiagnosticDescriptor ApplyArithmeticOperationsOnNonNullablesOnly => New(
-        id: 17,
+        id: 0017,
         title: "Apply arithmetic operations on non-nullables only",
         message: "{0} is potentially null.",
         description:
             ".NET allows arithmetic operations between nullable value types. The " +
             "outcome will be null if any of the arguments turns out to be null, " +
             "which can be confusing or a bug.",
+        category: Category.Bug,
+        tags: ["nullabillity", "arithmetic"]);
+
+    public static DiagnosticDescriptor DefineOnlyOneRequiredAttribute => New(
+        id: 0100,
+        title: "Define only one Required attribute",
+        message: "{0} should not be decorated with more than one required attribute",
+        description:
+            "The compiler can not enforce single usages for overrriden implementations " +
+            "of the [Required] attribute, but would otherwise disallow it.",
         category: Category.Bug,
         tags: ["nullabillity", "arithmetic"]);
 

@@ -19,6 +19,8 @@ public partial class SystemType
     public static readonly SystemType System_Collections_Generic_IReadOnlyList_T = new("System.Collections.Generic.IReadOnlyList<T>");
     public static readonly SystemType System_Collections_Generic_IReadOnlySet_T = new("System.Collections.Generic.IReadOnlySet<T>");
 
+    public static readonly SystemType System_ComponentModel_DataAnnotations_RequiredAttribute = new("System.ComponentModel.DataAnnotations.RequiredAttribute");
+
     public static readonly SystemType System_Attribute = typeof(System.Attribute);
     public static readonly SystemType System_DateOnly = new("System.DateOnly");
     public static readonly SystemType System_DateTimeOffset = typeof(System.DateTimeOffset);
