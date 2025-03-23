@@ -26,73 +26,79 @@
     <PackageIconUrl>https://github.com/Qowaiv/qowaiv-analyzers/blob/main/design/package-icon.png</PackageIconUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <ToBeReleased>
+      <![CDATA[
+v2.0.5
+- QW0100: Define only one Required attribute (NEW RULE).
+      ]]>
+    </ToBeReleased>
     <PackageReleaseNotes>
       <![CDATA[
 v2.0.4
-- QWO0012: Exclude types form System.Collections.Frozen namespace (FP). #55
-- Generate SBOM. #54
+- QWO0012: Exclude types form System.Collections.Frozen namespace (FP).
+- Generate SBOM.
 v2.0.3
-- QW0017: Apply arithmetic operations on non-nullables only (NEW RULE). #51
+- QW0017: Apply arithmetic operations on non-nullables only (NEW RULE).
 v2.0.2
-- QW0011, QW0012: Improve messages. #50 
+- QW0011, QW0012: Improve messages.
 v2.0.1
-- QW0016: Only take public records into account (FP). #48
+- QW0016: Only take public records into account (FP).
 v2.0.0
-- Depend on Microsoft.CodeAnalysis 4.10.0 (potential breaking). #46
-- QW0016: Obsolete code and required by base parameters should be ignored (FP). #47
+- Depend on Microsoft.CodeAnalysis 4.10.0 (potential breaking).
+- QW0016: Obsolete code and required by base parameters should be ignored (FP).
 v1.0.9
-- QW0016: Locations are commonly past through as full paths (NEW RULE). #45
+- QW0016: Locations are commonly past through as full paths (NEW RULE).
 v1.0.8
-- QW0015: Locations are commonly past through as full paths (FP). #42
+- QW0015: Locations are commonly past through as full paths (FP).
 v1.0.7
-- QW0015: Define global using statements in single file (NEW RULE). #41
-- QW0014: Define global using statements separately (NEW RULE). #40
+- QW0015: Define global using statements in single file (NEW RULE).
+- QW0014: Define global using statements separately (NEW RULE).
 v1.0.6
-- QW0013: Use Qowaiv decimal rounding (NEW RULE). #39
-- QW0008: Take static read-only Empty properties into account (FN). #38
+- QW0013: Use Qowaiv decimal rounding (NEW RULE).
+- QW0008: Take static read-only Empty properties into account (FN).
 v1.0.5
-- QW0011, QW0012: Ingore IEnumerator and IXmlSerialable (FP). #37
+- QW0011, QW0012: Ingore IEnumerator and IXmlSerialable (FP).
 v1.0.4
-- QW0011, QW0012: Ignore types with a mutable base (FP). #36
+- QW0011, QW0012: Ignore types with a mutable base (FP).
 v1.0.3
-- QW0012: Types that have Immutable in there name are considered immutable (FP). #34
-- QW0003: [DoesNotReturn] should be valid alternative for [Pure] (FP). #33
+- QW0012: Types that have Immutable in there name are considered immutable (FP).
+- QW0003: [DoesNotReturn] should be valid alternative for [Pure] (FP).
 v1.0.2
-- QW0012: Reduce FP's by ignoring potential mutable property types (FP). #32
+- QW0012: Reduce FP's by ignoring potential mutable property types (FP).
 v1.0.1
-- QW0011: Define properties as immutables. #31
-- QW0012: Use immutable types for properties. #31
+- QW0011: Define properties as immutables.
+- QW0012: Use immutable types for properties.
 v1.0.0
-- QW0010: Use System.DateOnly instead of Qowaiv.Date. #29
-- CS0618, CS0619: Code fix for obsolete code with a suggestion. #30
-- Depend on Microsoft.CodeAnalysis 4.*. #27
+- QW0010: Use System.DateOnly instead of Qowaiv.Date.
+- CS0618, CS0619: Code fix for obsolete code with a suggestion.
+- Depend on Microsoft.CodeAnalysis 4.*.
 v0.0.8
-- Code fix for QW0005: Seal class. #26
-- FN: Generics containing types that should not be nullable are now taken into account. #25
+- Code fix for QW0005: Seal class.
+- FN: Generics containing types that should not be nullable are now taken into account.
 v0.0.7
-- Code fix for QW0008 and QW0009. #22
-- QW0009: Define properties as not-nullable for enums with a defined none value. #23
-- QW0008: Define properties as not-nullable for types with an empty state. #21
-- QW0008: Value Types with an empty state should be used as nullable properties. #18
+- Code fix for QW0008 and QW0009.
+- QW0009: Define properties as not-nullable for enums with a defined none value.
+- QW0008: Define properties as not-nullable for types with an empty state.
+- QW0008: Value Types with an empty state should be used as nullable properties.
 v0.0.6.1
-- QW0001: Provide a fix to suggest the usage of Qowaiv.Clock. #17
+- QW0001: Provide a fix to suggest the usage of Qowaiv.Clock.
 v0.0.6
-- QW0001: Also reports on DateTime.Offset. #17
+- QW0001: Also reports on DateTime.Offset.
 v0.0.5.3
-- QW0003: Returning ValueTask is never a pure function. #16
-- QW0003: Returning IDisposable can be a pure function. #16
+- QW0003: Returning ValueTask is never a pure function.
+- QW0003: Returning IDisposable can be a pure function.
 v0.0.5.2
-- QW0005: All attributes should be excluded. #15
+- QW0005: All attributes should be excluded.
 v0.0.5.1
-- QW0004: Mathematical Alphanumeric Symbols are not suspicious. #14
+- QW0004: Mathematical Alphanumeric Symbols are not suspicious.
 v0.0.5
-- QW0007: Use file-scoped namespace scopes. #13
+- QW0007: Use file-scoped namespace scopes.
 v0.0.4.1
-- QW0006: Seal concrete classes unless designed for inheritance. #9
+- QW0006: Seal concrete classes unless designed for inheritance.
 v0.0.4
-- QW0005: Seal concrete classes unless designed for inheritance. #9
+- QW0005: Seal concrete classes unless designed for inheritance.
 v0.0.3.1
-- QW0004: Horizontal tab (U+9, \t) is allowed too. #6
+- QW0004: Horizontal tab (U+9, \t) is allowed too.
 v0.0.3
 - QW0004: Characters with Trojan Horse potential are not allowed.
 v0.0.2
