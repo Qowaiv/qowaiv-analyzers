@@ -178,14 +178,14 @@ public static partial class Rule
             "outcome will be null if any of the arguments turns out to be null, " +
             "which can be confusing or a bug.",
         category: Category.Bug,
-        tags: ["nullabillity", "arithmetic"]);
+        tags: ["nullability", "arithmetic"]);
 
     public static DiagnosticDescriptor DefineOnlyOneRequiredAttribute => New(
         id: 0100,
         title: "Define only one Required attribute",
         message: "{0} should not be decorated with more than one required attribute",
         description:
-            "The compiler can not enforce single usages for overrriden implementations " +
+            "The compiler cannot enforce single usages for overridden implementations " +
             "of the [Required] attribute, but would otherwise disallow it.",
         category: Category.Bug,
         tags: ["Data Annotations", "AttributeUsage", "Validation", "RequiredAttribute"]);
