@@ -32,6 +32,7 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 
 ### Data Annotation rules
 * [**QW0100** - Define only one Required attribute](rules/QW0100.md)
+* [**QW0101** - Required attribute cannot invalidate value types](rules/QW0101.md)
 
 ## Code fixes
 * Use Qowaiv.Clock ([QW0001](rules/QW0001.md), [S6354](https://rules.sonarsource.com/csharp/RSPEC-6354))

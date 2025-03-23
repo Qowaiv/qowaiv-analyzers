@@ -18,8 +18,7 @@ public sealed class DefineOnlyOneRequiredAttribute() : CodingRule(Rule.DefineOnl
 
         foreach (var attribute in member.Attributes)
         {
-            if (context.SemanticModel.GetSymbolInfo(attribute).Symbol is IMethodSymbol symbol
-                && symbol.ReceiverType is INamedTypeSymbol type
+            if (attribute.Symbol is { } type
                 && type.IsAssignableTo(SystemType.System_ComponentModel_DataAnnotations_RequiredAttribute)
                 && ++found > 1)
             {
