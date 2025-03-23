@@ -1,4 +1,4 @@
-﻿namespace Rules.Apply_arithmetic_operations_on_non_nullables_only;
+namespace Rules.Apply_arithmetic_operations_on_non_nullables_only;
 
 public class Verify
 {

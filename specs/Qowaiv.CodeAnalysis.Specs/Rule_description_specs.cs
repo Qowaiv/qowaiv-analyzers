@@ -1,4 +1,4 @@
-﻿namespace Rule_description_specs;
+namespace Rule_description_specs;
 
 public class Rules_have
 {

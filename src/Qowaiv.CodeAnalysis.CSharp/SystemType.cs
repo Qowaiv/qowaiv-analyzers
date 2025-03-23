@@ -1,4 +1,4 @@
-﻿namespace Qowaiv.CodeAnalysis;
+namespace Qowaiv.CodeAnalysis;
 
 public sealed partial class SystemType
 {

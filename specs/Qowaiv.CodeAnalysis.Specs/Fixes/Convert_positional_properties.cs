@@ -1,4 +1,4 @@
-﻿namespace Fixes.Convert_positional_properties;
+namespace Fixes.Convert_positional_properties;
 
 public class Fixes
 {

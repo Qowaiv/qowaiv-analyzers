@@ -1,4 +1,4 @@
-﻿namespace Qowaiv.CodeAnalysis.Diagnostics;
+namespace Qowaiv.CodeAnalysis.Diagnostics;
 
 public enum Category
 {

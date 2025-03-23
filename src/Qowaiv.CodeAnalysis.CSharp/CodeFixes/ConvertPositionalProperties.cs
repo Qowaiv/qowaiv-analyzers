@@ -1,4 +1,4 @@
-﻿using Qowaiv.CodeAnalysis.Rules;
+using Qowaiv.CodeAnalysis.Rules;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxKind;
 

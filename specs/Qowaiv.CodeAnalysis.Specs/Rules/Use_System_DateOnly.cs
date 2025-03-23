@@ -1,4 +1,4 @@
-﻿namespace Rules.Use_System_DateOnly;
+namespace Rules.Use_System_DateOnly;
 
 public class Verify
 {

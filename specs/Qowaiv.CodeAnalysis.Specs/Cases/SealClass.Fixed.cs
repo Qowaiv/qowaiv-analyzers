@@ -1,4 +1,4 @@
-﻿sealed class Class { }
+sealed class Class { }
 
 partial sealed class PartialClass { }
 

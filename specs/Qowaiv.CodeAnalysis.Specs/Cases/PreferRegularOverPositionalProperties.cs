@@ -1,4 +1,4 @@
-﻿namespace Noncompliant
+namespace Noncompliant
 {
     public record PreferRegular(
         string Required, //             Noncompliant {{Define Required as a required property.}}

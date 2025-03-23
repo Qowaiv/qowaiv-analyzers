@@ -1,4 +1,4 @@
-﻿namespace Rules.Define_properties_as_immutables;
+namespace Rules.Define_properties_as_immutables;
 
 public class Verify : System.Xml.Serialization.IXmlSerializable
 {

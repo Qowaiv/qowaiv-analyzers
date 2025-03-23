@@ -1,4 +1,4 @@
-﻿namespace Rules.Use_immutable_types_for_properties;
+namespace Rules.Use_immutable_types_for_properties;
 
 public class Verify
 {

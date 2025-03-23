@@ -1,4 +1,4 @@
-﻿namespace Rules.Use_Qowaiv_Decimal_Rounding;
+namespace Rules.Use_Qowaiv_Decimal_Rounding;
 
 public class Verify
 {

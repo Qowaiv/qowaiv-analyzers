@@ -1,4 +1,4 @@
-﻿namespace Rules.Define_global_using_statements_in_single_file;
+namespace Rules.Define_global_using_statements_in_single_file;
 
 public class Verify
 {

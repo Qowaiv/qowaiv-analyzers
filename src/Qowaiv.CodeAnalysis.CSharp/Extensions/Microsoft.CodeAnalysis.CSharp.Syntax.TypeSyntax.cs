@@ -1,4 +1,4 @@
-﻿namespace Microsoft.CodeAnalysis.CSharp.Syntax;
+namespace Microsoft.CodeAnalysis.CSharp.Syntax;
 
 internal static class TypeSyntaxExtensions
 {

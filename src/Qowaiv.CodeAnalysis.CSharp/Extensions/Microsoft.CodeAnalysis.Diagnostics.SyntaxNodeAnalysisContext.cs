@@ -1,4 +1,4 @@
-﻿namespace Microsoft.CodeAnalysis.Diagnostics;
+namespace Microsoft.CodeAnalysis.Diagnostics;
 
 /// <summary>Extensions on <see cref="SyntaxNodeAnalysisContext"/>.</summary>
 internal static class SyntaxNodeAnalysisContextExtensions

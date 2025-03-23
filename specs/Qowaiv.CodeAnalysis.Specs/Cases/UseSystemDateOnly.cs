@@ -1,4 +1,4 @@
-﻿using Compliant;
+using Compliant;
 using System;
 
 namespace Noncompliant

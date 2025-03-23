@@ -1,4 +1,4 @@
-﻿namespace Qowaiv.CodeAnalysis.Rules;
+namespace Qowaiv.CodeAnalysis.Rules;
 
 public abstract class ImmutablePropertiesBase(DiagnosticDescriptor supportedDiagnostic)
     : CodingRule(supportedDiagnostic)
