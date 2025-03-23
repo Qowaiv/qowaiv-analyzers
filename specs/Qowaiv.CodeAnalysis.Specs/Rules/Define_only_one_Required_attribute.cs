@@ -3,7 +3,7 @@
 public class Verify
 {
     [Test]
-    public void Properties_with_value_types() => new DefineOnlyOneRequiredAttribute()
+    public void Required_properties() => new DefineOnlyOneRequiredAttribute()
         .ForCS()
         .AddSource(@"Cases/DefineOnlyOneRequiredAttribute.cs")
         .AddReference<System.ComponentModel.DataAnnotations.RequiredAttribute>()

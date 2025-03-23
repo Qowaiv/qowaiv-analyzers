@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-class Model
+class OnProperties
 {
     [Required]
     public string WithSingle { get; init; }
@@ -33,6 +33,14 @@ class Model
     [Optional]
     [Required] // Noncompliant
     public string WithMultipleAndOthers { get; init; }
+}
+
+class onFields
+{
+    [Required]
+    [Optional] // Noncompliant {{WithMultiple should not be decorated with more than one required attribute}} 
+               //   ^^^^^^^^
+    public string WithMultiple;
 }
 
 
