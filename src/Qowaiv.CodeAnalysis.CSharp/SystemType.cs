@@ -1,6 +1,6 @@
 namespace Qowaiv.CodeAnalysis;
 
-public sealed partial class SystemType
+public sealed partial class SystemType : IEquatable<SystemType>
 {
     private SystemType(string fullName, SpecialType specialType = SpecialType.None)
     {
@@ -25,6 +25,17 @@ public sealed partial class SystemType
 
     /// <inheritdoc />
     public override string ToString() => FullName;
+
+    /// <inheritdoc />
+    public override bool Equals(object obj) => obj is SystemType other && Equals(other);
+
+    /// <inheritdoc />
+    public bool Equals(SystemType other)
+        => FullName == other.FullName
+        && Type == other.Type;
+
+    /// <inheritdoc />
+    public override int GetHashCode() => FullName.GetHashCode();
 
     /// <summary>Casts a <see cref="System.Type"/> to a <see cref="SystemType"/>.</summary>
     public static implicit operator SystemType(Type type) => new(type.FullName, default);
