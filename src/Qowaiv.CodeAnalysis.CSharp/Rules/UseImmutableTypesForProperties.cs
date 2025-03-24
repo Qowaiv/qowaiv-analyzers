@@ -41,10 +41,9 @@ public sealed class UseImmutableTypesForProperties() : ImmutablePropertiesBase(R
         => type.GetProperties().Where(p => !p.IsStatic && IsAccessible(p.DeclaredAccessibility));
 
     [Pure]
-    private static bool DefinesMutableInterface(ITypeSymbol type)
-        => type.IsAny(
-            SystemType.System_Collections_Generic_ICollection_T,
-            SystemType.System_Collections_Generic_IDictionary_TKey_TValue,
-            SystemType.System_Collections_Generic_IList_T,
-            SystemType.System_Collections_Generic_ISet_T);
+    private static bool DefinesMutableInterface(ITypeSymbol type) => type.IsAny(
+        SystemType.System.Collections.Generic.ICollection_T,
+        SystemType.System.Collections.Generic.IDictionary_TKey_TValue,
+        SystemType.System.Collections.Generic.IList_T,
+        SystemType.System.Collections.Generic.ISet_T);
 }

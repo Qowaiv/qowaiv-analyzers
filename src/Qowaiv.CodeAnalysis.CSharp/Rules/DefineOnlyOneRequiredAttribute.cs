@@ -19,7 +19,7 @@ public sealed class DefineOnlyOneRequiredAttribute() : CodingRule(Rule.DefineOnl
         foreach (var attribute in member.Attributes)
         {
             if (attribute.Symbol is { } type
-                && type.IsAssignableTo(SystemType.System_ComponentModel_DataAnnotations_RequiredAttribute)
+                && type.IsAssignableTo(SystemType.System.ComponentModel.DataAnnotations.RequiredAttribute)
                 && ++found > 1)
             {
                 context.ReportDiagnostic(Diagnostic, attribute, member.Name());

@@ -10,8 +10,8 @@ public sealed class UseQowaivDecimalRounding() : CodingRule(Rule.UseQowaivDecima
     {
         if (IsMathRound(context.Node.Name())
             && context.SemanticModel.GetSymbolInfo(context.Node).Symbol is IMethodSymbol method
-            && method.ReceiverType.Is(SystemType.System_Math)
-            && method.ReturnType.Is(SystemType.System_Decimal))
+            && method.ReceiverType.Is(SystemType.System.Math)
+            && method.ReturnType.Is(SystemType.System.Decimal))
         {
             context.ReportDiagnostic(Diagnostic, context.Node.Parent!.Parent!);
         }

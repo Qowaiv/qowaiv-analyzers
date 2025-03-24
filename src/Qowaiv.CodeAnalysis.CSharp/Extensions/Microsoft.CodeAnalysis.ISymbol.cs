@@ -29,11 +29,11 @@ internal static class SymbolExtensions
 
     [Pure]
     public static bool IsAttribute(this ITypeSymbol type)
-        => type.IsAssignableTo(SystemType.System_Attribute);
+        => type.IsAssignableTo(SystemType.System.Attribute);
 
     [Pure]
     public static bool IsException(this ITypeSymbol type)
-        => type.IsAssignableTo(SystemType.System_Exception);
+        => type.IsAssignableTo(SystemType.System.Exception);
 
     [Pure]
     public static bool IsNotNullableValueType(this ITypeSymbol type)
@@ -47,16 +47,16 @@ internal static class SymbolExtensions
 
     [Pure]
     public static bool IsObsolete(this ITypeSymbol type)
-        => type.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System_ObsoleteAttribute));
+        => type.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System.ObsoleteAttribute));
 
     [Pure]
     public static bool IsObsolete(this IMethodSymbol method)
-        => method.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System_ObsoleteAttribute))
+        => method.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System.ObsoleteAttribute))
         || method.ContainingType.IsObsolete();
 
     [Pure]
     public static bool IsObsolete(this IPropertySymbol method)
-        => method.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System_ObsoleteAttribute))
+        => method.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System.ObsoleteAttribute))
         || method.ContainingType.IsObsolete();
 
     [Pure]

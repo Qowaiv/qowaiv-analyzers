@@ -33,7 +33,7 @@ public sealed class UseSystemDateOnly() : CodingRule(Rule.UseSystemDateOnly)
         foreach (var sub in syntax.SubTypes())
         {
             if (context.SemanticModel.GetTypeInfo(sub).Type is INamedTypeSymbol type
-                && (type.NotNullable() ?? type).Is(SystemType.Qowaiv_Date))
+                && (type.NotNullable() ?? type).Is(SystemType.Qowaiv.Date))
             {
                 context.ReportDiagnostic(Rule.UseSystemDateOnly, sub);
             }

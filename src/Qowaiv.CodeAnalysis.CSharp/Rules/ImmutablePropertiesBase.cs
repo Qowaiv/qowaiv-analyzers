@@ -22,8 +22,8 @@ public abstract class ImmutablePropertiesBase(DiagnosticDescriptor supportedDiag
 
     [Pure]
     public static bool IsExcluded(INamedTypeSymbol type)
-        => type.Implements(SystemType.System_Collections_IEnumerator)
-        || type.Implements(SystemType.System_Xml_Serialization_IXmlSerializable);
+        => type.Implements(SystemType.System.Collections.IEnumerator)
+        || type.Implements(SystemType.System.Xml.Serialization.IXmlSerializable);
 
     [Pure]
     private static bool HasImmutableBase(INamedTypeSymbol? containing)
