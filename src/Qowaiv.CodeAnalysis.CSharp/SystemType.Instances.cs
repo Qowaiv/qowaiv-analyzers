@@ -2,40 +2,80 @@ namespace Qowaiv.CodeAnalysis;
 
 public partial class SystemType
 {
-    public static readonly SystemType System_Object = New(typeof(object), SpecialType.System_Object);
-    public static readonly SystemType System_String = New(typeof(string), SpecialType.System_String);
-    public static readonly SystemType System_Decimal = New(typeof(decimal), SpecialType.System_Decimal);
-    public static readonly SystemType System_DateTime = New(typeof(System.DateTime), SpecialType.System_DateTime);
-    public static readonly SystemType System_Void = New(typeof(void), SpecialType.System_Void);
+    public static class System
+    {
+        public static readonly SystemType Object = New(typeof(object), SpecialType.System_Object);
+        public static readonly SystemType String = New(typeof(string), SpecialType.System_String);
+        public static readonly SystemType Decimal = New(typeof(decimal), SpecialType.System_Decimal);
+        public static readonly SystemType DateTime = New(typeof(global::System.DateTime), SpecialType.System_DateTime);
+        public static readonly SystemType Void = New(typeof(void), SpecialType.System_Void);
 
-    public static readonly SystemType System_Collections_IEnumerator = typeof(System.Collections.IEnumerator);
-    public static readonly SystemType System_Collections_Generic_ICollection_T = New(typeof(System.Collections.Generic.ICollection<>), SpecialType.System_Collections_Generic_ICollection_T);
-    public static readonly SystemType System_Collections_Generic_IDictionary_TKey_TValue = new("System.Collections.Generic.IDictionary<TKey, TValue>");
-    public static readonly SystemType System_Collections_Generic_IList_T = New(typeof(System.Collections.Generic.IList<>), SpecialType.System_Collections_Generic_IList_T);
-    public static readonly SystemType System_Collections_Generic_ISet_T = new("System.Collections.Generic.ISet<T>");
+        public static readonly SystemType Attribute = typeof(global::System.Attribute);
+        public static readonly SystemType DateOnly = new("System.DateOnly");
+        public static readonly SystemType DateTimeOffset = typeof(global::System.DateTimeOffset);
+        public static readonly SystemType Exception = typeof(global::System.Exception);
+        public static readonly SystemType IDisposable = typeof(global::System.IDisposable);
+        public static readonly SystemType Math = typeof(global::System.Math);
+        public static readonly SystemType ObsoleteAttribute = typeof(global::System.ObsoleteAttribute);
+        public static readonly SystemType Type = typeof(global::System.Type);
 
-    public static readonly SystemType System_Collections_Generic_IReadOnlyCollection_T = new("System.Collections.Generic.IReadOnlyCollection<T>");
-    public static readonly SystemType System_Collections_Generic_IReadOnlyDictionary_TKey_TValue = new("System.Collections.Generic.IReadOnlyDictionary<TKey, TValue>");
-    public static readonly SystemType System_Collections_Generic_IReadOnlyList_T = new("System.Collections.Generic.IReadOnlyList<T>");
-    public static readonly SystemType System_Collections_Generic_IReadOnlySet_T = new("System.Collections.Generic.IReadOnlySet<T>");
+        public static class Collections
+        {
+            public static readonly SystemType IEnumerator = typeof(global::System.Collections.IEnumerator);
 
-    public static readonly SystemType System_ComponentModel_DataAnnotations_RequiredAttribute = new("System.ComponentModel.DataAnnotations.RequiredAttribute");
+            public static class Generic
+            {
+                public static readonly SystemType ICollection_T = New(typeof(global::System.Collections.Generic.ICollection<>), SpecialType.System_Collections_Generic_ICollection_T);
+                public static readonly SystemType IDictionary_TKey_TValue = new("System.Collections.Generic.IDictionary<TKey, TValue>");
+                public static readonly SystemType IList_T = New(typeof(global::System.Collections.Generic.IList<>), SpecialType.System_Collections_Generic_IList_T);
+                public static readonly SystemType ISet_T = new("System.Collections.Generic.ISet<T>");
 
-    public static readonly SystemType System_Attribute = typeof(System.Attribute);
-    public static readonly SystemType System_DateOnly = new("System.DateOnly");
-    public static readonly SystemType System_DateTimeOffset = typeof(System.DateTimeOffset);
-    public static readonly SystemType System_Exception = typeof(System.Exception);
-    public static readonly SystemType System_IDisposable = typeof(System.IDisposable);
-    public static readonly SystemType System_Math = typeof(System.Math);
-    public static readonly SystemType System_ObsoleteAttribute = typeof(System.ObsoleteAttribute);
+                public static readonly SystemType IReadOnlyCollection_T = new("System.Collections.Generic.IReadOnlyCollection<T>");
+                public static readonly SystemType IReadOnlyDictionary_TKey_TValue = new("System.Collections.Generic.IReadOnlyDictionary<TKey, TValue>");
+                public static readonly SystemType IReadOnlyList_T = new("System.Collections.Generic.IReadOnlyList<T>");
+                public static readonly SystemType IReadOnlySet_T = new("System.Collections.Generic.IReadOnlySet<T>");
+            }
+        }
 
-    public static readonly SystemType System_Diagnostics_CodeAnalysis_DoesNotReturnAttribute = new("System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute");
-    public static readonly SystemType System_Diagnostics_Contracts_PureAttribute = typeof(System.Diagnostics.Contracts.PureAttribute);
+        public static class Diagnostics
+        {
+            public static class CodeAnalysis
+            {
+                public static readonly SystemType DoesNotReturnAttribute = new("System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute");
+            }
 
-    public static readonly SystemType System_Threading_Task = typeof(System.Threading.Tasks.Task);
-    public static readonly SystemType System_Threading_ValueTask = typeof(System.Threading.Tasks.ValueTask);
+            public static class Contracts
+            {
+                public static readonly SystemType PureAttribute = typeof(global::System.Diagnostics.Contracts.PureAttribute);
+            }
+        }
 
-    public static readonly SystemType System_Xml_Serialization_IXmlSerializable = typeof(System.Xml.Serialization.IXmlSerializable);
+        public static class ComponentModel
+        {
+            public static class DataAnnotations
+            {
+                public static readonly SystemType RequiredAttribute = new("System.ComponentModel.DataAnnotations.RequiredAttribute");
+                public static readonly SystemType ValidationAttribute = new("System.ComponentModel.DataAnnotations.ValidationAttribute");
+            }
+        }
 
-    public static readonly SystemType Qowaiv_Date = new("Qowaiv.Date");
+        public static class Threading
+        {
+            public static readonly SystemType Task = typeof(global::System.Threading.Tasks.Task);
+            public static readonly SystemType ValueTask = typeof(global::System.Threading.Tasks.ValueTask);
+        }
+
+        public static class Xml
+        {
+            public static class Serialization
+            {
+                public static readonly SystemType IXmlSerializable = typeof(global::System.Xml.Serialization.IXmlSerializable);
+            }
+        }
+    }
+
+    public static class Qowaiv
+    {
+        public static readonly SystemType Date = new("Qowaiv.Date");
+    }
 }

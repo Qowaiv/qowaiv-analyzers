@@ -10,7 +10,7 @@ public sealed class UseTestableTimeProvider() : CodingRule(Rule.UseTestableTimeP
     {
         if (IsDateTimeProvider(context.Node.Name())
             && context.SemanticModel.GetSymbolInfo(context.Node).Symbol is IPropertySymbol property
-            && (property.MemberOf(SystemType.System_DateTime) || property.MemberOf(SystemType.System_DateTimeOffset)))
+            && (property.MemberOf(SystemType.System.DateTime) || property.MemberOf(SystemType.System.DateTimeOffset)))
         {
             context.ReportDiagnostic(Diagnostic, context.Node.Parent!);
         }

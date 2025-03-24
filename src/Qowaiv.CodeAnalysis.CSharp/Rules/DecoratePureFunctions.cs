@@ -23,9 +23,9 @@ public sealed class DecoratePureFunctions() : CodingRule(Rule.DecoratePureFuncti
     }
 
     private static bool ReturnsResult(ITypeSymbol type)
-        => type.IsNot(SystemType.System_Void)
-        && type.IsNot(SystemType.System_Threading_Task)
-        && type.IsNot(SystemType.System_Threading_ValueTask);
+        => type.IsNot(SystemType.System.Void)
+        && type.IsNot(SystemType.System.Threading.Task)
+        && type.IsNot(SystemType.System.Threading.ValueTask);
 
     private static bool HasNoRefOutParemeter(IEnumerable<IParameterSymbol> parameters)
         => parameters.All(par => par.RefKind != RefKind.Out && par.RefKind != RefKind.Ref);
@@ -39,8 +39,8 @@ public sealed class DecoratePureFunctions() : CodingRule(Rule.DecoratePureFuncti
 
     private static bool Decorated(ITypeSymbol? attr)
         => attr.IsAny(
-            SystemType.System_Diagnostics_Contracts_PureAttribute,
-            SystemType.System_Diagnostics_CodeAnalysis_DoesNotReturnAttribute)
+            SystemType.System.Diagnostics.Contracts.PureAttribute,
+            SystemType.System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute)
         || DecoratedImpure(attr!);
 
     private static bool DecoratedImpure(ITypeSymbol attr)

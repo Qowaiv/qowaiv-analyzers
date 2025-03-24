@@ -19,7 +19,7 @@ public sealed class RequiredAttributeCannotInvalidateValueTypes() : CodingRule(R
             foreach (var attribute in member.Attributes)
             {
                 if (attribute.Symbol is { } type
-                    && type.Is(SystemType.System_ComponentModel_DataAnnotations_RequiredAttribute))
+                    && type.Is(SystemType.System.ComponentModel.DataAnnotations.RequiredAttribute))
                 {
                     context.ReportDiagnostic(Diagnostic, attribute);
                 }
