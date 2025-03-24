@@ -190,6 +190,16 @@ public static partial class Rule
         category: Category.Bug,
         tags: ["Data Annotations", "AttributeUsage", "Validation", "RequiredAttribute"]);
 
+    public static DiagnosticDescriptor RequiredCannotInvalidateValueTypes => New(
+        id: 0101,
+        title: "Required attribute cannot invalidate value types",
+        message: "The value of this value type will always meet the Required constraints",
+        description:
+            "The implementation of the Required attribute is to check if the " +
+            "value is not null. This is always true for non-nullable value types.",
+        category: Category.Bug,
+        tags: ["Data Annotations", "Validation", "RequiredAttribute"]);
+
 #pragma warning disable S107 // Methods should not have too many parameters
     // it calls a ctor with even more arguments.
     private static DiagnosticDescriptor New(
