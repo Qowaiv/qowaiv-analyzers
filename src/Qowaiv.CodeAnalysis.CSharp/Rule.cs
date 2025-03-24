@@ -1,6 +1,8 @@
 #pragma warning disable SA1118 // Parameter should not span multiple lines.
 // For readability, here it is preferred.
 
+using static Qowaiv.CodeAnalysis.Syntax.TypeDeclaration;
+
 namespace Qowaiv.CodeAnalysis;
 
 public static partial class Rule
@@ -199,6 +201,16 @@ public static partial class Rule
             "value is not null. This is always true for non-nullable value types.",
         category: Category.Bug,
         tags: ["Data Annotations", "Validation", "RequiredAttribute"]);
+
+    public static DiagnosticDescriptor UseCompliantValdationAttribute => New(
+        id: 0102,
+        title: "Use compliant validation attributes",
+        message: "The attribute cannot validate this type",
+        description:
+            "Validation attributes are designed to validate certain member types. " +
+            "When applied on other types, this is invalid, and might even crash.",
+        category: Category.Bug,
+        tags: ["Data Annotations", "Validation", "ValidationAttribute"]);
 
 #pragma warning disable S107 // Methods should not have too many parameters
     // it calls a ctor with even more arguments.

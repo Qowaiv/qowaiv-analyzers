@@ -1,6 +1,6 @@
 namespace Qowaiv.CodeAnalysis.Syntax;
 
-public abstract partial class MemberDeclaration : SyntaxAbstraction<ITypeSymbol>
+public abstract partial class MemberDeclaration : SyntaxAbstraction<INamedTypeSymbol>
 {
     protected MemberDeclaration(SyntaxNode node, SemanticModel semanticModel)
         : base(node, semanticModel)

@@ -19,6 +19,11 @@ internal static class SymbolExtensions
         => Array.Exists(types, symbol.Is);
 
     [Pure]
+    public static bool IsAssignableTo(this ITypeSymbol? symbol, ITypeSymbol type)
+       => SymbolEqualityComparer.IncludeNullability.Equals(symbol , type)
+       || (symbol?.BaseType is { } @base && @base.IsAssignableTo(type));
+
+    [Pure]
     public static bool IsAssignableTo(this ITypeSymbol? symbol, SystemType type)
         => (symbol is { } && symbol.IsMatch(type))
         || (symbol?.BaseType is { } @base && @base.IsAssignableTo(type));

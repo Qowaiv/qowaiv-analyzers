@@ -9,9 +9,9 @@ public partial class MemberDeclaration
         public override SyntaxList<AttributeListSyntax> AttributeLists => TypedNode.AttributeLists;
 
         [Pure]
-        protected override ITypeSymbol? GetSymbol(SemanticModel semanticModel)
+        protected override INamedTypeSymbol? GetSymbol(SemanticModel semanticModel)
             => semanticModel.GetDeclaredSymbol(TypedNode) is IParameterSymbol symbol
-                ? symbol.Type
+                ? symbol.Type as INamedTypeSymbol
                 : null;
     }
 }
