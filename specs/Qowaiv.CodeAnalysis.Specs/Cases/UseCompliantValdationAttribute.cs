@@ -24,13 +24,19 @@ class Compliant
     public int? Nullability { get; init; }
 
     [Number] // Compliant
-    public long AnyOfAllowed { get; init; }
+    public int AnyOfAllowed1 { get; init; }
+
+    [Number] // Compliant
+    public long AnyOfAllowed2 { get; init; }
 
     [Display(Name = "No validation")]
     public Guid NoValidation { get; init; }
 
     [Generic<string>] // Compliant
     public string Generic { get; init; }
+
+    [Optional] // Compliant
+    public bool? NotDecoratedValidationAttribute { get; init; }
 }
 
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
@@ -42,6 +48,8 @@ sealed class ValidatesAttribute : Attribute
 
     public bool GenericArgument { get; init; }
 }
+
+sealed class OptionalAttribute : ValidationAttribute { }
 
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = true)]
 [Validates(GenericArgument = true)]

@@ -30,7 +30,7 @@ public sealed class UseCompliantValdationAttribute() : CodingRule(Rule.UseCompli
     private static bool CanValidate(INamedTypeSymbol member, INamedTypeSymbol? attribute)
     {
         if (attribute is null
-            || !attribute.IsAssignableTo(SystemType.System_ComponentModel_DataAnnotations_ValidationAttribute))
+            || !attribute.IsAssignableTo(SystemType.System.ComponentModel.DataAnnotations.ValidationAttribute))
         {
             return true;
         }

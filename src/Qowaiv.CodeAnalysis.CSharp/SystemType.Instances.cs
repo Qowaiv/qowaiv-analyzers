@@ -41,6 +41,7 @@ public partial class SystemType
         {
             public static class DataAnnotations
             {
+                public static readonly SystemType AllowedValuesAttribute = new("System.ComponentModel.DataAnnotations.AllowedValuesAttribute");
                 public static readonly SystemType RequiredAttribute = new("System.ComponentModel.DataAnnotations.RequiredAttribute");
                 public static readonly SystemType ValidationAttribute = new("System.ComponentModel.DataAnnotations.ValidationAttribute");
             }
