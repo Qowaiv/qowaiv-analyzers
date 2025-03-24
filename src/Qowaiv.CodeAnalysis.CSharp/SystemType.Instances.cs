@@ -37,6 +37,15 @@ public partial class SystemType
             }
         }
 
+        public static class ComponentModel
+        {
+            public static class DataAnnotations
+            {
+                public static readonly SystemType RequiredAttribute = new("System.ComponentModel.DataAnnotations.RequiredAttribute");
+                public static readonly SystemType ValidationAttribute = new("System.ComponentModel.DataAnnotations.ValidationAttribute");
+            }
+        }
+
         public static class Diagnostics
         {
             public static class CodeAnalysis
@@ -47,15 +56,6 @@ public partial class SystemType
             public static class Contracts
             {
                 public static readonly SystemType PureAttribute = typeof(global::System.Diagnostics.Contracts.PureAttribute);
-            }
-        }
-
-        public static class ComponentModel
-        {
-            public static class DataAnnotations
-            {
-                public static readonly SystemType RequiredAttribute = new("System.ComponentModel.DataAnnotations.RequiredAttribute");
-                public static readonly SystemType ValidationAttribute = new("System.ComponentModel.DataAnnotations.ValidationAttribute");
             }
         }
 
