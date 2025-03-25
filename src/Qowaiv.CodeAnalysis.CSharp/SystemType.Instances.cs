@@ -37,6 +37,16 @@ public partial class SystemType
             }
         }
 
+        public static class ComponentModel
+        {
+            public static class DataAnnotations
+            {
+                public static readonly SystemType AllowedValuesAttribute = new("System.ComponentModel.DataAnnotations.AllowedValuesAttribute");
+                public static readonly SystemType RequiredAttribute = new("System.ComponentModel.DataAnnotations.RequiredAttribute");
+                public static readonly SystemType ValidationAttribute = new("System.ComponentModel.DataAnnotations.ValidationAttribute");
+            }
+        }
+
         public static class Diagnostics
         {
             public static class CodeAnalysis
@@ -47,15 +57,6 @@ public partial class SystemType
             public static class Contracts
             {
                 public static readonly SystemType PureAttribute = typeof(global::System.Diagnostics.Contracts.PureAttribute);
-            }
-        }
-
-        public static class ComponentModel
-        {
-            public static class DataAnnotations
-            {
-                public static readonly SystemType RequiredAttribute = new("System.ComponentModel.DataAnnotations.RequiredAttribute");
-                public static readonly SystemType ValidationAttribute = new("System.ComponentModel.DataAnnotations.ValidationAttribute");
             }
         }
 
@@ -77,5 +78,13 @@ public partial class SystemType
     public static class Qowaiv
     {
         public static readonly SystemType Date = new("Qowaiv.Date");
+
+        public static class Validation
+        {
+            public static class DataAnnotations
+            {
+                public static readonly SystemType ValidatesAttribute = new("Qowaiv.Validation.DataAnnotations.ValidatesAttribute");
+            }
+        }
     }
 }
