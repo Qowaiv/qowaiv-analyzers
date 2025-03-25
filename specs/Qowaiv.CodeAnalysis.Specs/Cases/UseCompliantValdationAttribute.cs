@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using Qowaiv.Validation.DataAnnotations;
 
 class Noncompliant
 {
@@ -41,11 +42,17 @@ class Compliant
     [Optional] // Compliant
     public bool? NotDecoratedValidationAttribute { get; init; }
 
-    [TypeByString]
+    [TypeByString] // Compliant
     public Guid TypeByString { get; init; }
+
+    [Undecorated] // Compliant
+    public int Undecorated { get; init; }
 }
 
+[Validates(typeof(object))]
 sealed class OptionalAttribute : ValidationAttribute { }
+
+sealed class UndecoratedAttribute : ValidationAttribute { }
 
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = true)]
 [Validates(GenericArgument = true)]
@@ -62,26 +69,27 @@ sealed class NumberAttribute : ValidationAttribute { }
 sealed class TypeByStringAttribute : ValidationAttribute { }
 
 
-//namespace Qowaiv.Validation.DataAnnotations;
-
-[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
-public sealed class ValidatesAttribute : Attribute
+namespace Qowaiv.Validation.DataAnnotations
 {
-    /// <summary>Initializes a new instance of the <see cref="ValidatesAttribute"/> class.</summary>
-    public ValidatesAttribute() : this(typeof(object)) { }
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
+    public sealed class ValidatesAttribute : Attribute
+    {
+        /// <summary>Initializes a new instance of the <see cref="ValidatesAttribute"/> class.</summary>
+        public ValidatesAttribute() : this(typeof(object)) { }
 
-    /// <summary>Initializes a new instance of the <see cref="ValidatesAttribute"/> class.</summary>
-    public ValidatesAttribute(string typeName) => Type = Type.GetType(typeName) ?? typeof(object);
+        /// <summary>Initializes a new instance of the <see cref="ValidatesAttribute"/> class.</summary>
+        public ValidatesAttribute(string typeName) => Type = Type.GetType(typeName) ?? typeof(object);
 
-    /// <summary>Initializes a new instance of the <see cref="ValidatesAttribute"/> class.</summary>
-    public ValidatesAttribute(Type type) => Type = type;
+        /// <summary>Initializes a new instance of the <see cref="ValidatesAttribute"/> class.</summary>
+        public ValidatesAttribute(Type type) => Type = type;
 
-    /// <summary>Type that can be validated.</summary>
-    public Type Type { get; }
+        /// <summary>Type that can be validated.</summary>
+        public Type Type { get; }
 
-    /// <summary>
-    /// If true, the type should be equal to the generic to the generic
-    /// argument of the <see cref="ValidationAttribute"/>.
-    /// </summary>
-    public bool GenericArgument { get; init; }
+        /// <summary>
+        /// If true, the type should be equal to the generic to the generic
+        /// argument of the <see cref="ValidationAttribute"/>.
+        /// </summary>
+        public bool GenericArgument { get; init; }
+    }
 }

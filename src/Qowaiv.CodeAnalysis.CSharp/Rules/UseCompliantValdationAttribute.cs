@@ -38,7 +38,8 @@ public sealed class UseCompliantValdationAttribute() : CodingRule(Rule.UseCompli
         if (!Lookup.TryGetValue(attribute, out var data))
         {
             data = Validates(attribute);
-            Lookup[attribute] = data;
+            // If it contains data, its matches everyting.
+            Lookup[attribute] = data.Contains(SystemType.System.Object) ? [] : data;
         }
 
         return data is { Length: 0 } || data.Any(member.IsAssignableTo);
@@ -46,8 +47,8 @@ public sealed class UseCompliantValdationAttribute() : CodingRule(Rule.UseCompli
 
     private static SystemType[] Validates(INamedTypeSymbol attribute) => [..attribute
         .GetAttributes()
-        .Where(data => data.AttributeClass?.Name.Matches("ValidatesAttribute") is true)
-        .Select(data => GetType(data) ?? GetGeneric(data, attribute))
+        .Where(data => data.AttributeClass.Is(SystemType.Qowaiv.Validation.DataAnnotations.ValidatesAttribute))
+        .Select(data => GetType(data) ?? GetStringType(data) ?? GetGeneric(data, attribute))
         .OfType<SystemType>()];
 
     private static SystemType? GetType(AttributeData data)
@@ -72,5 +73,5 @@ public sealed class UseCompliantValdationAttribute() : CodingRule(Rule.UseCompli
     // Avoid storing per-compilation data into the fields of a diagnostic analyzer
     // We do this to cache the annoatations on Validation Attributes. This reduces
     // The analysis times.
-    private static readonly ConcurrentDictionary<ITypeSymbol, SystemType[]> Lookup = [];
+    private static readonly ConcurrentDictionary<INamedTypeSymbol, SystemType[]> Lookup = [];
 }

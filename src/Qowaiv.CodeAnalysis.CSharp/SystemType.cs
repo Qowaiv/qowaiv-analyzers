@@ -32,7 +32,7 @@ public sealed partial class SystemType : IEquatable<SystemType>
     /// <inheritdoc />
     public bool Equals(SystemType other)
         => FullName == other.FullName
-        && Type == other.Type;
+        || (Type is not SpecialType.None && Type == other.Type);
 
     /// <inheritdoc />
     public override int GetHashCode() => FullName.GetHashCode();

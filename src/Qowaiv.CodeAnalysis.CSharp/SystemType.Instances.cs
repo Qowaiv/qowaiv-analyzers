@@ -78,5 +78,13 @@ public partial class SystemType
     public static class Qowaiv
     {
         public static readonly SystemType Date = new("Qowaiv.Date");
+
+        public static class Validation
+        {
+            public static class DataAnnotations
+            {
+                public static readonly SystemType ValidatesAttribute = new("Qowaiv.Validation.DataAnnotations.ValidatesAttribute");
+            }
+        }
     }
 }
