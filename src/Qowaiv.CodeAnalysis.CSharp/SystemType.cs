@@ -42,5 +42,10 @@ public sealed partial class SystemType : IEquatable<SystemType>
 
     private static SystemType New(Type type, SpecialType specialType) => new(type.FullName, specialType);
 
+    public static SystemType New(ITypeSymbol type)
+        => new(type.GetFullMetaDataName(), type.SpecialType);
+
+    public static SystemType Parse(string str) => new(str);
+
     private static string Last(string[] array) => array[array.Length - 1];
 }

@@ -13,6 +13,9 @@ class Noncompliant
     [Generic<Guid>] // Noncompliant
     [Generic<string>]
     public string Generic { get; init; }
+
+    [TypeByString] // Noncompliant
+    public string TypeByString { get; init; }
 }
 
 class Compliant
@@ -37,16 +40,9 @@ class Compliant
 
     [Optional] // Compliant
     public bool? NotDecoratedValidationAttribute { get; init; }
-}
 
-[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
-sealed class ValidatesAttribute : Attribute 
-{
-    public ValidatesAttribute(Type type) { }
-
-    public ValidatesAttribute() { }
-
-    public bool GenericArgument { get; init; }
+    [TypeByString]
+    public Guid TypeByString { get; init; }
 }
 
 sealed class OptionalAttribute : ValidationAttribute { }
@@ -61,3 +57,31 @@ sealed class IntOnlyAttribute : ValidationAttribute { }
 [Validates(typeof(int))]
 [Validates(typeof(long))]
 sealed class NumberAttribute : ValidationAttribute { }
+
+[Validates("System.Guid")]
+sealed class TypeByStringAttribute : ValidationAttribute { }
+
+
+//namespace Qowaiv.Validation.DataAnnotations;
+
+[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
+public sealed class ValidatesAttribute : Attribute
+{
+    /// <summary>Initializes a new instance of the <see cref="ValidatesAttribute"/> class.</summary>
+    public ValidatesAttribute() : this(typeof(object)) { }
+
+    /// <summary>Initializes a new instance of the <see cref="ValidatesAttribute"/> class.</summary>
+    public ValidatesAttribute(string typeName) => Type = Type.GetType(typeName) ?? typeof(object);
+
+    /// <summary>Initializes a new instance of the <see cref="ValidatesAttribute"/> class.</summary>
+    public ValidatesAttribute(Type type) => Type = type;
+
+    /// <summary>Type that can be validated.</summary>
+    public Type Type { get; }
+
+    /// <summary>
+    /// If true, the type should be equal to the generic to the generic
+    /// argument of the <see cref="ValidationAttribute"/>.
+    /// </summary>
+    public bool GenericArgument { get; init; }
+}

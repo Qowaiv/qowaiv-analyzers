@@ -44,27 +44,33 @@ public sealed class UseCompliantValdationAttribute() : CodingRule(Rule.UseCompli
         return data is { Length: 0 } || data.Any(member.IsAssignableTo);
     }
 
-    private static ITypeSymbol[] Validates(INamedTypeSymbol attribute) => [..attribute
+    private static SystemType[] Validates(INamedTypeSymbol attribute) => [..attribute
         .GetAttributes()
         .Where(data => data.AttributeClass?.Name.Matches("ValidatesAttribute") is true)
         .Select(data => GetType(data) ?? GetGeneric(data, attribute))
-        .OfType<ITypeSymbol>()];
+        .OfType<SystemType>()];
 
-    private static ITypeSymbol? GetType(AttributeData data)
+    private static SystemType? GetType(AttributeData data)
         => data.ConstructorArguments is { Length: 1 } args
         && args[0].Value is ITypeSymbol validates
-        ? validates
+        ? SystemType.New(validates)
         : null;
 
-    private static ITypeSymbol? GetGeneric(AttributeData data, INamedTypeSymbol attribute)
+    private static SystemType? GetStringType(AttributeData data)
+       => data.ConstructorArguments is { Length: 1 } args
+       && args[0].Value is string validates
+       ? SystemType.Parse(validates)
+       : null;
+
+    private static SystemType? GetGeneric(AttributeData data, INamedTypeSymbol attribute)
         => attribute.IsGenericType
         && data.NamedArguments.FirstOrDefault(kvp => kvp.Key == "GenericArgument").Value.Value is true
-        ? attribute.TypeArguments[0]
+        ? SystemType.New(attribute.TypeArguments[0])
         : null;
 
 #pragma warning disable RS1008 
     // Avoid storing per-compilation data into the fields of a diagnostic analyzer
     // We do this to cache the annoatations on Validation Attributes. This reduces
     // The analysis times.
-    private static readonly ConcurrentDictionary<ITypeSymbol, ITypeSymbol[]> Lookup = [];
+    private static readonly ConcurrentDictionary<ITypeSymbol, SystemType[]> Lookup = [];
 }
