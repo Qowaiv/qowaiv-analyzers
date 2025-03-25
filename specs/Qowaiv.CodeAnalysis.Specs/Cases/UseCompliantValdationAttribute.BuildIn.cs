@@ -13,7 +13,7 @@ class Noncompliant
     public int CreditCard { get; init; }
 
     [DeniedValues(1983)] // Noncompliant
-    public int DeniedValues { get; init; }
+    public Guid DeniedValues { get; init; }
 
     [EmailAddress] // Noncompliant
     public int EmailAddress { get; init; }
@@ -45,10 +45,10 @@ class Compliant
     [Base64String]
     public string Base64String { get; init; }
 
-    [CreditCard] 
+    [CreditCard]
     public string CreditCard { get; init; }
 
-    [DeniedValues(1983)] 
+    [DeniedValues(1983)]
     public string DeniedValues { get; init; }
 
     [EmailAddress]

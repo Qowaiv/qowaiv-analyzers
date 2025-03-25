@@ -49,7 +49,7 @@ public sealed class UseCompliantValdationAttribute() : CodingRule(Rule.UseCompli
             Lookup[attribute] = data.Contains(SystemType.System.Object) ? [] : data;
         }
 
-        return data is { Length: 0 } || data.Any(member.IsAssignableTo);
+        return data is { Length: 0 } || data.Any(type => member.IsAssignableTo(type) || member.Implements(type));
     }
 
     private static SystemType[] Validates(INamedTypeSymbol attribute) => [..attribute
