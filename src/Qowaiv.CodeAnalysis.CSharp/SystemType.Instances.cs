@@ -8,12 +8,15 @@ public partial class SystemType
         public static readonly SystemType String = New(typeof(string), SpecialType.System_String);
         public static readonly SystemType Decimal = New(typeof(decimal), SpecialType.System_Decimal);
         public static readonly SystemType DateTime = New(typeof(global::System.DateTime), SpecialType.System_DateTime);
+        public static readonly SystemType Enum = New(typeof(global::System.Enum), SpecialType.System_Enum);
         public static readonly SystemType Void = New(typeof(void), SpecialType.System_Void);
 
         public static readonly SystemType Attribute = typeof(global::System.Attribute);
         public static readonly SystemType DateOnly = new("System.DateOnly");
         public static readonly SystemType DateTimeOffset = typeof(global::System.DateTimeOffset);
         public static readonly SystemType Exception = typeof(global::System.Exception);
+        public static readonly SystemType IConvertible = typeof(global::System.IConvertible);
+        public static readonly SystemType IComparable = typeof(global::System.IComparable);
         public static readonly SystemType IDisposable = typeof(global::System.IDisposable);
         public static readonly SystemType Math = typeof(global::System.Math);
         public static readonly SystemType ObsoleteAttribute = typeof(global::System.ObsoleteAttribute);
@@ -41,9 +44,19 @@ public partial class SystemType
         {
             public static class DataAnnotations
             {
-                public static readonly SystemType AllowedValuesAttribute = new("System.ComponentModel.DataAnnotations.AllowedValuesAttribute");
-                public static readonly SystemType RequiredAttribute = new("System.ComponentModel.DataAnnotations.RequiredAttribute");
-                public static readonly SystemType ValidationAttribute = new("System.ComponentModel.DataAnnotations.ValidationAttribute");
+                public static readonly SystemType AllowedValuesAttribute /*..*/ = new("System.ComponentModel.DataAnnotations.AllowedValuesAttribute");
+                public static readonly SystemType Base64StringAttribute /*...*/ = new("System.ComponentModel.DataAnnotations.Base64StringAttribute");
+                public static readonly SystemType CreditCardAttribute /*.....*/ = new("System.ComponentModel.DataAnnotations.CreditCardAttribute");
+                public static readonly SystemType DeniedValuesAttribute /*...*/ = new("System.ComponentModel.DataAnnotations.DeniedValuesAttribute");
+                public static readonly SystemType EmailAddressAttribute /*...*/ = new("System.ComponentModel.DataAnnotations.EmailAddressAttribute");
+                public static readonly SystemType EnumDataTypeAttribute /*...*/ = new("System.ComponentModel.DataAnnotations.EnumDataTypeAttribute");
+                public static readonly SystemType FileExtensionsAttribute /*.*/ = new("System.ComponentModel.DataAnnotations.FileExtensionsAttribute");
+                public static readonly SystemType PhoneAttribute /*..........*/ = new("System.ComponentModel.DataAnnotations.PhoneAttribute");
+                public static readonly SystemType RangeAttribute /*..........*/ = new("System.ComponentModel.DataAnnotations.RangeAttribute");
+                public static readonly SystemType RequiredAttribute /*.......*/ = new("System.ComponentModel.DataAnnotations.RequiredAttribute");
+                public static readonly SystemType StringLengthAttribute /*...*/ = new("System.ComponentModel.DataAnnotations.StringLengthAttribute");
+                public static readonly SystemType UrlAttribute /*............*/ = new("System.ComponentModel.DataAnnotations.UrlAttribute");
+                public static readonly SystemType ValidationAttribute /*.....*/ = new("System.ComponentModel.DataAnnotations.ValidationAttribute");
             }
         }
 
