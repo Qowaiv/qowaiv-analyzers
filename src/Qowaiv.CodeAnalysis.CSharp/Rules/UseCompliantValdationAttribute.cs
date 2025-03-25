@@ -37,7 +37,14 @@ public sealed class UseCompliantValdationAttribute() : CodingRule(Rule.UseCompli
 
         if (!Lookup.TryGetValue(attribute, out var data))
         {
-            data = Validates(attribute);
+            if (Known.FirstOrDefault(kpv => attribute.Is(kpv.Key)) is { Key: not null } known)
+            {
+                data = known.Value;
+            }
+            else
+            {
+                data = Validates(attribute);
+            }
             // If it contains data, its matches everyting.
             Lookup[attribute] = data.Contains(SystemType.System.Object) ? [] : data;
         }
@@ -74,4 +81,19 @@ public sealed class UseCompliantValdationAttribute() : CodingRule(Rule.UseCompli
     // We do this to cache the annoatations on Validation Attributes. This reduces
     // The analysis times.
     private static readonly ConcurrentDictionary<INamedTypeSymbol, SystemType[]> Lookup = [];
+
+    internal static readonly Dictionary<SystemType, SystemType[]> Known = new()
+    {
+        [SystemType.System.ComponentModel.DataAnnotations.AllowedValuesAttribute] = [SystemType.System.IConvertible],
+        [SystemType.System.ComponentModel.DataAnnotations.Base64StringAttribute] = [SystemType.System.String],
+        [SystemType.System.ComponentModel.DataAnnotations.CreditCardAttribute] = [SystemType.System.String],
+        [SystemType.System.ComponentModel.DataAnnotations.DeniedValuesAttribute] = [SystemType.System.IConvertible],
+        [SystemType.System.ComponentModel.DataAnnotations.EmailAddressAttribute] = [SystemType.System.String],
+        [SystemType.System.ComponentModel.DataAnnotations.EnumDataTypeAttribute] = [SystemType.System.Enum],
+        [SystemType.System.ComponentModel.DataAnnotations.FileExtensionsAttribute] = [SystemType.System.String],
+        [SystemType.System.ComponentModel.DataAnnotations.PhoneAttribute] = [SystemType.System.String],
+        [SystemType.System.ComponentModel.DataAnnotations.RangeAttribute] = [SystemType.System.IComparable],
+        [SystemType.System.ComponentModel.DataAnnotations.StringLengthAttribute] = [SystemType.System.String],
+        [SystemType.System.ComponentModel.DataAnnotations.UrlAttribute] = [SystemType.System.String],
+    };
 }

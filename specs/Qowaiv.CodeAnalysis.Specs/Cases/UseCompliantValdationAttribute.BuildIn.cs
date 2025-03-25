@@ -52,7 +52,7 @@ class Compliant
     public string DeniedValues { get; init; }
 
     [EmailAddress]
-    public int EmailAddress { get; init; }
+    public string EmailAddress { get; init; }
 
     [EnumDataType(typeof(MyEnum))]
     public MyEnum EnumDataType { get; init; }
