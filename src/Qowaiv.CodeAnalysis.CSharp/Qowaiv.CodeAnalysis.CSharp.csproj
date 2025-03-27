@@ -29,6 +29,7 @@
     <ToBeReleased>
       <![CDATA[
 v2.0.5
+- QW0003: Readonly modifier is sufficient (FP).
 - QW0100: Define only one Required attribute (NEW RULE).
       ]]>
     </ToBeReleased>
