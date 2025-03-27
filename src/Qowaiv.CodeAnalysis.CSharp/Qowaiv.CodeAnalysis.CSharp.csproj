@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -21,20 +21,22 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Package config">
-    <Version>2.0.4</Version>
+    <Version>2.0.5</Version>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageIconUrl>https://github.com/Qowaiv/qowaiv-analyzers/blob/main/design/package-icon.png</PackageIconUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <ToBeReleased>
       <![CDATA[
-v2.0.5
-- QW0003: Readonly modifier is sufficient (FP).
-- QW0100: Define only one Required attribute (NEW RULE).
       ]]>
     </ToBeReleased>
     <PackageReleaseNotes>
       <![CDATA[
+v2.0.5
+- QW0003: Readonly modifier is sufficient (FP).
+- QW0100: Define only one Required attribute (NEW RULE).
+- QW0101: Required attribute cannot invalidate value types (NEW RULE).
+- QW0102: Use compliant validation attributes (NEW RULE).
 v2.0.4
 - QWO0012: Exclude types form System.Collections.Frozen namespace (FP).
 - Generate SBOM.
