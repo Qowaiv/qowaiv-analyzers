@@ -35,6 +35,11 @@ public class Compliant
     public int WhenItNeverReturns() => throw new NotSupportedException(); // Compliant {{DoesNotReturn also indicates cleary what to expect.}}
 }
 
+public ref struct ComplaintStruct
+{
+    public readonly int Result() => 42; // Compliant {{The readonly modifier should be sufficient.}}
+}
+
 public class ImpureByAssumption
 {
     public void Void() { } // Compliant {{Void methods are impure per definition.}}

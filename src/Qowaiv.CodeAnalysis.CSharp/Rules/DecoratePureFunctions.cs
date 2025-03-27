@@ -8,7 +8,11 @@ public sealed class DecoratePureFunctions() : CodingRule(Rule.DecoratePureFuncti
 
     private static void Report(SyntaxNodeAnalysisContext context)
     {
-        var declaration = context.Node;
+        var declaration = context.Node.Cast<MethodDeclarationSyntax>();
+
+        // The read-only keyword should be enough.
+        if (declaration.Modifiers.Any(SyntaxKind.ReadOnlyKeyword)) return;
+
         var symbol = context.SemanticModel.GetDeclaredSymbol(declaration);
 
         if (symbol is IMethodSymbol method
