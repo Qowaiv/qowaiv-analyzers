@@ -6,12 +6,12 @@
     <CentralPackageVersionOverrideEnabled>true</CentralPackageVersionOverrideEnabled>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="AwesomeAssertions" Version="8.0.2" />
-    <PackageVersion Include="AwesomeAssertions.Analyzers" Version="0.34.2" />
+    <PackageVersion Include="AwesomeAssertions" Version="8.2.0" />
+    <PackageVersion Include="AwesomeAssertions.Analyzers" Version="8.0.0" />
     <PackageVersion Include="CodeAnalysis.TestTools" Version="3.0.1" />
     <PackageVersion Include="coverlet.collector" Version="6.0.4" />
-    <PackageVersion Include="DotNetProjectFile.Analyzers" Version="1.5.11" />
-    <PackageVersion Include="DotNetProjectFile.Analyzers.Sdk" Version="1.5.11" />
+    <PackageVersion Include="DotNetProjectFile.Analyzers" Version="1.5.12" />
+    <PackageVersion Include="DotNetProjectFile.Analyzers.Sdk" Version="1.5.12" />
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="*" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.10.0" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="*" />
@@ -20,12 +20,12 @@
     <PackageVersion Include="NUnit" Version="4.*" />
     <PackageVersion Include="NUnit.Analyzers" Version="*" />
     <PackageVersion Include="NUnit3TestAdapter" Version="*" />
-    <PackageVersion Include="Qowaiv" Version="7.2.3" />
+    <PackageVersion Include="Qowaiv" Version="7.4.2" />
     <PackageVersion Include="Qowaiv.DomainModel" Version="2.0.0" />
     <PackageVersion Include="SonarAnalyzer.CSharp" Version="*" />
     <PackageVersion Include="StyleCop.Analyzers" Version="*-*" />
     <PackageVersion Include="System.Drawing.Common" Version="8.*" />
-    <PackageVersion Include="System.Security.Cryptography.Xml" Version="9.0.3" />
-    <PackageVersion Include="System.Text.Json" Version="9.0.3" />
+    <PackageVersion Include="System.Security.Cryptography.Xml" Version="9.0.5" />
+    <PackageVersion Include="System.Text.Json" Version="9.0.5" />
   </ItemGroup>
 </Project>
