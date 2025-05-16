@@ -1,12 +1,8 @@
 namespace Qowaiv.CodeAnalysis.Syntax;
 
-public abstract partial class MemberDeclaration : SyntaxAbstraction<INamedTypeSymbol>
+public abstract partial class MemberDeclaration(SyntaxNode node, SemanticModel semanticModel)
+    : SyntaxAbstraction<INamedTypeSymbol>(node, semanticModel)
 {
-    protected MemberDeclaration(SyntaxNode node, SemanticModel semanticModel)
-        : base(node, semanticModel)
-    {
-    }
-
     public abstract SyntaxList<AttributeListSyntax> AttributeLists { get; }
 
     public IEnumerable<AttributeDecoration> Attributes => AttributeLists

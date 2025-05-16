@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -28,6 +28,8 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <ToBeReleased>
       <![CDATA[
+v2.0.6
+-
       ]]>
     </ToBeReleased>
     <PackageReleaseNotes>
