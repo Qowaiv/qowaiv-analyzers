@@ -53,10 +53,10 @@ file static class Extensions
     public static PropertyDeclarationSyntax AddAttributes(this PropertyDeclarationSyntax property, SyntaxList<AttributeListSyntax> list)
     {
         var attrs = list.SelectMany(l => l.Attributes)
-            .Select(attr => AttributeList(SeparatedList(attr.Singleton())));
+            .Select(attr => AttributeList(SeparatedList([attr])));
 
         return attrs.Any()
-            ? property.WithAttributeLists(new(attrs))
+            ? property.WithAttributeLists([.. attrs])
             : property;
     }
 

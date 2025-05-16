@@ -1,11 +1,9 @@
 namespace Qowaiv.CodeAnalysis.Diagnostics;
 
-public abstract class CodingRule : DiagnosticAnalyzer
+public abstract class CodingRule(DiagnosticDescriptor supportedDiagnostic, params DiagnosticDescriptor[] additional)
+    : DiagnosticAnalyzer
 {
-    protected CodingRule(DiagnosticDescriptor supportedDiagnostic, params DiagnosticDescriptor[] additional)
-        => SupportedDiagnostics = [supportedDiagnostic, ..additional];
-
-    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; }
+    public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = [supportedDiagnostic, .. additional];
 
     public DiagnosticDescriptor Diagnostic => SupportedDiagnostics[0];
 

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -28,6 +28,8 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <ToBeReleased>
       <![CDATA[
+v2.0.6
+-
       ]]>
     </ToBeReleased>
     <PackageReleaseNotes>
@@ -131,6 +133,8 @@ v0.0.1
 
   <ItemGroup Label="Analyzers">
     <PackageReference Include="StyleCop.Analyzers" PrivateAssets="all" />
+    <!-- required by an analyzer, not part of the package -->
+    <PackageReference Include="System.Collections.Immutable" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup Label="Build extensions" Condition="'$(Configuration)' == 'Release'">

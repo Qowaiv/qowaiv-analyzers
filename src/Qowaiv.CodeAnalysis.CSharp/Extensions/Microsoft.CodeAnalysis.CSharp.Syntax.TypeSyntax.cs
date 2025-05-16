@@ -5,9 +5,10 @@ internal static class TypeSyntaxExtensions
     [Pure]
     public static IEnumerable<TypeSyntax> SubTypes(this TypeSyntax? type) => type switch
     {
+        null => [],
         ArrayTypeSyntax array => array.ElementType.SubTypes(),
-        GenericNameSyntax generic => type.Singleton().Concat(generic.TypeArgumentList.Arguments.SelectMany(SubTypes)),
-        _ => type.Singleton(),
+        GenericNameSyntax generic => [type, .. generic.TypeArgumentList.Arguments.SelectMany(SubTypes)],
+        _ => [type],
     };
 
     [Pure]

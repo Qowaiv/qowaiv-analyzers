@@ -76,7 +76,7 @@ public sealed class UseCompliantValdationAttribute() : CodingRule(Rule.UseCompli
         ? SystemType.New(attribute.TypeArguments[0])
         : null;
 
-#pragma warning disable RS1008 
+#pragma warning disable RS1008
     // Avoid storing per-compilation data into the fields of a diagnostic analyzer
     // We do this to cache the annoatations on Validation Attributes. This reduces
     // The analysis times.
