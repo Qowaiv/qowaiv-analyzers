@@ -2,17 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
+    <RestorePackagesWithLockFile>false</RestorePackagesWithLockFile>
   </PropertyGroup>
   
   <ItemGroup>
     <None Include="build/**" />
     <None Include="design/**" />
+    <None Include="dictionary.dic" />
     <None Include="rules/**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <AdditionalFiles Include="props/**" />
-    <AdditionalFiles Include="dictionary.dic" />
   </ItemGroup>
   
   <ItemGroup>
