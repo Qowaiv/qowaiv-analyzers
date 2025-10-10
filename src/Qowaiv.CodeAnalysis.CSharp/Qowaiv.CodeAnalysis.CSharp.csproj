@@ -132,13 +132,13 @@ v0.0.1
   </ItemGroup>
 
   <ItemGroup Label="Analyzers">
-    <PackageReference Include="StyleCop.Analyzers" PrivateAssets="all" />
+    <PackageReference PrivateAssets="all" Include="StyleCop.Analyzers.Unstable" />
     <!-- required by an analyzer, not part of the package -->
-    <PackageReference Include="System.Collections.Immutable" PrivateAssets="all" />
+    <PackageReference  PrivateAssets="all" Include="System.Collections.Immutable" />
   </ItemGroup>
 
   <ItemGroup Label="Build extensions" Condition="'$(Configuration)' == 'Release'">
-    <PackageReference Include="Microsoft.Sbom.Targets" PrivateAssets="all" />
+    <PackageReference PrivateAssets="all" Include="Microsoft.Sbom.Targets" />
   </ItemGroup>
 
 </Project>
