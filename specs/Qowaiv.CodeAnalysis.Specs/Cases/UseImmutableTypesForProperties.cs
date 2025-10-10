@@ -6,7 +6,7 @@ namespace Compliant
 {
     public sealed class AttributeWithArray : Attribute
     {
-        public string[] Tags { get; init; } // Compliant {{Only arrays are allowed for attributes.}}
+        public string[] Tags { get; init; } // Compliant {{Only arrays are allowed as collections for attributes.}}
     }
 
     internal class InternalClass
