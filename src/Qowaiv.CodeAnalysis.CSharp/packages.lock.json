@@ -39,6 +39,12 @@
           "System.Threading.Tasks.Extensions": "4.5.4"
         }
       },
+      "Microsoft.Sbom.Targets": {
+        "type": "Direct",
+        "requested": "[3.0.0, )",
+        "resolved": "3.0.0",
+        "contentHash": "YRf+19P0HJoKbCj7lw+KrAk7TE6tTppq1phgWfEx4634N/xTNUM+roV97APGZOqbus5mtwzXdDSvj6KCQsJttA=="
+      },
       "NETStandard.Library": {
         "type": "Direct",
         "requested": "[2.0.3, )",
