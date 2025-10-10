@@ -12,18 +12,9 @@ public class Verify : System.Xml.Serialization.IXmlSerializable
         .AddReference<System.Xml.Serialization.IXmlSerializable>()
         .Verify();
 
-    public System.Xml.Schema.XmlSchema? GetSchema()
-    {
-        throw new NotImplementedException();
-    }
+    public System.Xml.Schema.XmlSchema? GetSchema() => throw new NotImplementedException();
 
-    public void ReadXml(System.Xml.XmlReader reader)
-    {
-        throw new NotImplementedException();
-    }
+    public void ReadXml(System.Xml.XmlReader reader) => throw new NotImplementedException();
 
-    public void WriteXml(System.Xml.XmlWriter writer)
-    {
-        throw new NotImplementedException();
-    }
+    public void WriteXml(System.Xml.XmlWriter writer) => throw new NotImplementedException();
 }

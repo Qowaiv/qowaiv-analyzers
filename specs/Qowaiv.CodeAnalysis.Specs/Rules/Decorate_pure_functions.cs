@@ -6,7 +6,7 @@ public class Verify
     public void CSharp() => new DecoratePureFunctions()
         .ForCS()
         .AddSource(@"Cases/DecoratePureFunctions.cs")
-        .AddReference<FluentAssertions.CustomAssertionAttribute>()
+        .AddReference<AwesomeAssertions.CustomAssertionAttribute>()
         .AddReference<System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute>()
         .Verify();
 }
