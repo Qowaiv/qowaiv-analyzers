@@ -9,7 +9,8 @@ public sealed class UseImmutableTypesForProperties() : ImmutablePropertiesBase(R
     private void Report(SyntaxNodeAnalysisContext context)
     {
         var property = context.Node.PropertyDeclaration(context.SemanticModel);
-        if (IsApplicable(property)
+        if (property.DeclaringType.Symbol?.IsAssignableTo(SystemType.System.Attribute) is false
+            && IsApplicable(property)
             && IsMutable(property.PropertyType))
         {
             context.ReportDiagnostic(Diagnostic, property.PropertyType);

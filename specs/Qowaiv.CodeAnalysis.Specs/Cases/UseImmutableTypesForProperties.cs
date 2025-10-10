@@ -4,6 +4,11 @@ using System.Collections.Generic;
 
 namespace Compliant
 {
+    public sealed class AttributeWithArray : Attribute
+    {
+        public string[] Tags { get; init; } // Compliant {{Only arrays are allowed as collections for attributes.}}
+    }
+
     internal class InternalClass
     {
         public List<int> Value { get; set; } // Compliant {{Internal classes are ignored.}}

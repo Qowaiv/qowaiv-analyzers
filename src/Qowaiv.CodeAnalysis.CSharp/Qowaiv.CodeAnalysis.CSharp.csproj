@@ -21,55 +21,86 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Package config">
-    <Version>2.0.5</Version>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageIconUrl>https://github.com/Qowaiv/qowaiv-analyzers/blob/main/design/package-icon.png</PackageIconUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>http://www.github.com/Qowaiv/qowaiv-analyzers</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/Qowaiv/qowaiv-analyzers</RepositoryUrl>
+    <PackageTags>Qowaiv;Code Analysis</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup Label="Package files">
+    <None Update="tools/*.ps1" Pack="true" PackagePath="/" />
+    <None Include="$(MSBuildThisFileDirectory)../../design/package-icon.png" Pack="true" PackagePath="" Visible="false " />
+    <None Include="$(OutputPath)/Qowaiv.CodeAnalysis.CSharp.dll" Pack="true" PackagePath="analyzers" Visible="false" />
+    <None Include="README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" ExcludeAssets="runtime" />
+  </ItemGroup>
+
+  <ItemGroup Label="Analyzers">
+    <PackageReference PrivateAssets="all" Include="StyleCop.Analyzers.Unstable" />
+    <!-- required by an analyzer, not part of the package -->
+    <PackageReference  PrivateAssets="all" Include="System.Collections.Immutable" />
+  </ItemGroup>
+
+  <ItemGroup Label="Build extensions">
+    <PackageReference PrivateAssets="all" Include="Microsoft.Sbom.Targets" />
+  </ItemGroup>
+
+  <PropertyGroup Label="Version and release notes">
+    <Version>2.0.6</Version>
     <ToBeReleased>
       <![CDATA[
-v2.0.6
+v2.*
 -
       ]]>
     </ToBeReleased>
     <PackageReleaseNotes>
       <![CDATA[
+v2.0.6
+- QW0012: Allow array properties on attributes. (FP)
 v2.0.5
-- QW0003: Readonly modifier is sufficient (FP).
-- QW0100: Define only one Required attribute (NEW RULE).
-- QW0101: Required attribute cannot invalidate value types (NEW RULE).
-- QW0102: Use compliant validation attributes (NEW RULE).
+- QW0003: Readonly modifier is sufficient. (FP)
+- QW0100: Define only one Required attribute. (NEW RULE)
+- QW0101: Required attribute cannot invalidate value types. (NEW RULE)
+- QW0102: Use compliant validation attributes. (NEW RULE)
 v2.0.4
-- QWO0012: Exclude types form System.Collections.Frozen namespace (FP).
+- QWO0012: Exclude types form System.Collections.Frozen namespace. (FP)
 - Generate SBOM.
 v2.0.3
-- QW0017: Apply arithmetic operations on non-nullables only (NEW RULE).
+- QW0017: Apply arithmetic operations on non-nullables only. (NEW RULE)
 v2.0.2
 - QW0011, QW0012: Improve messages.
 v2.0.1
-- QW0016: Only take public records into account (FP).
+- QW0016: Only take public records into account. (FP)
 v2.0.0
 - Depend on Microsoft.CodeAnalysis 4.10.0 (potential breaking).
-- QW0016: Obsolete code and required by base parameters should be ignored (FP).
+- QW0016: Obsolete code and required by base parameters should be ignored. (FP)
 v1.0.9
-- QW0016: Locations are commonly past through as full paths (NEW RULE).
+- QW0016: Locations are commonly past through as full paths. (NEW RULE)
 v1.0.8
-- QW0015: Locations are commonly past through as full paths (FP).
+- QW0015: Locations are commonly past through as full paths. (FP)
 v1.0.7
-- QW0015: Define global using statements in single file (NEW RULE).
-- QW0014: Define global using statements separately (NEW RULE).
+- QW0015: Define global using statements in single file. (NEW RULE)
+- QW0014: Define global using statements separately. (NEW RULE)
 v1.0.6
-- QW0013: Use Qowaiv decimal rounding (NEW RULE).
-- QW0008: Take static read-only Empty properties into account (FN).
+- QW0013: Use Qowaiv decimal rounding. (NEW RULE)
+- QW0008: Take static read-only Empty properties into account. (FN)
 v1.0.5
-- QW0011, QW0012: Ingore IEnumerator and IXmlSerialable (FP).
+- QW0011, QW0012: Ingore IEnumerator and IXmlSerialable. (FP)
 v1.0.4
-- QW0011, QW0012: Ignore types with a mutable base (FP).
+- QW0011, QW0012: Ignore types with a mutable base. (FP)
 v1.0.3
-- QW0012: Types that have Immutable in there name are considered immutable (FP).
-- QW0003: [DoesNotReturn] should be valid alternative for [Pure] (FP).
+- QW0012: Types that have Immutable in there name are considered immutable. (FP)
+- QW0003: [DoesNotReturn] should be valid alternative for [Pure]. (FP)
 v1.0.2
-- QW0012: Reduce FP's by ignoring potential mutable property types (FP).
+- QW0012: Reduce FP's by ignoring potential mutable property types. (FP)
 v1.0.1
 - QW0011: Define properties as immutables.
 - QW0012: Use immutable types for properties.
@@ -113,32 +144,6 @@ v0.0.1
 - QW0002: Parse() throws.
 ]]>
     </PackageReleaseNotes>
-    <PackageProjectUrl>http://www.github.com/Qowaiv/qowaiv-analyzers</PackageProjectUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/Qowaiv/qowaiv-analyzers</RepositoryUrl>
-    <PackageTags>Qowaiv;Code Analysis</PackageTags>
   </PropertyGroup>
-
-  <ItemGroup Label="Package files">
-    <None Update="tools/*.ps1" Pack="true" PackagePath="/" />
-    <None Include="$(MSBuildThisFileDirectory)../../design/package-icon.png" Pack="true" PackagePath="" Visible="false " />
-    <None Include="$(OutputPath)/Qowaiv.CodeAnalysis.CSharp.dll" Pack="true" PackagePath="analyzers" Visible="false" />
-    <None Include="README.md" Pack="true" PackagePath="" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" ExcludeAssets="runtime" />
-  </ItemGroup>
-
-  <ItemGroup Label="Analyzers">
-    <PackageReference PrivateAssets="all" Include="StyleCop.Analyzers.Unstable" />
-    <!-- required by an analyzer, not part of the package -->
-    <PackageReference  PrivateAssets="all" Include="System.Collections.Immutable" />
-  </ItemGroup>
-
-  <ItemGroup Label="Build extensions" Condition="'$(Configuration)' == 'Release'">
-    <PackageReference PrivateAssets="all" Include="Microsoft.Sbom.Targets" />
-  </ItemGroup>
 
 </Project>
