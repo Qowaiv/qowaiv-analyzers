@@ -8,7 +8,7 @@
     <NoWarn>RS1041</NoWarn>
   </PropertyGroup>
  
-  <ItemGroup>
+  <ItemGroup Label="Test case as content, not compilation">
     <Compile Remove="Cases/*.*" />
     <None Include="Cases/*.*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
