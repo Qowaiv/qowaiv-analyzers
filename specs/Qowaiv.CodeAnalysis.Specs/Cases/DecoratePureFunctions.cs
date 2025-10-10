@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics.Contracts;
 using System.Threading.Tasks;
-using FluentAssertions;
+using AwesomeAssertions;
 
 public class Noncompliant
 {

@@ -1,5 +1,5 @@
 global using CodeAnalysis.TestTools;
-global using FluentAssertions;
+global using AwesomeAssertions;
 global using Microsoft.CodeAnalysis;
 global using Microsoft.CodeAnalysis.CodeFixes;
 global using Microsoft.CodeAnalysis.CSharp;
