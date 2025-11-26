@@ -84,4 +84,11 @@ class Compliant
         x /= value;
         x %= value;
     }
+
+    void WithFallBack(int? l, int? r)
+    {
+        int v = 42;
+        var x = (r + r) ?? 0;
+        var y = (l + r) ?? 0;
+    }
 }

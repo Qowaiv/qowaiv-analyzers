@@ -34,6 +34,9 @@ public sealed class ApplyArithmeticOperationsOnNonNullablesOnly() : CodingRule(R
 
     private void Report(SyntaxNodeAnalysisContext context, ExpressionSyntax left, ExpressionSyntax right)
     {
+        // Coalesce expressions are approved way of handling the potential issue.
+        if (left.Ancestors().Any(t => t.IsKind(SyntaxKind.CoalesceExpression))) return;
+
         var l = IsNullable(left);
         var r = IsNullable(right);
 
