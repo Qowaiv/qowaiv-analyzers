@@ -54,7 +54,7 @@
   </ItemGroup>
 
   <PropertyGroup Label="Version and release notes">
-    <Version>2.0.6</Version>
+    <Version>2.0.7</Version>
     <ToBeReleased>
       <![CDATA[
 v2.*
@@ -63,6 +63,8 @@ v2.*
     </ToBeReleased>
     <PackageReleaseNotes>
       <![CDATA[
+v2.0.7
+- QW0017: Coalesce expressions a valid resolutions. (FP)
 v2.0.6
 - QW0012: Allow array properties on attributes. (FP)
 v2.0.5
