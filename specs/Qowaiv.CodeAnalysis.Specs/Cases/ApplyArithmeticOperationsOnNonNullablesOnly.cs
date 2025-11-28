@@ -85,10 +85,11 @@ class Compliant
         x %= value;
     }
 
-    void WithFallBack(int? l, int? r)
+    void WithFallBack(int? null_0, int? null_1)
     {
-        int v = 42;
-        var x = (r + r) ?? 0;
-        var y = (l + r) ?? 0;
+        int notnil = 42;
+        _ = (notnil + null_0) ?? 0;
+        _ = (null_0 + notnil) ?? 0;
+        _ = (null_0 + null_1) ?? 0;
     }
 }
