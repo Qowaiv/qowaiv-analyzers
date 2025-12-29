@@ -45,8 +45,6 @@
 
   <ItemGroup Label="Analyzers">
     <PackageReference PrivateAssets="all" Include="StyleCop.Analyzers.Unstable" />
-    <!-- required by an analyzer, not part of the package -->
-    <PackageReference  PrivateAssets="all" Include="System.Collections.Immutable" />
   </ItemGroup>
 
   <ItemGroup Label="Build extensions">
