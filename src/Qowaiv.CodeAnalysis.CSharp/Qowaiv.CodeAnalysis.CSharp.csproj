@@ -34,7 +34,7 @@
 
   <ItemGroup Label="Package files">
     <None Update="tools/*.ps1" Pack="true" PackagePath="/" />
-    <None Include="$(MSBuildThisFileDirectory)../../design/package-icon.png" Pack="true" PackagePath="" Visible="false " />
+    <None Include="$(MSBuildThisFileDirectory)../../design/package-icon.png" Pack="true" PackagePath="" Visible="false" />
     <None Include="$(OutputPath)/Qowaiv.CodeAnalysis.CSharp.dll" Pack="true" PackagePath="analyzers" Visible="false" />
     <None Include="README.md" Pack="true" PackagePath="" />
   </ItemGroup>
