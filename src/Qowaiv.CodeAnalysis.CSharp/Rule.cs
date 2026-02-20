@@ -182,6 +182,16 @@ public static partial class Rule
         category: Category.Bug,
         tags: ["nullability", "arithmetic"]);
 
+    public static DiagnosticDescriptor UseQowaivClockTimeProvider => New(
+        id: 0018,
+        title: "Use Qowaiv.Clock.TimeProvider",
+        message: "Use Qowaiv.Clock.TimeProvider",
+        description:
+            "The purpose of `Qowaiv.Time` is to provide a time (only) alternative to DateTime. " +
+            "Since .NET 6.0, Microsoft provides TimeOnly.",
+        category: Category.Design,
+        tags: ["Design"]);
+
     public static DiagnosticDescriptor DefineOnlyOneRequiredAttribute => New(
         id: 0100,
         title: "Define only one Required attribute",
