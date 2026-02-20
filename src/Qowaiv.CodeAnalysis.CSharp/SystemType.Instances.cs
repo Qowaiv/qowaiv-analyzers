@@ -20,6 +20,7 @@ public partial class SystemType
         public static readonly SystemType IDisposable = typeof(global::System.IDisposable);
         public static readonly SystemType Math = typeof(global::System.Math);
         public static readonly SystemType ObsoleteAttribute = typeof(global::System.ObsoleteAttribute);
+        public static readonly SystemType TimeProvider = new("System.TimeProvider");
         public static readonly SystemType Type = typeof(global::System.Type);
 
         public static class Collections
@@ -90,6 +91,7 @@ public partial class SystemType
 
     public static class Qowaiv
     {
+        public static readonly SystemType Clock = new("Qowaiv.Clock");
         public static readonly SystemType Date = new("Qowaiv.Date");
 
         public static class Validation
