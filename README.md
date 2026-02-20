@@ -29,10 +29,12 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 * [**QW0015** - Define global using statements in single file](rules/QW0015.md)
 * [**QW0016** - Prefer regular over positional properties](rules/QW0016.md)
 * [**QW0017** - Apply arithmetic operations on non-nullables only](rules/QW0017.md)
+* [**QW0018** - Use Qowaiv.Clock.TimeProvider](rules/QW0018.md)
 
 ### Data Annotation rules
 * [**QW0100** - Define only one Required attribute](rules/QW0100.md)
 * [**QW0101** - Required attribute cannot invalidate value types](rules/QW0101.md)
+* [**QW0102** - Use compliant validation attributes](rules/QW0102.md)
 
 ## Code fixes
 * Use Qowaiv.Clock ([QW0001](rules/QW0001.md), [S6354](https://rules.sonarsource.com/csharp/RSPEC-6354))
@@ -41,3 +43,4 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 * Change type System.DateOnly ([QW0010](rules/QW0010.md))
 * Apply suggestions of obsolete code attribute [CS0618, CS0619](rules/ObsoleteCode.md))
 * Use Qowaiv round extensions ([QW0013](rules/QW0013.md))
+* Use Qowaiv.Clock.TimeProvider ([QW0018](rules/QW0018.md))

@@ -55,8 +55,8 @@
     <Version>2.0.7</Version>
     <ToBeReleased>
       <![CDATA[
-v2.*
--
+v2.1.0
+- QW0018: Use Qowaiv.Clock.TimeProvider. (NEW RULE)
       ]]>
     </ToBeReleased>
     <PackageReleaseNotes>
