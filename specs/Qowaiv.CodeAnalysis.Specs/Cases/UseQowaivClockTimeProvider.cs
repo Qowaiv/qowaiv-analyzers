@@ -37,6 +37,7 @@ class Noncompliant
     public void Argument()
     {
         var provider = new Tools(new FakeTimeProvider()); // Noncompliant
+        //                       ^^^^^^^^^^^^^^^^^^^^^^
         var timestamp = Tools.GetTimestamp(new FakeTimeProvider()); // Noncompliant
     }
 

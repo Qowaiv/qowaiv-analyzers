@@ -14,10 +14,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
- 
-  <ItemGroup>
-    <Compile Include="Cases\UseQowaivClockTimeProvider.cs" />
-  </ItemGroup>
 
   <ItemGroup Label="Test Tools">
     <PackageReference Include="AwesomeAssertions" />
