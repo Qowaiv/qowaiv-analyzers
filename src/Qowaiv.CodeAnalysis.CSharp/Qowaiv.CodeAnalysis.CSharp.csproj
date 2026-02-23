@@ -52,15 +52,18 @@
   </ItemGroup>
 
   <PropertyGroup Label="Version and release notes">
-    <Version>2.0.7</Version>
+    <Version>2.1.0</Version>
     <ToBeReleased>
       <![CDATA[
-v2.1.0
-- QW0018: Use Qowaiv.Clock.TimeProvider. (NEW RULE)
+v2.*
+- ?
       ]]>
     </ToBeReleased>
     <PackageReleaseNotes>
       <![CDATA[
+v2.1.0
+- QW0018: Use Qowaiv.Clock.TimeProvider. (NEW RULE)
+- All code fixes providers come with a FixAllProvider.
 v2.0.7
 - QW0017: Coalesce expressions a valid resolutions. (FP)
 v2.0.6
