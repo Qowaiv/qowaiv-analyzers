@@ -113,7 +113,7 @@ jobs:
           name: nupkg
 
       - name: Create release notes
-        uses: johnyherangi/create-release-notes@main
+        uses: johnyherangi/create-release-notes@aa823dd951f06f4637c22e25a0283b929b505d23
         id: create-release-notes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
