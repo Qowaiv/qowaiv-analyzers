@@ -16,8 +16,9 @@ public sealed class UseQowaivRoundExtensions() : CodeFix(Rule.UseQowaivDecimalRo
     private static Task<Document> ApplySuggestion(InvocationExpressionSyntax syntax, ChangeDocumentContext context)
     {
         var list = syntax.ArgumentList.Arguments;
-        var dec = list[0].Expression;
+        var dec = Parenthesized(list[0].Expression);
         var name = syntax.Expression.Name();
+
         var args = Arguments(list.RemoveAt(0), name);
 
         var member = MemberAccessExpression(SyntaxKind.SimpleMemberAccessExpression, dec, Round);
@@ -25,6 +26,11 @@ public sealed class UseQowaivRoundExtensions() : CodeFix(Rule.UseQowaivDecimalRo
 
         return context.ReplaceNode(syntax, updated);
     }
+
+    private static ExpressionSyntax Parenthesized(ExpressionSyntax exp)
+        => exp is BinaryExpressionSyntax
+        ? ParenthesizedExpression(exp)
+        : exp;
 
     private static IReadOnlyList<ArgumentSyntax> Arguments(SeparatedSyntaxList<ArgumentSyntax> args, string? method) => method switch
     {
