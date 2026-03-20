@@ -13,12 +13,10 @@ public sealed class PreferRegularOverPositionalProperties() : CodingRule(Rule.Pr
             && declaration.ParameterList is { } list
             && context.Node.TypeDeclaration(context.SemanticModel) is { IsPublic: true, IsObsolete: false })
         {
-            foreach (ParameterSyntax parameter in list.Parameters)
+            foreach (ParameterSyntax parameter in list.Parameters
+                .Where(p => !Contains(declaration.BaseList, p)))
             {
-                if (!Contains(declaration.BaseList, parameter))
-                {
-                    context.ReportDiagnostic(Diagnostic, parameter, parameter.Identifier, Message(parameter));
-                }
+                context.ReportDiagnostic(Diagnostic, parameter, parameter.Identifier, Message(parameter));
             }
         }
     }

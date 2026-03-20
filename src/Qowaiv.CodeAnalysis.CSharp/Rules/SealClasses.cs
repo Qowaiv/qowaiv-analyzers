@@ -17,9 +17,7 @@ public sealed class SealClasses() : CodingRule(
 
     private static void ReportUnsealedClasses(TypeDeclaration declaration, SyntaxNodeAnalysisContext context)
     {
-        if (declaration.IsConcrete
-            && !declaration.IsSealed
-            && !declaration.IsObsolete
+        if (declaration is { IsConcrete: true, IsSealed: false, IsObsolete: false }
             && declaration.Symbol is { } type
             && !type.IsAttribute()
             && !type.IsException()

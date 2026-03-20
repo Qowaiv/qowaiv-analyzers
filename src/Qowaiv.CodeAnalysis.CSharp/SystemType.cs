@@ -38,7 +38,7 @@ public sealed partial class SystemType : IEquatable<SystemType>
     public override int GetHashCode() => FullName.GetHashCode();
 
     /// <summary>Casts a <see cref="System.Type"/> to a <see cref="SystemType"/>.</summary>
-    public static implicit operator SystemType(Type type) => new(type.FullName, default);
+    public static implicit operator SystemType(Type type) => new(type.FullName);
 
     private static SystemType New(Type type, SpecialType specialType) => new(type.FullName, specialType);
 

@@ -3,8 +3,8 @@ namespace Microsoft.CodeAnalysis;
 internal static class SymbolExtensions
 {
     [Pure]
-    public static bool Equals(this ITypeSymbol type, ITypeSymbol other, bool IncludeNullability)
-        => type.Equals(other, IncludeNullability ? SymbolEqualityComparer.IncludeNullability : SymbolEqualityComparer.Default);
+    public static bool Equals(this ITypeSymbol type, ITypeSymbol other, bool includeNullability)
+        => type.Equals(other, includeNullability ? SymbolEqualityComparer.IncludeNullability : SymbolEqualityComparer.Default);
 
     [Pure]
     public static bool IsNot(this ITypeSymbol symbol, SystemType type)
