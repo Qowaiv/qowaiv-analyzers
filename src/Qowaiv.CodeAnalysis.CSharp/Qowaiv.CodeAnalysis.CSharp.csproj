@@ -56,7 +56,7 @@
     <ToBeReleased>
       <![CDATA[
 v2.*
-- ?
+- QW0013: CodeFix parenthesizes binary expression. (BUG)
       ]]>
     </ToBeReleased>
     <PackageReleaseNotes>

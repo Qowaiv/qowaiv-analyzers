@@ -22,5 +22,8 @@ class Rounds
         _ = Math.Round(PI, 2);
         _ = Math.Round(value, 2);
         _ = Math.Round(Value());
+
+        _ = Math.Round(PI / 4);
+        _ = Math.Round(42m * value / 1.71m);
     }
 }
