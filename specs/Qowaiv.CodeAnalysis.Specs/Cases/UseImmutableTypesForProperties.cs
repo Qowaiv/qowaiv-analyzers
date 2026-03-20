@@ -35,7 +35,7 @@ namespace Compliant
         public IReadOnlyDictionary<string, int> Dictionary { get; } // Compliant
 
         public IReadOnlyList<int> List { get; } // Compliant
-        
+
         public IReadOnlySet<int> Set { get; } // Compliant
 
         public ReadOnlyList ReadOnlyList { get; } // Compliant
@@ -48,6 +48,17 @@ namespace Compliant
         public RecursiveImmutableClass Recursive { get; } // Compliant
 
         public Guid ReadOnly { get; } // Compliant {{Guids are read-only.}}
+    }
+
+    public class Delegates
+    {
+        public System.Action Action { get; } // Compliant
+
+        public System.Action<string> GenericAction { get; } // Compliant
+
+        public System.Func<int> Function { get; } // Compliant
+
+        public System.Predicate<Delegates> Predicate { get; } // Compliant
     }
 
     public record Record
@@ -105,15 +116,15 @@ namespace Noncompliant
         //     ^^^^^^^^^^^^^^^^
 
         public IList<int> IList { get; } // Noncompliant
-        
+
         public ISet<int> Set { get; } // Noncompliant
-        
+
         public IDictionary<string, int> IDictionary { get; } // Noncompliant
 
         public List<int> List { get; } // Noncompliant
 
         public HashSet<int> HashSet { get; } // Noncompliant
-        
+
         public Dictionary<string, int> Dictionary { get; } // Noncompliant
 
         public MutableClass MutableClass { get; } // Noncompliant
@@ -139,7 +150,7 @@ namespace Noncompliant
     }
 }
 
-public class ImmutableClass 
+public class ImmutableClass
 {
     public int Value { get; init; }
 }
