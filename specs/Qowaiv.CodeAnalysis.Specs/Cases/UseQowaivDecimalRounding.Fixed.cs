@@ -25,5 +25,6 @@ class Rounds
 
         _ = (PI / 4).Round();
         _ = (42m * value / 1.71m).Round();
+        _ = (42m * value / 1.71m).Round();
     }
 }
