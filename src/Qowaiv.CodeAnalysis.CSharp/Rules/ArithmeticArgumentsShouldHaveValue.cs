@@ -12,7 +12,6 @@ public sealed class ApplyArithmeticOperationsOnNonNullablesOnly() : CodingRule(R
             SyntaxKind.AddExpression,
             SyntaxKind.SubtractExpression,
             SyntaxKind.ModuloExpression,
-            // Assignments
             SyntaxKind.MultiplyAssignmentExpression,
             SyntaxKind.DivideAssignmentExpression,
             SyntaxKind.AddAssignmentExpression,

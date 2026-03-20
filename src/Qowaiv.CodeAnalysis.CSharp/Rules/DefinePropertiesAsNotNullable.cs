@@ -60,14 +60,14 @@ public sealed class DefinePropertiesAsNotNullable() : CodingRule(
             => member is IPropertySymbol prop
             && prop.IsReadOnly
             && prop.IsStatic
-            && prop.Type.Equals(prop.ContainingType, IncludeNullability: false)
+            && prop.Type.Equals(prop.ContainingType, includeNullability: false)
             && prop.IsPublic();
 
         static bool IsReadOnlyField(ISymbol member)
             => member is IFieldSymbol field
             && field.IsReadOnly
             && field.IsStatic
-            && field.Type.Equals(field.ContainingType, IncludeNullability: false)
+            && field.Type.Equals(field.ContainingType, includeNullability: false)
             && field.IsPublic();
     }
 }

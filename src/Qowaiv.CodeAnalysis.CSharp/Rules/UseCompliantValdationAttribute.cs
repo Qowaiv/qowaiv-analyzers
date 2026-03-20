@@ -45,6 +45,7 @@ public sealed class UseCompliantValdationAttribute() : CodingRule(Rule.UseCompli
             {
                 data = Validates(attribute);
             }
+
             // If it contains data, its matches everyting.
             Lookup[attribute] = data.Contains(SystemType.System.Object) ? [] : data;
         }

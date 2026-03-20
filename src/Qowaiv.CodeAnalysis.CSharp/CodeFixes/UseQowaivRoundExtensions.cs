@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace Qowaiv.CodeAnalysis.CodeFixes;
@@ -59,12 +60,12 @@ public sealed class UseQowaivRoundExtensions() : CodeFix(Rule.UseQowaivDecimalRo
         ? DecimalRounding(kind)
         : null;
 
-    private static readonly IReadOnlyDictionary<string, string> Kinds = new Dictionary<string, string>
+    private static readonly FrozenDictionary<string, string> Kinds = new Dictionary<string, string>
     {
         ["ToEven"] = "ToEven",
         ["ToZero"] = "DirectTowardsZero",
         ["AwayFromZero"] = "AwayFromZero",
         ["ToPositiveInfinity"] = "Ceiling",
         ["ToNegativeInfinity"] = "Floor",
-    };
+    }.ToFrozenDictionary();
 }
