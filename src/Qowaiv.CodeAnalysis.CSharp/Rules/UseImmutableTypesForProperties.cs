@@ -20,7 +20,7 @@ public sealed class UseImmutableTypesForProperties() : ImmutablePropertiesBase(R
     [Pure]
     private static bool IsMutable(TypeNode type)
         => type.IsArray
-        || (type.Symbol is { } symbol
+        || (type.Symbol is { TypeKind: not TypeKind.Delegate } symbol
             && !ExcludeType(symbol)
             && IsMutable(symbol));
 
