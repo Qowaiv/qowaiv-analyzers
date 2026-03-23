@@ -7,5 +7,6 @@ public class Verify
         .ForCS()
         .AddSource(@"Cases/UseImmutableTypesForProperties.cs")
         .AddReference<System.Collections.Immutable.ImmutableArray<int>>()
+        .AddReference<System.Xml.Serialization.XmlElementAttribute>()
         .Verify();
 }

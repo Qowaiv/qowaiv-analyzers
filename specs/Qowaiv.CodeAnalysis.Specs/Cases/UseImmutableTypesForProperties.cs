@@ -104,6 +104,12 @@ namespace Compliant
         [Obsolete]
         public List<int> Value { get; set; } // Compliant {{Class is obsolete.}}
     }
+
+    public class WithXmlAttribute
+    {
+        [System.Xml.Serialization.XmlElement("value")]
+        public string[] Values { get; init; } = []; // Compliant {{XML Serialization does not work with immutable collections.}}
+    }
 }
 
 namespace Noncompliant
