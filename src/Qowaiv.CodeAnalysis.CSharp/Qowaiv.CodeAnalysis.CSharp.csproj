@@ -56,6 +56,7 @@
     <ToBeReleased>
       <![CDATA[
 v2.*
+- QW0012: Ignore properties decorated with XML serialization related attributes. (FP)
 - QW0012: Consider delegate types immutable. (FP)
 - QW0013: CodeFix parenthesizes binary expression. (BUG)
       ]]>

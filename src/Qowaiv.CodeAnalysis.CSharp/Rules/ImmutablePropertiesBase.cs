@@ -8,8 +8,15 @@ public abstract class ImmutablePropertiesBase(DiagnosticDescriptor supportedDiag
         => IsAccessible(property.Accessibility)
         && !property.IsStatic
         && !property.IsObsolete
+        && !IsXmlSerializable(property)
         && IsApplicable(property.DeclaringType)
         && HasImmutableBase(property.ContainingSymbol);
+
+    [Pure]
+    private static bool IsXmlSerializable(PropertyDeclaration property)
+        => property.Symbol?
+            .GetAttributes()
+        .Any(attr => attr.AttributeClass?.GetFullMetaDataName()?.StartsWith("System.Xml.Serialization.") is true) is true;
 
     [Pure]
     private static bool IsApplicable(TypeDeclaration declaration)
