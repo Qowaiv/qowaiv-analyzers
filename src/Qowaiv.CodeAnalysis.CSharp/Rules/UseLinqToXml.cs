@@ -1,16 +1,15 @@
-using System.Collections.Frozen;
-
 namespace Qowaiv.CodeAnalysis.Rules;
 
-/// <summary>Implements <see cref="Rule.UseSystemXmlLinq"/>.</summary>
+/// <summary>Implements <see cref="Rule.UseLinqToXml"/>.</summary>
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class UseSystemXmlLinq() : CodingRule(Rule.UseSystemXmlLinq)
+public sealed class UseLinqToXml() : CodingRule(Rule.UseLinqToXml)
 {
     protected override void Register(AnalysisContext context)
     {
         context.RegisterSyntaxNodeAction(ReportField, SyntaxKind.FieldDeclaration);
         context.RegisterSyntaxNodeAction(ReportMethod, SyntaxKind.MethodDeclaration);
         context.RegisterSyntaxNodeAction(ReportParameterList, SyntaxKind.ParameterList);
+        context.RegisterSyntaxNodeAction(ReportObjectCreation, SyntaxKind.ObjectCreationExpression);
         context.RegisterSyntaxNodeAction(ReportProperty, SyntaxKind.PropertyDeclaration);
     }
 
@@ -19,6 +18,9 @@ public sealed class UseSystemXmlLinq() : CodingRule(Rule.UseSystemXmlLinq)
 
     private void ReportMethod(SyntaxNodeAnalysisContext context)
         => Report(context.Node.Cast<MethodDeclarationSyntax>().ReturnType, context);
+
+    private void ReportObjectCreation(SyntaxNodeAnalysisContext context)
+        => Report(context.Node.Cast<ObjectCreationExpressionSyntax>().Type, context);
 
     private void ReportParameterList(SyntaxNodeAnalysisContext context)
     {
@@ -35,10 +37,10 @@ public sealed class UseSystemXmlLinq() : CodingRule(Rule.UseSystemXmlLinq)
     {
         foreach (var sub in syntax.SubTypes())
         {
-            if (context.SemanticModel.GetTypeInfo(sub).Type is INamedTypeSymbol type
+            if (context.SemanticModel.GetSymbolInfo(sub).Symbol is INamedTypeSymbol type
                 && Usages.Keys.FirstOrDefault(type.Is) is { } obsolete)
             {
-                context.ReportDiagnostic(Diagnostic, sub, type.Name, Usages[obsolete].ShortName);
+                context.ReportDiagnostic(Diagnostic, sub, Usages[obsolete].ShortName, type.Name);
             }
         }
     }

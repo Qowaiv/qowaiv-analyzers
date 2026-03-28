@@ -1,4 +1,6 @@
 using System.Xml;
+using System.Xml.Schema;
+using System.Xml.Serialization;
 
 class NonCompliant
 {
@@ -16,7 +18,31 @@ class NonCompliant
     {
     }
 
-    private readonly XmlDocument declaration = new(); // Noncompliant
+    private readonly XmlDocument field = new(); // Noncompliant
 
     public XmlDocument Property { get; init; } = new(); // Noncompliant
+
+    public void Creation()
+    {
+        var doc = new XmlDocument(); // Noncompliant
+    }
+
+    public XmlElement ReturnType() // NonCompliant
+    //     ^^^^^^^^^^
+        => Property.GetElementById("id")!;
+}
+
+
+class Compliant : IXmlSerializable
+{
+    public XmlSchema? GetSchema() => null;
+
+    public void Call(NonCompliant model)
+    {
+        var variable = model.Property; // Compliant {{Calling an other class that returns an XmlDocument}}
+    }
+
+    public void ReadXml(XmlReader reader) => reader.MoveToNextAttribute();
+
+    public void WriteXml(XmlWriter writer) => writer.WriteAttributeString("attr", "val");
 }

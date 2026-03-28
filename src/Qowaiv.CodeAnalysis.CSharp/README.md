@@ -18,6 +18,8 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/) (s
 * [**QW0015** - Define global using statements in single file](rules/QW0015.md)
 * [**QW0016** - Prefer regular over positional properties](rules/QW0016.md)
 * [**QW0017** - Apply arithmetic operations on non-nullables only](rules/QW0017.md)
+* [**QW0018** - Use Qowaiv.Clock.TimeProvider](rules/QW0018.md)
+* [**QW0019** - Use System.Xml.Linq handle XML Documents](rules/QW0019.md)
 
 ### Data Annotation rules
 * [**QW0100** - Define only one Required attribute](rules/QW0100.md)

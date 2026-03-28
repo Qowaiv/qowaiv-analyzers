@@ -192,15 +192,16 @@ public static partial class Rule
         category: Category.Design,
         tags: ["Design"]);
 
-    public static DiagnosticDescriptor UseSystemXmlLinq => New(
+    public static DiagnosticDescriptor UseLinqToXml => New(
        id: 0019,
-       title: "Use System.Xml.Linq",
-       message: "Use {0} instead of {1}.",
+       title: "Use LINQ to XML",
+       message: "Use {0} instead of {1}",
        description:
-            "The purpose of `Qowaiv.Date` is to provide a date (only) alternative to DateTime. " +
-            "Since .NET 6.0, Microsoft provides DateOnly.",
+            "With the introduction of LINQ (2008) Microsoft provided a new way " +
+            "of creating XML, using XDocument/XElement. Defacto, the use of " +
+            "XmlDocument/XmlElement has become obsolete since then.",
        category: Category.Design,
-       tags: ["Design", "SVO"]);
+       tags: ["Peroformance", "Clarity", "Obsolete"]);
 
     public static DiagnosticDescriptor DefineOnlyOneRequiredAttribute => New(
         id: 0100,

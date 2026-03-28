@@ -8,6 +8,7 @@ global using Qowaiv.CodeAnalysis.Diagnostics;
 global using Qowaiv.CodeAnalysis.Syntax;
 global using System;
 global using System.Collections;
+global using System.Collections.Frozen;
 global using System.Collections.Generic;
 global using System.Collections.Immutable;
 global using System.Diagnostics;
