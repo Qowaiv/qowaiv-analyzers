@@ -192,6 +192,16 @@ public static partial class Rule
         category: Category.Design,
         tags: ["Design"]);
 
+    public static DiagnosticDescriptor UseSystemXmlLinq => New(
+       id: 0019,
+       title: "Use System.Xml.Linq",
+       message: "Use {0} instead of {1}.",
+       description:
+            "The purpose of `Qowaiv.Date` is to provide a date (only) alternative to DateTime. " +
+            "Since .NET 6.0, Microsoft provides DateOnly.",
+       category: Category.Design,
+       tags: ["Design", "SVO"]);
+
     public static DiagnosticDescriptor DefineOnlyOneRequiredAttribute => New(
         id: 0100,
         title: "Define only one Required attribute",
