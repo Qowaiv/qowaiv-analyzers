@@ -1,8 +1,10 @@
 namespace Qowaiv.CodeAnalysis.Rules;
 
+/// <summary>Implements <see cref="Rule.UseSystemDateOnly"/>.</summary>
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class UseSystemDateOnly() : CodingRule(Rule.UseSystemDateOnly)
 {
+    /// <inheritdoc />
     protected override void Register(AnalysisContext context)
     {
         context.RegisterSyntaxNodeAction(ReportField, SyntaxKind.FieldDeclaration);
@@ -11,13 +13,13 @@ public sealed class UseSystemDateOnly() : CodingRule(Rule.UseSystemDateOnly)
         context.RegisterSyntaxNodeAction(ReportProperty, SyntaxKind.PropertyDeclaration);
     }
 
-    private static void ReportField(SyntaxNodeAnalysisContext context)
+    private void ReportField(SyntaxNodeAnalysisContext context)
         => Report(context.Node.Cast<FieldDeclarationSyntax>().Declaration?.Type, context);
 
-    private static void ReportMethod(SyntaxNodeAnalysisContext context)
+    private void ReportMethod(SyntaxNodeAnalysisContext context)
         => Report(context.Node.Cast<MethodDeclarationSyntax>().ReturnType, context);
 
-    private static void ReportParameterList(SyntaxNodeAnalysisContext context)
+    private void ReportParameterList(SyntaxNodeAnalysisContext context)
     {
         foreach (var type in context.Node.Cast<ParameterListSyntax>().Parameters.Select(p => p.Type))
         {
@@ -25,17 +27,17 @@ public sealed class UseSystemDateOnly() : CodingRule(Rule.UseSystemDateOnly)
         }
     }
 
-    private static void ReportProperty(SyntaxNodeAnalysisContext context)
+    private void ReportProperty(SyntaxNodeAnalysisContext context)
         => Report(context.Node.Cast<PropertyDeclarationSyntax>().Type, context);
 
-    private static void Report(TypeSyntax? syntax, SyntaxNodeAnalysisContext context)
+    private void Report(TypeSyntax? syntax, SyntaxNodeAnalysisContext context)
     {
         foreach (var sub in syntax.SubTypes())
         {
             if (context.SemanticModel.GetTypeInfo(sub).Type is INamedTypeSymbol type
                 && (type.NotNullable() ?? type).Is(SystemType.Qowaiv.Date))
             {
-                context.ReportDiagnostic(Rule.UseSystemDateOnly, sub);
+                context.ReportDiagnostic(Diagnostic, sub);
             }
         }
     }
