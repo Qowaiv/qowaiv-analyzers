@@ -1,5 +1,3 @@
-using Qowaiv.CodeAnalysis.Shared;
-
 namespace Qowaiv.CodeAnalysis.Rules;
 
 /// <summary>Implements <see cref="Rule.UseLinqToXml"/>.</summary>
