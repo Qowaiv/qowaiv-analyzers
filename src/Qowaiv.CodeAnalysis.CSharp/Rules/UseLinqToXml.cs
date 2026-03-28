@@ -1,47 +1,24 @@
+using Qowaiv.CodeAnalysis.Shared;
+
 namespace Qowaiv.CodeAnalysis.Rules;
 
 /// <summary>Implements <see cref="Rule.UseLinqToXml"/>.</summary>
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class UseLinqToXml() : CodingRule(Rule.UseLinqToXml)
+public sealed class UseLinqToXml() : ObsoleteTypes(
+    [
+        SyntaxKind.FieldDeclaration,
+        SyntaxKind.MethodDeclaration,
+        SyntaxKind.ObjectCreationExpression,
+        SyntaxKind.ParameterList,
+        SyntaxKind.PropertyDeclaration,
+    ]
+    , Rule.UseLinqToXml)
 {
-    protected override void Register(AnalysisContext context)
+    protected override void Report(SyntaxNodeAnalysisContext context, TypeSyntax node, INamedTypeSymbol type)
     {
-        context.RegisterSyntaxNodeAction(ReportField, SyntaxKind.FieldDeclaration);
-        context.RegisterSyntaxNodeAction(ReportMethod, SyntaxKind.MethodDeclaration);
-        context.RegisterSyntaxNodeAction(ReportParameterList, SyntaxKind.ParameterList);
-        context.RegisterSyntaxNodeAction(ReportObjectCreation, SyntaxKind.ObjectCreationExpression);
-        context.RegisterSyntaxNodeAction(ReportProperty, SyntaxKind.PropertyDeclaration);
-    }
-
-    private void ReportField(SyntaxNodeAnalysisContext context)
-        => Report(context.Node.Cast<FieldDeclarationSyntax>().Declaration?.Type, context);
-
-    private void ReportMethod(SyntaxNodeAnalysisContext context)
-        => Report(context.Node.Cast<MethodDeclarationSyntax>().ReturnType, context);
-
-    private void ReportObjectCreation(SyntaxNodeAnalysisContext context)
-        => Report(context.Node.Cast<ObjectCreationExpressionSyntax>().Type, context);
-
-    private void ReportParameterList(SyntaxNodeAnalysisContext context)
-    {
-        foreach (var type in context.Node.Cast<ParameterListSyntax>().Parameters.Select(p => p.Type))
+        if (Usages.Keys.FirstOrDefault(type.Is) is { } obsolete)
         {
-            Report(type, context);
-        }
-    }
-
-    private void ReportProperty(SyntaxNodeAnalysisContext context)
-        => Report(context.Node.Cast<PropertyDeclarationSyntax>().Type, context);
-
-    private void Report(TypeSyntax? syntax, SyntaxNodeAnalysisContext context)
-    {
-        foreach (var sub in syntax.SubTypes())
-        {
-            if (context.SemanticModel.GetSymbolInfo(sub).Symbol is INamedTypeSymbol type
-                && Usages.Keys.FirstOrDefault(type.Is) is { } obsolete)
-            {
-                context.ReportDiagnostic(Diagnostic, sub, Usages[obsolete].ShortName, type.Name);
-            }
+            context.ReportDiagnostic(Diagnostic, node, Usages[obsolete].ShortName, type.Name);
         }
     }
 
