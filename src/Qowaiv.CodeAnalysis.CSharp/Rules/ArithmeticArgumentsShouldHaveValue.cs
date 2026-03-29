@@ -1,3 +1,5 @@
+#pragma warning disable S4055 // Literals should not be passed as localized parameters
+
 namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]

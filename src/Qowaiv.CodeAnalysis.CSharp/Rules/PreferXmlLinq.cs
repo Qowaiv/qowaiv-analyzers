@@ -16,7 +16,7 @@ public sealed class PreferXmlLinq() : ObsoleteTypes(
     {
         if (Usages.Keys.FirstOrDefault(type.Is) is { } obsolete)
         {
-            context.ReportDiagnostic(Diagnostic, node, Usages[obsolete].ShortName, type.Name);
+            context.ReportDiagnostic(Diagnostic, node, Usages[obsolete].ShortName, type!.Name);
         }
     }
 

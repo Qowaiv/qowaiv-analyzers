@@ -1,6 +1,6 @@
 namespace Qowaiv.CodeAnalysis.Shared;
 
-public abstract class ObsoleteTypes(ImmutableArray<SyntaxKind> syntaxKinds, DiagnosticDescriptor supportedDiagnostic, params DiagnosticDescriptor[] additional) 
+public abstract class ObsoleteTypes(ImmutableArray<SyntaxKind> syntaxKinds, DiagnosticDescriptor supportedDiagnostic, params DiagnosticDescriptor[] additional)
     : CodingRule(supportedDiagnostic, additional)
 {
     protected abstract void Report(SyntaxNodeAnalysisContext context, TypeSyntax node, INamedTypeSymbol type);
