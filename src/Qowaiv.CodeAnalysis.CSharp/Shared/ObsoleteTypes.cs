@@ -3,7 +3,7 @@ namespace Qowaiv.CodeAnalysis.Shared;
 public abstract class ObsoleteTypes(ImmutableArray<SyntaxKind> syntaxKinds, DiagnosticDescriptor supportedDiagnostic, params DiagnosticDescriptor[] additional)
     : CodingRule(supportedDiagnostic, additional)
 {
-    protected abstract void Report(SyntaxNodeAnalysisContext context, TypeSyntax node, INamedTypeSymbol type);
+    protected internal abstract void Report(SyntaxNodeAnalysisContext context, TypeSyntax node, INamedTypeSymbol type);
 
     protected sealed override void Register(AnalysisContext context)
     {

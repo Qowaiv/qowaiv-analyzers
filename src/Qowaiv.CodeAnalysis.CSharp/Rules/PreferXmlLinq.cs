@@ -12,11 +12,11 @@ public sealed class PreferXmlLinq() : ObsoleteTypes(
     ]
     , Rule.PreferXmlLinq)
 {
-    protected override void Report(SyntaxNodeAnalysisContext context, TypeSyntax node, INamedTypeSymbol type)
+    protected internal override void Report(SyntaxNodeAnalysisContext context, TypeSyntax node, INamedTypeSymbol type)
     {
         if (Usages.Keys.FirstOrDefault(type.Is) is { } obsolete)
         {
-            context.ReportDiagnostic(Diagnostic, node, Usages[obsolete].ShortName, type!.Name);
+            context.ReportDiagnostic(Diagnostic, node, Usages[obsolete].ShortName, type.Name);
         }
     }
 
