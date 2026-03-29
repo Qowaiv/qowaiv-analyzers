@@ -17,7 +17,7 @@ public abstract class ObsoleteTypes(ImmutableArray<SyntaxKind> syntaxKinds, Diag
                     SyntaxKind.ParameterList => ReportParameterList,
                     SyntaxKind.ObjectCreationExpression => ReportObjectCreation,
                     SyntaxKind.PropertyDeclaration => ReportProperty,
-                    _ => throw new NotSupportedException($"Sytnax Kind {kind} is not supported."),
+                    _ => throw new NotSupportedException($"Syntax Kind {kind} is not supported."),
                 },
                 kind);
         }
