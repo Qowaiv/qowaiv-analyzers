@@ -201,7 +201,7 @@ public static partial class Rule
             "of creating XML, using XDocument/XElement. Defacto, the use of " +
             "XmlDocument/XmlElement has become obsolete since then.",
        category: Category.Design,
-       tags: ["Peroformance", "Clarity", "Obsolete"]);
+       tags: ["Performance", "Clarity", "Obsolete"]);
 
     public static DiagnosticDescriptor DefineOnlyOneRequiredAttribute => New(
         id: 0100,
