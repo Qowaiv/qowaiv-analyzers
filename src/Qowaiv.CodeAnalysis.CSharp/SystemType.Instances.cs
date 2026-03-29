@@ -82,6 +82,28 @@ public partial class SystemType
 
         public static class Xml
         {
+            public static readonly SystemType XmlAttribute = typeof(global::System.Xml.XmlAttribute);
+            public static readonly SystemType XmlComment = typeof(global::System.Xml.XmlComment);
+            public static readonly SystemType XmlDocument = typeof(global::System.Xml.XmlDocument);
+            public static readonly SystemType XmlDocumentType = typeof(global::System.Xml.XmlDocumentType);
+            public static readonly SystemType XmlDeclaration = typeof(global::System.Xml.XmlDeclaration);
+            public static readonly SystemType XmlElement = typeof(global::System.Xml.XmlElement);
+            public static readonly SystemType XmlLinkedNode = typeof(global::System.Xml.XmlLinkedNode);
+            public static readonly SystemType XmlNode = typeof(global::System.Xml.XmlNode);
+            public static readonly SystemType XmlText = typeof(global::System.Xml.XmlText);
+
+            public static class Linq
+            {
+                public static readonly SystemType XAttribute = typeof(global::System.Xml.Linq.XAttribute);
+                public static readonly SystemType XComment = typeof(global::System.Xml.Linq.XComment);
+                public static readonly SystemType XDocument = typeof(global::System.Xml.Linq.XDocument);
+                public static readonly SystemType XDocumentType = typeof(global::System.Xml.Linq.XDocumentType);
+                public static readonly SystemType XDeclaration = typeof(global::System.Xml.Linq.XDeclaration);
+                public static readonly SystemType XElement = typeof(global::System.Xml.Linq.XElement);
+                public static readonly SystemType XNode = typeof(global::System.Xml.Linq.XNode);
+                public static readonly SystemType XText = typeof(global::System.Xml.Linq.XText);
+            }
+
             public static class Serialization
             {
                 public static readonly SystemType IXmlSerializable = typeof(global::System.Xml.Serialization.IXmlSerializable);

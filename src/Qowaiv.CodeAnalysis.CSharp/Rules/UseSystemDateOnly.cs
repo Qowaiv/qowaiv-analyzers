@@ -1,42 +1,21 @@
 namespace Qowaiv.CodeAnalysis.Rules;
 
+/// <summary>Implements <see cref="Rule.UseSystemDateOnly"/>.</summary>
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class UseSystemDateOnly() : CodingRule(Rule.UseSystemDateOnly)
+public sealed class UseSystemDateOnly() : ObsoleteTypes(
+    [
+        SyntaxKind.FieldDeclaration,
+        SyntaxKind.MethodDeclaration,
+        SyntaxKind.ParameterList,
+        SyntaxKind.PropertyDeclaration,
+    ]
+    , Rule.UseSystemDateOnly)
 {
-    protected override void Register(AnalysisContext context)
+    protected override void Report(SyntaxNodeAnalysisContext context, TypeSyntax node, INamedTypeSymbol type)
     {
-        context.RegisterSyntaxNodeAction(ReportField, SyntaxKind.FieldDeclaration);
-        context.RegisterSyntaxNodeAction(ReportMethod, SyntaxKind.MethodDeclaration);
-        context.RegisterSyntaxNodeAction(ReportParameterList, SyntaxKind.ParameterList);
-        context.RegisterSyntaxNodeAction(ReportProperty, SyntaxKind.PropertyDeclaration);
-    }
-
-    private static void ReportField(SyntaxNodeAnalysisContext context)
-        => Report(context.Node.Cast<FieldDeclarationSyntax>().Declaration?.Type, context);
-
-    private static void ReportMethod(SyntaxNodeAnalysisContext context)
-        => Report(context.Node.Cast<MethodDeclarationSyntax>().ReturnType, context);
-
-    private static void ReportParameterList(SyntaxNodeAnalysisContext context)
-    {
-        foreach (var type in context.Node.Cast<ParameterListSyntax>().Parameters.Select(p => p.Type))
+        if ((type.NotNullable() ?? type).Is(SystemType.Qowaiv.Date))
         {
-            Report(type, context);
-        }
-    }
-
-    private static void ReportProperty(SyntaxNodeAnalysisContext context)
-        => Report(context.Node.Cast<PropertyDeclarationSyntax>().Type, context);
-
-    private static void Report(TypeSyntax? syntax, SyntaxNodeAnalysisContext context)
-    {
-        foreach (var sub in syntax.SubTypes())
-        {
-            if (context.SemanticModel.GetTypeInfo(sub).Type is INamedTypeSymbol type
-                && (type.NotNullable() ?? type).Is(SystemType.Qowaiv.Date))
-            {
-                context.ReportDiagnostic(Rule.UseSystemDateOnly, sub);
-            }
+            context.ReportDiagnostic(Diagnostic, node);
         }
     }
 }

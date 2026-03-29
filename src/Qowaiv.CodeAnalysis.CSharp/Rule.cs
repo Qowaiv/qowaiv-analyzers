@@ -1,7 +1,6 @@
 #pragma warning disable SA1118 // Parameter should not span multiple lines.
+#pragma warning disable S4055 // Literals should not be passed as localized parameters
 // For readability, here it is preferred.
-
-using static Qowaiv.CodeAnalysis.Syntax.TypeDeclaration;
 
 namespace Qowaiv.CodeAnalysis;
 
@@ -191,6 +190,17 @@ public static partial class Rule
             "Since .NET 6.0, Microsoft provides TimeOnly.",
         category: Category.Design,
         tags: ["Design"]);
+
+    public static DiagnosticDescriptor PreferXmlLinq => New(
+       id: 0019,
+       title: "Prefer XML to LINQ over DOM",
+       message: "Use {0} instead of {1}",
+       description:
+            "With the introduction of LINQ (2008) Microsoft provided a new way " +
+            "of creating XML, using XDocument/XElement. Defacto, the use of " +
+            "XmlDocument/XmlElement has become obsolete since then.",
+       category: Category.Design,
+       tags: ["Performance", "Clarity", "Obsolete"]);
 
     public static DiagnosticDescriptor DefineOnlyOneRequiredAttribute => New(
         id: 0100,
