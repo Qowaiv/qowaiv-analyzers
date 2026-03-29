@@ -192,9 +192,9 @@ public static partial class Rule
         category: Category.Design,
         tags: ["Design"]);
 
-    public static DiagnosticDescriptor UseLinqToXml => New(
+    public static DiagnosticDescriptor PreferXmlLinq => New(
        id: 0019,
-       title: "Use LINQ to XML",
+       title: "Prefer XML to LINQ over DOM",
        message: "Use {0} instead of {1}",
        description:
             "With the introduction of LINQ (2008) Microsoft provided a new way " +

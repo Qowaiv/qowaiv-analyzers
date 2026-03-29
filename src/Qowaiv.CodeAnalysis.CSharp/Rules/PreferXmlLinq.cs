@@ -1,8 +1,8 @@
 namespace Qowaiv.CodeAnalysis.Rules;
 
-/// <summary>Implements <see cref="Rule.UseLinqToXml"/>.</summary>
+/// <summary>Implements <see cref="Rule.PreferXmlLinq"/>.</summary>
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class UseLinqToXml() : ObsoleteTypes(
+public sealed class PreferXmlLinq() : ObsoleteTypes(
     [
         SyntaxKind.FieldDeclaration,
         SyntaxKind.MethodDeclaration,
@@ -10,7 +10,7 @@ public sealed class UseLinqToXml() : ObsoleteTypes(
         SyntaxKind.ParameterList,
         SyntaxKind.PropertyDeclaration,
     ]
-    , Rule.UseLinqToXml)
+    , Rule.PreferXmlLinq)
 {
     protected override void Report(SyntaxNodeAnalysisContext context, TypeSyntax node, INamedTypeSymbol type)
     {

@@ -56,7 +56,7 @@
     <ToBeReleased>
       <![CDATA[
 v2.2.0
-- QW0019: Use LINQ to XML. (NEW RULE)
+- QW0019: Prefer XML to LINQ over DOM. (NEW RULE)
       ]]>
     </ToBeReleased>
     <PackageReleaseNotes>
