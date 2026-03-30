@@ -11,6 +11,7 @@ public static class SyntaxNodeExtensions
     {
         ArgumentSyntax n /*...............*/ => Name(n.Expression),
         AttributeSyntax n /*..............*/ => Name(n.Name),
+        ExpressionStatementSyntax n /*....*/ => Name(n.Expression),
         FieldDeclarationSyntax n /*.......*/ => Name(n.Declaration),
         IdentifierNameSyntax n /*.........*/ => n.Identifier.Text,
         InvocationExpressionSyntax n /*...*/ => Name(n.Expression),

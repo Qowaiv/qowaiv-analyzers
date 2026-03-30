@@ -10,7 +10,7 @@
     <PackageVersion Include="AwesomeAssertions.Analyzers" Version="9.0.8" />
     <PackageVersion Include="CodeAnalysis.TestTools" Version="4.0.0" />
     <PackageVersion Include="coverlet.collector" Version="8.0.1" />
-    <PackageVersion Include="DotNetProjectFile.Analyzers.Sdk" Version="1.9.0" />
+    <PackageVersion Include="DotNetProjectFile.Analyzers.Sdk" Version="1.10.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="[5.0.0,)" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.3.0" />
     <PackageVersion Include="Microsoft.Sbom.Targets" Version="4.1.5" />
@@ -18,7 +18,7 @@
     <PackageVersion Include="NuGet.Packaging" Version="7.3.0" />
     <PackageVersion Include="NUnit" Version="4.5.1" />
     <PackageVersion Include="NUnit.Analyzers" Version="4.12.0" />
-    <PackageVersion Include="NUnit3TestAdapter" Version="6.1.0" />
+    <PackageVersion Include="NUnit3TestAdapter" Version="6.2.0" />
     <PackageVersion Include="Qowaiv" Version="8.0.0" />
     <PackageVersion Include="Qowaiv.DomainModel" Version="2.0.0" />
     <PackageVersion Include="StyleCop.Analyzers.Unstable" Version="1.2.0.556" />
@@ -26,8 +26,8 @@
     <PackageVersion Include="System.Security.Cryptography.Xml" Version="10.0.5" />
   </ItemGroup>
   <ItemGroup>
-    <GlobalPackageReference Include="DotNetProjectFile.Analyzers" Version="1.9.0" />
+    <GlobalPackageReference Include="DotNetProjectFile.Analyzers" Version="1.10.0" />
     <GlobalPackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="5.3.0" />
-    <GlobalPackageReference Include="SonarAnalyzer.CSharp" Version="10.21.0.135717" />
+    <GlobalPackageReference Include="SonarAnalyzer.CSharp" Version="10.22.0.136894" />
   </ItemGroup>
 </Project>

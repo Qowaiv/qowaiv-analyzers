@@ -7,12 +7,23 @@ namespace Noncompliant
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
+    public class Startup
+    {
+        public void Configure()
+        {
+            AddNewtonsoftJson(); // Noncompliant
+        //  ^^^^^^^^^^^^^^^^^^^^
+        }
+
+        private static int AddNewtonsoftJson() => 42;
+    }
+
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)] // Noncompliant
     [JsonConverter(typeof(CustomJsonConverter))] // Noncompliant
     public class  AnnotatedModel
     {
         [JsonConstructor] // Noncompliant {{Use System.Text.Json for JSON serialization}}
-//       ^^^^^^^^^^^^^^^
+    //   ^^^^^^^^^^^^^^^
         public AnnotatedModel(string value) => Value = value;
 
         [JsonProperty("value")] // Noncompliant

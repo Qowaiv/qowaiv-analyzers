@@ -5,7 +5,7 @@ public abstract class ObsoleteTypes(ImmutableArray<SyntaxKind> syntaxKinds, Diag
 {
     protected abstract void Report(SyntaxNodeAnalysisContext context, SyntaxNode node, INamedTypeSymbol type);
 
-    protected sealed override void Register(AnalysisContext context)
+    protected override void Register(AnalysisContext context)
     {
         foreach (var kind in SyntaxKinds)
         {
