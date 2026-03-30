@@ -1,6 +1,6 @@
 namespace Qowaiv.CodeAnalysis.Rules;
 
-/// <summary>Implements <see cref="Rule.UseSystemDateOnly"/>.</summary>
+/// <summary>Implements <see cref="Rule.UseSystemTextJson"/>.</summary>
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class UseSystemTextJson() : ObsoleteTypes(
     [
