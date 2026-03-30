@@ -81,6 +81,7 @@ dotnet_diagnostic.SA1515.severity   = suggestion # Single-line comment should be
 
 dotnet_diagnostic.S100.severity     = none       # Properties should be named in PascalCase
 dotnet_diagnostic.S101.severity     = none       # Types should be named in PascalCase
+dotnet_diagnostic.S1067.severity    = none       # Expressions should not be too complex
 dotnet_diagnostic.S1541.severity    = none       # Methods and properties should not be too complex
 dotnet_diagnostic.S1694.severity    = none       # An abstract class should have both abstract and concrete methods
 dotnet_diagnostic.S2178.severity    = none       # Short-circuit logic should be used in boolean contexts - '&' is used instead of && to accommodate expressions with nullable booleans too.
