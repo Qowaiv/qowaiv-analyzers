@@ -27,10 +27,7 @@ internal sealed class ChangeDocumentContext(
 
     public SyntaxToken Token => Root.FindToken(Diagnostic.Location.SourceSpan.Start);
 
-    public SyntaxNode? Node => node ??= Root.FindNode(Diagnostic.Location.SourceSpan);
-
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private SyntaxNode? node;
+    public SyntaxNode? Node => field ??= Root.FindNode(Diagnostic.Location.SourceSpan);
 
     public void RegisterFix(
             string title,

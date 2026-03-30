@@ -33,20 +33,15 @@ public sealed class PropertyDeclaration : SyntaxAbstraction<IPropertySymbol>
         => Symbol is { } symbol
         && symbol.IsObsolete();
 
-    public TypeNode PropertyType => propertyType ??= TypedNode.Type.TypeNode(SemanticModel);
-
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private TypeNode? propertyType;
+    public TypeNode PropertyType => field ??= TypedNode.Type.TypeNode(SemanticModel);
 
     public TypeDeclaration DeclaringType
-        => declaringType ??= TypedNode
+        => field
+        ??= TypedNode
             .Ancestors()
             .Select(node => node.TryTypeDeclaration(SemanticModel))
             .OfType<TypeDeclaration>()
             .First();
-
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private TypeDeclaration? declaringType;
 
     [Pure]
     protected override IPropertySymbol? GetSymbol(SemanticModel semanticModel)

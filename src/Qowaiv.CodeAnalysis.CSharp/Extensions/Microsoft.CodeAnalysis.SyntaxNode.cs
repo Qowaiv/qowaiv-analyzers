@@ -1,3 +1,4 @@
+#pragma warning disable S1200 // Classes should not be coupled to too many other classes
 namespace Microsoft.CodeAnalysis;
 
 public static class SyntaxNodeExtensions

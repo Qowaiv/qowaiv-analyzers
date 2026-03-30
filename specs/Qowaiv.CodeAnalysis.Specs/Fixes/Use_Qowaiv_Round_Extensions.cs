@@ -22,10 +22,7 @@ public class Rounding
     [TestCase(MidpointRounding.ToPositiveInfinity, DecimalRounding.Ceiling)]
     [TestCase(MidpointRounding.ToNegativeInfinity, DecimalRounding.Floor)]
     public void Are_equivalent(MidpointRounding midpointRounding, DecimalRounding decimalRounding)
-    {
-        numbers.Should().AllSatisfy(n => 
-            n.Round(0, decimalRounding).Should().Be(Math.Round(n, midpointRounding), because: $"{n}"));
-    }
+        => numbers.Should().AllSatisfy(n => n.Round(0, decimalRounding).Should().Be(Math.Round(n, midpointRounding), because: $"{n}"));
 
     public static readonly decimal[] numbers =
     [

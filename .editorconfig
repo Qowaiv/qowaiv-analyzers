@@ -20,5 +20,11 @@ indent_size = 2
 # Roslyn Analyzers
 [*.cs]
 
+csharp_style_expression_bodied_constructors = true
+csharp_style_expression_bodied_methods = true
+csharp_style_expression_bodied_operators = true
+csharp_style_expression_bodied_properties = true
+csharp_style_expression_bodied_indexers = true
+
 vsspell_section_id = main
 vsspell_ignored_words_main = File:dictionary.dic

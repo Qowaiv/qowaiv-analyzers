@@ -1,3 +1,5 @@
+#pragma warning disable IDE0001 // Simplify Names [Justification: Easier to check that properties are in the rigth class]
+
 namespace Qowaiv.CodeAnalysis;
 
 public partial class SystemType

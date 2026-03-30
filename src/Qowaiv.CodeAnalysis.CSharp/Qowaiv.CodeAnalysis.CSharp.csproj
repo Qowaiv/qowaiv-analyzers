@@ -5,6 +5,7 @@
     <PackageId>Qowaiv.Analyzers.CSharp</PackageId>
     <RootNamespace>Qowaiv.CodeAnalysis</RootNamespace>
     <OutputType>library</OutputType>
+    <NoWarn>S3900</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Label="Build conditions">
