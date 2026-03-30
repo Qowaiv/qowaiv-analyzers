@@ -5,21 +5,18 @@ namespace Qowaiv.CodeAnalysis.Rules;
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class ApplyArithmeticOperationsOnNonNullablesOnly() : CodingRule(Rule.ApplyArithmeticOperationsOnNonNullablesOnly)
 {
-    protected override void Register(AnalysisContext context)
-    {
-        context.RegisterSyntaxNodeAction(
-            Report,
-            SyntaxKind.MultiplyExpression,
-            SyntaxKind.DivideExpression,
-            SyntaxKind.AddExpression,
-            SyntaxKind.SubtractExpression,
-            SyntaxKind.ModuloExpression,
-            SyntaxKind.MultiplyAssignmentExpression,
-            SyntaxKind.DivideAssignmentExpression,
-            SyntaxKind.AddAssignmentExpression,
-            SyntaxKind.SubtractAssignmentExpression,
-            SyntaxKind.ModuloAssignmentExpression);
-    }
+    protected override void Register(AnalysisContext context) => context.RegisterSyntaxNodeAction(
+        Report,
+        SyntaxKind.MultiplyExpression,
+        SyntaxKind.DivideExpression,
+        SyntaxKind.AddExpression,
+        SyntaxKind.SubtractExpression,
+        SyntaxKind.ModuloExpression,
+        SyntaxKind.MultiplyAssignmentExpression,
+        SyntaxKind.DivideAssignmentExpression,
+        SyntaxKind.AddAssignmentExpression,
+        SyntaxKind.SubtractAssignmentExpression,
+        SyntaxKind.ModuloAssignmentExpression);
 
     private void Report(SyntaxNodeAnalysisContext context)
     {

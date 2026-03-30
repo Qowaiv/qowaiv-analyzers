@@ -1,4 +1,3 @@
-using System.Collections.Frozen;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace Qowaiv.CodeAnalysis.CodeFixes;

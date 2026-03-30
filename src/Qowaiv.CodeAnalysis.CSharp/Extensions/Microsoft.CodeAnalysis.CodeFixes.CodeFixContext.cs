@@ -1,5 +1,3 @@
-using Qowaiv.CodeAnalysis.CodeFixes;
-
 namespace Microsoft.CodeAnalysis.CodeFixes;
 
 /// <summary>Extensions on <see cref="CodeFixContext"/>.</summary>

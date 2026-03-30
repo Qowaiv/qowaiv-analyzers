@@ -18,7 +18,7 @@ public class Rules
         .Languages.Should().BeEquivalentTo("C#");
 
     private static IEnumerable<Type> Types
-        => typeof(global::Qowaiv.CodeAnalysis.Rule).Assembly
+        => typeof(Rule).Assembly
         .GetTypes()
         .Where(t => !t.IsAbstract && t.IsAssignableTo(typeof(DiagnosticAnalyzer)));
 }
@@ -39,7 +39,7 @@ public class CodeFixes
         .Languages.Should().BeEquivalentTo("C#");
 
     private static IEnumerable<Type> Types
-        => typeof(global::Qowaiv.CodeAnalysis.Rule).Assembly
+        => typeof(Rule).Assembly
         .GetTypes()
         .Where(t =>!t.IsAbstract && t.IsAssignableTo(typeof(CodeFixProvider)));
 }

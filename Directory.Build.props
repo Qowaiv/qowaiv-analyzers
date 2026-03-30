@@ -10,6 +10,7 @@
     <LangVersion>14.0</LangVersion>
     <Nullable>enable</Nullable>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <NuGetAuditMode>all</NuGetAuditMode>
     <IsPackable>false</IsPackable>
     <IsPublishable>false</IsPublishable>

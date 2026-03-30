@@ -7,6 +7,6 @@ public class Verify
         .ForCS()
         .AddSource(@"Cases/UseQowaivClockTimeProvider.cs")
         .AddReference<Qowaiv.Date>()
-        .AddReference<System.TimeProvider>()
+        .AddReference<TimeProvider>()
         .Verify();
 }
