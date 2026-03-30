@@ -11,7 +11,7 @@ public sealed class UseSystemDateOnly() : ObsoleteTypes(
     ]
     , Rule.UseSystemDateOnly)
 {
-    protected internal override void Report(SyntaxNodeAnalysisContext context, TypeSyntax node, INamedTypeSymbol type)
+    protected override void Report(SyntaxNodeAnalysisContext context, SyntaxNode node, INamedTypeSymbol type)
     {
         if ((type.NotNullable() ?? type).Is(SystemType.Qowaiv.Date))
         {

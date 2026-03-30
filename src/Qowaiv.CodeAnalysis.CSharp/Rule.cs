@@ -202,6 +202,16 @@ public static partial class Rule
        category: Category.Design,
        tags: ["Performance", "Clarity", "Obsolete"]);
 
+    public static DiagnosticDescriptor UseSystemTextJson => New(
+        id: 0020,
+        title: "Prefer System.Text.Json over Newtonsoft.Json",
+        message: "Use System.Text.Json for JSON serialization",
+        description:
+            "Use System.Text.Json for JSON serialization as it is both faster, " +
+            "with a smaller memory footprint, and built-in in the .NET framework.",
+        category: Category.Design,
+        tags: ["Performance", "Clarity", "Obsolete"]);
+
     public static DiagnosticDescriptor DefineOnlyOneRequiredAttribute => New(
         id: 0100,
         title: "Define only one Required attribute",

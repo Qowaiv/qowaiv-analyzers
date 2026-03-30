@@ -18,6 +18,7 @@
   <ItemGroup Label="Test Tools">
     <PackageReference Include="AwesomeAssertions" />
     <PackageReference Include="CodeAnalysis.TestTools" />
+    <PackageReference Include="Newtonsoft.Json" />
     <PackageReference Include="NuGet.Packaging" />
     <PackageReference Include="NUnit" />
   </ItemGroup>
