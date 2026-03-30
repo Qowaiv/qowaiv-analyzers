@@ -31,6 +31,7 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 * [**QW0017** - Apply arithmetic operations on non-nullables only](rules/QW0017.md)
 * [**QW0018** - Use Qowaiv.Clock.TimeProvider](rules/QW0018.md)
 * [**QW0019** - Prefer XML to LINQ over DOM](rules/QW0019.md)
+* [**QW0020** - Prefer System.Text.Json over Newtonsoft.Json](rules/QW0020.md)
 
 ### Data Annotation rules
 * [**QW0100** - Define only one Required attribute](rules/QW0100.md)

@@ -53,15 +53,18 @@
   </ItemGroup>
 
   <PropertyGroup Label="Version and release notes">
-    <Version>2.1.1</Version>
+    <Version>2.2.0</Version>
     <ToBeReleased>
       <![CDATA[
-v2.2.0
-- QW0019: Prefer XML to LINQ over DOM. (NEW RULE)
+v2.*
+- ?
       ]]>
     </ToBeReleased>
     <PackageReleaseNotes>
       <![CDATA[
+v2.2.0
+- QW0019: Prefer XML to LINQ over DOM. (NEW RULE)
+- QW0020: Prefer System.Text.Json over Newtonsoft.Json. (NEW RULE)
 v2.1.1
 - QW0012: Ignore properties decorated with XML serialization related attributes. (FP)
 - QW0012: Consider delegate types immutable. (FP)

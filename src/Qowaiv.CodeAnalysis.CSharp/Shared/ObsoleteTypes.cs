@@ -3,7 +3,7 @@ namespace Qowaiv.CodeAnalysis.Shared;
 public abstract class ObsoleteTypes(ImmutableArray<SyntaxKind> syntaxKinds, DiagnosticDescriptor supportedDiagnostic, params DiagnosticDescriptor[] additional)
     : CodingRule(supportedDiagnostic, additional)
 {
-    protected internal abstract void Report(SyntaxNodeAnalysisContext context, TypeSyntax node, INamedTypeSymbol type);
+    protected abstract void Report(SyntaxNodeAnalysisContext context, SyntaxNode node, INamedTypeSymbol type);
 
     protected sealed override void Register(AnalysisContext context)
     {
@@ -12,14 +12,24 @@ public abstract class ObsoleteTypes(ImmutableArray<SyntaxKind> syntaxKinds, Diag
             context.RegisterSyntaxNodeAction(
                 kind switch
                 {
+                    SyntaxKind.Attribute => ReportAttribute,
                     SyntaxKind.FieldDeclaration => ReportField,
                     SyntaxKind.MethodDeclaration => ReportMethod,
                     SyntaxKind.ParameterList => ReportParameterList,
                     SyntaxKind.ObjectCreationExpression => ReportObjectCreation,
                     SyntaxKind.PropertyDeclaration => ReportProperty,
+                    SyntaxKind.SimpleBaseType => ReportSimpleBaseType,
                     _ => throw new NotSupportedException($"Syntax Kind {kind} is not supported."),
                 },
                 kind);
+        }
+    }
+
+    private void ReportAttribute(SyntaxNodeAnalysisContext context)
+    {
+        if (new AttributeDecoration(context.Node.Cast<AttributeSyntax>(), context.SemanticModel).Symbol is { } symbol)
+        {
+            Report(context, context.Node, symbol);
         }
     }
 
@@ -43,13 +53,16 @@ public abstract class ObsoleteTypes(ImmutableArray<SyntaxKind> syntaxKinds, Diag
     private void ReportProperty(SyntaxNodeAnalysisContext context)
         => Report(context.Node.Cast<PropertyDeclarationSyntax>().Type, context);
 
+    private void ReportSimpleBaseType(SyntaxNodeAnalysisContext context)
+        => Report(context.Node.Cast<SimpleBaseTypeSyntax>().Type, context);
+
     private void Report(TypeSyntax? syntax, SyntaxNodeAnalysisContext context)
     {
-        foreach (var sub in syntax.SubTypes())
+        foreach (var node in syntax.SubTypes())
         {
-            if (context.SemanticModel.GetSymbolInfo(sub).Symbol is INamedTypeSymbol type)
+            if (context.SemanticModel.GetSymbolInfo(node).Symbol is INamedTypeSymbol type)
             {
-                Report(context, sub, type);
+                Report(context, node, type);
             }
         }
     }
