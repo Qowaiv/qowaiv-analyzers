@@ -242,6 +242,17 @@ public static partial class Rule
         category: Category.Bug,
         tags: ["Data Annotations", "Validation", "ValidationAttribute"]);
 
+    public static DiagnosticDescriptor DecorateValidationAttributes => New(
+       id: 0103,
+       title: "Decorate validation attributes",
+       message: "The attribute lacks a [Validates(Type)] attribute",
+       description:
+           "To ensure that validation attributes are only used on properties " +
+            "that can be validated, they should be decorated with the " +
+            "[Validates(Type)] attribute, so that QW0102 can enforce usage.",
+       category: Category.Testabilty,
+       tags: ["Data Annotations", "Validation", "ValidationAttribute"]);
+
 #pragma warning disable S107 // Methods should not have too many parameters
     // it calls a ctor with even more arguments.
     private static DiagnosticDescriptor New(

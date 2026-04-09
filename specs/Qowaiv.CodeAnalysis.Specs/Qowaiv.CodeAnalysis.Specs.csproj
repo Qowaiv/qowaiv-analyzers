@@ -37,6 +37,7 @@
   <ItemGroup Label="Other">
     <PackageReference Include="Qowaiv" />
     <PackageReference Include="Qowaiv.DomainModel" />
+    <PackageReference Include="Qowaiv.Validation.DataAnnotations" />
     <PackageReference Include="System.Drawing.Common" />
     <PackageReference Include="System.Security.Cryptography.Xml" />
   </ItemGroup>
