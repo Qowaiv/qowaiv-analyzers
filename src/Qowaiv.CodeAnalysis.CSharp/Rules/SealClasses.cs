@@ -38,7 +38,9 @@ public sealed class SealClasses() : CodingRule(
             && declaration.Symbol is { } type
             && !type.IsAttribute()
             && Decorated(type.GetAttributes()) is { } decorated
-            && declaration.Attributes.FirstOrDefault(a => IsDecorated(a, decorated)) is { } attr)
+            && declaration.AttributeLists
+                .SelectMany(a => a.Attributes)
+                .FirstOrDefault(a => IsDecorated(a, decorated)) is { } attr)
         {
             context.ReportDiagnostic(
                 Rule.OnlyUnsealedConcreteClassesCanBeInheritable,

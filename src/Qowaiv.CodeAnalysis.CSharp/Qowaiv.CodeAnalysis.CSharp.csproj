@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -53,7 +53,7 @@
   </ItemGroup>
 
   <PropertyGroup Label="Version and release notes">
-    <Version>2.2.0</Version>
+    <Version>2.3.0</Version>
     <ToBeReleased>
       <![CDATA[
 v2.*
@@ -62,6 +62,9 @@ v2.*
     </ToBeReleased>
     <PackageReleaseNotes>
       <![CDATA[
+v2.3.0
+- QW0103: Decorate validation attributes. (NEW RULE)
+- QW0104: Use validates attribute on validation attributes only. (NEW RULE)
 v2.2.0
 - QW0019: Prefer XML to LINQ over DOM. (NEW RULE)
 - QW0020: Prefer System.Text.Json over Newtonsoft.Json. (NEW RULE)

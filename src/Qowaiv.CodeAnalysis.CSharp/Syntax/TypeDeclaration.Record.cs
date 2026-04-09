@@ -8,6 +8,8 @@ public partial class TypeDeclaration
 
         public override SyntaxList<AttributeListSyntax> AttributeLists => TypedNode.AttributeLists;
 
+        public override SyntaxToken Identifier => TypedNode.Identifier;
+
         public override IEnumerable<SyntaxKind> Modifiers => TypedNode.Modifiers.Select(m => m.Kind());
     }
 }

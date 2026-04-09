@@ -242,6 +242,27 @@ public static partial class Rule
         category: Category.Bug,
         tags: ["Data Annotations", "Validation", "ValidationAttribute"]);
 
+    public static DiagnosticDescriptor DecorateValidationAttributes => New(
+        id: 0103,
+        title: "Decorate validation attributes",
+        message: "The attribute lacks a [Validates] attribute",
+        description:
+           "To ensure that validation attributes are only used on properties " +
+            "that can be validated, they should be decorated with the " +
+            "[Validates] attribute, so that QW0102 can enforce usage.",
+        category: Category.Design,
+        tags: ["Data Annotations", "Validation", "ValidationAttribute"]);
+
+    public static DiagnosticDescriptor UseValidatesAttributeOnValidationAttributesOnly => New(
+        id: 0104,
+        title: "Use validates attribute on validation attributes only",
+        message: "The [Validates] attribute has no meaning on this type",
+        description:
+            "The [Validates] attribute only has meaning when defined on a " +
+            "validation attribute.",
+        category: Category.Bug,
+        tags: ["Data Annotations", "Validation", "ValidationAttribute"]);
+
 #pragma warning disable S107 // Methods should not have too many parameters
     // it calls a ctor with even more arguments.
     private static DiagnosticDescriptor New(

@@ -5,17 +5,21 @@ public abstract partial class TypeDeclaration(SyntaxNode node, SemanticModel sem
 {
     public abstract SyntaxList<AttributeListSyntax> AttributeLists { get; }
 
-    public IEnumerable<AttributeSyntax> Attributes => AttributeLists.SelectMany(a => a.Attributes);
+    public abstract SyntaxToken Identifier { get; }
+
+    public IEnumerable<AttributeDecoration> Attributes => AttributeLists
+        .SelectMany(a => a.Attributes)
+        .Select(a => new AttributeDecoration(a, SemanticModel));
 
     public bool IsConcrete => !IsAbstract && !IsStatic;
 
     public bool IsStatic
         => Modifiers.Contains(SyntaxKind.StaticKeyword)
-        || (IsPartial && Symbol?.IsStatic == true);
+        || (IsPartial && Symbol?.IsStatic is true);
 
     public bool IsSealed
         => Modifiers.Contains(SyntaxKind.SealedKeyword)
-        || (IsPartial && Symbol?.IsSealed == true);
+        || (IsPartial && Symbol?.IsSealed is true);
 
     public Accessibility Accessibility
         => IsPartial && Symbol is { } s
@@ -24,13 +28,13 @@ public abstract partial class TypeDeclaration(SyntaxNode node, SemanticModel sem
 
     public bool IsAbstract
         => Modifiers.Contains(SyntaxKind.AbstractKeyword)
-        || (IsPartial && Symbol?.IsAbstract == true);
+        || (IsPartial && Symbol?.IsAbstract is true);
 
     public bool IsPartial => Modifiers.Contains(SyntaxKind.PartialKeyword);
 
     public bool IsPublic
         => Modifiers.Contains(SyntaxKind.PublicKeyword)
-        || (IsPartial && Symbol?.IsPublic() == true);
+        || (IsPartial && Symbol?.IsPublic() is true);
 
     public bool IsObsolete
         => (IsPartial || Attributes.Any())
