@@ -4,14 +4,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NonCompliant
 {
-    public sealed class NotDecoratedValidationAttribute : ValidationAttribute // Noncompliant {{The attribute lacks a [Validates(Type)] attribute}}
+    public sealed class NotDecoratedValidationAttribute : ValidationAttribute // Noncompliant {{The attribute lacks a [Validates] attribute}}
     //                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     {
         public override bool IsValid(object? value) => true;
     }
 
     [AttributeUsage(AttributeTargets.Property)]
-    public class DecoratedWithUsageAttribute: ValidationAttribute // Noncompliant
+    public class DecoratedWithUsageAttribute : ValidationAttribute // Noncompliant
     {
         public override bool IsValid(object? value) => true;
     }
@@ -30,7 +30,7 @@ namespace Compliant
         public override bool IsValid(object? value) => true;
     }
 
-    public class SomeAttribute : Attribute;
+    public class SomeAttribute : Attribute; // Compliant
 
-    public class SomeClass;
+    public class SomeClass; // Compliant
 }

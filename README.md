@@ -38,6 +38,7 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 * [**QW0101** - Required attribute cannot invalidate value types](rules/QW0101.md)
 * [**QW0102** - Use compliant validation attributes](rules/QW0102.md)
 * [**QW0103** - Decorate validation attributes](rules/QW0103.md)
+* [**QW0104** - Use validates attribute on validation attributes only](rules/QW0104.md)
 
 ## Code fixes
 * Use Qowaiv.Clock ([QW0001](rules/QW0001.md), [S6354](https://rules.sonarsource.com/csharp/RSPEC-6354))

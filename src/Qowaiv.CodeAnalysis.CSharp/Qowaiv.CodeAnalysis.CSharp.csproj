@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -63,7 +63,8 @@ v2.*
     <PackageReleaseNotes>
       <![CDATA[
 v2.3.0
-- QW0103: Decorate ValidationAttributes. (NEW RULE)
+- QW0103: Decorate validation attributes. (NEW RULE)
+- QW0104: Use validates attribute on validation attributes only. (NEW RULE)
 v2.2.0
 - QW0019: Prefer XML to LINQ over DOM. (NEW RULE)
 - QW0020: Prefer System.Text.Json over Newtonsoft.Json. (NEW RULE)
