@@ -14,7 +14,8 @@ public sealed class DecorateValidationAttributes() : CodingRule(Rule.DecorateVal
 
         if (declaration.IsConcrete
             && declaration.Symbol.IsAssignableTo(SystemType.System.ComponentModel.DataAnnotations.ValidationAttribute)
-            && declaration.Attributes.None(IsValidatesAttribute))
+            && declaration.Attributes.None(IsValidatesAttribute)
+            && !DecoratedElsewere(declaration))
         {
             context.ReportDiagnostic(Diagnostic, declaration.Identifier);
         }
@@ -22,4 +23,10 @@ public sealed class DecorateValidationAttributes() : CodingRule(Rule.DecorateVal
 
     private static bool IsValidatesAttribute(AttributeDecoration attr)
         => attr.Symbol.Is(SystemType.Qowaiv.Validation.DataAnnotations.ValidatesAttribute);
+
+    private static bool DecoratedElsewere(TypeDeclaration type)
+        => type.IsPartial
+        && type.Symbol is { } symbol
+        && symbol.GetAttributes()
+            .Any(a => a.AttributeClass.Is(SystemType.Qowaiv.Validation.DataAnnotations.ValidatesAttribute));
 }
