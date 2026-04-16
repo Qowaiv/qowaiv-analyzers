@@ -33,4 +33,14 @@ namespace Compliant
     public class SomeAttribute : Attribute; // Compliant
 
     public class SomeClass; // Compliant
+
+    [Validates(typeof(string))]
+    public partial class PartialValidationAttribute : ValidationAttribute // Compliant
+    {
+        public override bool IsValid(object? value) => true;
+    }
+
+    public partial class PartialValidationAttribute // Compliant
+    {
+    }
 }
