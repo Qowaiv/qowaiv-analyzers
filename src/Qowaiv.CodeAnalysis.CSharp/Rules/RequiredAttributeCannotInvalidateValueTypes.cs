@@ -34,7 +34,7 @@ public sealed class RequiredAttributeCannotInvalidateValueTypes() : CodingRule(R
 
     private static bool DecoratedWithJsonAttribute(INamedTypeSymbol? type)
         => type?.GetAttributes().Any(IsJsonAttribute) is true
-        || type?.GetProperties().Any(p => p.GetAttributes().Any(IsJsonAsstribute)) is true;
+        || type?.GetProperties().Any(p => p.GetAttributes().Any(IsJsonAttribute)) is true;
 
     private static bool IsJsonAttribute(AttributeData attr)
         => attr.AttributeClass?.GetFullMetaDataName() is { Length: > 0 } name
