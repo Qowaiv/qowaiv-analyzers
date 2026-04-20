@@ -20,6 +20,7 @@
     <PackageReference Include="CodeAnalysis.TestTools" />
     <PackageReference Include="Newtonsoft.Json" />
     <PackageReference Include="NuGet.Packaging" />
+    <PackageReference Include="NuGet.Protocol" />
     <PackageReference Include="NUnit" />
   </ItemGroup>
 

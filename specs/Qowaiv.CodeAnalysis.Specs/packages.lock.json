@@ -37,9 +37,9 @@
       },
       "coverlet.collector": {
         "type": "Direct",
-        "requested": "[8.0.1, )",
-        "resolved": "8.0.1",
-        "contentHash": "heVQl5tKYnnIDYlR1QMVGueYH6iriZTcZB6AjDczQNwZzxkjDIt9C84Pt4cCiZYrbo7jkZOYGWbs6Lo9wAtVLg=="
+        "requested": "[10.0.0, )",
+        "resolved": "10.0.0",
+        "contentHash": "WFejCcOUR6k8UYyDnnR6Gk+obFYMsWrZuNqPJnsVFGVhpPSN0y20D4qbdKJnXinYGx9PQ397Hf9TnU1NBST8vA=="
       },
       "DotNetProjectFile.Analyzers": {
         "type": "Direct",
@@ -79,6 +79,15 @@
           "NuGet.Configuration": "7.3.1",
           "NuGet.Versioning": "7.3.1",
           "System.Security.Cryptography.Pkcs": "8.0.1"
+        }
+      },
+      "NuGet.Protocol": {
+        "type": "Direct",
+        "requested": "[7.3.1, )",
+        "resolved": "7.3.1",
+        "contentHash": "vYd5vtCJ/tpMQjbAs6rrftNgeh5Ip1w7tnEsDZCpGObKgUgOxHQBekCul3TnzmbNgobvJEkDJNaec5/ZBv66Hg==",
+        "dependencies": {
+          "NuGet.Packaging": "7.3.1"
         }
       },
       "NUnit": {
@@ -482,14 +491,6 @@
         "type": "Transitive",
         "resolved": "7.3.1",
         "contentHash": "VUPAE5l/Ir4Gb3dv+v0jq0Qe4nfwxfrfiYN7QhwlGyWPXFKYXSSke1t1bV/ZYd6idtTtRDqJPM49Lt/U8NTocg=="
-      },
-      "NuGet.Protocol": {
-        "type": "Transitive",
-        "resolved": "7.0.1",
-        "contentHash": "bYPzTqgOSsXV8AxXXFCCPtAtlxwph0DVtdM8AlaKTGLClHDx7VAlL4cCIcVl2iEzQuG1uC79SvzllvKi1grcNw==",
-        "dependencies": {
-          "NuGet.Packaging": "7.0.1"
-        }
       },
       "NuGet.Versioning": {
         "type": "Transitive",
