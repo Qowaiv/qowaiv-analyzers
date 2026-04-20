@@ -7,5 +7,7 @@ public class Verify
         .ForCS()
         .AddSource(@"Cases/RequiredAttributeCannotInvalidateValueTypes.cs")
         .AddReference<System.ComponentModel.DataAnnotations.RequiredAttribute>()
+        .AddReference<System.Text.Json.Serialization.JsonPropertyNameAttribute>()
+        .AddReference<Newtonsoft.Json.JsonPropertyAttribute>()
         .Verify();
 }

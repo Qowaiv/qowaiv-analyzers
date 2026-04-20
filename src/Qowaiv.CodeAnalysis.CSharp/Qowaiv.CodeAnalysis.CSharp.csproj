@@ -57,7 +57,7 @@
     <ToBeReleased>
       <![CDATA[
 v2.*
-- ?
+- QW0101: [Required] always allowed on Properties/Fields for JSON serializable models. (FP)
       ]]>
     </ToBeReleased>
     <PackageReleaseNotes>

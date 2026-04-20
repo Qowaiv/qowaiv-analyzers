@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 class OnProperties
 {
@@ -34,3 +35,26 @@ record OnRecords([Required] int ValueType, [Required] string WithSingle); // Non
 public enum MyEnum { }
 
 public sealed class OptionalAttribute : RequiredAttribute { }
+
+[System.Text.Json.Serialization.JsonNumberHandling(JsonNumberHandling.Strict)]
+class JsonSerializableObject
+{
+    [Required]
+    public int ValueType { get; init; } // Compliant
+}
+
+class JsonSerializableProperty
+{
+    [System.Text.Json.Serialization.JsonPropertyName("value")]
+    [Required]
+    public int ValueType { get; init; } // Compliant
+}
+
+class NewtonsoftSerializable
+{
+    [Required]
+    public int ValueType { get; init; } // Compliant
+
+    [Newtonsoft.Json.JsonProperty("value")]
+    public string Value { get; init; }
+}
