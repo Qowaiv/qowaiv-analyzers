@@ -36,7 +36,7 @@ public sealed class RequiredAttributeCannotInvalidateValueTypes() : CodingRule(R
         => type?.GetAttributes().Any(IsJsonAsstribute) is true
         || type?.GetProperties().Any(p => p.GetAttributes().Any(IsJsonAsstribute)) is true;
 
-    private static bool IsJsonAsstribute(AttributeData attr)
+    private static bool IsJsonAttribute(AttributeData attr)
         => attr.AttributeClass?.GetFullMetaDataName() is { Length: > 0 } name
         && (name.StartsWith("System.Text.Json.Serialization.")
         || name.StartsWith("Newtonsoft.Json."));
