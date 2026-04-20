@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -53,7 +53,7 @@
   </ItemGroup>
 
   <PropertyGroup Label="Version and release notes">
-    <Version>2.3.1</Version>
+    <Version>2.3.2</Version>
     <ToBeReleased>
       <![CDATA[
 v2.*
@@ -62,6 +62,8 @@ v2.*
     </ToBeReleased>
     <PackageReleaseNotes>
       <![CDATA[
+v2.3.2
+- QW0101: [Required] always allowed on Properties/Fields for JSON serializable models. (FP)
 v2.3.1
 - QW0103: Check full type when dealing with partial classes. (FP)
 v2.3.0
