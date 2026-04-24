@@ -14,7 +14,7 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 
 ## Rules
 * [**QW0001** - Use a testable Time Provider](rules/QW0001.md)
-* [**QW0003** - Decorate pure functions](rules/QW0003.md)
+* [**QW0003** - Decorate pure functions*](rules/QW0003.md)
 * [**QW0004** - Characters with Trojan Horse potential are not allowed](rules/QW0004.md)
 * [**QW0005** - Seal concrete classes unless designed for inheritance](rules/QW0005.md)
 * [**QW0006** - Only unsealed concrete classes should be decorated as inheritable](rules/QW0006.md)
@@ -48,3 +48,10 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 * Apply suggestions of obsolete code attribute [CS0618, CS0619](rules/ObsoleteCode.md))
 * Use Qowaiv round extensions ([QW0013](rules/QW0013.md))
 * Use Qowaiv.Clock.TimeProvider ([QW0018](rules/QW0018.md))
+
+## Configuration
+Some of the rules are not intended for (unit) test code. Unit tests that set
+`IsTestProject` to `true` are excluded. When setting `IsTestProject` undesirable,
+a project can alternativaly set `IsTestCode` to `true` instead. It is worth to
+mention that only a subset of the rules is considered irrelevant for test code,
+the rest is always executed.

@@ -6,7 +6,8 @@ namespace Qowaiv.CodeAnalysis.Rules;
 public sealed class UseCompliantValdationAttribute() : CodingRule(Rule.UseCompliantValdationAttribute)
 {
     protected override void Register(AnalysisContext context)
-        => context.RegisterSyntaxNodeAction(
+        => RegisterSyntaxNodeAction(
+            context,
             Report,
             SyntaxKind.PropertyDeclaration,
             SyntaxKind.FieldDeclaration,

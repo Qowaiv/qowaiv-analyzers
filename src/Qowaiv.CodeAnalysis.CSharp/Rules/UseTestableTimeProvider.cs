@@ -4,7 +4,7 @@ namespace Qowaiv.CodeAnalysis.Rules;
 public sealed class UseTestableTimeProvider() : CodingRule(Rule.UseTestableTimeProvider)
 {
     protected override void Register(AnalysisContext context)
-        => context.RegisterSyntaxNodeAction(Report, SyntaxKind.IdentifierName);
+        => RegisterSyntaxNodeAction(context, Report, SyntaxKind.IdentifierName);
 
     private void Report(SyntaxNodeAnalysisContext context)
     {

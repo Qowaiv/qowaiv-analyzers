@@ -34,8 +34,9 @@
 
   <ItemGroup Label="Package files">
     <None Update="tools/*.ps1" Pack="true" PackagePath="/" />
-    <None Include="$(MSBuildThisFileDirectory)../../design/package-icon.png" Pack="true" PackagePath="" Visible="false" />
-    <None Include="$(OutputPath)/Qowaiv.CodeAnalysis.CSharp.dll" Pack="true" PackagePath="analyzers" Visible="false" />
+    <None Include="Qowaiv.Analyzers.CSharp.targets" Pack="true" PackagePath="build/" />
+    <None Include="$(MSBuildThisFileDirectory)../../design/package-icon.png" Pack="true" PackagePath="/" Visible="false" />
+    <None Include="$(OutputPath)/Qowaiv.CodeAnalysis.CSharp.dll" Pack="true" PackagePath="analyzers/" Visible="false" />
     <None Include="README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
@@ -52,7 +53,7 @@
   </ItemGroup>
 
   <PropertyGroup Label="Version and release notes">
-    <Version>2.3.2</Version>
+    <Version>2.4.0</Version>
     <ToBeReleased>
       <![CDATA[
 v2.*
@@ -61,6 +62,9 @@ v2.*
     </ToBeReleased>
     <PackageReleaseNotes>
       <![CDATA[
+v2.4.0
+- Disable QW0003, QW0005, QW0006, QW0008, QW0009, QW0010, QW0011, QW0012,
+  QW0016, QW0103, QW0104 are disabled for test code.
 v2.3.2
 - QW0101: [Required] always allowed on Properties/Fields for JSON serializable models. (FP)
 v2.3.1

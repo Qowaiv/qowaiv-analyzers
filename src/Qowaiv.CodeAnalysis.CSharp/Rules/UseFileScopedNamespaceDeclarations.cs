@@ -4,7 +4,7 @@ namespace Qowaiv.CodeAnalysis.Rules;
 public sealed class UseFileScopedNamespaceDeclarations() : CodingRule(Rule.UseFileScopedNamespaceDeclarations)
 {
     protected override void Register(AnalysisContext context)
-        => context.RegisterSyntaxNodeAction(Report, SyntaxKind.NamespaceDeclaration);
+        => RegisterSyntaxNodeAction(context, Report, SyntaxKind.NamespaceDeclaration);
 
     private void Report(SyntaxNodeAnalysisContext context)
     {

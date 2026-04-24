@@ -16,7 +16,7 @@ public sealed class UseSystemTextJson() : ObsoleteTypes(
 {
     protected override void Register(AnalysisContext context)
     {
-        context.RegisterSyntaxNodeAction(ReportExpressionStatement, SyntaxKind.ExpressionStatement);
+        RegisterSyntaxNodeAction(context, ReportExpressionStatement, SyntaxKind.ExpressionStatement);
         base.Register(context);
     }
 

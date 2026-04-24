@@ -5,8 +5,8 @@ public sealed class UseQowaivClockTimeProvider() : CodingRule(Rule.UseQowaivCloc
 {
     protected override void Register(AnalysisContext context)
     {
-        context.RegisterSyntaxNodeAction(ReportArgumentList, SyntaxKind.ArgumentList);
-        context.RegisterSyntaxNodeAction(ReportAssignment, SyntaxKind.SimpleAssignmentExpression);
+        RegisterSyntaxNodeAction(context, ReportArgumentList, SyntaxKind.ArgumentList);
+        RegisterSyntaxNodeAction(context, ReportAssignment, SyntaxKind.SimpleAssignmentExpression);
     }
 
     private void ReportArgumentList(SyntaxNodeAnalysisContext context)

@@ -4,7 +4,8 @@ namespace Qowaiv.CodeAnalysis.Rules;
 public sealed class DefineOnlyOneRequiredAttribute() : CodingRule(Rule.DefineOnlyOneRequiredAttribute)
 {
     protected override void Register(AnalysisContext context)
-        => context.RegisterSyntaxNodeAction(
+        => RegisterSyntaxNodeAction(
+            context,
             Report,
             SyntaxKind.PropertyDeclaration,
             SyntaxKind.FieldDeclaration,

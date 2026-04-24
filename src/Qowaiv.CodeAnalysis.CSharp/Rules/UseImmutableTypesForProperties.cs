@@ -4,7 +4,7 @@ namespace Qowaiv.CodeAnalysis.Rules;
 public sealed class UseImmutableTypesForProperties() : ImmutablePropertiesBase(Rule.UseImmutableTypesForProperties)
 {
     protected override void Register(AnalysisContext context)
-        => context.RegisterSyntaxNodeAction(Report, SyntaxKind.PropertyDeclaration);
+        => RegisterSyntaxNodeAction(context, Report, SyntaxKind.PropertyDeclaration);
 
     private void Report(SyntaxNodeAnalysisContext context)
     {

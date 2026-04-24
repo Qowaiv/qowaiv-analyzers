@@ -7,8 +7,8 @@ public sealed class DefinePropertiesAsNotNullable() : CodingRule(
 {
     protected override void Register(AnalysisContext context)
     {
-        context.RegisterSyntaxNodeAction(ReportProperty, SyntaxKind.PropertyDeclaration);
-        context.RegisterSyntaxNodeAction(ReportRecord, SyntaxKind.RecordDeclaration);
+        RegisterSyntaxNodeAction(context, ReportProperty, SyntaxKind.PropertyDeclaration);
+        RegisterSyntaxNodeAction(context, ReportRecord, SyntaxKind.RecordDeclaration);
     }
 
     private static void ReportProperty(SyntaxNodeAnalysisContext context)

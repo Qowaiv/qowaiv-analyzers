@@ -1,0 +1,11 @@
+<Project>
+
+  <PropertyGroup>
+    <IsTestCode Condition="$(IsTestCode) == '' and $(IsTestProject) == 'true'">true</IsTestCode>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <CompilerVisibleProperty Include="IsTestCode" />
+  </ItemGroup>
+
+</Project>

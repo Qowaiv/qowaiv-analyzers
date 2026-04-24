@@ -4,7 +4,7 @@ namespace Qowaiv.CodeAnalysis.Rules;
 public sealed class PreferRegularOverPositionalProperties() : CodingRule(Rule.PreferRegularOverPositionalProperties)
 {
     protected override void Register(AnalysisContext context)
-        => context.RegisterSyntaxNodeAction(Report, SyntaxKind.RecordDeclaration);
+        => RegisterSyntaxNodeAction(context, Report, SyntaxKind.RecordDeclaration);
 
     private void Report(SyntaxNodeAnalysisContext context)
     {

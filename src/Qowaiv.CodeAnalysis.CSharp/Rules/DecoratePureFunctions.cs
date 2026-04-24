@@ -4,7 +4,7 @@ namespace Qowaiv.CodeAnalysis.Rules;
 public sealed class DecoratePureFunctions() : CodingRule(Rule.DecoratePureFunctions)
 {
     protected override void Register(AnalysisContext context)
-        => context.RegisterSyntaxNodeAction(Report, SyntaxKind.MethodDeclaration);
+        => RegisterSyntaxNodeAction(context, Report, SyntaxKind.MethodDeclaration);
 
     private static void Report(SyntaxNodeAnalysisContext context)
     {

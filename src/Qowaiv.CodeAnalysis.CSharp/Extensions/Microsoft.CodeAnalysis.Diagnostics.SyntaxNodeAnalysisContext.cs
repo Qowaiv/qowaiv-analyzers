@@ -5,6 +5,12 @@ internal static class SyntaxNodeAnalysisContextExtensions
 {
     extension(SyntaxNodeAnalysisContext context)
     {
+        /// <summary>Indicates that we deal with test code.</summary>
+        public bool IsTestCode
+            => context.Options.AnalyzerConfigOptionsProvider.GlobalOptions.TryGetValue($"build_property.IsTestCode", out var value)
+            && bool.TryParse(value, out var isTestCode)
+            && isTestCode;
+
         /// <summary>Report a <see cref="Diagnostic"/> about a <see cref="SyntaxNode"/>'.</summary>
         public void ReportDiagnostic(DiagnosticDescriptor descriptor, SyntaxNode node, params object[] messageArgs)
             => context.ReportDiagnostic(
