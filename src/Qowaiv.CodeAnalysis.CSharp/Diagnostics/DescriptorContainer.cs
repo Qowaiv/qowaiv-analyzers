@@ -7,7 +7,7 @@ namespace Qowaiv.CodeAnalysis.Diagnostics;
 /// </remarks>
 public sealed class DescriptorContainer
 {
-    /// <summary>Indicates of the rule should analyze test code.</summary>
+    /// <summary>Indicates if the rule should analyze test code.</summary>
     public bool AnalyzeTestCode { get; set; }
 
     /// <summary>The descriptor of a <see cref="CodingRule"/>.</summary>
