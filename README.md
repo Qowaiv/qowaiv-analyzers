@@ -52,6 +52,6 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 ## Configuration
 Some of the rules are not intended for (unit) test code. Unit tests that set
 `IsTestProject` to `true` are excluded. When setting `IsTestProject` is undesirable,
-a project can alternativaly set `IsTestCode` to `true` instead. It is worth to
+a project can set `IsTestCode` to `true` instead. It is worth to
 mention that only a subset of the rules is considered irrelevant for test code,
 the rest is always executed.
