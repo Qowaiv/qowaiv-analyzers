@@ -24,7 +24,7 @@ public abstract class CodingRule(DescriptorContainer supportedDiagnostic, params
 
     /// <inheritdoc cref="AnalysisContext.RegisterSyntaxNodeAction{TLanguageKindEnum}(Action{SyntaxNodeAnalysisContext}, ImmutableArray{TLanguageKindEnum})"/>
     /// <remarks>
-    /// When diagnose on test code is diabled, the action is made conditional too.
+    /// When analysis on test code is disabled, the action is made conditional too.
     /// </remarks>
     protected void RegisterSyntaxNodeAction(
         AnalysisContext context,
