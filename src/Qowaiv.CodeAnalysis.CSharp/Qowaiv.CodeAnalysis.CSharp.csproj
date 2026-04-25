@@ -63,7 +63,7 @@ v2.*
     <PackageReleaseNotes>
       <![CDATA[
 v2.4.0
-- Disable QW0003, QW0005, QW0006, QW0008, QW0009, QW0010, QW0011, QW0012,
+- QW0003, QW0005, QW0006, QW0008, QW0009, QW0010, QW0011, QW0012,
   QW0016, QW0103, QW0104 are disabled for test code.
 v2.3.2
 - QW0101: [Required] always allowed on Properties/Fields for JSON serializable models. (FP)
