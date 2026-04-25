@@ -7,7 +7,7 @@ public abstract class CodingRule(DescriptorContainer supportedDiagnostic, params
 
     public DiagnosticDescriptor Diagnostic => SupportedDiagnostics[0];
 
-    /// <summary>If enabled, the coding also applies on test code (defaultL false).</summary>
+    /// <summary>If enabled, the coding also applies on test code (default false).</summary>
     protected bool AnalyzeTestCode { get; } = supportedDiagnostic.AnalyzeTestCode;
 
     /// <inheritdoc />
