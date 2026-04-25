@@ -1,6 +1,6 @@
 namespace Qowaiv.CodeAnalysis.Diagnostics;
 
-/// <summary>A container/wrapper arround a <see cref="DiagnosticDescriptor"/>.</summary>
+/// <summary>A container/wrapper around a <see cref="DiagnosticDescriptor"/>.</summary>
 /// <remarks>
 /// As a <see cref="DiagnosticDescriptor"/> is sealed, we need some composition
 /// to extend it.
