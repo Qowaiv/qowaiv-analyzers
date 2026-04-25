@@ -35,10 +35,10 @@ public sealed class DefinePropertiesAsNotNullable() : CodingRule(
         }
     }
 
-    private static DiagnosticDescriptor? Description(INamedTypeSymbol type)
+    private static DescriptorContainer? Description(INamedTypeSymbol type)
         => EnumDefaultIsNoneOrEmpty(type) ?? DefaultIsEmpty(type);
 
-    private static DiagnosticDescriptor? EnumDefaultIsNoneOrEmpty(INamedTypeSymbol type)
+    private static DescriptorContainer? EnumDefaultIsNoneOrEmpty(INamedTypeSymbol type)
     {
         return type.TypeKind == TypeKind.Enum && type.GetMembers().Any(IsNoneOrEmpty)
             ? Rule.DefineEnumPropertiesAsNotNullable
@@ -50,7 +50,7 @@ public sealed class DefinePropertiesAsNotNullable() : CodingRule(
              && ("NONE".Matches(field.Name) || "EMPTY".Matches(field.Name));
     }
 
-    private static DiagnosticDescriptor? DefaultIsEmpty(INamedTypeSymbol type)
+    private static DescriptorContainer? DefaultIsEmpty(INamedTypeSymbol type)
     {
         return type.GetMembers("Empty").Any(s => IsReadOnlyProperty(s) || IsReadOnlyField(s))
             ? Rule.DefinePropertiesAsNotNullable
