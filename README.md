@@ -48,3 +48,10 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 * Apply suggestions of obsolete code attribute [CS0618, CS0619](rules/ObsoleteCode.md))
 * Use Qowaiv round extensions ([QW0013](rules/QW0013.md))
 * Use Qowaiv.Clock.TimeProvider ([QW0018](rules/QW0018.md))
+
+## Configuration
+Some of the rules are not intended for (unit) test code. Unit tests that set
+`IsTestProject` to `true` are excluded. When setting `IsTestProject` is undesirable,
+a project can set `IsTestCode` to `true` instead. It is worth to
+mention that only a subset of the rules is considered irrelevant for test code,
+the rest is always executed.

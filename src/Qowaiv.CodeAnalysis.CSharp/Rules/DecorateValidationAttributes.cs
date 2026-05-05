@@ -6,7 +6,7 @@ public sealed class DecorateValidationAttributes() : CodingRule(Rule.DecorateVal
 {
     /// <inheritdoc />
     protected override void Register(AnalysisContext context)
-        => context.RegisterSyntaxNodeAction(Report, SyntaxKind.ClassDeclaration);
+        => RegisterSyntaxNodeAction(context, Report, SyntaxKind.ClassDeclaration);
 
     private void Report(SyntaxNodeAnalysisContext context)
     {

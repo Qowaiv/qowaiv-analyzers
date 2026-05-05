@@ -11,9 +11,5 @@
     <None Include="dictionary.dic" />
     <None Include="rules/**" />
   </ItemGroup>
-  
-  <ItemGroup>
-    <PackageReference Include="DotNetProjectFile.Analyzers.Sdk" PrivateAssets="all" />
-  </ItemGroup>
 
 </Project>

@@ -6,7 +6,7 @@ namespace Qowaiv.CodeAnalysis;
 
 public static partial class Rule
 {
-    public static DiagnosticDescriptor UseTestableTimeProvider => New(
+    public static DescriptorContainer UseTestableTimeProvider => New(
         id: 0001,
         title: "Use a testable Time Provider",
         message: "Use a testable (date) time provider instead.",
@@ -15,9 +15,10 @@ public static partial class Rule
             "be adjustable under test. DateTime.Now, DateTime.UtcNow, " +
             "and DateTime.Today lack this possibility.",
         category: Category.Testabilty,
-        tags: ["Test"]);
+        tags: ["Test"],
+        analyzeTestCode: true);
 
-    public static DiagnosticDescriptor ParseShouldNotFail => New(
+    public static DescriptorContainer ParseShouldNotFail => New(
         id: 0002,
         title: "Parse should not fail",
         message: "{0}",
@@ -25,9 +26,10 @@ public static partial class Rule
             "Parsing string literals should not fail, as it will crash at runtime.",
         category: Category.RuntimeError,
         severity: DiagnosticSeverity.Error,
-        tags: ["Error"]);
+        tags: ["Error"],
+        analyzeTestCode: true);
 
-    public static DiagnosticDescriptor DecoratePureFunctions => New(
+    public static DescriptorContainer DecoratePureFunctions => New(
         id: 0003,
         title: "Decorate pure functions",
         message: "Decorate this method with a [Pure] or [Impure] attribute.",
@@ -36,9 +38,10 @@ public static partial class Rule
             "of pure functions.",
         category: Category.Design,
         tags: ["Diagnostics", "Contracts", "Pure function"],
-        isEnabled: false);
+        isEnabled: false,
+        analyzeTestCode: false);
 
-    public static DiagnosticDescriptor TrojanCharactersAreNotAllowed => New(
+    public static DescriptorContainer TrojanCharactersAreNotAllowed => New(
         id: 0004,
         title: "Characters with Trojan Horse potential are not allowed",
         message: "Trojan Horse character U+{0:X} detected.",
@@ -46,9 +49,10 @@ public static partial class Rule
             "When characters with Trojan Horse potential are found, they should be blocked " +
             "to avoid security risks to the application.",
         category: Category.Security,
-        tags: ["Trojan", "Unicode"]);
+        tags: ["Trojan", "Unicode"],
+        analyzeTestCode: true);
 
-    public static DiagnosticDescriptor SealClasses => New(
+    public static DescriptorContainer SealClasses => New(
         id: 0005,
         title: "Seal concrete classes unless designed for inheritance",
         message: "Seal this {0} or make it explicitly inheritable.",
@@ -58,18 +62,20 @@ public static partial class Rule
             "consequence, it is considered a bad practice to unintentionally " +
             "allowing a class to be inheritable.",
         category: Category.Design,
-        tags: ["Design"]);
+        tags: ["Design"],
+        analyzeTestCode: false);
 
-    public static DiagnosticDescriptor OnlyUnsealedConcreteClassesCanBeInheritable => New(
+    public static DescriptorContainer OnlyUnsealedConcreteClassesCanBeInheritable => New(
         id: 0006,
         title: "Only unsealed concrete classes should be decorated as inheritable",
         message: "Remove the [{0}] attribute.",
         description:
             "The inheritable attribute is only meant to be used on concrete classes.",
         category: Category.Design,
-        tags: ["Design"]);
+        tags: ["Design"],
+        analyzeTestCode: false);
 
-    public static DiagnosticDescriptor UseFileScopedNamespaceDeclarations => New(
+    public static DescriptorContainer UseFileScopedNamespaceDeclarations => New(
         id: 0007,
         title: "Use file-scoped namespace declarations",
         message: "Use a file-scoped namespace declaration instead.",
@@ -78,9 +84,10 @@ public static partial class Rule
             "wasted horizontal space to the left of the class definition, since " +
             "it no longer needs to be indented.",
         category: Category.Design,
-        tags: ["Design"]);
+        tags: ["Design"],
+        analyzeTestCode: true);
 
-    public static DiagnosticDescriptor DefinePropertiesAsNotNullable => New(
+    public static DescriptorContainer DefinePropertiesAsNotNullable => New(
         id: 0008,
         title: "Define properties as not-nullable for types with a defined empty state",
         message: "Define the property as not-nullable as its type has a defined empty state.",
@@ -89,9 +96,10 @@ public static partial class Rule
             "to it, because the nullable that has a value can still represent an " +
             "empty state.",
         category: Category.Design,
-        tags: ["Design", "SVO", "Value Type", "Value Object"]);
+        tags: ["Design", "SVO", "Value Type", "Value Object"],
+        analyzeTestCode: false);
 
-    public static DiagnosticDescriptor DefineEnumPropertiesAsNotNullable => New(
+    public static DescriptorContainer DefineEnumPropertiesAsNotNullable => New(
         id: 0009,
         title: "Define properties as not-nullable for enums with a defined none/empty value",
         message: "Define the property as not-nullable as its type has a defined none/empty value.",
@@ -100,19 +108,21 @@ public static partial class Rule
             "to it, because the nullable that has a value can still represent an " +
             "none/empty state.",
         category: Category.Design,
-        tags: ["Design", "Enum", "Enumeration"]);
+        tags: ["Design", "Enum", "Enumeration"],
+        analyzeTestCode: false);
 
-    public static DiagnosticDescriptor UseSystemDateOnly => New(
-       id: 0010,
-       title: "Use System.DateOnly instead of Qowaiv.Date",
-       message: "Use DateOnly instead of Date.",
-       description:
+    public static DescriptorContainer UseSystemDateOnly => New(
+        id: 0010,
+        title: "Use System.DateOnly instead of Qowaiv.Date",
+        message: "Use DateOnly instead of Date.",
+        description:
             "The purpose of `Qowaiv.Date` is to provide a date (only) alternative to DateTime. " +
             "Since .NET 6.0, Microsoft provides DateOnly.",
-       category: Category.Design,
-       tags: ["Design", "SVO"]);
+        category: Category.Design,
+        tags: ["Design", "SVO"],
+        analyzeTestCode: false);
 
-    public static DiagnosticDescriptor DefinePropertiesAsImmutables => New(
+    public static DescriptorContainer DefinePropertiesAsImmutables => New(
         id: 0011,
         title: "Define properties as immutables",
         message: "Remove this setter, make this property init-only, or decorate the type with the mutable attribute.",
@@ -120,9 +130,10 @@ public static partial class Rule
             "Immutable types (classes, interfaces, records, structs) have multiple advantages. " +
             "To benefit from this, all properties should be defined as immutable.",
         category: Category.Design,
-        tags: ["Design", "Immutability"]);
+        tags: ["Design", "Immutability"],
+        analyzeTestCode: false);
 
-    public static DiagnosticDescriptor UseImmutableTypesForProperties => New(
+    public static DescriptorContainer UseImmutableTypesForProperties => New(
         id: 0012,
         title: "Use immutable types for properties",
         message: "Use an immutable type, or decorate the type with the mutable attribute.",
@@ -130,36 +141,40 @@ public static partial class Rule
             "Immutable types (classes, interfaces, records, structs) have multiple advantages. " +
             "To benefit from this, the type of properties should be immutable.",
         category: Category.Design,
-        tags: ["Design", "Immutability"]);
+        tags: ["Design", "Immutability"],
+        analyzeTestCode: false);
 
-    public static DiagnosticDescriptor UseQowaivDecimalRounding => New(
+    public static DescriptorContainer UseQowaivDecimalRounding => New(
         id: 0013,
         title: "Use Qowaiv decimal rounding",
         message: "Use Qowaiv decimal rounding.",
         description:
             "Both the extended functionality and the extension method are reasons to adopt Qowaiv decimal rounding.",
         category: Category.Design,
-        tags: ["Design", "Readability"]);
+        tags: ["Design", "Readability"],
+        analyzeTestCode: true);
 
-    public static DiagnosticDescriptor DefineGlobalUsingStatementsSeparately => New(
+    public static DescriptorContainer DefineGlobalUsingStatementsSeparately => New(
         id: 0014,
         title: "Define global using statements separately",
         message: "Define global using statement in a separate file.",
         description:
             "For design and maintainability reasons, it is key that all global usings statements are grouped.",
         category: Category.Design,
-        tags: ["Design", "Maintainability"]);
+        tags: ["Design", "Maintainability"],
+        analyzeTestCode: true);
 
-    public static DiagnosticDescriptor DefineGlobalUsingStatementsInSingleFile => New(
+    public static DescriptorContainer DefineGlobalUsingStatementsInSingleFile => New(
         id: 0015,
         title: "Define global using statements in single file",
         message: "Define global using statements in '{0}' only.",
         description:
             "For design and maintainability reasons, it is key that all global usings statements are grouped.",
         category: Category.Design,
-        tags: ["Design", "Maintainability"]);
+        tags: ["Design", "Maintainability"],
+        analyzeTestCode: true);
 
-    public static DiagnosticDescriptor PreferRegularOverPositionalProperties => New(
+    public static DescriptorContainer PreferRegularOverPositionalProperties => New(
         id: 0016,
         title: "Prefer regular over positional properties",
         message: "Define {0} as {1}.",
@@ -168,9 +183,10 @@ public static partial class Rule
             "turns out to be cumbersome for public APIs. Therefor the use of " +
             "regular properties is preferred in those cases.",
         category: Category.Design,
-        tags: ["Design", "Maintainability"]);
+        tags: ["Design", "Maintainability"],
+        analyzeTestCode: false);
 
-    public static DiagnosticDescriptor ApplyArithmeticOperationsOnNonNullablesOnly => New(
+    public static DescriptorContainer ApplyArithmeticOperationsOnNonNullablesOnly => New(
         id: 0017,
         title: "Apply arithmetic operations on non-nullables only",
         message: "{0} is potentially null.",
@@ -179,9 +195,10 @@ public static partial class Rule
             "outcome will be null if any of the arguments turns out to be null, " +
             "which can be confusing or a bug.",
         category: Category.Bug,
-        tags: ["nullability", "arithmetic"]);
+        tags: ["nullability", "arithmetic"],
+        analyzeTestCode: true);
 
-    public static DiagnosticDescriptor UseQowaivClockTimeProvider => New(
+    public static DescriptorContainer UseQowaivClockTimeProvider => New(
         id: 0018,
         title: "Use Qowaiv.Clock.TimeProvider",
         message: "Use Qowaiv.Clock.TimeProvider",
@@ -189,20 +206,22 @@ public static partial class Rule
             "The purpose of `Qowaiv.Time` is to provide a time (only) alternative to DateTime. " +
             "Since .NET 6.0, Microsoft provides TimeOnly.",
         category: Category.Design,
-        tags: ["Design"]);
+        tags: ["Design"],
+        analyzeTestCode: true);
 
-    public static DiagnosticDescriptor PreferXmlLinq => New(
-       id: 0019,
-       title: "Prefer XML to LINQ over DOM",
-       message: "Use {0} instead of {1}",
-       description:
+    public static DescriptorContainer PreferXmlLinq => New(
+        id: 0019,
+        title: "Prefer XML to LINQ over DOM",
+        message: "Use {0} instead of {1}",
+        description:
             "With the introduction of LINQ (2008) Microsoft provided a new way " +
             "of creating XML, using XDocument/XElement. Defacto, the use of " +
             "XmlDocument/XmlElement has become obsolete since then.",
-       category: Category.Design,
-       tags: ["Performance", "Clarity", "Obsolete"]);
+        category: Category.Design,
+        tags: ["Performance", "Clarity", "Obsolete"],
+        analyzeTestCode: true);
 
-    public static DiagnosticDescriptor UseSystemTextJson => New(
+    public static DescriptorContainer UseSystemTextJson => New(
         id: 0020,
         title: "Prefer System.Text.Json over Newtonsoft.Json",
         message: "Use System.Text.Json for JSON serialization",
@@ -210,9 +229,10 @@ public static partial class Rule
             "Use System.Text.Json for JSON serialization as it is both faster, " +
             "with a smaller memory footprint, and built-in in the .NET framework.",
         category: Category.Design,
-        tags: ["Performance", "Clarity", "Obsolete"]);
+        tags: ["Performance", "Clarity", "Obsolete"],
+        analyzeTestCode: true);
 
-    public static DiagnosticDescriptor DefineOnlyOneRequiredAttribute => New(
+    public static DescriptorContainer DefineOnlyOneRequiredAttribute => New(
         id: 0100,
         title: "Define only one Required attribute",
         message: "{0} should not be decorated with more than one required attribute",
@@ -220,9 +240,10 @@ public static partial class Rule
             "The compiler cannot enforce single usages for overridden implementations " +
             "of the [Required] attribute, but would otherwise disallow it.",
         category: Category.Bug,
-        tags: ["Data Annotations", "AttributeUsage", "Validation", "RequiredAttribute"]);
+        tags: ["Data Annotations", "AttributeUsage", "Validation", "RequiredAttribute"],
+        analyzeTestCode: true);
 
-    public static DiagnosticDescriptor RequiredCannotInvalidateValueTypes => New(
+    public static DescriptorContainer RequiredCannotInvalidateValueTypes => New(
         id: 0101,
         title: "Required attribute cannot invalidate value types",
         message: "The value of this value type will always meet the Required constraints",
@@ -230,9 +251,10 @@ public static partial class Rule
             "The implementation of the Required attribute is to check if the " +
             "value is not null. This is always true for non-nullable value types.",
         category: Category.Bug,
-        tags: ["Data Annotations", "Validation", "RequiredAttribute"]);
+        tags: ["Data Annotations", "Validation", "RequiredAttribute"],
+        analyzeTestCode: true);
 
-    public static DiagnosticDescriptor UseCompliantValdationAttribute => New(
+    public static DescriptorContainer UseCompliantValdationAttribute => New(
         id: 0102,
         title: "Use compliant validation attributes",
         message: "The attribute cannot validate this type",
@@ -240,9 +262,10 @@ public static partial class Rule
             "Validation attributes are designed to validate certain member types. " +
             "When applied on other types, this is invalid, and might even crash.",
         category: Category.Bug,
-        tags: ["Data Annotations", "Validation", "ValidationAttribute"]);
+        tags: ["Data Annotations", "Validation", "ValidationAttribute"],
+        analyzeTestCode: true);
 
-    public static DiagnosticDescriptor DecorateValidationAttributes => New(
+    public static DescriptorContainer DecorateValidationAttributes => New(
         id: 0103,
         title: "Decorate validation attributes",
         message: "The attribute lacks a [Validates] attribute",
@@ -251,9 +274,10 @@ public static partial class Rule
             "that can be validated, they should be decorated with the " +
             "[Validates] attribute, so that QW0102 can enforce usage.",
         category: Category.Design,
-        tags: ["Data Annotations", "Validation", "ValidationAttribute"]);
+        tags: ["Data Annotations", "Validation", "ValidationAttribute"],
+        analyzeTestCode: false);
 
-    public static DiagnosticDescriptor UseValidatesAttributeOnValidationAttributesOnly => New(
+    public static DescriptorContainer UseValidatesAttributeOnValidationAttributesOnly => New(
         id: 0104,
         title: "Use validates attribute on validation attributes only",
         message: "The [Validates] attribute has no meaning on this type",
@@ -261,28 +285,34 @@ public static partial class Rule
             "The [Validates] attribute only has meaning when defined on a " +
             "validation attribute.",
         category: Category.Bug,
-        tags: ["Data Annotations", "Validation", "ValidationAttribute"]);
+        tags: ["Data Annotations", "Validation", "ValidationAttribute"],
+        analyzeTestCode: false);
 
 #pragma warning disable S107 // Methods should not have too many parameters
     // it calls a ctor with even more arguments.
-    private static DiagnosticDescriptor New(
+    private static DescriptorContainer New(
         int id,
         string title,
         string message,
         string description,
         string[] tags,
         Category category,
+        bool analyzeTestCode,
         DiagnosticSeverity severity = DiagnosticSeverity.Warning,
         bool isEnabled = true)
 #pragma warning restore S107 // Methods should not have too many parameters
-        => new(
-            id: $"QW{id:0000}",
-            title: title,
-            messageFormat: message,
-            customTags: tags,
-            category: category.DisplayName(),
-            defaultSeverity: severity,
-            isEnabledByDefault: isEnabled,
-            description: description,
-            helpLinkUri: $"https://github.com/Qowaiv/qowaiv-analyzers/blob/main/rules/QW{id:0000}.md");
+        => new()
+        {
+            AnalyzeTestCode = analyzeTestCode,
+            Descriptor = new(
+                id: $"QW{id:0000}",
+                title: title,
+                messageFormat: message,
+                customTags: tags,
+                category: category.DisplayName(),
+                defaultSeverity: severity,
+                isEnabledByDefault: isEnabled,
+                description: description,
+                helpLinkUri: $"https://github.com/Qowaiv/qowaiv-analyzers/blob/main/rules/QW{id:0000}.md"),
+        };
 }

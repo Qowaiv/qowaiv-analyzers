@@ -4,7 +4,8 @@ namespace Qowaiv.CodeAnalysis.Rules;
 public sealed class RequiredAttributeCannotInvalidateValueTypes() : CodingRule(Rule.RequiredCannotInvalidateValueTypes)
 {
     protected override void Register(AnalysisContext context)
-     => context.RegisterSyntaxNodeAction(
+     => RegisterSyntaxNodeAction(
+            context,
             Report,
             SyntaxKind.PropertyDeclaration,
             SyntaxKind.FieldDeclaration,

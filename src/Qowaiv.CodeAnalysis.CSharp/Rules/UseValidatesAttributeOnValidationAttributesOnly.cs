@@ -7,7 +7,7 @@ public sealed class UseValidatesAttributeOnValidationAttributesOnly()
 {
     /// <inheritdoc />
     protected override void Register(AnalysisContext context)
-        => context.RegisterSyntaxNodeAction(Report, SyntaxKind.ClassDeclaration, SyntaxKind.RecordDeclaration);
+        => RegisterSyntaxNodeAction(context, Report, SyntaxKind.ClassDeclaration, SyntaxKind.RecordDeclaration);
 
     private void Report(SyntaxNodeAnalysisContext context)
     {

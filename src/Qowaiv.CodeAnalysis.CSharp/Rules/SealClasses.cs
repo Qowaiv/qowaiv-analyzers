@@ -6,7 +6,7 @@ public sealed class SealClasses() : CodingRule(
     Rule.OnlyUnsealedConcreteClassesCanBeInheritable)
 {
     protected override void Register(AnalysisContext context)
-        => context.RegisterSyntaxNodeAction(Report, SyntaxKind.ClassDeclaration, SyntaxKind.RecordDeclaration);
+        => RegisterSyntaxNodeAction(context, Report, SyntaxKind.ClassDeclaration, SyntaxKind.RecordDeclaration);
 
     private static void Report(SyntaxNodeAnalysisContext context)
     {

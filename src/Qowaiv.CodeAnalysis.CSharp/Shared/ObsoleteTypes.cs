@@ -1,6 +1,6 @@
 namespace Qowaiv.CodeAnalysis.Shared;
 
-public abstract class ObsoleteTypes(ImmutableArray<SyntaxKind> syntaxKinds, DiagnosticDescriptor supportedDiagnostic, params DiagnosticDescriptor[] additional)
+public abstract class ObsoleteTypes(ImmutableArray<SyntaxKind> syntaxKinds, DescriptorContainer supportedDiagnostic, params DiagnosticDescriptor[] additional)
     : CodingRule(supportedDiagnostic, additional)
 {
     protected abstract void Report(SyntaxNodeAnalysisContext context, SyntaxNode node, INamedTypeSymbol type);
@@ -9,20 +9,20 @@ public abstract class ObsoleteTypes(ImmutableArray<SyntaxKind> syntaxKinds, Diag
     {
         foreach (var kind in SyntaxKinds)
         {
-            context.RegisterSyntaxNodeAction(
-                kind switch
-                {
-                    SyntaxKind.Attribute => ReportAttribute,
-                    SyntaxKind.FieldDeclaration => ReportField,
-                    SyntaxKind.MethodDeclaration => ReportMethod,
-                    SyntaxKind.ParameterList => ReportParameterList,
-                    SyntaxKind.ObjectCreationExpression => ReportObjectCreation,
-                    SyntaxKind.PropertyDeclaration => ReportProperty,
-                    SyntaxKind.SimpleBaseType => ReportSimpleBaseType,
-                    _ => throw new NotSupportedException($"Syntax Kind {kind} is not supported."),
-                },
-                kind);
+            RegisterSyntaxNodeAction(context, Action(kind), kind);
         }
+
+        Action<SyntaxNodeAnalysisContext> Action(SyntaxKind kind) => kind switch
+        {
+            SyntaxKind.Attribute => ReportAttribute,
+            SyntaxKind.FieldDeclaration => ReportField,
+            SyntaxKind.MethodDeclaration => ReportMethod,
+            SyntaxKind.ParameterList => ReportParameterList,
+            SyntaxKind.ObjectCreationExpression => ReportObjectCreation,
+            SyntaxKind.PropertyDeclaration => ReportProperty,
+            SyntaxKind.SimpleBaseType => ReportSimpleBaseType,
+            _ => throw new NotSupportedException($"Syntax Kind {kind} is not supported."),
+        };
     }
 
     private void ReportAttribute(SyntaxNodeAnalysisContext context)

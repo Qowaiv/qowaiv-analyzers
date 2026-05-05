@@ -1,10 +1,10 @@
 namespace Qowaiv.CodeAnalysis.Rules;
 
-public abstract class DefineGlobalUsingStatements(DiagnosticDescriptor supportedDiagnostic)
+public abstract class DefineGlobalUsingStatements(DescriptorContainer supportedDiagnostic)
     : CodingRule(supportedDiagnostic)
 {
     protected override void Register(AnalysisContext context)
-        => context.RegisterSyntaxNodeAction(Report, SyntaxKind.UsingDirective);
+        => RegisterSyntaxNodeAction(context, Report, SyntaxKind.UsingDirective);
 
     protected abstract void Report(SyntaxNodeAnalysisContext context);
 

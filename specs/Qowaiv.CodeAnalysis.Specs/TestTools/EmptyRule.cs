@@ -5,7 +5,14 @@ using Qowaiv.CodeAnalysis.Diagnostics;
 namespace Specs.TestTools;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-internal sealed class NoRule() : CodingRule(new DiagnosticDescriptor(nameof(NoRule), "No Rule", "Specs", string.Empty, DiagnosticSeverity.Warning, true))
+internal sealed class NoRule() : CodingRule(new() { Descriptor = new(
+    nameof(NoRule),
+    "No Rule",
+    "Specs",
+    string.Empty,
+    DiagnosticSeverity.Warning,
+    true)
+})
 {
     protected override void Register(AnalysisContext context) { }
 }
