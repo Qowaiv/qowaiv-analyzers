@@ -4,9 +4,9 @@
     ".NETStandard,Version=v2.0": {
       "DotNetProjectFile.Analyzers": {
         "type": "Direct",
-        "requested": "[1.12.1, )",
-        "resolved": "1.12.1",
-        "contentHash": "ihEhH6slvFM5IibCYOdYI5EnzAkeD+2acmr8DvwvBEZ64wpIhKIdoIy2oF7JY+CQ2n+anlSLAd5Cknq3aw/rtg=="
+        "requested": "[1.13.1, )",
+        "resolved": "1.13.1",
+        "contentHash": "nDIThFLyqnihw9eTStm0oteWT31DanE/0k07TDWxcqrlG4wfEoTY4cWNr3MxLBSoXCI6MdkhUIxyrVB53yrM9A=="
       },
       "Microsoft.CodeAnalysis.Analyzers": {
         "type": "Direct",
