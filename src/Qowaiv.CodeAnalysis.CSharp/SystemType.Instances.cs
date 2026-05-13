@@ -9,6 +9,7 @@ public partial class SystemType
         public static readonly SystemType Object = New(typeof(object), SpecialType.System_Object);
         public static readonly SystemType String = New(typeof(string), SpecialType.System_String);
         public static readonly SystemType Decimal = New(typeof(decimal), SpecialType.System_Decimal);
+        public static readonly SystemType Int32 = New(typeof(int), SpecialType.System_Int32);
         public static readonly SystemType DateTime = New(typeof(global::System.DateTime), SpecialType.System_DateTime);
         public static readonly SystemType Enum = New(typeof(global::System.Enum), SpecialType.System_Enum);
         public static readonly SystemType Void = New(typeof(void), SpecialType.System_Void);
@@ -24,6 +25,7 @@ public partial class SystemType
         public static readonly SystemType ObsoleteAttribute = typeof(global::System.ObsoleteAttribute);
         public static readonly SystemType TimeProvider = new("System.TimeProvider");
         public static readonly SystemType Type = typeof(global::System.Type);
+        public static readonly SystemType DateTimeKind = typeof(global::System.DateTimeKind);
 
         public static class Collections
         {

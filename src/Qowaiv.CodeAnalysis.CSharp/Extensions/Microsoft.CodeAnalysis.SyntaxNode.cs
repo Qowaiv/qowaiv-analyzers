@@ -31,6 +31,19 @@ public static class SyntaxNodeExtensions
         ?? throw new InvalidOperationException($"Unexpected {node.GetType().Name}, expected {typeof(TNode).Name}.");
 
     [Pure]
+    public static ObjectCreation ObjectCreation(this SyntaxNode node, SemanticModel model)
+        => TryObjectCreation(node, model)
+        ?? throw new InvalidOperationException($"Unexpected {node.GetType().Name}, expected an object creation.");
+
+    [Pure]
+    public static ObjectCreation? TryObjectCreation(this SyntaxNode node, SemanticModel model) => node switch
+    {
+        ObjectCreationExpressionSyntax @explicit => new ObjectCreation.Explicit(@explicit, model),
+        ImplicitObjectCreationExpressionSyntax @implicit => new ObjectCreation.Implicit(@implicit, model),
+        _ => null,
+    };
+
+    [Pure]
     public static PropertyDeclaration PropertyDeclaration(this SyntaxNode node, SemanticModel model)
         => new(node.Cast<PropertyDeclarationSyntax>(), model);
 
