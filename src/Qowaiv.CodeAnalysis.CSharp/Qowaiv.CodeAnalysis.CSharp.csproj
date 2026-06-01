@@ -57,7 +57,7 @@
     <ToBeReleased>
       <![CDATA[
 v2.5.0
-- QWO0021: Use leading zeros to define date constants. (NEW RULE)
+- QW0021: Use leading zeros to define date constants. (NEW RULE)
       ]]>
     </ToBeReleased>
     <PackageReleaseNotes>
