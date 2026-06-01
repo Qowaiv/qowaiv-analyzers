@@ -9,6 +9,5 @@ public partial class ObjectCreation
 
         public override IReadOnlyList<Argument> Arguments
             => field ??= [.. TypedNode.ArgumentList?.Arguments.Select((a, i) => new Argument(this, a, i, SemanticModel)) ?? []];
-
     }
 }
