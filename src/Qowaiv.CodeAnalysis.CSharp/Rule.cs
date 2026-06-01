@@ -237,7 +237,7 @@ public static partial class Rule
         title: "Use leading zeros to define date constants",
         message: "Add {0} leading zero{1} to {2}",
         description:
-            "Comply to ISO 8601 to improve readabillity.",
+            "Date constants should comply to ISO 8601 to improve readabillity.",
         category: Category.Design,
         tags: ["Clarity"],
         analyzeTestCode: true);
