@@ -10,7 +10,7 @@ public sealed class UseQowaivClock() : CodeFix(Rule.UseTestableTimeProvider.Id, 
         if (await context.ChangeDocumentContext() is { Node: { } } changeDoc
             && changeDoc.Node.AncestorsAndSelf<MemberAccessExpressionSyntax>() is { } member)
         {
-            changeDoc.RegisterFix("Use Qowaiv.Clock.", context, c => ChangeDocument(member, c));
+            changeDoc.RegisterFix("Use Qowaiv.Clock", context, c => ChangeDocument(member, c));
         }
     }
 

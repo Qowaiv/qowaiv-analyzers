@@ -16,7 +16,7 @@ public abstract class SyntaxAbstraction<TSymbol> where TSymbol : ISymbol
     public TSymbol? Symbol => LazySymbol.Value;
 
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private readonly Lazy<TSymbol?> LazySymbol;
+    internal Lazy<TSymbol?> LazySymbol { get; }
 
     /// <summary>Gets the underlying node.</summary>
     public SyntaxNode Node { get; }
@@ -25,6 +25,7 @@ public abstract class SyntaxAbstraction<TSymbol> where TSymbol : ISymbol
     public SyntaxKind Kind => Node.Kind();
 
     /// <summary>The underlying semantic model.</summary>
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     protected SemanticModel SemanticModel { get; }
 
     /// <summary>

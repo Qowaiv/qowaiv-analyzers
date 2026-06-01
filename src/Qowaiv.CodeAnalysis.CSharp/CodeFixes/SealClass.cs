@@ -11,11 +11,11 @@ public sealed class SealClass() : CodeFix(Rule.SealClasses.Id)
         {
             if (changeDoc.Node is ClassDeclarationSyntax @class)
             {
-                changeDoc.RegisterFix("Seal class.", context, d => Change(@class, d));
+                changeDoc.RegisterFix("Seal class", context, d => Change(@class, d));
             }
             else if (changeDoc.Node is RecordDeclarationSyntax @record)
             {
-                changeDoc.RegisterFix("Seal record.", context, d => Change(@record, d));
+                changeDoc.RegisterFix("Seal record", context, d => Change(@record, d));
             }
         }
     }

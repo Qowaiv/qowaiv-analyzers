@@ -32,6 +32,7 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 * [**QW0018** - Use Qowaiv.Clock.TimeProvider](rules/QW0018.md)
 * [**QW0019** - Prefer XML to LINQ over DOM](rules/QW0019.md)
 * [**QW0020** - Prefer System.Text.Json over Newtonsoft.Json](rules/QW0020.md)
+* [**QW0021** - Use leading zeros to define date constants](rules/QW0021.md)
 
 ### Data Annotation rules
 * [**QW0100** - Define only one Required attribute](rules/QW0100.md)
@@ -48,6 +49,7 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 * Apply suggestions of obsolete code attribute [CS0618, CS0619](rules/ObsoleteCode.md))
 * Use Qowaiv round extensions ([QW0013](rules/QW0013.md))
 * Use Qowaiv.Clock.TimeProvider ([QW0018](rules/QW0018.md))
+* Add leading zero(s) ([QW0021](rules/QW0021.md))
 
 ## Configuration
 Some of the rules are not intended for (unit) test code. Unit tests that set

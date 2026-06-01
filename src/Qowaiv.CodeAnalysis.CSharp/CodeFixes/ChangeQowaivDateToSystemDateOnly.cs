@@ -9,7 +9,7 @@ public sealed class ChangeQowaivDateToSystemDateOnly() : CodeFix(Rule.UseSystemD
     {
         if (await context.ChangeDocumentContext() is { Node: { } } change)
         {
-            change.RegisterFix("Change type to System.DateOnly.", context, ChangeDocument);
+            change.RegisterFix("Change type to System.DateOnly", context, ChangeDocument);
         }
     }
 

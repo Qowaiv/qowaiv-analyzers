@@ -232,6 +232,16 @@ public static partial class Rule
         tags: ["Performance", "Clarity", "Obsolete"],
         analyzeTestCode: true);
 
+    public static DescriptorContainer UseLeadingZerosToDefineDateConstants => New(
+        id: 0021,
+        title: "Use leading zeros to define date constants",
+        message: "Add {0} leading zero{1} to {2}",
+        description:
+            "Date constants should comply to ISO 8601 to improve readability.",
+        category: Category.Design,
+        tags: ["Clarity"],
+        analyzeTestCode: true);
+
     public static DescriptorContainer DefineOnlyOneRequiredAttribute => New(
         id: 0100,
         title: "Define only one Required attribute",

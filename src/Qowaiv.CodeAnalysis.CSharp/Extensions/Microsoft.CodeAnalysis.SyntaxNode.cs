@@ -17,6 +17,7 @@ public static class SyntaxNodeExtensions
         InvocationExpressionSyntax n /*...*/ => Name(n.Expression),
         MemberAccessExpressionSyntax n /*.*/ => Name(n.Name),
         ParameterSyntax n /*..............*/ => n.Identifier.Text,
+        NameColonSyntax n /*..............*/ => Name(n.Name),
         SimpleNameSyntax n /*.............*/ => n.Identifier.Text,
         NameSyntax n /*...................*/ => n.ToFullString(),
         PropertyDeclarationSyntax n /*....*/ => n.Identifier.Text,
@@ -29,6 +30,19 @@ public static class SyntaxNodeExtensions
     public static TNode Cast<TNode>(this SyntaxNode node) where TNode : SyntaxNode
         => node as TNode
         ?? throw new InvalidOperationException($"Unexpected {node.GetType().Name}, expected {typeof(TNode).Name}.");
+
+    [Pure]
+    public static ObjectCreation ObjectCreation(this SyntaxNode node, SemanticModel model)
+        => TryObjectCreation(node, model)
+        ?? throw new InvalidOperationException($"Unexpected {node.GetType().Name}, expected an object creation.");
+
+    [Pure]
+    public static ObjectCreation? TryObjectCreation(this SyntaxNode node, SemanticModel model) => node switch
+    {
+        ObjectCreationExpressionSyntax @explicit => new ObjectCreation.Explicit(@explicit, model),
+        ImplicitObjectCreationExpressionSyntax @implicit => new ObjectCreation.Implicit(@implicit, model),
+        _ => null,
+    };
 
     [Pure]
     public static PropertyDeclaration PropertyDeclaration(this SyntaxNode node, SemanticModel model)
