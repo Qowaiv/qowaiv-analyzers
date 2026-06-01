@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -56,8 +56,8 @@
     <Version>2.4.0</Version>
     <ToBeReleased>
       <![CDATA[
-v2.*
-- ?
+v2.5.0
+- QWO0021: Use leading zeros to define date constants. (NEW RULE)
       ]]>
     </ToBeReleased>
     <PackageReleaseNotes>

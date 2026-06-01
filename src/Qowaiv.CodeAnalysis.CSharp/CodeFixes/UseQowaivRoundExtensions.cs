@@ -9,7 +9,7 @@ public sealed class UseQowaivRoundExtensions() : CodeFix(Rule.UseQowaivDecimalRo
     {
         if (await context.ChangeDocumentContext() is { Node: InvocationExpressionSyntax syntax } change)
         {
-            change.RegisterFix("Use Qowaiv .Round().", context, c => ApplySuggestion(syntax, c));
+            change.RegisterFix("Use Qowaiv .Round()", context, c => ApplySuggestion(syntax, c));
         }
     }
 

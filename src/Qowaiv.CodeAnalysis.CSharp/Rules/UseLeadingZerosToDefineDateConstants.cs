@@ -29,7 +29,7 @@ public sealed class UseLeadingZerosToDefineDateConstants() : CodingRule(Rule.Use
 
                 if (tooShort > 0)
                 {
-                    context.ReportDiagnostic(Diagnostic, argument, tooShort is 1 ? string.Empty : "s", argument.Symbol!.Name);
+                    context.ReportDiagnostic(Diagnostic, argument, tooShort, tooShort is 1 ? string.Empty : "s", argument.Symbol!.Name);
                 }
             }
         }

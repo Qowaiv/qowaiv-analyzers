@@ -1,11 +1,11 @@
 using System;
 class Noncompliant
 {
-    public static readonly DateOnly DateOnly = new(7, 06, 01); // Noncompliant {{Add leading zeros to year}}
+    public static readonly DateOnly DateOnly = new(7, 06, 01); // Noncompliant {{Add 3 leading zeros to year}}
     //                                             ^
-    public static readonly Qowaiv.Date QowaivDate = new(2017, 6, 01); // Noncompliant {{Add leading zero to month}}
+    public static readonly Qowaiv.Date QowaivDate = new(2017, 6, 01); // Noncompliant {{Add 1 leading zero to month}}
     //                                                        ^
-    public static readonly DateTime DateTime = new(2017, 06, 01, 04, 02, 08, 3, DateTimeKind.Local); // Noncompliant {{Add leading zeros to millisecond}}
+    public static readonly DateTime DateTime = new(2017, 06, 01, 04, 02, 08, 3, DateTimeKind.Local); // Noncompliant {{Add 2 leading zeros to millisecond}}
     //                                                                       ^
     public static readonly Qowaiv.LocalDateTime Qowaiv_LocalDateTime = new(2017, 06, 1, 04, 02, 08, 003); // Noncompliant
 

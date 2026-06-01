@@ -11,7 +11,7 @@ public sealed class ConvertPositionalProperties() : CodeFix(Rule.PreferRegularOv
     {
         if (await context.ChangeDocumentContext() is { Node: ParameterSyntax parameter } change)
         {
-            change.RegisterFix("Convert to regular property.", context, d => Change(parameter, d));
+            change.RegisterFix("Convert to regular property", context, d => Change(parameter, d));
         }
     }
 

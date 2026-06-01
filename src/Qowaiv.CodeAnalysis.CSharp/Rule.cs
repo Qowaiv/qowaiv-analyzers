@@ -234,11 +234,10 @@ public static partial class Rule
 
     public static DescriptorContainer UseLeadingZerosToDefineDateConstants => New(
         id: 0021,
-        title: "Use leading zero's to define data constants",
-        message: "Add leading zero{0} to {1}",
+        title: "Use leading zeros to define date constants",
+        message: "Add {0} leading zero{1} to {2}",
         description:
-            "Use System.Text.Json for JSON serialization as it is both faster, " +
-            "with a smaller memory footprint, and built-in in the .NET framework.",
+            "Comply to ISO 8601 to improve readabillity.",
         category: Category.Design,
         tags: ["Clarity"],
         analyzeTestCode: true);

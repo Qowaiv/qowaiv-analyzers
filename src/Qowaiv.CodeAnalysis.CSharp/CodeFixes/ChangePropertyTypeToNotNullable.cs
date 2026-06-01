@@ -12,7 +12,7 @@ public sealed class ChangePropertyTypeToNotNullable() : CodeFix(
         if (await context.ChangeDocumentContext() is { } changeDoc
             && GetTypeSyntax(changeDoc.Node) is { } type)
         {
-            changeDoc.RegisterFix("Change property type to not-nullable.", context, c => ChangeDocument(type, c));
+            changeDoc.RegisterFix("Change property type to not-nullable", context, c => ChangeDocument(type, c));
         }
     }
 
