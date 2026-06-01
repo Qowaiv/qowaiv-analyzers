@@ -6,6 +6,8 @@ public class Verify
     public void Code() => new UseImmutableTypesForProperties()
         .ForCS()
         .AddSource(@"Cases/UseImmutableTypesForProperties.cs")
+        .AddReference<Qowaiv.DomainModel.EventBuffer<Guid>>()
+        .AddReference<Qowaiv.Validation.Abstractions.Result>()
         .AddReference<System.Collections.Immutable.ImmutableArray<int>>()
         .AddReference<System.Xml.Serialization.XmlElementAttribute>()
         .Verify();
