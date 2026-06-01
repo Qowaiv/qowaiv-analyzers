@@ -14,7 +14,14 @@ public sealed class UseLeadingZerosToDefineDateConstants() : CodingRule(Rule.Use
     {
         var node = context.Node.ObjectCreation(context.SemanticModel);
 
-        if (node is { Symbol.Parameters.Length: >= 3 } && node.Arguments.All(IsNumericLiteral))
+        if (node is { Symbol.Parameters.Length: >= 3 }
+            && node.Arguments.Any(IsNumericLiteral)
+            && node.Symbol.ContainingType.IsAny(
+                SystemType.System.DateTime,
+                SystemType.System.DateOnly,
+                SystemType.System.DateTimeOffset,
+                SystemType.Qowaiv.Date,
+                SystemType.Qowaiv.LocalDateTime))
         {
             foreach (var argument in node.Arguments)
             {
@@ -35,10 +42,9 @@ public sealed class UseLeadingZerosToDefineDateConstants() : CodingRule(Rule.Use
         && symbol.Type.Is(arg.Type);
 
     private static int TooShort(Argument argument)
-    {
-        var length = Arguments[argument.Symbol!.Name].Length;
-        return length - argument.Expression.GetText().Length;
-    }
+        => Arguments.TryGetValue(argument.Symbol!.Name, out var arg)
+        ? arg.Length - argument.Expression.GetText().Length
+        : 0;
 
     private static readonly FrozenDictionary<string, Arg> Arguments = new Dictionary<string, Arg>()
     {
@@ -49,7 +55,6 @@ public sealed class UseLeadingZerosToDefineDateConstants() : CodingRule(Rule.Use
         ["minute"] = new(2, SystemType.System.Int32),
         ["second"] = new(2, SystemType.System.Int32),
         ["millisecond"] = new(3, SystemType.System.Int32),
-        ["kind"] = new(0, SystemType.System.DateTimeKind),
     }
     .ToFrozenDictionary();
 

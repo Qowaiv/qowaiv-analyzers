@@ -17,6 +17,7 @@ public static class SyntaxNodeExtensions
         InvocationExpressionSyntax n /*...*/ => Name(n.Expression),
         MemberAccessExpressionSyntax n /*.*/ => Name(n.Name),
         ParameterSyntax n /*..............*/ => n.Identifier.Text,
+        NameColonSyntax n /*..............*/ => Name(n.Name),
         SimpleNameSyntax n /*.............*/ => n.Identifier.Text,
         NameSyntax n /*...................*/ => n.ToFullString(),
         PropertyDeclarationSyntax n /*....*/ => n.Identifier.Text,

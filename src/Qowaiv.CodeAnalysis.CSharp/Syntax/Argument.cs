@@ -18,6 +18,10 @@ public sealed class Argument(SyntaxAbstraction<IMethodSymbol> parent, ArgumentSy
     /// <summary>The argument is a <see cref="LiteralExpressionSyntax"/>.</summary>
     public bool IsLiteral => Expression is LiteralExpressionSyntax;
 
+    /// <inheritdoc />
     protected override IParameterSymbol? GetSymbol(SemanticModel semanticModel)
-        => TypedParent.LazySymbol.Value?.Parameters[Index];
+        => TypedNode.NameColon?.Name() is { } name
+        && TypedParent.LazySymbol.Value?.Parameters.FirstOrDefault(p => p.Name == name) is { } named
+        ? named
+        : TypedParent.LazySymbol.Value?.Parameters[Index];
 }
