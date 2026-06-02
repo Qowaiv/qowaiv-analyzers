@@ -93,6 +93,11 @@ namespace Compliant
 
         public Guid ReadOnly { get; } // Compliant {{Guids are read-only.}}
     }
+    
+    public class DerivedClass : BaseClass
+    {
+        public override int[] FromBase { get; } // Compliant {{Dictated by the base.}}
+    }
 
     public class Delegates
     {
@@ -162,6 +167,11 @@ namespace Compliant
         protected override void AddEventsToBuffer(IReadOnlyCollection<object> events) { }
 
         protected override SomeAggregate Clone() => new();
+    }
+
+	public abstract class  BaseClass
+	{
+		public abstract int[] FromBase { get; } // Noncompliant
     }
 }
 
