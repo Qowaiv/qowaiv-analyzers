@@ -21,6 +21,10 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/) (s
 * [**QW0018** - Use Qowaiv.Clock.TimeProvider](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0018.md)
 * [**QW0019** - Prefer XML to LINQ over DOM](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0019.md)
 * [**QW0020** - Prefer System.Text.Json over Newtonsoft.Json](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0020.md)
+* [**QW0021** - Use leading zeros to define date constants](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0021.md)
+* [**QW0022** - Use compliant GUID literals](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0022.md)
+* [**QW0023** - Provide GUID values](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0023.md)
+* [**QW0024** - Create GUID's using Guid.Parse or Guid.Empty](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0024.md)
 
 ### Data Annotation rules
 * [**QW0100** - Define only one Required attribute](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0100.md)
@@ -37,3 +41,13 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/) (s
 * Apply suggestions of obsolete code attribute [CS0618, CS0619](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/ObsoleteCode.md))
 * Use Qowaiv round extensions ([QW0013](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0013.md))
 * Convert positional properties ([QW0016](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0016.md))
+* Use Qowaiv.Clock.TimeProvider ([QW0018](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0018.md))
+* Add leading zero(s) ([QW0021](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0021.md))
+* Generate GUIDs ([QW0022](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0022.md), [QW0023](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0023.md), [QW0024](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0024.md))
+
+## Configuration
+Some of the rules are not intended for (unit) test code. Unit tests that set
+`IsTestProject` to `true` are excluded. When setting `IsTestProject` is undesirable,
+a project can set `IsTestCode` to `true` instead. It is worth to
+mention that only a subset of the rules is considered irrelevant for test code,
+the rest is always executed.

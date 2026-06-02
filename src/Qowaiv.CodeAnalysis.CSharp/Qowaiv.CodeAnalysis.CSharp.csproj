@@ -59,6 +59,9 @@
 v2.5.0
 - QW0012: Exclude Qowaiv.DomainModel.Aggregate<,>. (FP)
 - QW0021: Use leading zeros to define date constants. (NEW RULE)
+- QW0022: Use compliant GUID literals. (NEW RULE)
+- QW0023: Provide GUID values. (NEW RULE)
+- QW0024: Create GUID's using Guid.Parse or Guid.Empty. (NEW RULE)
       ]]>
     </ToBeReleased>
     <PackageReleaseNotes>
