@@ -242,6 +242,34 @@ public static partial class Rule
         tags: ["Clarity"],
         analyzeTestCode: true);
 
+    public static DescriptorContainer GuidLiteralsMustBeCompliant => New(
+        id: 0022,
+        title: "Use compliant GUID literals",
+        message: "\"{0}\" does not represent a GUID",
+        description: "Non-compliant GUID literals will lead to runtime errors.",
+        category: Category.Bug,
+        tags: ["Bug"],
+        severity: DiagnosticSeverity.Error,
+        analyzeTestCode: true);
+
+    public static DescriptorContainer GuidLiteralsShouldBeProvided => New(
+        id: 0023,
+        title: "Provide GUID values",
+        message: "Provide a GUID value",
+        description: "Non-compliant GUID literals will lead to runtime errors.",
+        category: Category.Bug,
+        tags: ["Bug"],
+        analyzeTestCode: true);
+
+    public static DescriptorContainer UseGuidParseOrEmpty => New(
+        id: 0024,
+        title: "Create GUID's using Guid.Parse or Guid.Empty",
+        message: "Use Guid.Parse() or Guid.Empty instead",
+        description: "Non-compliant GUID literals will lead to runtime errors.",
+        category: Category.Bug,
+        tags: ["Bug"],
+        analyzeTestCode: true);
+
     public static DescriptorContainer DefineOnlyOneRequiredAttribute => New(
         id: 0100,
         title: "Define only one Required attribute",
