@@ -30,7 +30,13 @@ public abstract class ImmutablePropertiesBase(DescriptorContainer supportedDiagn
     [Pure]
     public static bool IsExcluded(INamedTypeSymbol type)
         => type.Implements(SystemType.System.Collections.IEnumerator)
-        || type.Implements(SystemType.System.Xml.Serialization.IXmlSerializable);
+        || type.Implements(SystemType.System.Xml.Serialization.IXmlSerializable)
+        || type.SelfAndAncestorTypes().Any(IsQowaivDomainModelAggregate);
+
+    [Pure]
+    private static bool IsQowaivDomainModelAggregate(INamedTypeSymbol type)
+        => type.Name is "Aggregate"
+        && type.ContainingNamespace.ToDisplayString() is "Qowaiv.DomainModel";
 
     [Pure]
     private static bool HasImmutableBase(INamedTypeSymbol? containing)

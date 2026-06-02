@@ -2,6 +2,50 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+namespace Noncompliant
+{
+    public class Class
+    {
+        public int[] Array { get; } // Noncompliant {{Use an immutable type, or decorate the type with the mutable attribute.}}
+        //     ^^^^^
+        public ICollection<int> ICollection { get; } // Noncompliant
+        //     ^^^^^^^^^^^^^^^^
+
+        public IList<int> IList { get; } // Noncompliant
+
+        public ISet<int> Set { get; } // Noncompliant
+
+        public IDictionary<string, int> IDictionary { get; } // Noncompliant
+
+        public List<int> List { get; } // Noncompliant
+
+        public HashSet<int> HashSet { get; } // Noncompliant
+
+        public Dictionary<string, int> Dictionary { get; } // Noncompliant
+
+        public MutableClass MutableClass { get; } // Noncompliant
+
+        public IReadOnlyList<MutableClass> MutableClasses { get; } // Noncompliant
+
+        public MutableList MutableList { get; } // Noncompliant, MutableList inherits from IList<T>.
+    }
+
+    public record Record
+    {
+        public MutableClass MutableClass { get; } // Noncompliant
+    }
+
+    public struct Struct
+    {
+        public MutableClass MutableClass { get; } // Noncompliant
+    }
+
+    public interface Interface
+    {
+        MutableClass MutableClass { get; } // Noncompliant
+    }
+}
+
 namespace Compliant
 {
     public sealed class AttributeWithArray : Attribute
@@ -110,51 +154,17 @@ namespace Compliant
         [System.Xml.Serialization.XmlElement("value")]
         public string[] Values { get; init; } = []; // Compliant {{XML Serialization does not work with immutable collections.}}
     }
-}
 
-namespace Noncompliant
-{
-    public class Class
+    public class SomeAggregate() : Qowaiv.DomainModel.Aggregate<SomeAggregate>(null)
     {
-        public int[] Array { get; } // Noncompliant {{Use an immutable type, or decorate the type with the mutable attribute.}}
-        //     ^^^^^
-        public ICollection<int> ICollection { get; } // Noncompliant
-        //     ^^^^^^^^^^^^^^^^
+        public int[] Values { get; private set;  } = []; // Compliant {{Qowaiv aggregates is mutable by design.}}
 
-        public IList<int> IList { get; } // Noncompliant
+        protected override void AddEventsToBuffer(IReadOnlyCollection<object> events) { }
 
-        public ISet<int> Set { get; } // Noncompliant
-
-        public IDictionary<string, int> IDictionary { get; } // Noncompliant
-
-        public List<int> List { get; } // Noncompliant
-
-        public HashSet<int> HashSet { get; } // Noncompliant
-
-        public Dictionary<string, int> Dictionary { get; } // Noncompliant
-
-        public MutableClass MutableClass { get; } // Noncompliant
-
-        public IReadOnlyList<MutableClass> MutableClasses { get; } // Noncompliant
-
-        public MutableList MutableList { get; } // Noncompliant, MutableList inherits from IList<T>.
-    }
-
-    public record Record
-    {
-        public MutableClass MutableClass { get; } // Noncompliant
-    }
-
-    public struct Struct
-    {
-        public MutableClass MutableClass { get; } // Noncompliant
-    }
-
-    public interface Interface
-    {
-        MutableClass MutableClass { get; } // Noncompliant
+        protected override SomeAggregate Clone() => new();
     }
 }
+
 
 public class ImmutableClass
 {

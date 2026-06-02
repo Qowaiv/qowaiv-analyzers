@@ -57,6 +57,7 @@
     <ToBeReleased>
       <![CDATA[
 v2.5.0
+- QW0012: Exclude Qowaiv.DomainModel.Aggregate<,>. (FP)
 - QW0021: Use leading zeros to define date constants. (NEW RULE)
       ]]>
     </ToBeReleased>
