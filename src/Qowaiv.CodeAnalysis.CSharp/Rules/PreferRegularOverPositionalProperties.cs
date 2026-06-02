@@ -8,7 +8,7 @@ public sealed class PreferRegularOverPositionalProperties() : CodingRule(Rule.Pr
 
     private void Report(SyntaxNodeAnalysisContext context)
     {
-        if (context.Compilation.LanguageVersion() >= LanguageVersionExt.CSharp11
+        if (context.Compilation.CSharpVersion >= LanguageVersion.CSharp11
             && context.Node is RecordDeclarationSyntax declaration
             && declaration.ParameterList is { } list
             && context.Node.TypeDeclaration(context.SemanticModel) is { IsPublic: true, IsObsolete: false })
