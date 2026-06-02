@@ -12,6 +12,8 @@ public sealed class PropertyDeclaration : SyntaxAbstraction<IPropertySymbol>
 
     public bool IsStatic => Modifiers.Contains(SyntaxKind.StaticKeyword);
 
+    public bool IsOverride => Modifiers.Contains(SyntaxKind.OverrideKeyword);
+
     public INamedTypeSymbol? ContainingSymbol => LazyContainingSymbol.Value;
 
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
