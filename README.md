@@ -33,6 +33,9 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 * [**QW0019** - Prefer XML to LINQ over DOM](rules/QW0019.md)
 * [**QW0020** - Prefer System.Text.Json over Newtonsoft.Json](rules/QW0020.md)
 * [**QW0021** - Use leading zeros to define date constants](rules/QW0021.md)
+* [**QW0022** - Use compliant GUID literals](rules/QW0022.md)
+* [**QW0023** - Provide GUID values](rules/QW0023.md)
+* [**QW0024** - Create GUID's using Guid.Parse or Guid.Empty](rules/QW0024.md)
 
 ### Data Annotation rules
 * [**QW0100** - Define only one Required attribute](rules/QW0100.md)
@@ -48,8 +51,10 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 * Change type System.DateOnly ([QW0010](rules/QW0010.md))
 * Apply suggestions of obsolete code attribute [CS0618, CS0619](rules/ObsoleteCode.md))
 * Use Qowaiv round extensions ([QW0013](rules/QW0013.md))
+* Convert positional properties ([QW0016](rules/QW0016.md))
 * Use Qowaiv.Clock.TimeProvider ([QW0018](rules/QW0018.md))
 * Add leading zero(s) ([QW0021](rules/QW0021.md))
+* Generate GUIDs ([QW0022](rules/QW0022.md), [QW0023](rules/QW0023.md), [QW0024](rules/QW0024.md))
 
 ## Configuration
 Some of the rules are not intended for (unit) test code. Unit tests that set

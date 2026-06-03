@@ -18,6 +18,7 @@ public partial class SystemType
         public static readonly SystemType DateOnly = new("System.DateOnly");
         public static readonly SystemType DateTimeOffset = typeof(global::System.DateTimeOffset);
         public static readonly SystemType Exception = typeof(global::System.Exception);
+        public static readonly SystemType Guid = typeof(global::System.Guid);
         public static readonly SystemType IConvertible = typeof(global::System.IConvertible);
         public static readonly SystemType IComparable = typeof(global::System.IComparable);
         public static readonly SystemType IDisposable = typeof(global::System.IDisposable);
