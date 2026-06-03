@@ -53,8 +53,14 @@
   </ItemGroup>
 
   <PropertyGroup Label="Version and release notes">
-    <Version>2.4.0</Version>
+    <Version>2.5.0</Version>
     <ToBeReleased>
+      <![CDATA[
+v*
+- ?
+      ]]>
+    </ToBeReleased>
+    <PackageReleaseNotes>
       <![CDATA[
 v2.5.0
 - QW0012: Exclude Qowaiv.DomainModel.Aggregate<,>. (FP)
@@ -62,10 +68,6 @@ v2.5.0
 - QW0022: Use compliant GUID literals. (NEW RULE)
 - QW0023: Provide GUID values. (NEW RULE)
 - QW0024: Create GUID's using Guid.Parse or Guid.Empty. (NEW RULE)
-      ]]>
-    </ToBeReleased>
-    <PackageReleaseNotes>
-      <![CDATA[
 v2.4.0
 - QW0003, QW0005, QW0006, QW0008, QW0009, QW0010, QW0011, QW0012,
   QW0016, QW0103, QW0104 are disabled for test code.
