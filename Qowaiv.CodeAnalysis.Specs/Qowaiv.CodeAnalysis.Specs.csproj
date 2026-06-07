@@ -45,7 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../src/Qowaiv.CodeAnalysis.CSharp/Qowaiv.CodeAnalysis.CSharp.csproj" />
+    <ProjectReference Include="../Qowaiv.CodeAnalysis.CSharp/Qowaiv.CodeAnalysis.CSharp.csproj" />
   </ItemGroup>
 
 </Project>
