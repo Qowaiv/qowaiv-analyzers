@@ -15,7 +15,7 @@ namespace Qowaiv.CodeAnalysis.CodeFixes
 
         public override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {
-            if (await context.ChangeDocumentContext() is { } document && Node(document.Node) is { } node)
+            if ((await context.ChangeDocumentContext() is { } document) && Node(document.Node) is { } node)
             {
                 document.RegisterFix("Generate GUID", context, _ => Change(node, document));
             }
