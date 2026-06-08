@@ -10,6 +10,8 @@ public sealed class PropertyDeclaration : SyntaxAbstraction<IPropertySymbol>
 
     public PropertyDeclarationSyntax TypedNode { get; }
 
+    public bool IsInstance => !IsStatic;
+
     public bool IsStatic => Modifiers.Contains(SyntaxKind.StaticKeyword);
 
     public bool IsOverride => Modifiers.Contains(SyntaxKind.OverrideKeyword);

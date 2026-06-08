@@ -6,7 +6,7 @@ public abstract class ImmutablePropertiesBase(DescriptorContainer supportedDiagn
     [Pure]
     protected static bool IsApplicable(PropertyDeclaration property)
         => IsAccessible(property.Accessibility)
-        && !property.IsStatic
+        && property.IsInstance
         && !property.IsObsolete
         && !IsXmlSerializable(property)
         && IsApplicable(property.DeclaringType)
