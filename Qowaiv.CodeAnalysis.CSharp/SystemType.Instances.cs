@@ -121,6 +121,7 @@ public partial class SystemType
         public static readonly SystemType Clock = new("Qowaiv.Clock");
         public static readonly SystemType Date = new("Qowaiv.Date");
         public static readonly SystemType LocalDateTime = new("Qowaiv.LocalDateTime");
+        public static readonly SystemType Uuid = new("Qowaiv.Uuid");
 
         public static class Validation
         {

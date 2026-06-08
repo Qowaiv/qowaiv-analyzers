@@ -270,6 +270,35 @@ public static partial class Rule
         tags: ["Bug"],
         analyzeTestCode: true);
 
+
+    public static DescriptorContainer UuidLiteralsMustBeCompliant => New(
+        id: 0025,
+        title: "Use compliant UUID literals",
+        message: "\"{0}\" does not represent a UUID",
+        description: "Non-compliant UUID literals will lead to runtime errors.",
+        category: Category.Bug,
+        tags: ["Bug"],
+        severity: DiagnosticSeverity.Error,
+        analyzeTestCode: true);
+
+    public static DescriptorContainer UuidLiteralsShouldBeProvided => New(
+        id: 0026,
+        title: "Provide UUID values",
+        message: "Provide a UUID value",
+        description: "Non-compliant UUID literals will lead to runtime errors.",
+        category: Category.Bug,
+        tags: ["Bug"],
+        analyzeTestCode: true);
+
+    public static DescriptorContainer UseUuidParseOrEmpty => New(
+        id: 0027,
+        title: "Create UUID's using Uuid.Parse or Uuid.Empty",
+        message: "Use Uuid.Parse() or Uuid.Empty instead",
+        description: "Non-compliant UUID literals will lead to runtime errors.",
+        category: Category.Bug,
+        tags: ["Bug"],
+        analyzeTestCode: true);
+
     public static DescriptorContainer DefineOnlyOneRequiredAttribute => New(
         id: 0100,
         title: "Define only one Required attribute",
