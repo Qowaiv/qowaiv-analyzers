@@ -39,6 +39,7 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 * [**QW0025** - Use compliant UUID literals](rules/QW0025.md)
 * [**QW0026** - Provide UUID values](rules/QW0026.md)
 * [**QW0027** - Create UUID's using Uuid.Parse or Uuid.Empty](rules/QW0027.md)
+* [**QW0028** - Prefer strongly typed identifiers over GUIDs](rules/QW0028.md)
 
 ### Data Annotation rules
 * [**QW0100** - Define only one Required attribute](rules/QW0100.md)
@@ -48,7 +49,7 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 * [**QW0104** - Use validates attribute on validation attributes only](rules/QW0104.md)
 
 ## Code fixes
-* Use Qowaiv.Clock ([QW0001](rules/QW0001.md), [S6354](https://rules.sonarsource.com/csharp/RSPEC-6354))
+* Use Qowaiv.Clock ([QW0001](rules/QW0001.md), [S6354](https://www.sonarsource.com))
 * Seal class ([QW0005](rules/QW0005.md))
 * Change property type to not-nullable ([QW0008](rules/QW0008.md), [QW0009](rules/QW0009.md))
 * Change type System.DateOnly ([QW0010](rules/QW0010.md))
