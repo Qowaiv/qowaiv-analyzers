@@ -17,11 +17,15 @@ public sealed class PreferStronglyTypedIdOverGuid() : CodingRule(Rule.PreferStro
                 DeclaringType.Accessibility: Accessibility.Public,
                 Symbol.Type: INamedTypeSymbol type,
             } property
-            && IsGuidUuid(type))
+            && IsGuidUuid(type)
+            && property.Attributes.None(IsPrimitiveRequired))
         {
             context.ReportDiagnostic(Diagnostic, property.PropertyType);
         }
     }
+
+    private static bool IsPrimitiveRequired(AttributeDecoration decoration)
+        => decoration.HasName("PrimitiveRequired");
 
     private static bool IsGuidUuid(INamedTypeSymbol type)
         => type.IsAny(SystemType.System.Guid, SystemType.Qowaiv.Uuid)

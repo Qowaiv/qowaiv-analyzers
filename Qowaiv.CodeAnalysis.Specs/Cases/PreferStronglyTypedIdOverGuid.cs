@@ -16,6 +16,9 @@ public class PublicCompliant(Guid id)
 {
     public string Id { get; init; } = id.ToString();
 
+    [PrimitiveRequired]
+    public Guid Primitive { get; init; }
+
     private class PrivateCompliant
     {
         public Guid Id { get; init; }
@@ -33,3 +36,5 @@ internal class InternalCompliant
 {
     public Guid Id { get; init; }
 }
+
+internal sealed class PrimitiveRequiredAttribute : Attribute;

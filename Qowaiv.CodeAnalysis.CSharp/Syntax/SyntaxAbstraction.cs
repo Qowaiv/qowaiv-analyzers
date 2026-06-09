@@ -34,7 +34,7 @@ public abstract class SyntaxAbstraction<TSymbol> where TSymbol : ISymbol
     public SyntaxNode? Parent => Node.Parent;
 
     /// <summary>Gets the Name of the node or null if not supported for the syntax node type.</summary>
-    public string Name() => Node.Name() ?? string.Empty;
+    public string Name => Node.Name() ?? string.Empty;
 
     /// <summary>Gets the direct child tokens of this node.</summary>
     public IEnumerable<SyntaxToken> ChildTokens() => Node.ChildTokens();
