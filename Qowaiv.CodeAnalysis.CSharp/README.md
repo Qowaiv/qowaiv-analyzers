@@ -27,7 +27,7 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/) (s
 * [**QW0024** - Create GUID's using Guid.Parse or Guid.Empty](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0024.md)
 * [**QW0025** - Use compliant UUID literals](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0025.md)
 * [**QW0026** - Provide UUID values](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0026.md)
-* [**QW0027** - Create UUID's using Guid.Parse or Guid.Empty](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0027.md)
+* [**QW0027** - Create UUID's using Uuid.Parse or Uuid.Empty](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0027.md)
 
 ### Data Annotation rules
 * [**QW0100** - Define only one Required attribute](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0100.md)
