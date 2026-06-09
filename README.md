@@ -58,6 +58,7 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 * Use Qowaiv.Clock.TimeProvider ([QW0018](rules/QW0018.md))
 * Add leading zero(s) ([QW0021](rules/QW0021.md))
 * Generate GUIDs ([QW0022](rules/QW0022.md), [QW0023](rules/QW0023.md), [QW0024](rules/QW0024.md))
+* Generate UUIDs ([QW0025](rules/QW0025.md), [QW0026](rules/QW0026.md), [QW0027](rules/QW0027.md))
 
 ## Configuration
 Some of the rules are not intended for (unit) test code. Unit tests that set
