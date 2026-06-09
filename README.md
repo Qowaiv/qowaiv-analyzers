@@ -36,6 +36,9 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 * [**QW0022** - Use compliant GUID literals](rules/QW0022.md)
 * [**QW0023** - Provide GUID values](rules/QW0023.md)
 * [**QW0024** - Create GUID's using Guid.Parse or Guid.Empty](rules/QW0024.md)
+* [**QW0025** - Use compliant UUID literals](rules/QW0025.md)
+* [**QW0026** - Provide UUID values](rules/QW0026.md)
+* [**QW0027** - Create UUID's using Uuid.Parse or Uuid.Empty](rules/QW0027.md)
 
 ### Data Annotation rules
 * [**QW0100** - Define only one Required attribute](rules/QW0100.md)
@@ -55,6 +58,7 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 * Use Qowaiv.Clock.TimeProvider ([QW0018](rules/QW0018.md))
 * Add leading zero(s) ([QW0021](rules/QW0021.md))
 * Generate GUIDs ([QW0022](rules/QW0022.md), [QW0023](rules/QW0023.md), [QW0024](rules/QW0024.md))
+* Generate UUIDs ([QW0025](rules/QW0025.md), [QW0026](rules/QW0026.md), [QW0027](rules/QW0027.md))
 
 ## Configuration
 Some of the rules are not intended for (unit) test code. Unit tests that set
