@@ -6,7 +6,7 @@ public abstract class GuidLiteralsBase(DescriptorContainer supportedDiagnostic, 
 {
     protected abstract SystemType Type { get; }
 
-    protected abstract bool InvalidGuid(string literal);
+    protected abstract bool IsValid(string literal);
 
     protected sealed override void Register(AnalysisContext context)
     {
@@ -64,7 +64,7 @@ public abstract class GuidLiteralsBase(DescriptorContainer supportedDiagnostic, 
     {
         var text = literal.Token.Text.Trim('"');
 
-        if (InvalidGuid(text))
+        if (!IsValid(text))
         {
             context.ReportDiagnostic(SupportedDiagnostics[0], literal, text);
         }

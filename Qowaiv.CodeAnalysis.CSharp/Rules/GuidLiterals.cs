@@ -8,5 +8,5 @@ public sealed class GuidLiterals() : GuidLiteralsBase(
 {
     protected override SystemType Type => SystemType.System.Guid;
 
-    protected override bool InvalidGuid(string literal) => !Guid.TryParse(literal, out _);
+    protected override bool IsValid(string literal) => Guid.TryParse(literal, out _);
 }
