@@ -301,7 +301,7 @@ public static partial class Rule
 
     public static DescriptorContainer PreferStronglyTypedIdOverGuid => New(
         id: 0028,
-        title: "Prefere strongly typed identifiers over GUID",
+        title: "Prefer strongly typed identifiers over GUID",
         message: "Use a strongly typed identifier instead",
         description:
             "To reduce primitive obsession, use strongly typed identifiers " +
