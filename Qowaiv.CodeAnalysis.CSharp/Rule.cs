@@ -310,6 +310,17 @@ public static partial class Rule
         tags: ["primitive obsession", "GUID", "UUID", "strongly typed", "ID", "identifier"],
         analyzeTestCode: false);
 
+    public static DescriptorContainer PreferStronglyTypedIdOverPrimitives => New(
+       id: 0029,
+       title: "Prefer strongly typed identifiers over primitives",
+       message: "Use a strongly typed identifier instead",
+       description:
+           "To reduce primitive obsession, use strongly typed identifiers " +
+           "instead of primitives such as int's and string's.",
+       category: Category.Design,
+       tags: ["primitive obsession", "string", "int", "long", "strongly typed", "ID", "identifier"],
+       analyzeTestCode: false);
+
     public static DescriptorContainer DefineOnlyOneRequiredAttribute => New(
         id: 0100,
         title: "Define only one Required attribute",
