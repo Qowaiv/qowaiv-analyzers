@@ -10,6 +10,8 @@ public sealed class PropertyDeclaration : SyntaxAbstraction<IPropertySymbol>
 
     public PropertyDeclarationSyntax TypedNode { get; }
 
+    public bool IsInstance => !IsStatic;
+
     public bool IsStatic => Modifiers.Contains(SyntaxKind.StaticKeyword);
 
     public bool IsOverride => Modifiers.Contains(SyntaxKind.OverrideKeyword);
@@ -29,7 +31,9 @@ public sealed class PropertyDeclaration : SyntaxAbstraction<IPropertySymbol>
     public IEnumerable<SyntaxKind> Accessors
         => TypedNode.AccessorList?.Accessors.Select(s => s.Kind()) ?? [];
 
-    public IEnumerable<AttributeSyntax> Attributes => TypedNode.AttributeLists.SelectMany(a => a.Attributes);
+    public IEnumerable<AttributeDecoration> Attributes => TypedNode.AttributeLists
+       .SelectMany(a => a.Attributes)
+       .Select(a => new AttributeDecoration(a, SemanticModel));
 
     public bool IsObsolete
         => Symbol is { } symbol

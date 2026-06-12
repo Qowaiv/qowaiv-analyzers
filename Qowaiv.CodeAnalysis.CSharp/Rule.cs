@@ -299,6 +299,17 @@ public static partial class Rule
         tags: ["Bug"],
         analyzeTestCode: true);
 
+    public static DescriptorContainer PreferStronglyTypedIdOverGuid => New(
+        id: 0028,
+        title: "Prefer strongly typed identifiers over GUID",
+        message: "Use a strongly typed identifier instead",
+        description:
+            "To reduce primitive obsession, use strongly typed identifiers " +
+            "instead of GUID/UUID's.",
+        category: Category.Design,
+        tags: ["primitive obsession", "GUID", "UUID", "strongly typed", "ID", "identifier"],
+        analyzeTestCode: false);
+
     public static DescriptorContainer DefineOnlyOneRequiredAttribute => New(
         id: 0100,
         title: "Define only one Required attribute",

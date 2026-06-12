@@ -23,7 +23,7 @@ public sealed class DefineOnlyOneRequiredAttribute() : CodingRule(Rule.DefineOnl
                 && type.IsAssignableTo(SystemType.System.ComponentModel.DataAnnotations.RequiredAttribute)
                 && ++found > 1)
             {
-                context.ReportDiagnostic(Diagnostic, attribute, member.Name());
+                context.ReportDiagnostic(Diagnostic, attribute, member.Name);
             }
         }
     }
