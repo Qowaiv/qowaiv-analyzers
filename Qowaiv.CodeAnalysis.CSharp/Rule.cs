@@ -307,7 +307,7 @@ public static partial class Rule
             "To reduce primitive obsession, use strongly typed identifiers " +
             "instead of GUID/UUID's.",
         category: Category.Design,
-        tags: ["primitive obsession", "GUID", "UUID", "stronlgy typed", "ID", "identifier"],
+        tags: ["primitive obsession", "GUID", "UUID", "strongly typed", "ID", "identifier"],
         analyzeTestCode: false);
 
     public static DescriptorContainer DefineOnlyOneRequiredAttribute => New(
