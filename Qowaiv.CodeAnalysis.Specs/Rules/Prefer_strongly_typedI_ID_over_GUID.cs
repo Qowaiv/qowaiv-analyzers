@@ -1,4 +1,4 @@
-namespace Rules.Prefer_strongly_typedI_ID_over_GUID;
+namespace Rules.Prefer_strongly_typed_ID_over_GUID;
 
 public class Verify
 {
