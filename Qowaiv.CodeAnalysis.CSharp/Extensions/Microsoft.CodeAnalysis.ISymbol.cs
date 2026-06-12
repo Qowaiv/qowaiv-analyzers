@@ -13,7 +13,7 @@ internal static class SymbolExtensions
     [Pure]
     public static bool Is(this ITypeSymbol? symbol, SystemType type)
         => symbol is { } && symbol.IsMatch(type);
-
+    
     [Pure]
     public static bool IsAny(this ITypeSymbol? symbol, params SystemType[] types)
         => Array.Exists(types, symbol.Is);
