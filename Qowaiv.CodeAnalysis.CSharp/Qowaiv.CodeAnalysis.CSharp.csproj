@@ -61,7 +61,7 @@ v*
 - QW0026: Provide UUID values. (NEW RULE)
 - QW0027: Create UUID's using Uuid.Parse or Uuid.Empty. (NEW RULE)
 - QW0028: Prefer strongly typed identifiers over GUIDs. (NEW RULE)
-- QW0029: Prefer strongly typed identifiers over primitives
+- QW0029: Prefer strongly typed identifiers over primitives. (NEW RULE)
       ]]>
     </ToBeReleased>
     <PackageReleaseNotes>
