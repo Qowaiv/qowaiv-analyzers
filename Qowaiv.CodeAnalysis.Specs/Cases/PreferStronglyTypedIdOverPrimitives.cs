@@ -53,6 +53,23 @@ public class PublicCompliant(int id)
     }
 }
 
+public class ByInterface : Identity
+{
+    public long Id { get; init; }
+}
+
+public class ObsoleteCode
+{
+    [Obsolete]
+    public string Id { get; init; }
+}
+
+public interface Identity
+{
+    [PrimitiveRequired]
+    long Id { get; }
+}
+
 internal class InternalCompliant
 {
     public int Id { get; init; }

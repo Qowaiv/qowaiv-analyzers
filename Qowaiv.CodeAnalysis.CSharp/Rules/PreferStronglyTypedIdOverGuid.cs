@@ -12,7 +12,7 @@ public sealed class PreferStronglyTypedIdOverGuid() : CodingRule(Rule.PreferStro
             {
                 IsInstance: true,
                 IsObsolete: false,
-                IsOverride: false,
+                IsContractual: false,
                 Accessibility: Accessibility.Public,
                 DeclaringType.Accessibility: Accessibility.Public,
                 Symbol.Type: INamedTypeSymbol type,

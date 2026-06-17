@@ -2,6 +2,33 @@ namespace Microsoft.CodeAnalysis;
 
 internal static class SymbolExtensions
 {
+    extension(ISymbol symbol)
+    {
+        // https://github.com/dotnet/roslyn/blob/2a594fa2157a734a988f7b5dbac99484781599bd/src/Workspaces/SharedUtilitiesAndExtensions/Compiler/Core/Extensions/ISymbolExtensions.cs#L93
+        [ExcludeFromCodeCoverage]
+        public ImmutableArray<ISymbol> ExplicitOrImplicitInterfaceImplementations
+        {
+            get
+            {
+                if (symbol.Kind is not SymbolKind.Method and not SymbolKind.Property and not SymbolKind.Event)
+                {
+                    return [];
+                }
+
+                var containingType = symbol.ContainingType;
+
+                var query =
+                    from iface in containingType.AllInterfaces
+                    from interfaceMember in iface.GetMembers()
+                    let impl = containingType.FindImplementationForInterfaceMember(interfaceMember)
+                    where SymbolEqualityComparer.Default.Equals(symbol, impl)
+                    select interfaceMember;
+
+                return [.. query];
+            }
+        }
+    }
+
     [Pure]
     public static bool Equals(this ITypeSymbol type, ITypeSymbol other, bool includeNullability)
         => type.Equals(other, includeNullability ? SymbolEqualityComparer.IncludeNullability : SymbolEqualityComparer.Default);
@@ -13,7 +40,7 @@ internal static class SymbolExtensions
     [Pure]
     public static bool Is(this ITypeSymbol? symbol, SystemType type)
         => symbol is { } && symbol.IsMatch(type);
-    
+
     [Pure]
     public static bool IsAny(this ITypeSymbol? symbol, params SystemType[] types)
         => Array.Exists(types, symbol.Is);
@@ -30,7 +57,7 @@ internal static class SymbolExtensions
 
     [Pure]
     public static bool Implements(this ITypeSymbol? symbol, SystemType @interface)
-        => symbol is { } && symbol.AllInterfaces().Any(i => i.Is(@interface));
+        => symbol is { } && symbol.AllInterfaces.Any(i => i.Is(@interface));
 
     [Pure]
     public static bool IsAttribute(this ITypeSymbol type)
@@ -119,22 +146,6 @@ internal static class SymbolExtensions
         {
             yield return current;
             current = current.BaseType;
-        }
-    }
-
-    [Pure]
-    public static IEnumerable<INamedTypeSymbol> AllInterfaces(this ITypeSymbol? type)
-    {
-        if (type is null) yield break;
-
-        foreach (var @interface in type.Interfaces)
-        {
-            yield return @interface;
-
-            foreach (var sub in @interface.AllInterfaces())
-            {
-                yield return sub;
-            }
         }
     }
 

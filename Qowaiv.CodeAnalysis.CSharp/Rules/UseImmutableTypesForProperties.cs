@@ -9,7 +9,7 @@ public sealed class UseImmutableTypesForProperties() : ImmutablePropertiesBase(R
     private void Report(SyntaxNodeAnalysisContext context)
     {
         var property = context.Node.PropertyDeclaration(context.SemanticModel);
-        if (!property.IsOverride
+        if (!property.IsContractual
             && property.DeclaringType.Symbol?.IsAssignableTo(SystemType.System.Attribute) is false
             && IsApplicable(property)
             && IsMutable(property.PropertyType))
@@ -19,16 +19,16 @@ public sealed class UseImmutableTypesForProperties() : ImmutablePropertiesBase(R
     }
 
     [Pure]
+    private static bool ExcludeType(INamedTypeSymbol symbol)
+      => symbol.Name.StartsWith("Immutable")
+      || symbol.ContainingNamespace.GetFullMetaDataName() == "System.Collections.Frozen";
+
+    [Pure]
     private static bool IsMutable(TypeNode type)
         => type.IsArray
         || (type.Symbol is { TypeKind: not TypeKind.Delegate } symbol
             && !ExcludeType(symbol)
             && IsMutable(symbol));
-
-    [Pure]
-    private static bool ExcludeType(INamedTypeSymbol symbol)
-        => symbol.Name.StartsWith("Immutable")
-        || symbol.ContainingNamespace.GetFullMetaDataName() == "System.Collections.Frozen";
 
     [Pure]
     private static bool IsMutable(INamedTypeSymbol type) => type

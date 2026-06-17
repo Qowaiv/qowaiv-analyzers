@@ -32,6 +32,23 @@ public class PublicCompliant(Guid id)
     }
 }
 
+public class ByInterface : Identity
+{
+    public Guid Id { get; init; }
+}
+
+public class ObsoleteCode
+{
+    [Obsolete]
+    public Guid Id { get; init; }
+}
+
+public interface Identity
+{
+    [PrimitiveRequired]
+    Guid Id { get; }
+}
+
 internal class InternalCompliant
 {
     public Guid Id { get; init; }

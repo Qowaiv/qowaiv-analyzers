@@ -39,6 +39,12 @@ public sealed class PropertyDeclaration : SyntaxAbstraction<IPropertySymbol>
         => Symbol is { } symbol
         && symbol.IsObsolete();
 
+    /// <summary>True when defined by an interface, or base class.</summary>
+    public bool IsContractual
+        => !Modifiers.Contains(SyntaxKind.NewKeyword)
+        && (IsOverride
+            || Symbol is { ExplicitOrImplicitInterfaceImplementations.Length: > 0 });
+
     public TypeNode PropertyType => field ??= TypedNode.Type.TypeNode(SemanticModel);
 
     public TypeDeclaration DeclaringType

@@ -12,7 +12,7 @@ public sealed class PreferStronglyTypedIdOverPrimitives() : CodingRule(Rule.Pref
             {
                 IsInstance: true,
                 IsObsolete: false,
-                IsOverride: false,
+                IsContractual: false,
                 Accessibility: Accessibility.Public,
                 DeclaringType.Accessibility: Accessibility.Public,
                 Symbol.Type: INamedTypeSymbol type,
