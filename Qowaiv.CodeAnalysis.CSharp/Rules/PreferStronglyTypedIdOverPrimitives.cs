@@ -1,29 +1,11 @@
 namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class PreferStronglyTypedIdOverPrimitives() : CodingRule(Rule.PreferStronglyTypedIdOverPrimitives)
+public sealed class PreferStronglyTypedIdOverPrimitives() : PrimitiveObssession(Rule.PreferStronglyTypedIdOverPrimitives)
 {
-    protected override void Register(AnalysisContext context)
-        => RegisterSyntaxNodeAction(context, Report, SyntaxKind.PropertyDeclaration);
-
-    private void Report(SyntaxNodeAnalysisContext context)
-    {
-        if (context.Node.PropertyDeclaration(context.SemanticModel) is
-            {
-                IsInstance: true,
-                IsObsolete: false,
-                IsContractual: false,
-                Accessibility: Accessibility.Public,
-                DeclaringType.Accessibility: Accessibility.Public,
-                Symbol.Type: INamedTypeSymbol type,
-            } property
-            && (property.Attributes.Any(IsKey) || HasIdName(property.Name))
-            && IsPrimitive(type)
-            && property.Attributes.None(IsPrimitiveRequired))
-        {
-            context.ReportDiagnostic(Diagnostic, property.PropertyType);
-        }
-    }
+    protected override bool ShouldNotBePrimitive(PropertyDeclaration property, INamedTypeSymbol type)
+        => (property.Attributes.Any(IsKey) || HasIdName(property.Name))
+        && IsPrimitive(type);
 
     private static bool HasIdName(string name)
         => name.Matches("ID")
@@ -34,9 +16,6 @@ public sealed class PreferStronglyTypedIdOverPrimitives() : CodingRule(Rule.Pref
         => decoration.HasName("Key")
         || decoration.HasName("PrimaryKey")
         || decoration.HasName("ForeignKey");
-
-    private static bool IsPrimitiveRequired(AttributeDecoration decoration)
-        => decoration.HasName("PrimitiveRequired");
 
     private static bool IsPrimitive(INamedTypeSymbol type) => type.SpecialType
         is SpecialType.System_String
