@@ -34,12 +34,11 @@ public abstract partial class TypeDeclaration(SyntaxNode node, SemanticModel sem
 
     public bool IsPublic
         => Modifiers.Contains(SyntaxKind.PublicKeyword)
-        || (IsPartial && Symbol?.IsPublic() is true);
+        || (IsPartial && Symbol?.IsPublic is true);
 
     public bool IsObsolete
         => (IsPartial || Attributes.Any())
-        && Symbol is { } symbol
-        && symbol.IsObsolete();
+        && Symbol is { IsObsolete: true };
 
     public abstract IEnumerable<SyntaxKind> Modifiers { get; }
 

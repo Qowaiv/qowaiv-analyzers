@@ -36,8 +36,7 @@ public sealed class PropertyDeclaration : SyntaxAbstraction<IPropertySymbol>
        .Select(a => new AttributeDecoration(a, SemanticModel));
 
     public bool IsObsolete
-        => Symbol is { } symbol
-        && symbol.IsObsolete();
+        => Symbol is { IsObsolete: true };
 
     /// <summary>True when defined by an interface, or base class.</summary>
     public bool IsContractual

@@ -19,7 +19,7 @@ public sealed class DecoratePureFunctions() : CodingRule(Rule.DecoratePureFuncti
             && ReturnsResult(method.ReturnType)
             && NoGuard(method)
             && HasNoRefOutParemeter(method.Parameters)
-            && !method.IsObsolete()
+            && !method.IsObsolete
             && NotDecorated(method.GetAttributes()))
         {
             context.ReportDiagnostic(Rule.DecoratePureFunctions, declaration.ChildTokens().First(t => t.IsKind(SyntaxKind.IdentifierToken)));

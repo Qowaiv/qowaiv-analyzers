@@ -21,7 +21,7 @@ public sealed class UseImmutableTypesForProperties() : ImmutablePropertiesBase(R
     [Pure]
     private static bool ExcludeType(INamedTypeSymbol symbol)
       => symbol.Name.StartsWith("Immutable")
-      || symbol.ContainingNamespace.GetFullMetaDataName() == "System.Collections.Frozen";
+      || symbol.ContainingNamespace.FullMetaDataName is "System.Collections.Frozen";
 
     [Pure]
     private static bool IsMutable(TypeNode type)
@@ -40,7 +40,7 @@ public sealed class UseImmutableTypesForProperties() : ImmutablePropertiesBase(R
 
     [Pure]
     private static IEnumerable<IPropertySymbol> AccessableProperties(ITypeSymbol type)
-        => type.GetProperties().Where(p => !p.IsStatic && IsAccessible(p.DeclaredAccessibility));
+        => type.Properties.Where(p => !p.IsStatic && IsAccessible(p.DeclaredAccessibility));
 
     [Pure]
     private static bool DefinesMutableInterface(ITypeSymbol type) => type.IsAny(

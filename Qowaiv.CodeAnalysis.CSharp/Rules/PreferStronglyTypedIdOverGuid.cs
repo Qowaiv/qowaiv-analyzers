@@ -5,5 +5,5 @@ public sealed class PreferStronglyTypedIdOverGuid() : PrimitiveObssession(Rule.P
 {
     protected override bool ShouldNotBePrimitive(PropertyDeclaration property, INamedTypeSymbol type)
         => type.IsAny(SystemType.System.Guid, SystemType.Qowaiv.Uuid)
-        || type.NotNullable().IsAny(SystemType.System.Guid, SystemType.Qowaiv.Uuid);
+        || type.NotNullable.IsAny(SystemType.System.Guid, SystemType.Qowaiv.Uuid);
 }

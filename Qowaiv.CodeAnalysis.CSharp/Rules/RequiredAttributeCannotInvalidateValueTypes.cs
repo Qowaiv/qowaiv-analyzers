@@ -1,3 +1,5 @@
+using System.Linq.Expressions;
+
 namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
@@ -15,7 +17,7 @@ public sealed class RequiredAttributeCannotInvalidateValueTypes() : CodingRule(R
     {
         var member = context.Node.MemberDeclaration(context.SemanticModel);
 
-        if (member.Attributes.Any() && member.Symbol is { } symbol && symbol.IsNotNullableValueType())
+        if (member.Attributes.Any() && member.Symbol is { IsValueType: true, IsNullableValueType: false })
         {
             foreach (var attribute in member.Attributes)
             {
@@ -35,10 +37,10 @@ public sealed class RequiredAttributeCannotInvalidateValueTypes() : CodingRule(R
 
     private static bool DecoratedWithJsonAttribute(INamedTypeSymbol? type)
         => type?.GetAttributes().Any(IsJsonAttribute) is true
-        || type?.GetProperties().Any(p => p.GetAttributes().Any(IsJsonAttribute)) is true;
+        || type.Properties.Any(p => p.GetAttributes().Any(IsJsonAttribute));
 
     private static bool IsJsonAttribute(AttributeData attr)
-        => attr.AttributeClass?.GetFullMetaDataName() is { Length: > 0 } name
+        => attr.AttributeClass.FullMetaDataName is { Length: > 0 } name
         && (name.StartsWith("System.Text.Json.Serialization.")
         || name.StartsWith("Newtonsoft.Json."));
 }

@@ -16,7 +16,7 @@ public abstract class ImmutablePropertiesBase(DescriptorContainer supportedDiagn
     private static bool IsXmlSerializable(PropertyDeclaration property)
         => property.Symbol?
             .GetAttributes()
-        .Any(attr => attr.AttributeClass?.GetFullMetaDataName()?.StartsWith("System.Xml.Serialization.") is true) is true;
+        .Any(attr => attr.AttributeClass?.FullMetaDataName?.StartsWith("System.Xml.Serialization.") is true) is true;
 
     [Pure]
     private static bool IsApplicable(TypeDeclaration declaration)
@@ -49,7 +49,7 @@ public abstract class ImmutablePropertiesBase(DescriptorContainer supportedDiagn
             {
                 return true;
             }
-            immutable &= !baseType.GetProperties().Any(IsEditable);
+            immutable &= baseType.Properties.None(IsEditable);
             baseType = baseType.BaseType;
         }
         return immutable;
@@ -62,8 +62,7 @@ public abstract class ImmutablePropertiesBase(DescriptorContainer supportedDiagn
 
     [Pure]
     protected static bool IsAccessible(Accessibility accessibility)
-       => accessibility == Accessibility.Protected
-       || accessibility == Accessibility.Public;
+       => accessibility is Accessibility.Protected or Accessibility.Public;
 
     [Pure]
     protected static bool IsDecorated(ImmutableArray<AttributeData> attributes)

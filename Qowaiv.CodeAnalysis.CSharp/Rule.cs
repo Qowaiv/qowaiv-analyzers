@@ -270,7 +270,6 @@ public static partial class Rule
         tags: ["Bug"],
         analyzeTestCode: true);
 
-
     public static DescriptorContainer UuidLiteralsMustBeCompliant => New(
         id: 0025,
         title: "Use compliant UUID literals",

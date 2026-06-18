@@ -27,7 +27,7 @@ public sealed class DefinePropertiesAsNotNullable() : CodingRule(
         foreach (var sub in syntax.SubTypes())
         {
             if (context.SemanticModel.GetTypeInfo(sub).Type is INamedTypeSymbol type
-                && type.NotNullable() is { } inner
+                && type.NotNullable is { } inner
                 && Description(inner) is { } diagnostic)
             {
                 context.ReportDiagnostic(diagnostic, sub);
@@ -61,13 +61,13 @@ public sealed class DefinePropertiesAsNotNullable() : CodingRule(
             && prop.IsReadOnly
             && prop.IsStatic
             && prop.Type.Equals(prop.ContainingType, includeNullability: false)
-            && prop.IsPublic();
+            && prop.IsPublic;
 
         static bool IsReadOnlyField(ISymbol member)
             => member is IFieldSymbol field
             && field.IsReadOnly
             && field.IsStatic
             && field.Type.Equals(field.ContainingType, includeNullability: false)
-            && field.IsPublic();
+            && field.IsPublic;
     }
 }
