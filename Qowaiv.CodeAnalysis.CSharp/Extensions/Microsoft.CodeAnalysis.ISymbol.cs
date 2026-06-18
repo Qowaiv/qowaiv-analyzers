@@ -4,6 +4,10 @@ internal static class SymbolExtensions
 {
     extension(ISymbol symbol)
     {
+        public bool IsPublic => symbol.DeclaredAccessibility == Accessibility.Public;
+
+        public bool IsProtected => symbol.DeclaredAccessibility == Accessibility.Protected;
+
         // https://github.com/dotnet/roslyn/blob/2a594fa2157a734a988f7b5dbac99484781599bd/src/Workspaces/SharedUtilitiesAndExtensions/Compiler/Core/Extensions/ISymbolExtensions.cs#L93
         [ExcludeFromCodeCoverage]
         public ImmutableArray<ISymbol> ExplicitOrImplicitInterfaceImplementations
@@ -27,137 +31,141 @@ internal static class SymbolExtensions
                 return [.. query];
             }
         }
+
+        internal bool IsRootNamespace
+            => symbol is INamespaceSymbol ns
+            && ns.IsGlobalNamespace;
     }
 
-    [Pure]
-    public static bool Equals(this ITypeSymbol type, ITypeSymbol other, bool includeNullability)
-        => type.Equals(other, includeNullability ? SymbolEqualityComparer.IncludeNullability : SymbolEqualityComparer.Default);
+    extension(ISymbol? symbol)
+    {
+        [Pure]
+        public bool MemberOf(SystemType type)
+            => symbol is { } && symbol.ContainingType.Is(type);
 
-    [Pure]
-    public static bool IsNot(this ITypeSymbol symbol, SystemType type)
-        => !symbol.Is(type);
+        [Pure]
+        public string FullMetaDataName
+        {
+            get
+            {
+                if (symbol is null || symbol.IsRootNamespace)
+                {
+                    return string.Empty;
+                }
+                else
+                {
+                    var sb = new StringBuilder(symbol.MetadataName);
+                    var previous = symbol;
 
-    [Pure]
-    public static bool Is(this ITypeSymbol? symbol, SystemType type)
-        => symbol is { } && symbol.IsMatch(type);
+                    symbol = symbol.ContainingSymbol;
 
-    [Pure]
-    public static bool IsAny(this ITypeSymbol? symbol, params SystemType[] types)
-        => Array.Exists(types, symbol.Is);
+                    while (!symbol.IsRootNamespace)
+                    {
+                        var connector = symbol is ITypeSymbol && previous is ITypeSymbol ? '+' : '.';
+                        sb.Insert(0, connector);
+                        sb.Insert(0, symbol.OriginalDefinition.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat));
+                        symbol = symbol.ContainingSymbol;
+                    }
+                    return sb.ToString();
+                }
+            }
+        }
+    }
 
-    [Pure]
-    public static bool IsAssignableTo(this ITypeSymbol? symbol, ITypeSymbol type)
-       => SymbolEqualityComparer.IncludeNullability.Equals(symbol , type)
-       || (symbol?.BaseType is { } @base && @base.IsAssignableTo(type));
-
-    [Pure]
-    public static bool IsAssignableTo(this ITypeSymbol? symbol, SystemType type)
-        => (symbol is { } && symbol.IsMatch(type))
-        || (symbol?.BaseType is { } @base && @base.IsAssignableTo(type));
-
-    [Pure]
-    public static bool Implements(this ITypeSymbol? symbol, SystemType @interface)
-        => symbol is { } && symbol.AllInterfaces.Any(i => i.Is(@interface));
-
-    [Pure]
-    public static bool IsAttribute(this ITypeSymbol type)
+    extension(ITypeSymbol type)
+    {
+        public bool IsAttribute
         => type.IsAssignableTo(SystemType.System.Attribute);
 
-    [Pure]
-    public static bool IsException(this ITypeSymbol type)
-        => type.IsAssignableTo(SystemType.System.Exception);
+        public bool IsException
+            => type.IsAssignableTo(SystemType.System.Exception);
 
-    [Pure]
-    public static bool IsNotNullableValueType(this ITypeSymbol type)
-        => type.IsValueType
-        && type is not { SpecialType: SpecialType.System_Nullable_T } and not { OriginalDefinition.SpecialType: SpecialType.System_Nullable_T };
+        public bool IsNullableValueType
+            => type.IsValueType
+            && type is { SpecialType: SpecialType.System_Nullable_T } or { OriginalDefinition.SpecialType: SpecialType.System_Nullable_T };
 
-    [Pure]
-    public static bool IsNullableValueType(this ITypeSymbol type)
-        => type.IsValueType
-        && type is { SpecialType: SpecialType.System_Nullable_T } or { OriginalDefinition.SpecialType: SpecialType.System_Nullable_T };
+        public bool IsObsolete
+            => type.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System.ObsoleteAttribute));
 
-    [Pure]
-    public static bool IsObsolete(this ITypeSymbol type)
-        => type.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System.ObsoleteAttribute));
+        [Pure]
+        public bool Equals(ITypeSymbol other, bool includeNullability)
+            => type.Equals(other, includeNullability ? SymbolEqualityComparer.IncludeNullability : SymbolEqualityComparer.Default);
 
-    [Pure]
-    public static bool IsObsolete(this IMethodSymbol method)
-        => method.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System.ObsoleteAttribute))
-        || method.ContainingType.IsObsolete();
+        [Pure]
+        private bool IsMatch(SystemType other)
+            => other.Matches(type.SpecialType)
+            || other.Matches(type.OriginalDefinition.SpecialType)
+            || other.Matches(type.ToDisplayString())
+            || other.Matches(type.OriginalDefinition.ToDisplayString());
+    }
 
-    [Pure]
-    public static bool IsObsolete(this IPropertySymbol method)
-        => method.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System.ObsoleteAttribute))
-        || method.ContainingType.IsObsolete();
-
-    [Pure]
-    public static bool IsPublic(this ISymbol symbol) => symbol.DeclaredAccessibility == Accessibility.Public;
-
-    [Pure]
-    public static bool IsProtected(this ISymbol symbol) => symbol.DeclaredAccessibility == Accessibility.Protected;
-
-    [Pure]
-    public static bool MemberOf(this ISymbol? symbol, SystemType type)
-        => symbol is { } && symbol.ContainingType.Is(type);
-
-    [Pure]
-    public static IEnumerable<IPropertySymbol> GetProperties(this ITypeSymbol? type)
-        => type?.GetMembers().OfType<IPropertySymbol>() ?? [];
-
-    [Pure]
-    public static string GetFullMetaDataName(this ISymbol? symbol)
+    extension(ITypeSymbol? type)
     {
-        if (symbol is null || symbol.IsRootNamespace())
-        {
-            return string.Empty;
-        }
-        else
-        {
-            var sb = new StringBuilder(symbol.MetadataName);
-            var previous = symbol;
+        [Pure]
+        public bool Is(SystemType other)
+            => type is { } && type.IsMatch(other);
 
-            symbol = symbol.ContainingSymbol;
+        [Pure]
+        public bool IsNot(SystemType other)
+            => !type.Is(other);
 
-            while (!symbol.IsRootNamespace())
+        [Pure]
+        public bool IsAny(params SystemType[] types)
+            => Array.Exists(types, type.Is);
+
+        [Pure]
+        public bool IsAssignableTo(ITypeSymbol other)
+           => SymbolEqualityComparer.IncludeNullability.Equals(type, other)
+           || (type?.BaseType is { } @base && @base.IsAssignableTo(other));
+
+        [Pure]
+        public bool IsAssignableTo(SystemType other)
+            => (type is { } && type.IsMatch(other))
+            || (type?.BaseType is { } @base && @base.IsAssignableTo(other));
+
+        [Pure]
+        public bool Implements(SystemType other)
+            => type is { } && type.AllInterfaces.Any(i => i.Is(other));
+
+        [Pure]
+        public IEnumerable<IPropertySymbol> Properties
+            => type?.GetMembers().OfType<IPropertySymbol>() ?? [];
+    }
+
+    extension(INamedTypeSymbol? type)
+    {
+        [Pure]
+        public IEnumerable<INamedTypeSymbol> SelfAndAncestorTypes()
+        {
+            var current = type;
+
+            while (current is { })
             {
-                var connector = symbol is ITypeSymbol && previous is ITypeSymbol ? '+' : '.';
-                sb.Insert(0, connector);
-                sb.Insert(0, symbol.OriginalDefinition.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat));
-                symbol = symbol.ContainingSymbol;
+                yield return current;
+                current = current.BaseType;
             }
-            return sb.ToString();
         }
+
+        [Pure]
+        public INamedTypeSymbol? NotNullable
+            => type is { IsNullableValueType: true }
+            && type.TypeArguments[0] is INamedTypeSymbol inner
+                ? inner
+                : null;
     }
 
-    [Pure]
-    public static INamedTypeSymbol? NotNullable(this INamedTypeSymbol type)
-        => type.IsNullableValueType()
-        && type.TypeArguments[0] is INamedTypeSymbol inner
-            ? inner
-            : null;
-
-    [Pure]
-    public static IEnumerable<INamedTypeSymbol> SelfAndAncestorTypes(this INamedTypeSymbol? type)
+    extension(IMethodSymbol method)
     {
-        var current = type;
+        public bool IsObsolete
+            => method.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System.ObsoleteAttribute))
+            || method.ContainingType.IsObsolete;
 
-        while (current is { })
-        {
-            yield return current;
-            current = current.BaseType;
-        }
     }
 
-    [Pure]
-    private static bool IsMatch(this ITypeSymbol typeSymbol, SystemType type)
-        => type.Matches(typeSymbol.SpecialType)
-        || type.Matches(typeSymbol.OriginalDefinition.SpecialType)
-        || type.Matches(typeSymbol.ToDisplayString())
-        || type.Matches(typeSymbol.OriginalDefinition.ToDisplayString());
-
-    [Pure]
-    private static bool IsRootNamespace(this ISymbol symbol)
-        => symbol is INamespaceSymbol ns
-        && ns.IsGlobalNamespace;
+    extension(IPropertySymbol property)
+    {
+        public bool IsObsolete
+            => property.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System.ObsoleteAttribute))
+            || property.ContainingType.IsObsolete;
+    }
 }

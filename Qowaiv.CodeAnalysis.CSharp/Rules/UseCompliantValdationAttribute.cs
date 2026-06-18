@@ -19,7 +19,7 @@ public sealed class UseCompliantValdationAttribute() : CodingRule(Rule.UseCompli
 
         if (member.Attributes.Any() && member.Symbol is { } mSymbol)
         {
-            mSymbol = mSymbol.NotNullable() ?? mSymbol;
+            mSymbol = mSymbol.NotNullable ?? mSymbol;
 
             foreach (var attribute in member.Attributes.Where(a => !CanValidate(mSymbol, a.Symbol)))
             {

@@ -13,7 +13,7 @@ public sealed class UseSystemDateOnly() : ObsoleteTypes(
 {
     protected override void Report(SyntaxNodeAnalysisContext context, SyntaxNode node, INamedTypeSymbol type)
     {
-        if ((type.NotNullable() ?? type).Is(SystemType.Qowaiv.Date))
+        if ((type.NotNullable ?? type).Is(SystemType.Qowaiv.Date))
         {
             context.ReportDiagnostic(Diagnostic, node);
         }

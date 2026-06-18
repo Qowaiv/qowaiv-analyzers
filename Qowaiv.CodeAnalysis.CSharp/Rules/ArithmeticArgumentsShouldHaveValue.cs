@@ -49,6 +49,6 @@ public sealed class ApplyArithmeticOperationsOnNonNullablesOnly() : CodingRule(R
         }
 
         bool IsNullable(ExpressionSyntax expression)
-            => context.SemanticModel.GetTypeInfo(expression).Type?.IsNullableValueType() is true;
+            => context.SemanticModel.GetTypeInfo(expression).Type is { IsNullableValueType: true };
     }
 }

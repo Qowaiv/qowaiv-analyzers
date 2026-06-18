@@ -1,6 +1,4 @@
 #pragma warning disable SA1118 // Parameter should not span multiple lines.
-#pragma warning disable S4055 // Literals should not be passed as localized parameters
-// For readability, here it is preferred.
 
 namespace Qowaiv.CodeAnalysis;
 
@@ -269,7 +267,6 @@ public static partial class Rule
         category: Category.Bug,
         tags: ["Bug"],
         analyzeTestCode: true);
-
 
     public static DescriptorContainer UuidLiteralsMustBeCompliant => New(
         id: 0025,

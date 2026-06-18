@@ -18,9 +18,7 @@ public sealed class SealClasses() : CodingRule(
     private static void ReportUnsealedClasses(TypeDeclaration declaration, SyntaxNodeAnalysisContext context)
     {
         if (declaration is { IsConcrete: true, IsSealed: false, IsObsolete: false }
-            && declaration.Symbol is { } type
-            && !type.IsAttribute()
-            && !type.IsException()
+            && declaration.Symbol is { IsAttribute: false, IsException: false } type
             && !type.GetMembers().Any(IsVirtualOrProtected)
             && Decorated(type.GetAttributes()) is null)
         {
@@ -35,8 +33,7 @@ public sealed class SealClasses() : CodingRule(
     {
         if ((!declaration.IsConcrete || declaration.IsSealed)
             && !declaration.IsObsolete
-            && declaration.Symbol is { } type
-            && !type.IsAttribute()
+            && declaration.Symbol is { IsAttribute: false } type
             && Decorated(type.GetAttributes()) is { } decorated
             && declaration.AttributeLists
                 .SelectMany(a => a.Attributes)
@@ -50,24 +47,25 @@ public sealed class SealClasses() : CodingRule(
     }
 
     [Pure]
-    private static bool IsDecorated(AttributeSyntax attr, INamedTypeSymbol decorated)
-        => decorated.Name.StartsWith(attr.Name());
-
-    [Pure]
     private static bool IsVirtualOrProtected(ISymbol symbol)
         => !symbol.IsImplicitlyDeclared && (symbol.IsVirtual || IsProtected(symbol));
 
     [Pure]
     private static bool IsProtected(ISymbol symbol)
-        => symbol.IsProtected() && !symbol.IsOverride;
+        => symbol.IsProtected && !symbol.IsOverride;
 
     [Pure]
-    private static INamedTypeSymbol? Decorated(IEnumerable<AttributeData> attributes)
-       => attributes.FirstOrDefault(attr => IsDecorated(attr.AttributeClass!))?.AttributeClass;
+    private static bool IsDecorated(AttributeSyntax attr, INamedTypeSymbol decorated)
+        => decorated.Name.StartsWith(attr.Name());
 
     [Pure]
     private static bool IsDecorated(INamedTypeSymbol attr)
         => "INHERITABLE".Matches(attr.Name)
         || "INHERITABLEATTRIBUTE".Matches(attr.Name)
         || (attr.BaseType is { } && IsDecorated(attr.BaseType));
+
+    [Pure]
+    private static INamedTypeSymbol? Decorated(IEnumerable<AttributeData> attributes)
+    => attributes.FirstOrDefault(attr => IsDecorated(attr.AttributeClass!))?.AttributeClass;
+
 }
