@@ -59,12 +59,13 @@ public sealed class SealClasses() : CodingRule(
         => decorated.Name.StartsWith(attr.Name());
 
     [Pure]
-    private static INamedTypeSymbol? Decorated(IEnumerable<AttributeData> attributes)
-       => attributes.FirstOrDefault(attr => IsDecorated(attr.AttributeClass!))?.AttributeClass;
-
-    [Pure]
     private static bool IsDecorated(INamedTypeSymbol attr)
         => "INHERITABLE".Matches(attr.Name)
         || "INHERITABLEATTRIBUTE".Matches(attr.Name)
         || (attr.BaseType is { } && IsDecorated(attr.BaseType));
+
+    [Pure]
+    private static INamedTypeSymbol? Decorated(IEnumerable<AttributeData> attributes)
+    => attributes.FirstOrDefault(attr => IsDecorated(attr.AttributeClass!))?.AttributeClass;
+
 }

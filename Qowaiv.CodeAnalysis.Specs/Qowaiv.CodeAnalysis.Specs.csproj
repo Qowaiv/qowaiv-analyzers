@@ -7,12 +7,10 @@
     <IsTestProject>true</IsTestProject>
     <NoWarn>RS1041</NoWarn>
   </PropertyGroup>
- 
+
   <ItemGroup Label="Test case as content, not compilation">
     <Compile Remove="Cases/*.*" />
-    <None Include="Cases/*.*">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Cases/*.*" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
   <ItemGroup Label="Test Tools">
