@@ -1,4 +1,5 @@
 root = true
+is_global = true
 
 dotnet_diagnostic.CA1012.severity    = none       #
 dotnet_diagnostic.CA1845.severity    = none       # Use span-based 'string.Concat'
