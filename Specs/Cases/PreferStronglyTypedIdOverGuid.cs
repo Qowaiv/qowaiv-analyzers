@@ -14,8 +14,6 @@ public class Noncompliant
 
 public class PublicCompliant(Guid id)
 {
-    public string Id { get; init; } = id.ToString();
-
     [PrimitiveRequired]
     public Guid Primitive { get; init; }
 

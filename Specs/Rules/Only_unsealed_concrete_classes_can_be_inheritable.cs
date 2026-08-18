@@ -1,4 +1,4 @@
-namespace Rules.Only_unsealed_concrete_classes_can_be_inheritable_specs;
+namespace Rules.Only_unsealed_concrete_classes_can_be_inheritable;
 
 public class Verify
 {

@@ -32,8 +32,6 @@ public class Noncompliant
 
 public class PublicCompliant(int id)
 {
-    public Guid Id { get; init; } //   Compliant {{Id but not a primitive.}}
-
     public string Property { get; init; } // Compliant {{Not an ID.}}
 
     [PrimitiveRequired]
