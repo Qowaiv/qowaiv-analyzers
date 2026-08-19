@@ -1,4 +1,7 @@
 #pragma warning disable SA1118 // Parameter should not span multiple lines.
+#pragma warning disable S4055 // Literals should not be passed as localized parameters
+
+using static Qowaiv.CodeAnalysis.Tag;
 
 namespace Qowaiv.CodeAnalysis;
 
@@ -60,7 +63,7 @@ public static partial class Rule
             "consequence, it is considered a bad practice to unintentionally " +
             "allowing a class to be inheritable.",
         category: Category.Design,
-        tags: ["Design"],
+        tags: [Design],
         analyzeTestCode: false);
 
     public static DescriptorContainer OnlyUnsealedConcreteClassesCanBeInheritable => New(
@@ -70,7 +73,7 @@ public static partial class Rule
         description:
             "The inheritable attribute is only meant to be used on concrete classes.",
         category: Category.Design,
-        tags: ["Design"],
+        tags: [Design],
         analyzeTestCode: false);
 
     public static DescriptorContainer UseFileScopedNamespaceDeclarations => New(
@@ -82,7 +85,7 @@ public static partial class Rule
             "wasted horizontal space to the left of the class definition, since " +
             "it no longer needs to be indented.",
         category: Category.Design,
-        tags: ["Design"],
+        tags: [Design],
         analyzeTestCode: true);
 
     public static DescriptorContainer DefinePropertiesAsNotNullable => New(
@@ -94,7 +97,7 @@ public static partial class Rule
             "to it, because the nullable that has a value can still represent an " +
             "empty state.",
         category: Category.Design,
-        tags: ["Design", "SVO", "Value Type", "Value Object"],
+        tags: [Design, "SVO", "Value Type", "Value Object"],
         analyzeTestCode: false);
 
     public static DescriptorContainer DefineEnumPropertiesAsNotNullable => New(
@@ -106,7 +109,7 @@ public static partial class Rule
             "to it, because the nullable that has a value can still represent an " +
             "none/empty state.",
         category: Category.Design,
-        tags: ["Design", "Enum", "Enumeration"],
+        tags: [Design, "Enum", "Enumeration"],
         analyzeTestCode: false);
 
     public static DescriptorContainer UseSystemDateOnly => New(
@@ -117,7 +120,7 @@ public static partial class Rule
             "The purpose of `Qowaiv.Date` is to provide a date (only) alternative to DateTime. " +
             "Since .NET 6.0, Microsoft provides DateOnly.",
         category: Category.Design,
-        tags: ["Design", "SVO"],
+        tags: [Design, "SVO"],
         analyzeTestCode: false);
 
     public static DescriptorContainer DefinePropertiesAsImmutables => New(
@@ -128,7 +131,7 @@ public static partial class Rule
             "Immutable types (classes, interfaces, records, structs) have multiple advantages. " +
             "To benefit from this, all properties should be defined as immutable.",
         category: Category.Design,
-        tags: ["Design", "Immutability"],
+        tags: [Design, "Immutability"],
         analyzeTestCode: false);
 
     public static DescriptorContainer UseImmutableTypesForProperties => New(
@@ -139,7 +142,7 @@ public static partial class Rule
             "Immutable types (classes, interfaces, records, structs) have multiple advantages. " +
             "To benefit from this, the type of properties should be immutable.",
         category: Category.Design,
-        tags: ["Design", "Immutability"],
+        tags: [Design, "Immutability"],
         analyzeTestCode: false);
 
     public static DescriptorContainer UseQowaivDecimalRounding => New(
@@ -149,7 +152,7 @@ public static partial class Rule
         description:
             "Both the extended functionality and the extension method are reasons to adopt Qowaiv decimal rounding.",
         category: Category.Design,
-        tags: ["Design", "Readability"],
+        tags: [Design, "Readability"],
         analyzeTestCode: true);
 
     public static DescriptorContainer DefineGlobalUsingStatementsSeparately => New(
@@ -159,7 +162,7 @@ public static partial class Rule
         description:
             "For design and maintainability reasons, it is key that all global usings statements are grouped.",
         category: Category.Design,
-        tags: ["Design", "Maintainability"],
+        tags: [Design, "Maintainability"],
         analyzeTestCode: true);
 
     public static DescriptorContainer DefineGlobalUsingStatementsInSingleFile => New(
@@ -169,7 +172,7 @@ public static partial class Rule
         description:
             "For design and maintainability reasons, it is key that all global usings statements are grouped.",
         category: Category.Design,
-        tags: ["Design", "Maintainability"],
+        tags: [Design, "Maintainability"],
         analyzeTestCode: true);
 
     public static DescriptorContainer PreferRegularOverPositionalProperties => New(
@@ -181,7 +184,7 @@ public static partial class Rule
             "turns out to be cumbersome for public APIs. Therefor the use of " +
             "regular properties is preferred in those cases.",
         category: Category.Design,
-        tags: ["Design", "Maintainability"],
+        tags: [Design, "Maintainability"],
         analyzeTestCode: false);
 
     public static DescriptorContainer ApplyArithmeticOperationsOnNonNullablesOnly => New(
@@ -204,7 +207,7 @@ public static partial class Rule
             "The purpose of `Qowaiv.Time` is to provide a time (only) alternative to DateTime. " +
             "Since .NET 6.0, Microsoft provides TimeOnly.",
         category: Category.Design,
-        tags: ["Design"],
+        tags: [Design],
         analyzeTestCode: true);
 
     public static DescriptorContainer PreferXmlLinq => New(
@@ -326,7 +329,7 @@ public static partial class Rule
             "The compiler cannot enforce single usages for overridden implementations " +
             "of the [Required] attribute, but would otherwise disallow it.",
         category: Category.Bug,
-        tags: ["Data Annotations", "AttributeUsage", "Validation", "RequiredAttribute"],
+        tags: [DataAnnotations, "AttributeUsage", Validation, "RequiredAttribute"],
         analyzeTestCode: true);
 
     public static DescriptorContainer RequiredCannotInvalidateValueTypes => New(
@@ -337,7 +340,7 @@ public static partial class Rule
             "The implementation of the Required attribute is to check if the " +
             "value is not null. This is always true for non-nullable value types.",
         category: Category.Bug,
-        tags: ["Data Annotations", "Validation", "RequiredAttribute"],
+        tags: [DataAnnotations, Validation, "RequiredAttribute"],
         analyzeTestCode: true);
 
     public static DescriptorContainer UseCompliantValdationAttribute => New(
@@ -348,7 +351,7 @@ public static partial class Rule
             "Validation attributes are designed to validate certain member types. " +
             "When applied on other types, this is invalid, and might even crash.",
         category: Category.Bug,
-        tags: ["Data Annotations", "Validation", "ValidationAttribute"],
+        tags: [DataAnnotations, Validation, "ValidationAttribute"],
         analyzeTestCode: true);
 
     public static DescriptorContainer DecorateValidationAttributes => New(
@@ -360,7 +363,7 @@ public static partial class Rule
             "that can be validated, they should be decorated with the " +
             "[Validates] attribute, so that QW0102 can enforce usage.",
         category: Category.Design,
-        tags: ["Data Annotations", "Validation", "ValidationAttribute"],
+        tags: [DataAnnotations, Validation, "ValidationAttribute"],
         analyzeTestCode: false);
 
     public static DescriptorContainer UseValidatesAttributeOnValidationAttributesOnly => New(
@@ -371,7 +374,7 @@ public static partial class Rule
             "The [Validates] attribute only has meaning when defined on a " +
             "validation attribute.",
         category: Category.Bug,
-        tags: ["Data Annotations", "Validation", "ValidationAttribute"],
+        tags: [DataAnnotations, Validation, "ValidationAttribute"],
         analyzeTestCode: false);
 
 #pragma warning disable S107 // Methods should not have too many parameters

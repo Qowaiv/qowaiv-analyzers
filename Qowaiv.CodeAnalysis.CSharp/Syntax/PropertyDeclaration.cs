@@ -23,36 +23,31 @@ public sealed class PropertyDeclaration : SyntaxAbstraction<IPropertySymbol>
 
     public IEnumerable<SyntaxKind> Modifiers => TypedNode.Modifiers.Select(m => m.Kind());
 
-    public Accessibility Accessibility
-        => DeclaringType.IsKind(SyntaxKind.InterfaceDeclaration)
-            ? Modifiers.GetAccessibility(Accessibility.Public)
-            : Modifiers.GetAccessibility();
+    public Accessibility Accessibility => DeclaringType.IsKind(SyntaxKind.InterfaceDeclaration)
+                ? Modifiers.GetAccessibility(Accessibility.Public)
+                : Modifiers.GetAccessibility();
 
-    public IEnumerable<SyntaxKind> Accessors
-        => TypedNode.AccessorList?.Accessors.Select(s => s.Kind()) ?? [];
+    public IEnumerable<SyntaxKind> Accessors => TypedNode.AccessorList?.Accessors.Select(s => s.Kind()) ?? [];
 
     public IEnumerable<AttributeDecoration> Attributes => TypedNode.AttributeLists
        .SelectMany(a => a.Attributes)
        .Select(a => new AttributeDecoration(a, SemanticModel));
 
-    public bool IsObsolete
-        => Symbol is { IsObsolete: true };
+    public bool IsObsolete => Symbol is { IsObsolete: true };
 
     /// <summary>True when defined by an interface, or base class.</summary>
-    public bool IsContractual
-        => !Modifiers.Contains(SyntaxKind.NewKeyword)
-        && (IsOverride
-            || Symbol is { ExplicitOrImplicitInterfaceImplementations.Length: > 0 });
+    public bool IsContractual => !Modifiers.Contains(SyntaxKind.NewKeyword)
+            && (IsOverride
+                || Symbol is { ExplicitOrImplicitInterfaceImplementations.Length: > 0 });
 
     public TypeNode PropertyType => field ??= TypedNode.Type.TypeNode(SemanticModel);
 
-    public TypeDeclaration DeclaringType
-        => field
-        ??= TypedNode
-            .Ancestors()
-            .Select(node => node.TryTypeDeclaration(SemanticModel))
-            .OfType<TypeDeclaration>()
-            .First();
+    public TypeDeclaration DeclaringType => field
+            ??= TypedNode
+                .Ancestors()
+                .Select(node => node.TryTypeDeclaration(SemanticModel))
+                .OfType<TypeDeclaration>()
+                .First();
 
     [Pure]
     protected override IPropertySymbol? GetSymbol(SemanticModel semanticModel)

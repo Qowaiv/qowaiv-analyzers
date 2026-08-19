@@ -7,7 +7,6 @@ public partial class ObjectCreation
     {
         private readonly ObjectCreationExpressionSyntax TypedNode = node;
 
-        public override IReadOnlyList<Argument> Arguments
-            => field ??= [.. TypedNode.ArgumentList?.Arguments.Select((a, i) => new Argument(this, a, i, SemanticModel)) ?? []];
+        public override IReadOnlyList<Argument> Arguments => field ??= [.. TypedNode.ArgumentList?.Arguments.Select((a, i) => new Argument(this, a, i, SemanticModel)) ?? []];
     }
 }

@@ -67,5 +67,4 @@ public sealed class SealClasses() : CodingRule(
     [Pure]
     private static INamedTypeSymbol? Decorated(IEnumerable<AttributeData> attributes)
     => attributes.FirstOrDefault(attr => IsDecorated(attr.AttributeClass!))?.AttributeClass;
-
 }
