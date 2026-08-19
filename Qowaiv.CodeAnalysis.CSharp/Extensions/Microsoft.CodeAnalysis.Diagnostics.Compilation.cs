@@ -5,7 +5,6 @@ internal static class CompilationExtensions
 {
     extension(Compilation compilation)
     {
-        public LanguageVersion CSharpVersion
-            => compilation is CSharpCompilation cs ? cs.LanguageVersion : default;
+        public LanguageVersion CSharpVersion => compilation is CSharpCompilation cs ? cs.LanguageVersion : default;
     }
 }

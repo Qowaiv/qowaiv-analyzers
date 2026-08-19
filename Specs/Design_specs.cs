@@ -17,10 +17,9 @@ public class Rules
         => type.GetCustomAttribute<DiagnosticAnalyzerAttribute>()!
         .Languages.Should().BeEquivalentTo("C#");
 
-    private static IEnumerable<Type> Types
-        => typeof(Rule).Assembly
-        .GetTypes()
-        .Where(t => !t.IsAbstract && t.IsAssignableTo(typeof(DiagnosticAnalyzer)));
+    private static IEnumerable<Type> Types => typeof(Rule).Assembly
+            .GetTypes()
+            .Where(t => !t.IsAbstract && t.IsAssignableTo(typeof(DiagnosticAnalyzer)));
 }
 
 public class CodeFixes
@@ -38,8 +37,7 @@ public class CodeFixes
         => type.GetCustomAttribute<ExportCodeFixProviderAttribute>()!
         .Languages.Should().BeEquivalentTo("C#");
 
-    private static IEnumerable<Type> Types
-        => typeof(Rule).Assembly
-        .GetTypes()
-        .Where(t =>!t.IsAbstract && t.IsAssignableTo(typeof(CodeFixProvider)));
+    private static IEnumerable<Type> Types => typeof(Rule).Assembly
+            .GetTypes()
+            .Where(t => !t.IsAbstract && t.IsAssignableTo(typeof(CodeFixProvider)));
 }

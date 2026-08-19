@@ -1,6 +1,5 @@
 namespace Qowaiv.CodeAnalysis.Rules;
 
-[DiagnosticAnalyzer(LanguageNames.CSharp)]
 public abstract class GuidLiteralsBase(DescriptorContainer supportedDiagnostic, params IEnumerable<DiagnosticDescriptor> additional)
     : CodingRule(supportedDiagnostic, additional)
 {

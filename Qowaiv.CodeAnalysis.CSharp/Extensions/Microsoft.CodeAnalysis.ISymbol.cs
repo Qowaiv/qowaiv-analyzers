@@ -32,9 +32,8 @@ internal static class SymbolExtensions
             }
         }
 
-        internal bool IsRootNamespace
-            => symbol is INamespaceSymbol ns
-            && ns.IsGlobalNamespace;
+        internal bool IsRootNamespace => symbol is INamespaceSymbol ns
+                    && ns.IsGlobalNamespace;
     }
 
     extension(ISymbol? symbol)
@@ -74,18 +73,14 @@ internal static class SymbolExtensions
 
     extension(ITypeSymbol type)
     {
-        public bool IsAttribute
-        => type.IsAssignableTo(SystemType.System.Attribute);
+        public bool IsAttribute => type.IsAssignableTo(SystemType.System.Attribute);
 
-        public bool IsException
-            => type.IsAssignableTo(SystemType.System.Exception);
+        public bool IsException => type.IsAssignableTo(SystemType.System.Exception);
 
-        public bool IsNullableValueType
-            => type.IsValueType
-            && type is { SpecialType: SpecialType.System_Nullable_T } or { OriginalDefinition.SpecialType: SpecialType.System_Nullable_T };
+        public bool IsNullableValueType => type.IsValueType
+                    && type is { SpecialType: SpecialType.System_Nullable_T } or { OriginalDefinition.SpecialType: SpecialType.System_Nullable_T };
 
-        public bool IsObsolete
-            => type.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System.ObsoleteAttribute));
+        public bool IsObsolete => type.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System.ObsoleteAttribute));
 
         [Pure]
         public bool Equals(ITypeSymbol other, bool includeNullability)
@@ -128,8 +123,7 @@ internal static class SymbolExtensions
             => type is { } && type.AllInterfaces.Any(i => i.Is(other));
 
         [Pure]
-        public IEnumerable<IPropertySymbol> Properties
-            => type?.GetMembers().OfType<IPropertySymbol>() ?? [];
+        public IEnumerable<IPropertySymbol> Properties => type?.GetMembers().OfType<IPropertySymbol>() ?? [];
     }
 
     extension(INamedTypeSymbol? type)
@@ -147,25 +141,21 @@ internal static class SymbolExtensions
         }
 
         [Pure]
-        public INamedTypeSymbol? NotNullable
-            => type is { IsNullableValueType: true }
-            && type.TypeArguments[0] is INamedTypeSymbol inner
-                ? inner
-                : null;
+        public INamedTypeSymbol? NotNullable => type is { IsNullableValueType: true }
+                    && type.TypeArguments[0] is INamedTypeSymbol inner
+                        ? inner
+                        : null;
     }
 
     extension(IMethodSymbol method)
     {
-        public bool IsObsolete
-            => method.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System.ObsoleteAttribute))
-            || method.ContainingType.IsObsolete;
-
+        public bool IsObsolete => method.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System.ObsoleteAttribute))
+                    || method.ContainingType.IsObsolete;
     }
 
     extension(IPropertySymbol property)
     {
-        public bool IsObsolete
-            => property.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System.ObsoleteAttribute))
-            || property.ContainingType.IsObsolete;
+        public bool IsObsolete => property.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System.ObsoleteAttribute))
+                    || property.ContainingType.IsObsolete;
     }
 }

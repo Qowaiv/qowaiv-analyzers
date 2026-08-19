@@ -1,3 +1,4 @@
+#pragma warning disable QW0013 // Use Qowaiv decimal rounding
 using Qowaiv;
 
 namespace Fixes.Use_Qowaiv_Round_Extensions;
