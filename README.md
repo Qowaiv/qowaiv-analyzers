@@ -41,6 +41,7 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 * [**QW0027** - Create UUID's using Uuid.Parse or Uuid.Empty](rules/QW0027.md)
 * [**QW0028** - Prefer strongly typed identifiers over GUIDs](rules/QW0028.md)
 * [**QW0029** - Prefer strongly typed identifiers over primitives](rules/QW0029.md)
+* [**QW0030** - Prefer single value objects over data annotations](rules/QW0030.md)
 
 ### Data Annotation rules
 * [**QW0100** - Define only one Required attribute](rules/QW0100.md)

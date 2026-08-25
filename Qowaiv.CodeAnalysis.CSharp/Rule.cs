@@ -322,8 +322,8 @@ public static partial class Rule
        analyzeTestCode: false);
 
     public static DescriptorContainer PreferSVOsOverDataAnnotations => New(
-       id: 30,
-       title: "Prefer strongly typed identifiers over data annotations",
+       id: 0030,
+       title: "Prefer single value objects over data annotations",
        message: "Use {0} instead",
        description:
            "To reduce primitive obsession, use single value objects " +
