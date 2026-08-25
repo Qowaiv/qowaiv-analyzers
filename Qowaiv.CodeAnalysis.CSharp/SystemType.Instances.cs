@@ -15,7 +15,9 @@ public partial class SystemType
         public static readonly SystemType Void = New(typeof(void), SpecialType.System_Void);
 
         public static readonly SystemType Attribute = typeof(global::System.Attribute);
+        public static readonly SystemType BinaryData = new("System.BinaryData");
         public static readonly SystemType DateOnly = new("System.DateOnly");
+        public static readonly SystemType DateTimeKind = typeof(global::System.DateTimeKind);
         public static readonly SystemType DateTimeOffset = typeof(global::System.DateTimeOffset);
         public static readonly SystemType Exception = typeof(global::System.Exception);
         public static readonly SystemType Guid = typeof(global::System.Guid);
@@ -26,7 +28,7 @@ public partial class SystemType
         public static readonly SystemType ObsoleteAttribute = typeof(global::System.ObsoleteAttribute);
         public static readonly SystemType TimeProvider = new("System.TimeProvider");
         public static readonly SystemType Type = typeof(global::System.Type);
-        public static readonly SystemType DateTimeKind = typeof(global::System.DateTimeKind);
+        public static readonly SystemType Uri = typeof(global::System.Uri);
 
         public static class Collections
         {
@@ -53,6 +55,7 @@ public partial class SystemType
                 public static readonly SystemType AllowedValuesAttribute /*..*/ = new("System.ComponentModel.DataAnnotations.AllowedValuesAttribute");
                 public static readonly SystemType Base64StringAttribute /*...*/ = new("System.ComponentModel.DataAnnotations.Base64StringAttribute");
                 public static readonly SystemType CreditCardAttribute /*.....*/ = new("System.ComponentModel.DataAnnotations.CreditCardAttribute");
+                public static readonly SystemType DataTypeAttribute /*.......*/ = new("System.ComponentModel.DataAnnotations.DataTypeAttribute");
                 public static readonly SystemType DeniedValuesAttribute /*...*/ = new("System.ComponentModel.DataAnnotations.DeniedValuesAttribute");
                 public static readonly SystemType EmailAddressAttribute /*...*/ = new("System.ComponentModel.DataAnnotations.EmailAddressAttribute");
                 public static readonly SystemType EnumDataTypeAttribute /*...*/ = new("System.ComponentModel.DataAnnotations.EnumDataTypeAttribute");
@@ -120,6 +123,7 @@ public partial class SystemType
     {
         public static readonly SystemType Clock = new("Qowaiv.Clock");
         public static readonly SystemType Date = new("Qowaiv.Date");
+        public static readonly SystemType EmailAddress = new("Qowaiv.EmailAddress");
         public static readonly SystemType LocalDateTime = new("Qowaiv.LocalDateTime");
         public static readonly SystemType Uuid = new("Qowaiv.Uuid");
 

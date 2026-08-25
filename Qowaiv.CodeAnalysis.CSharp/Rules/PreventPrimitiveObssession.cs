@@ -3,8 +3,10 @@ namespace Qowaiv.CodeAnalysis.Rules;
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class PreventPrimitiveObssession() : CodingRule(
     Rule.PreferStronglyTypedIdOverGuid,
-    Rule.PreferStronglyTypedIdOverPrimitives)
+    Rule.PreferStronglyTypedIdOverPrimitives,
+    Rule.PreferSVOsOverDataAnnotations)
 {
+    /// <inheritdoc />
     protected override void Register(AnalysisContext context)
        => RegisterSyntaxNodeAction(context, Report, SyntaxKind.PropertyDeclaration);
 
@@ -32,6 +34,10 @@ public sealed class PreventPrimitiveObssession() : CodingRule(
         {
             context.ReportDiagnostic(Rule.PreferStronglyTypedIdOverPrimitives, property.PropertyType);
         }
+        else if (DataAnnotations(property, type) is { } svo)
+        {
+            context.ReportDiagnostic(Rule.PreferSVOsOverDataAnnotations, property.PropertyType, svo);
+        }
     }
 
     private static bool PreferStronglyTypedIdOverGuid(INamedTypeSymbol type)
@@ -58,6 +64,29 @@ public sealed class PreventPrimitiveObssession() : CodingRule(
         or SpecialType.System_UInt32
         or SpecialType.System_Int64
         or SpecialType.System_UInt64;
+
+    private static SystemType? DataAnnotations(PropertyDeclaration property, INamedTypeSymbol type)
+    {
+        if (!type.Is(SystemType.System.String)) return null;
+
+        var attribute = property.Attributes.FirstOrDefault(a => a.Symbol.Is(SystemType.System.ComponentModel.DataAnnotations.DataTypeAttribute))?.Symbol;
+
+        if(attribute is not null)
+        {
+
+        }
+
+
+        return property.Attributes switch
+        {
+            var a when a.Any(d => d.HasName("Base64String")) => SystemType.System.BinaryData,
+            var a when a.Any(d => d.HasName("EmailAddress")) => SystemType.Qowaiv.EmailAddress,
+            var a when a.Any(d => d.HasName("Url")) /*....*/ => SystemType.System.Uri,
+            _ => null,
+        };
+
+
+    }
 
     private static bool PrimitiveIsRequired(AttributeDecoration decoration)
         => decoration.HasName("PrimitiveRequired");

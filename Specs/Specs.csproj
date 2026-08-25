@@ -12,6 +12,10 @@
     <None Include="Cases/*.*" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Include="Cases\PreferSVOsOverDataAnnotations.cs" />
+  </ItemGroup>
+
   <ItemGroup Label="Test Tools">
     <PackageReference Include="AwesomeAssertions" />
     <PackageReference Include="CodeAnalysis.TestTools" />
@@ -46,13 +50,7 @@
   </ItemGroup>
 
   <ItemGroup Label="Analyzer">
-    <ProjectReference
-      NoWarn="Proj0014"
-      Include="../Qowaiv.CodeAnalysis.CSharp/Qowaiv.CodeAnalysis.CSharp.csproj"
-      PrivateAssets="all"
-      ReferenceOutputAssembly="false"
-      OutputItemType="Analyzer"
-      SetTargetFramework="TargetFramework=netstandard2.0" />
+    <ProjectReference NoWarn="Proj0014" Include="../Qowaiv.CodeAnalysis.CSharp/Qowaiv.CodeAnalysis.CSharp.csproj" PrivateAssets="all" ReferenceOutputAssembly="false" OutputItemType="Analyzer" SetTargetFramework="TargetFramework=netstandard2.0" />
   </ItemGroup>
 
 </Project>
