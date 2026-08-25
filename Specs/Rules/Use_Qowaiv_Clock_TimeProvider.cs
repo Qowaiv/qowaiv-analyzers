@@ -1,4 +1,4 @@
-namespace Specs.Rules.Use_Qowaiv_Clock_TimeProvider;
+namespace Rules.Use_Qowaiv_Clock_TimeProvider;
 
 public class Verify
 {
