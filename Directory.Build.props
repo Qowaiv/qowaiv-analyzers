@@ -20,11 +20,11 @@
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true' AND '$(DEPENDABOT)' != 'true'">
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(ContinuousIntegrationBuild)' == 'true'">
+  <PropertyGroup Condition="'$(ContinuousIntegrationBuild)' == 'true'>
     <RestoreLockedMode>true</RestoreLockedMode>
   </PropertyGroup>
 
