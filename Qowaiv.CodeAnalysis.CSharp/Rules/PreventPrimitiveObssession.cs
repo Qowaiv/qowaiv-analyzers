@@ -58,7 +58,8 @@ public sealed class PreventPrimitiveObssession() : CodingRule(
         || decoration.HasName("PrimaryKey")
         || decoration.HasName("ForeignKey");
 
-    private static bool IsPrimitive(INamedTypeSymbol type) => type.SpecialType
+    private static bool IsPrimitive(INamedTypeSymbol type)
+        => type.SpecialType
         is SpecialType.System_String
         or SpecialType.System_Int32
         or SpecialType.System_UInt32
@@ -66,27 +67,15 @@ public sealed class PreventPrimitiveObssession() : CodingRule(
         or SpecialType.System_UInt64;
 
     private static SystemType? DataAnnotations(PropertyDeclaration property, INamedTypeSymbol type)
-    {
-        if (!type.Is(SystemType.System.String)) return null;
-
-        var attribute = property.Attributes.FirstOrDefault(a => a.Symbol.Is(SystemType.System.ComponentModel.DataAnnotations.DataTypeAttribute))?.Symbol;
-
-        if(attribute is not null)
-        {
-
-        }
-
-
-        return property.Attributes switch
+        => type.Is(SystemType.System.String)
+        ? property.Attributes switch
         {
             var a when a.Any(d => d.HasName("Base64String")) => SystemType.System.BinaryData,
             var a when a.Any(d => d.HasName("EmailAddress")) => SystemType.Qowaiv.EmailAddress,
             var a when a.Any(d => d.HasName("Url")) /*....*/ => SystemType.System.Uri,
             _ => null,
-        };
-
-
-    }
+        }
+        : null;
 
     private static bool PrimitiveIsRequired(AttributeDecoration decoration)
         => decoration.HasName("PrimitiveRequired");

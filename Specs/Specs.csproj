@@ -12,10 +12,6 @@
     <None Include="Cases/*.*" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Include="Cases\PreferSVOsOverDataAnnotations.cs" />
-  </ItemGroup>
-
   <ItemGroup Label="Test Tools">
     <PackageReference Include="AwesomeAssertions" />
     <PackageReference Include="CodeAnalysis.TestTools" />
