@@ -42,7 +42,7 @@ file static class Extensions
 {
     public static PropertyDeclarationSyntax AddModifiers(this PropertyDeclarationSyntax property, ParameterSyntax param)
         => PreferRegularOverPositionalProperties.NotNull(param)
-        ? property.AddModifiers(Token(PublicKeyword), Token(SyntaxKindExt.RequiredKeyword))
+        ? property.AddModifiers(Token(PublicKeyword), Token(SyntaxKind.RequiredKeyword))
         : property.AddModifiers(Token(PublicKeyword));
 
     public static PropertyDeclarationSyntax AddAccessors(this PropertyDeclarationSyntax property) => property
