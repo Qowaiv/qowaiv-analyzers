@@ -16,7 +16,7 @@ public static partial class Rule
             "be adjustable under test. DateTime.Now, DateTime.UtcNow, " +
             "and DateTime.Today lack this possibility.",
         category: Category.Testabilty,
-        tags: ["Test"],
+        tags: [Test],
         analyzeTestCode: true);
 
     public static DescriptorContainer ParseShouldNotFail => New(
@@ -27,7 +27,7 @@ public static partial class Rule
             "Parsing string literals should not fail, as it will crash at runtime.",
         category: Category.RuntimeError,
         severity: DiagnosticSeverity.Error,
-        tags: ["Error"],
+        tags: [Error],
         analyzeTestCode: true);
 
     public static DescriptorContainer DecoratePureFunctions => New(
@@ -97,7 +97,7 @@ public static partial class Rule
             "to it, because the nullable that has a value can still represent an " +
             "empty state.",
         category: Category.Design,
-        tags: [Design, "SVO", "Value Type", "Value Object"],
+        tags: [Design, .. SVO],
         analyzeTestCode: false);
 
     public static DescriptorContainer DefineEnumPropertiesAsNotNullable => New(
@@ -120,7 +120,7 @@ public static partial class Rule
             "The purpose of `Qowaiv.Date` is to provide a date (only) alternative to DateTime. " +
             "Since .NET 6.0, Microsoft provides DateOnly.",
         category: Category.Design,
-        tags: [Design, "SVO"],
+        tags: [Design, .. SVO],
         analyzeTestCode: false);
 
     public static DescriptorContainer DefinePropertiesAsImmutables => New(
@@ -249,7 +249,7 @@ public static partial class Rule
         message: "\"{0}\" does not represent a GUID",
         description: "Non-compliant GUID literals will lead to runtime errors.",
         category: Category.Bug,
-        tags: ["Bug"],
+        tags: [Bug],
         severity: DiagnosticSeverity.Error,
         analyzeTestCode: true);
 
@@ -259,7 +259,7 @@ public static partial class Rule
         message: "Provide a GUID value",
         description: "Non-compliant GUID literals will lead to runtime errors.",
         category: Category.Bug,
-        tags: ["Bug"],
+        tags: [Bug],
         analyzeTestCode: true);
 
     public static DescriptorContainer UseGuidParseOrEmpty => New(
@@ -268,7 +268,7 @@ public static partial class Rule
         message: "Use Guid.Parse() or Guid.Empty instead",
         description: "Non-compliant GUID literals will lead to runtime errors.",
         category: Category.Bug,
-        tags: ["Bug"],
+        tags: [Bug],
         analyzeTestCode: true);
 
     public static DescriptorContainer UuidLiteralsMustBeCompliant => New(
@@ -277,7 +277,7 @@ public static partial class Rule
         message: "\"{0}\" does not represent a UUID",
         description: "Non-compliant UUID literals will lead to runtime errors.",
         category: Category.Bug,
-        tags: ["Bug"],
+        tags: [Bug],
         severity: DiagnosticSeverity.Error,
         analyzeTestCode: true);
 
@@ -287,7 +287,7 @@ public static partial class Rule
         message: "Provide a UUID value",
         description: "Non-compliant UUID literals will lead to runtime errors.",
         category: Category.Bug,
-        tags: ["Bug"],
+        tags: [Bug],
         analyzeTestCode: true);
 
     public static DescriptorContainer UseUuidParseOrEmpty => New(
@@ -296,7 +296,7 @@ public static partial class Rule
         message: "Use Uuid.Parse() or Uuid.Empty instead",
         description: "Non-compliant UUID literals will lead to runtime errors.",
         category: Category.Bug,
-        tags: ["Bug"],
+        tags: [Bug],
         analyzeTestCode: true);
 
     public static DescriptorContainer PreferStronglyTypedIdOverGuid => New(
@@ -307,7 +307,7 @@ public static partial class Rule
             "To reduce primitive obsession, use strongly typed identifiers " +
             "instead of GUID/UUID's.",
         category: Category.Design,
-        tags: ["primitive obsession", "GUID", "UUID", "strongly typed", "ID", "identifier"],
+        tags: [PrimitiveObsession, "GUID", "UUID", "strongly typed", "ID", "identifier"],
         analyzeTestCode: false);
 
     public static DescriptorContainer PreferStronglyTypedIdOverPrimitives => New(
@@ -318,7 +318,7 @@ public static partial class Rule
            "To reduce primitive obsession, use strongly typed identifiers " +
            "instead of primitives such as int's and string's.",
        category: Category.Design,
-       tags: ["primitive obsession", "string", "int", "long", "strongly typed", "ID", "identifier"],
+       tags: [PrimitiveObsession, "string", "int", "long", "strongly typed", "ID", "identifier"],
        analyzeTestCode: false);
 
     public static DescriptorContainer PreferSVOsOverDataAnnotations => New(
@@ -329,7 +329,7 @@ public static partial class Rule
            "To reduce primitive obsession, use single value objects " +
            "instead of data annotations.",
        category: Category.Design,
-       tags: ["primitive obsession", "SVO", "data annotations"],
+       tags: [PrimitiveObsession, .. SVO, "data annotations"],
        analyzeTestCode: false);
 
     public static DescriptorContainer DefineOnlyOneRequiredAttribute => New(
