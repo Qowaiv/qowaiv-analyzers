@@ -321,6 +321,17 @@ public static partial class Rule
        tags: ["primitive obsession", "string", "int", "long", "strongly typed", "ID", "identifier"],
        analyzeTestCode: false);
 
+    public static DescriptorContainer PreferSVOsOverDataAnnotations => New(
+       id: 0030,
+       title: "Prefer single value objects over data annotations",
+       message: "Use {0} instead",
+       description:
+           "To reduce primitive obsession, use single value objects " +
+           "instead of data annotations.",
+       category: Category.Design,
+       tags: ["primitive obsession", "SVO", "data annotations"],
+       analyzeTestCode: false);
+
     public static DescriptorContainer DefineOnlyOneRequiredAttribute => New(
         id: 0100,
         title: "Define only one Required attribute",

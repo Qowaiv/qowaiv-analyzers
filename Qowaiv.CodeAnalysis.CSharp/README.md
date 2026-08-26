@@ -30,6 +30,7 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/) (s
 * [**QW0027** - Create UUID's using Uuid.Parse or Uuid.Empty](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0027.md)
 * [**QW0028** - Prefer strongly typed identifiers over GUIDs](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0028.md)
 * [**QW0029** - Prefer strongly typed identifiers over primitives](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0029.md)
+* [**QW0030** - Prefer single value objects over data annotations](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0030.md)
 
 ### Data Annotation rules
 * [**QW0100** - Define only one Required attribute](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0100.md)
