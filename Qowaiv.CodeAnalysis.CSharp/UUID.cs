@@ -2,9 +2,12 @@ namespace Qowaiv.CodeAnalysis;
 
 public static class UUID
 {
-    public static bool IsValid(string str)
-        => str.Length is 22
-        && str.All("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_".Contains);
+    public static bool IsValid(string str) => str.Length switch
+    {
+        22 => str.All("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_+/".Contains),
+        26 => str.All("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz234567".Contains),
+        _ => Guid.TryParse(str, out _),
+    };
 
     public static string Next() => Convert
         .ToBase64String(Guid.NewGuid().ToByteArray())
