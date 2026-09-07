@@ -8,5 +8,6 @@ public sealed class UuidLiterals() : GuidLiteralsBase(
 {
     protected override SystemType Type => SystemType.Qowaiv.Uuid;
 
-    protected override bool IsValid(string literal) => UUID.IsValid(literal);
+    protected override bool IsValid(string literal)
+        => UUID.IsValid(literal);
 }
