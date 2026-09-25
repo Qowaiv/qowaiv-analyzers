@@ -54,8 +54,6 @@ dotnet_diagnostic.NUnit2021.severity = warning    # Incompatible types for Equal
 dotnet_diagnostic.NUnit2005.severity = error      # Consider using Assert.That instead of AreEqual
 dotnet_diagnostic.NUnit2033.severity = error      # Consider using Assert.That instead of NotZero
 
-dotnet_diagnostic.RS1038.severity    = none       # Justification: Wrongly assumes this not to be a analyzer DLL
-
 dotnet_diagnostic.SA0001.severity    = none       # No XML comment analysis
 dotnet_diagnostic.SA1001.severity    = none       # Commas should not be preceded by whitespace
 dotnet_diagnostic.SA1101.severity    = none       # Prefix local calls with this.

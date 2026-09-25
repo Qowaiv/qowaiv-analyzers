@@ -1,5 +1,4 @@
 global using Microsoft.CodeAnalysis;
-global using Microsoft.CodeAnalysis.CodeFixes;
 global using Microsoft.CodeAnalysis.CSharp;
 global using Microsoft.CodeAnalysis.CSharp.Syntax;
 global using Microsoft.CodeAnalysis.Diagnostics;
@@ -18,5 +17,3 @@ global using System.Diagnostics.Contracts;
 global using System.Globalization;
 global using System.Linq;
 global using System.Text;
-global using System.Threading;
-global using System.Threading.Tasks;

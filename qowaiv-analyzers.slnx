@@ -1,5 +1,6 @@
 <Solution>
   <Project Path=".net.csproj" />
+  <Project Path="Pack/Pack.csproj" />
   <Project Path="Qowaiv.CodeAnalysis.CSharp.CodeFixes/Qowaiv.CodeAnalysis.CSharp.CodeFixes.csproj" />
   <Project Path="Qowaiv.CodeAnalysis.CSharp/Qowaiv.CodeAnalysis.CSharp.csproj" />
   <Project Path="Specs/Specs.csproj" />

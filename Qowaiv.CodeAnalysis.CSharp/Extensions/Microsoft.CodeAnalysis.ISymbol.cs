@@ -1,6 +1,6 @@
 namespace Microsoft.CodeAnalysis;
 
-internal static class SymbolExtensions
+public static class SymbolExtensions
 {
     extension(ISymbol symbol)
     {

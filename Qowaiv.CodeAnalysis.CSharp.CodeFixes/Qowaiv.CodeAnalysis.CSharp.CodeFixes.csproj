@@ -4,10 +4,11 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Qowaiv.CodeAnalysis.CodeFixes</RootNamespace>
     <OutputType>library</OutputType>
+    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="../Qowaiv.CodeAnalysis.CSharp/Properties/ProductInfo.cs" Link="Properties/ProductInfo.cs" />
+    <Compile Include="../Pack/Properties/ProductInfo.cs" Link="Properties/ProductInfo.cs" />
   </ItemGroup>
 
   <ItemGroup>
