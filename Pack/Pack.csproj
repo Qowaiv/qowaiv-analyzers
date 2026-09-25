@@ -31,12 +31,12 @@
   </PropertyGroup>
 
   <ItemGroup Label="Package files">
-    <None Update="tools/*.ps1" Pack="true" PackagePath="/" />
-    <None Include="Qowaiv.Analyzers.CSharp.targets" />
-    <None Include="../design/package-icon.png" Pack="true" PackagePath="/" />
-    <None Include="$(OutputPath)/Qowaiv.CodeAnalysis.CSharp.dll" Pack="true" PackagePath="analyzers" Link="analyzers/Qowaiv.CodeAnalysis.CSharp.dll" />
-    <None Include="$(OutputPath)/Qowaiv.CodeAnalysis.CSharp.CodeFixes.dll" Pack="true" PackagePath="analyzers" Link="analyzers/Qowaiv.CodeAnalysis.CSharp.CodeFixes.dll" />
-    <None Include="README.md" Pack="true" PackagePath="/" />
+    <None Pack="true" PackagePath="/" Update="tools/*.ps1" />
+    <None Pack="true" PackagePath="/" Include="../design/package-icon.png" />
+    <None Pack="true" PackagePath="/" Include="README.md" />
+    <None Pack="true" PackagePath="analyzers/" Include="$(OutputPath)/Qowaiv.CodeAnalysis.CSharp.dll" Link="analyzers/Qowaiv.CodeAnalysis.CSharp.dll" />
+    <None Pack="true" PackagePath="analyzers/" Include="$(OutputPath)/Qowaiv.CodeAnalysis.CSharp.CodeFixes.dll" Link="analyzers/Qowaiv.CodeAnalysis.CSharp.CodeFixes.dll" />
+    <None Pack="true" PackagePath="build/" Include="Qowaiv.Analyzers.CSharp.targets" />
   </ItemGroup>
 
   <ItemGroup>
