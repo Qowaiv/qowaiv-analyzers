@@ -1,10 +1,9 @@
 param($installPath, $toolsPath, $package, $project)
 
-$analyzersPath = Split-Path -Path $toolsPath -Parent
 $analyzersPath = Join-Path $toolsPath "analyzers"
-$analyzerFilePath = Join-Path $analyzersPath "Qowaiv.CodeAnalysis.CSharp.dll"
 try {
-    $project.Object.AnalyzerReferences.Remove($analyzerFilePath)
+    $project.Object.AnalyzerReferences.Remove((Join-Path $analyzersPath "Qowaiv.CodeAnalysis.CSharp.dll"))
+    $project.Object.AnalyzerReferences.Remove((Join-Path $analyzersPath "Qowaiv.CodeAnalysis.CSharp.CodeFixes.dll"))
 }
 catch {
 }

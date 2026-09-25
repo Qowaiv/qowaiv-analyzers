@@ -37,7 +37,7 @@ public class CodeFixes
         => type.GetCustomAttribute<ExportCodeFixProviderAttribute>()!
         .Languages.Should().BeEquivalentTo("C#");
 
-    private static IEnumerable<Type> Types => typeof(Rule).Assembly
+    private static IEnumerable<Type> Types => typeof(Qowaiv.CodeAnalysis.CodeFixes.Diagnostics.CodeFix).Assembly
             .GetTypes()
             .Where(t => !t.IsAbstract && t.IsAssignableTo(typeof(CodeFixProvider)));
 }

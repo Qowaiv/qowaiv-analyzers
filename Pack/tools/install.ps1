@@ -7,7 +7,6 @@ if ($project.Type -ne "C#") {
     throw 'This package can only be installed on C# projects.'
 }
 
-$analyzersPath = Split-Path -Path $toolsPath -Parent
 $analyzersPath = Join-Path $toolsPath "analyzers"
-$analyzerFilePath = Join-Path $analyzersPath "Qowaiv.CodeAnalysis.CSharp.dll"
-$project.Object.AnalyzerReferences.Add($analyzerFilePath)
+$project.Object.AnalyzerReferences.Add((Join-Path $analyzersPath "Qowaiv.CodeAnalysis.CSharp.dll"))
+$project.Object.AnalyzerReferences.Add((Join-Path $analyzersPath "Qowaiv.CodeAnalysis.CSharp.CodeFixes.dll"))
