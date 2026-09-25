@@ -8,8 +8,26 @@ Welcome! This document provides information, commands, and conventions for AI co
 
 Qowaiv Analyzers is a Roslyn-based static code analysis suite for C#, targeting the .NET ecosystem.
 * **Analyzer Project**: `Qowaiv.CodeAnalysis.CSharp/` (Targets `netstandard2.0`)
+* **Code Fix Project**: `Qowaiv.CodeAnalysis.CSharp.CodeFixes/` (Targets `netstandard2.0`)
+* **Package Project**: `Pack/` (Targets `netstandard2.0`, packs `Qowaiv.Analyzers.CSharp`)
 * **Test Specs Project**: `Specs/` (Targets `net10.0`)
-* **Core Technologies**: Roslyn SDK (`Microsoft.CodeAnalysis.CSharp.Workspaces`), NUnit for testing, StyleCop.Analyzers.
+* **Core Technologies**: Roslyn SDK (`Microsoft.CodeAnalysis.CSharp.Workspaces`), NUnit for testing, AwesomeAssertions, StyleCop.Analyzers.
+
+### Analyzer and code fix separation
+
+The rules and the code fixes live in two separate assemblies, shipped as one
+NuGet package (`Qowaiv.Analyzers.CSharp`). Both DLLs end up in `analyzers/`, and
+both are registered by `Pack/tools/install.ps1`.
+
+The reason for the split is that code fixes require the Roslyn *workspaces* API,
+while rules only need the core API. Keeping them apart means consumers that only
+want to run rules (command line builds, non-IDE scenarios) do not have to load
+`Microsoft.CodeAnalysis.Workspaces`.
+
+`Qowaiv.CodeAnalysis.CSharp.CodeFixes` references `Qowaiv.CodeAnalysis.CSharp`,
+so shared helpers that both assemblies need must be `public` (there is no
+`InternalsVisibleTo`). Prefer putting such helpers in `Extensions/`, keyed by the
+type they extend, rather than as static members on a rule class.
 
 ---
 
@@ -25,19 +43,29 @@ Always run these commands from the root directory (`C:\code\qowaiv-analyzers`):
   ```powershell
   dotnet test Specs\Specs.csproj
   ```
+* **Build and Test in Release** (required to exercise the packaging specs, since
+  `Pack/` only produces a `.nupkg` for `Release`):
+  ```powershell
+  dotnet build qowaiv-analyzers.slnx -c Release
+  dotnet test Specs\Specs.csproj -c Release
+  ```
 
 ---
 
 ## 3. Directory Structure & Key Paths
 
 * **`Qowaiv.CodeAnalysis.CSharp/`**: Main analyzer implementation.
-  * **`Rules/`**: Analyzer implementations. Each rule is a class inheriting from `DiagnosticAnalyzer` (e.g., `PreventPrimitiveObsession.cs`).
+  * **`Rules/`**: Analyzer implementations. Each rule is a class inheriting from `DiagnosticAnalyzer` (e.g., `SealClasses.cs`).
+  * **`Extensions/`**: Extension methods, one file per extended type (e.g., `Microsoft.CodeAnalysis.CSharp.Syntax.TypeSyntax.cs`).
   * **`Shared/`**: Shared code and shared models/helpers.
   * **`Syntax/`**: Custom syntax nodes and abstractions to simplify Roslyn syntax tree walking.
+* **`Qowaiv.CodeAnalysis.CSharp.CodeFixes/`**: Code fix providers, one file per rule that has a fix.
+* **`Pack/`**: Packaging project. `Pack.csproj` packs the two analyzer assemblies, and `tools/install.ps1` registers them with Roslyn.
 * **`Specs/`**: Testing suite.
   * **`Rules/`**: Analyzer verification tests.
   * **`Fixes/`**: Code fix provider verification tests.
   * **`Cases/`**: Code snippets in C# (`.cs`, `.ToFix.cs`, `.Fixed.cs`) containing expected/asserted diagnostics.
+  * **`*_specs.cs`**: Specs that do not use case files: `Design_specs.cs` (rule and code fix conventions) and `Package_specs.cs` (package layout, Release only).
 * **`rules/`**: Documentation files for each rule named `QWxxxx.md`.
 
 ---

@@ -48,13 +48,22 @@
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" ExcludeAssets="runtime" />
   </ItemGroup>
 
+  <ItemGroup Label="Build extensions">
+    <PackageReference PrivateAssets="all" Include="Microsoft.Sbom.Targets" />
+  </ItemGroup>
+
   <ItemGroup Label="Analyzers">
     <PackageReference PrivateAssets="all" Include="StyleCop.Analyzers.Unstable" />
   </ItemGroup>
 
-  <ItemGroup Label="Build extensions">
-    <PackageReference PrivateAssets="all" Include="Microsoft.Sbom.Targets" />
-  </ItemGroup>
+  <Target Name="VerifyAnalyzers" BeforeTargets="GenerateNuspec" Label="Analyzers">
+    <Error
+      Condition="!Exists('$(OutputPath)Qowaiv.CodeAnalysis.CSharp.dll')"
+      Text="Qowaiv.CodeAnalysis.CSharp.dll is missing from $(OutputPath). Build the solution before packing." />
+    <Error
+      Condition="!Exists('$(OutputPath)Qowaiv.CodeAnalysis.CSharp.CodeFixes.dll')"
+      Text="Qowaiv.CodeAnalysis.CSharp.CodeFixes.dll is missing from $(OutputPath). Build the solution before packing." />
+  </Target>
 
   <PropertyGroup Label="Version and release notes">
     <Version>2.6.1</Version>

@@ -1,4 +1,3 @@
-using Qowaiv.CodeAnalysis.Rules;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxKind;
 
@@ -41,7 +40,7 @@ public sealed class ConvertPositionalProperties() : CodeFix(Rule.PreferRegularOv
 file static class Extensions
 {
     public static PropertyDeclarationSyntax AddModifiers(this PropertyDeclarationSyntax property, ParameterSyntax param)
-        => PreferRegularOverPositionalProperties.NotNull(param)
+        => param.NotNull
         ? property.AddModifiers(Token(PublicKeyword), Token(RequiredKeyword))
         : property.AddModifiers(Token(PublicKeyword));
 

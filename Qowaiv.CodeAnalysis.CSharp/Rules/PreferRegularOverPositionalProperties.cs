@@ -30,10 +30,7 @@ public sealed class PreferRegularOverPositionalProperties() : CodingRule(Rule.Pr
     private static string Message(ParameterSyntax parameter) => parameter switch
     {
         _ when parameter.Default is { } => "a property with a default value",
-        _ when NotNull(parameter) => "a required property",
+        _ when parameter.NotNull => "a required property",
         _ => "a regular property",
     };
-
-    public static bool NotNull(ParameterSyntax parameter)
-        => parameter.Type is not NullableTypeSyntax;
 }
