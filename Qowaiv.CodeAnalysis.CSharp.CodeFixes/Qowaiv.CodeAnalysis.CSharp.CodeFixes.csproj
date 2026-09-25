@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Qowaiv.CodeAnalysis.CodeFixes</RootNamespace>
+    <OutputType>library</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="../Qowaiv.CodeAnalysis.CSharp/Properties/ProductInfo.cs" Link="Properties/ProductInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Qowaiv.CodeAnalysis.CSharp/Qowaiv.CodeAnalysis.CSharp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" ExcludeAssets="runtime" />
+  </ItemGroup>
+
+</Project>

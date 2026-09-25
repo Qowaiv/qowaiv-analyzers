@@ -1,6 +1,6 @@
 using Microsoft.CodeAnalysis.CodeActions;
 
-namespace Qowaiv.CodeAnalysis.Diagnostics;
+namespace Qowaiv.CodeAnalysis.CodeFixes.Diagnostics;
 
 internal sealed class ChangeDocumentContext(
     Document document,

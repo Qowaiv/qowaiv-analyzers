@@ -34,6 +34,6 @@ public sealed class PreferRegularOverPositionalProperties() : CodingRule(Rule.Pr
         _ => "a regular property",
     };
 
-    internal static bool NotNull(ParameterSyntax parameter)
+    public static bool NotNull(ParameterSyntax parameter)
         => parameter.Type is not NullableTypeSyntax;
 }
