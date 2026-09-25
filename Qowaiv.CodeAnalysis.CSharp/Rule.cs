@@ -332,6 +332,16 @@ public static partial class Rule
        tags: [PrimitiveObsession, .. SVO, "data annotations"],
        analyzeTestCode: false);
 
+    public static DescriptorContainer FormatAmountLiterals => New(
+       id: 0031,
+       title: "Format amount literals",
+       message: "Improve readabillity by using group seperators",
+       description:
+           "TODO",
+       category: Category.Design,
+       tags: ["Clarity"],
+       analyzeTestCode: true);
+
     public static DescriptorContainer DefineOnlyOneRequiredAttribute => New(
         id: 0100,
         title: "Define only one Required attribute",

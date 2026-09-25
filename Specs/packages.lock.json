@@ -121,6 +121,12 @@
           "Microsoft.Testing.Platform.MSBuild": "2.1.0"
         }
       },
+      "PolySharp": {
+        "type": "Direct",
+        "requested": "[1.16.0, )",
+        "resolved": "1.16.0",
+        "contentHash": "3kdIIceBPumwjw279FuiVMfVENT2cGASXJgcigdySsbX2dJB8ofUgG6i47yqF/k1qu6fvNR3csrSekZPviR6kQ=="
+      },
       "Qowaiv": {
         "type": "Direct",
         "requested": "[8.2.0, )",
