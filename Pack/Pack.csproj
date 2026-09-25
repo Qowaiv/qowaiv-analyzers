@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -61,7 +61,7 @@
     <ToBeReleased>
       <![CDATA[
 v2.*
--
+- Rules and Code Fixes in different DLLs. (ENHANCEMENT)
       ]]>
     </ToBeReleased>
     <PackageReleaseNotes>
