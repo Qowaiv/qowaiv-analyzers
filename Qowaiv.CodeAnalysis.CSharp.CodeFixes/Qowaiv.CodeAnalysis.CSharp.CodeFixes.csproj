@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Qowaiv.CodeAnalysis</RootNamespace>
+    <RootNamespace>Qowaiv.CodeAnalysis.CodeFixes</RootNamespace>
     <OutputType>library</OutputType>
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
   </PropertyGroup>
@@ -10,9 +10,13 @@
   <ItemGroup>
     <Compile Include="../Pack/Properties/ProductInfo.cs" Link="Properties/ProductInfo.cs" />
   </ItemGroup>
-  
+
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" ExcludeAssets="runtime" />
+    <ProjectReference Include="../Qowaiv.CodeAnalysis.CSharp/Qowaiv.CodeAnalysis.CSharp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" ExcludeAssets="runtime" />
   </ItemGroup>
 
 </Project>

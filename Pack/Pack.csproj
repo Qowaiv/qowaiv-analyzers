@@ -1,0 +1,199 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>Qowaiv.Analyzers.CSharp</PackageId>
+    <OutputType>library</OutputType>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Build conditions">
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <DevelopmentDependency>true</DevelopmentDependency>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <IsPackable>true</IsPackable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateSBOM>true</GenerateSBOM>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Package config">
+    <PackageIcon>package-icon.png</PackageIcon>
+    <PackageIconUrl>https://github.com/Qowaiv/qowaiv-analyzers/blob/main/design/package-icon.png</PackageIconUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>http://www.github.com/Qowaiv/qowaiv-analyzers</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/Qowaiv/qowaiv-analyzers</RepositoryUrl>
+    <PackageTags>Qowaiv;Code Analysis</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup Label="Package files">
+    <None Pack="true" PackagePath="/" Update="tools/*.ps1" />
+    <None Pack="true" PackagePath="/" Include="../design/package-icon.png" />
+    <None Pack="true" PackagePath="/" Include="README.md" />
+    <None Pack="true" PackagePath="analyzers/" Include="$(OutputPath)/Qowaiv.CodeAnalysis.CSharp.dll" Link="analyzers/Qowaiv.CodeAnalysis.CSharp.dll" />
+    <None Pack="true" PackagePath="analyzers/" Include="$(OutputPath)/Qowaiv.CodeAnalysis.CSharp.CodeFixes.dll" Link="analyzers/Qowaiv.CodeAnalysis.CSharp.CodeFixes.dll" />
+    <None Pack="true" PackagePath="build/" Include="Qowaiv.Analyzers.CSharp.targets" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Qowaiv.CodeAnalysis.CSharp/Qowaiv.CodeAnalysis.CSharp.csproj" />
+    <ProjectReference Include="../Qowaiv.CodeAnalysis.CSharp.CodeFixes/Qowaiv.CodeAnalysis.CSharp.CodeFixes.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" ExcludeAssets="runtime" />
+  </ItemGroup>
+
+  <ItemGroup Label="Build extensions">
+    <PackageReference PrivateAssets="all" Include="Microsoft.Sbom.Targets" />
+  </ItemGroup>
+
+  <ItemGroup Label="Analyzers">
+    <PackageReference PrivateAssets="all" Include="StyleCop.Analyzers.Unstable" />
+  </ItemGroup>
+
+  <Target Name="VerifyAnalyzers" BeforeTargets="GenerateNuspec" Label="Analyzers">
+    <Error
+      Condition="!Exists('$(OutputPath)Qowaiv.CodeAnalysis.CSharp.dll')"
+      Text="Qowaiv.CodeAnalysis.CSharp.dll is missing from $(OutputPath). Build the solution before packing." />
+    <Error
+      Condition="!Exists('$(OutputPath)Qowaiv.CodeAnalysis.CSharp.CodeFixes.dll')"
+      Text="Qowaiv.CodeAnalysis.CSharp.CodeFixes.dll is missing from $(OutputPath). Build the solution before packing." />
+  </Target>
+
+  <PropertyGroup Label="Version and release notes">
+    <Version>2.6.1</Version>
+    <ToBeReleased>
+      <![CDATA[
+v2.*
+- Rules and Code Fixes in different DLLs. (ENHANCEMENT)
+      ]]>
+    </ToBeReleased>
+    <PackageReleaseNotes>
+      <![CDATA[
+v2.6.1
+- QW0025: Use compliant UUID literals. (FP)
+v2.6.0
+- QW0025: Use compliant UUID literals. (NEW RULE)
+- QW0026: Provide UUID values. (NEW RULE)
+- QW0027: Create UUID's using Uuid.Parse or Uuid.Empty. (NEW RULE)
+- QW0028: Prefer strongly typed identifiers over GUIDs. (NEW RULE)
+- QW0029: Prefer strongly typed identifiers over primitives. (NEW RULE)
+V2.5.1
+- GenerateGuid with adjusted await scope. (BUG)
+v2.5.0
+- QW0012: Exclude Qowaiv.DomainModel.Aggregate<,>. (FP)
+- QW0021: Use leading zeros to define date constants. (NEW RULE)
+- QW0022: Use compliant GUID literals. (NEW RULE)
+- QW0023: Provide GUID values. (NEW RULE)
+- QW0024: Create GUID's using Guid.Parse or Guid.Empty. (NEW RULE)
+v2.4.0
+- QW0003, QW0005, QW0006, QW0008, QW0009, QW0010, QW0011, QW0012,
+  QW0016, QW0103, QW0104 are disabled for test code.
+v2.3.2
+- QW0101: [Required] always allowed on Properties/Fields for JSON serializable models. (FP)
+v2.3.1
+- QW0103: Check full type when dealing with partial classes. (FP)
+v2.3.0
+- QW0103: Decorate validation attributes. (NEW RULE)
+- QW0104: Use validates attribute on validation attributes only. (NEW RULE)
+v2.2.0
+- QW0019: Prefer XML to LINQ over DOM. (NEW RULE)
+- QW0020: Prefer System.Text.Json over Newtonsoft.Json. (NEW RULE)
+v2.1.1
+- QW0012: Ignore properties decorated with XML serialization related attributes. (FP)
+- QW0012: Consider delegate types immutable. (FP)
+- QW0013: CodeFix parenthesizes binary expression. (BUG)
+v2.1.0
+- QW0018: Use Qowaiv.Clock.TimeProvider. (NEW RULE)
+- All code fixes providers come with a FixAllProvider.
+v2.0.7
+- QW0017: Coalesce expressions a valid resolutions. (FP)
+v2.0.6
+- QW0012: Allow array properties on attributes. (FP)
+v2.0.5
+- QW0003: Readonly modifier is sufficient. (FP)
+- QW0100: Define only one Required attribute. (NEW RULE)
+- QW0101: Required attribute cannot invalidate value types. (NEW RULE)
+- QW0102: Use compliant validation attributes. (NEW RULE)
+v2.0.4
+- QWO0012: Exclude types form System.Collections.Frozen namespace. (FP)
+- Generate SBOM.
+v2.0.3
+- QW0017: Apply arithmetic operations on non-nullables only. (NEW RULE)
+v2.0.2
+- QW0011, QW0012: Improve messages.
+v2.0.1
+- QW0016: Only take public records into account. (FP)
+v2.0.0
+- Depend on Microsoft.CodeAnalysis 4.10.0 (potential breaking).
+- QW0016: Obsolete code and required by base parameters should be ignored. (FP)
+v1.0.9
+- QW0016: Locations are commonly past through as full paths. (NEW RULE)
+v1.0.8
+- QW0015: Locations are commonly past through as full paths. (FP)
+v1.0.7
+- QW0015: Define global using statements in single file. (NEW RULE)
+- QW0014: Define global using statements separately. (NEW RULE)
+v1.0.6
+- QW0013: Use Qowaiv decimal rounding. (NEW RULE)
+- QW0008: Take static read-only Empty properties into account. (FN)
+v1.0.5
+- QW0011, QW0012: Ingore IEnumerator and IXmlSerialable. (FP)
+v1.0.4
+- QW0011, QW0012: Ignore types with a mutable base. (FP)
+v1.0.3
+- QW0012: Types that have Immutable in there name are considered immutable. (FP)
+- QW0003: [DoesNotReturn] should be valid alternative for [Pure]. (FP)
+v1.0.2
+- QW0012: Reduce FP's by ignoring potential mutable property types. (FP)
+v1.0.1
+- QW0011: Define properties as immutables.
+- QW0012: Use immutable types for properties.
+v1.0.0
+- QW0010: Use System.DateOnly instead of Qowaiv.Date.
+- CS0618, CS0619: Code fix for obsolete code with a suggestion.
+- Depend on Microsoft.CodeAnalysis 4.*.
+v0.0.8
+- Code fix for QW0005: Seal class.
+- FN: Generics containing types that should not be nullable are now taken into account.
+v0.0.7
+- Code fix for QW0008 and QW0009.
+- QW0009: Define properties as not-nullable for enums with a defined none value.
+- QW0008: Define properties as not-nullable for types with an empty state.
+- QW0008: Value Types with an empty state should be used as nullable properties.
+v0.0.6.1
+- QW0001: Provide a fix to suggest the usage of Qowaiv.Clock.
+v0.0.6
+- QW0001: Also reports on DateTime.Offset.
+v0.0.5.3
+- QW0003: Returning ValueTask is never a pure function.
+- QW0003: Returning IDisposable can be a pure function.
+v0.0.5.2
+- QW0005: All attributes should be excluded.
+v0.0.5.1
+- QW0004: Mathematical Alphanumeric Symbols are not suspicious.
+v0.0.5
+- QW0007: Use file-scoped namespace scopes.
+v0.0.4.1
+- QW0006: Seal concrete classes unless designed for inheritance.
+v0.0.4
+- QW0005: Seal concrete classes unless designed for inheritance.
+v0.0.3.1
+- QW0004: Horizontal tab (U+9, \t) is allowed too.
+v0.0.3
+- QW0004: Characters with Trojan Horse potential are not allowed.
+v0.0.2
+- QW0003: Decorate pure functions.
+v0.0.1
+- QW0001: Use a testable time provider.
+- QW0002: Parse() throws.
+]]>
+    </PackageReleaseNotes>
+  </PropertyGroup>
+
+</Project>

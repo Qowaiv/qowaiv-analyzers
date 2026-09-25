@@ -30,14 +30,14 @@ public class CodeFixes
 
     [TestCaseSource(nameof(Types))]
     public void inherits_from_CodeFix(Type type)
-        => type.Should().BeAssignableTo<Qowaiv.CodeAnalysis.Diagnostics.CodeFix>();
+        => type.Should().BeAssignableTo<Qowaiv.CodeAnalysis.CodeFixes.Diagnostics.CodeFix>();
 
     [TestCaseSource(nameof(Types))]
     public void for_CSharp(Type type)
         => type.GetCustomAttribute<ExportCodeFixProviderAttribute>()!
         .Languages.Should().BeEquivalentTo("C#");
 
-    private static IEnumerable<Type> Types => typeof(Rule).Assembly
+    private static IEnumerable<Type> Types => typeof(Qowaiv.CodeAnalysis.CodeFixes.Diagnostics.CodeFix).Assembly
             .GetTypes()
             .Where(t => !t.IsAbstract && t.IsAssignableTo(typeof(CodeFixProvider)));
 }

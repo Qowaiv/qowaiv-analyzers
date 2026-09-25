@@ -1,9 +1,11 @@
 global using Microsoft.CodeAnalysis;
+global using Microsoft.CodeAnalysis.CodeFixes;
 global using Microsoft.CodeAnalysis.CSharp;
 global using Microsoft.CodeAnalysis.CSharp.Syntax;
 global using Microsoft.CodeAnalysis.Diagnostics;
 global using Qowaiv.CodeAnalysis;
 global using Qowaiv.CodeAnalysis.Diagnostics;
+global using Qowaiv.CodeAnalysis.CodeFixes.Diagnostics;
 global using Qowaiv.CodeAnalysis.Shared;
 global using Qowaiv.CodeAnalysis.Syntax;
 global using System;
@@ -17,3 +19,5 @@ global using System.Diagnostics.Contracts;
 global using System.Globalization;
 global using System.Linq;
 global using System.Text;
+global using System.Threading;
+global using System.Threading.Tasks;

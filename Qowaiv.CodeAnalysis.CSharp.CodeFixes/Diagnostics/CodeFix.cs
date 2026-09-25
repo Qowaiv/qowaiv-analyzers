@@ -1,4 +1,4 @@
-namespace Qowaiv.CodeAnalysis.Diagnostics;
+namespace Qowaiv.CodeAnalysis.CodeFixes.Diagnostics;
 
 /// <summary>Base implementation of a <see cref="CodeFixProvider"/> for the Qowaiv analyzers.</summary>
 public abstract class CodeFix : CodeFixProvider
