@@ -10,6 +10,7 @@ public class Fixes
     public void Code()
         => new FormatAmountLiterals()
         .ForCS()
+        .AddReference<Qowaiv.Financial.Amount>()
         .AddSource(@"Cases/FormatAmountLiterals.ToFix.cs")
         .ForCodeFix<FormatAmountLiteral>()
         .AddSource(@"Cases/FormatAmountLiterals.Fixed.cs")

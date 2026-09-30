@@ -24,5 +24,5 @@ public class Helper
     [TestCase("_458.3m", "458.30m")]
     [TestCase("23453_458.30", "23_453_458.30")]
     public void Formats(string token, string format)
-        => Amount.Formats(token).Should().Be(format);
+        => Amount.Format(token).Should().Be(format);
 }

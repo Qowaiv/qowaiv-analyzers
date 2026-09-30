@@ -3,7 +3,7 @@ namespace Qowaiv.CodeAnalysis.Shared;
 public static class Amount
 {
     [Pure]
-    public static string Formats(string token)
+    public static string Format(string token)
     {
         var sb = new StringBuilder(token.Length * 2);
         var length = token.Length;
@@ -73,5 +73,5 @@ public static class Amount
 
     [Pure]
     public static bool IsFormatted(string token)
-        => token == Formats(token);
+        => token == Format(token);
 }

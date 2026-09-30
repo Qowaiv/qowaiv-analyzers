@@ -22,4 +22,3 @@ class Literals
         _ = (-13.40).Amount();
     }
 }
-

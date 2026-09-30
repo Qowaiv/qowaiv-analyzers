@@ -5,6 +5,7 @@ class Noncompliant
     void Unformatted()
     {
         _ = 1200.Amount(); //     Noncompliant
+        //  ^^^^^^^^^^^^^
         _ = 100.0.Amount(); //    Noncompliant
         _ = 88.0m.Amount(); //    Noncompliant
         _ = (Amount)23_000.00; // Noncompliant
@@ -20,7 +21,9 @@ class Noncompliant
     void Negative()
     {
         _ = (-13.4).Amount(); // Noncompliant
+        //  ^^^^^^^^^^^^^^^^ 
         _ = (Amount)(-13.4); //  Noncompliant
+        //  ^^^^^^^^^^^^^^^ 
     }
 }
 

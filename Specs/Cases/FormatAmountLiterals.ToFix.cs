@@ -22,4 +22,3 @@ class Literals
         _ = (Amount)(-13.4);
     }
 }
-
