@@ -14,19 +14,13 @@ public sealed class FormatAmount() : CodeFix(Rule.UseFormattedAmountLiterals.Id)
     }
 
     [Pure]
-    private static Task<Document> Change(SyntaxNode parent, ChangeDocumentContext context)
-    {
-        var replacement = Resolve(parent, false) is { } resolved
-            ? Member(resolved.Expression, resolved.Negate)
-            : parent;
-
-        return context.ReplaceNode(parent, replacement);
-    }
+    private static Task<Document> Change(SyntaxNode parent, ChangeDocumentContext context) 
+        => context.ReplaceNode(parent, Resolve(parent, false) ?? parent);
 
     [Pure]
-    private static (LiteralExpressionSyntax Expression, bool Negate)? Resolve(SyntaxNode? node, bool negate) => node switch
+    private static InvocationExpressionSyntax? Resolve(SyntaxNode? node, bool negate) => node switch
     {
-        LiteralExpressionSyntax n => (n, negate),
+        LiteralExpressionSyntax n => Member(Negate(Format(n), negate)),
         CastExpressionSyntax n => Resolve(n.Expression, negate),
         InvocationExpressionSyntax n => Resolve(n.Expression, negate),
         MemberAccessExpressionSyntax n => Resolve(n.Expression, negate),
@@ -36,11 +30,11 @@ public sealed class FormatAmount() : CodeFix(Rule.UseFormattedAmountLiterals.Id)
     };
 
     [Pure]
-    private static InvocationExpressionSyntax Member(LiteralExpressionSyntax literal, bool negate)
+    private static InvocationExpressionSyntax Member(ExpressionSyntax expression)
        => InvocationExpression(
            MemberAccessExpression(
                SyntaxKind.SimpleMemberAccessExpression,
-               Negate(Format(literal), negate),
+               expression,
                IdentifierName("Amount")));
 
     [Pure]
