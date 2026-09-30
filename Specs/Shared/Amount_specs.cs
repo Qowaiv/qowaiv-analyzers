@@ -4,7 +4,6 @@ namespace Shared.Amount_specs;
 
 public class Helper
 {
-    [TestCase("-3")]
     [TestCase("3")]
     [TestCase("42")]
     [TestCase("1_123")]

@@ -15,5 +15,11 @@ class Literals
         _ = 1_200.Amount();
         _ = 12_223_100.42.Amount();
     }
+
+    void Negative()
+    {
+        _ = (-2_313.40).Amount();
+        _ = (-13.40).Amount();
+    }
 }
 

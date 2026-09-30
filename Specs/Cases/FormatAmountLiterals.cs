@@ -16,6 +16,12 @@ class Noncompliant
         _ = 12_00.Amount(); //         Noncompliant
         _ = 122_23_100.42.Amount(); // Noncompliant
     }
+
+    void Negative()
+    {
+        _ = (-13.4).Amount(); // Noncompliant
+        _ = (Amount)(-13.4); //  Noncompliant
+    }
 }
 
 public static class Compliant
@@ -31,6 +37,7 @@ public static class Compliant
         _ = 100.03.Amount();
         _ = 88.00m.Amount();
         _ = 23_000.234.Amount();
+        _ = (-8_413.42).Amount();
     }
 
     static void NotAmounts()

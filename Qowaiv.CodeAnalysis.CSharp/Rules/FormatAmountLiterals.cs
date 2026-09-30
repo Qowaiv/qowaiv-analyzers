@@ -19,15 +19,27 @@ public sealed class FormatAmountLiterals() : CodingRule(Rule.FormatAmountLiteral
         {
             context.ReportDiagnostic(Diagnostic, node.Parent!);
         }
+        else
+        {
+
+        }
 
         bool Cast()
-            => node.Parent is CastExpressionSyntax cast
+            => Trim(node.Parent) is CastExpressionSyntax cast
             && cast.Type.TypeNode(context.SemanticModel).Symbol.Is(SystemType.Qowaiv.Financial.Amount);
 
         bool UnformattedExpression()
-            => node.Parent is MemberAccessExpressionSyntax expression
+            => Trim(node.Parent) is MemberAccessExpressionSyntax expression
             && expression.Method(context.SemanticModel) is { Name: "Amount", Parameters.Length: 0 } method
             && method.ReturnType.Is(SystemType.Qowaiv.Financial.Amount)
             && !Amount.IsFormatted(node.Token.Text);
     }
+
+    public static SyntaxNode? Trim(SyntaxNode? node) => node switch
+    {
+        null => null,
+        ParenthesizedExpressionSyntax or 
+        PrefixUnaryExpressionSyntax => Trim(node.Parent),
+        _ => node,
+    };
 }

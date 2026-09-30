@@ -68,10 +68,6 @@ public static class Amount
             // Add leading zero for decimals only.
             if (sb[0] is '.')
                 sb.Insert(0, '0');
-            
-            // Do not drop the negative sign.
-            if (token[0] is '-')
-                sb.Insert(0, "-");
         }
     }
 
