@@ -4,7 +4,7 @@ class Noncompliant
 {
     void Unformatted()
     {
-        _ = 1200.Amount(); //     Noncompliant
+        _ = 1200.Amount(); //     Noncompliant {{Format this amount by using group separators}}
         //  ^^^^^^^^^^^^^
         _ = 100.0.Amount(); //    Noncompliant
         _ = 88.0m.Amount(); //    Noncompliant

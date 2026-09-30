@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -71,6 +71,7 @@
       <![CDATA[
 v2.*
 - Rules and Code Fixes in different DLLs. (ENHANCEMENT)
+- QW0031: Format amount literals. (NEW RULE)
       ]]>
     </ToBeReleased>
     <PackageReleaseNotes>

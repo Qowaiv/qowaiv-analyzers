@@ -6,7 +6,7 @@ using System.Threading;
 namespace Qowaiv.CodeAnalysis.Rules;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class FormatAmountLiterals() : CodingRule(Rule.FormatAmountLiterals)
+public sealed class UseFormattedAmountLiterals() : CodingRule(Rule.UseFormattedAmountLiterals)
 {
     protected override void Register(AnalysisContext context)
         => RegisterSyntaxNodeAction(context, Report, SyntaxKind.NumericLiteralExpression);

@@ -3,7 +3,7 @@ using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 namespace Qowaiv.CodeAnalysis.CodeFixes;
 
 [ExportCodeFixProvider(LanguageNames.CSharp)]
-public sealed class FormatAmountLiteral() : CodeFix(Rule.FormatAmountLiterals.Id)
+public sealed class FormatAmount() : CodeFix(Rule.UseFormattedAmountLiterals.Id)
 {
     public override async Task RegisterCodeFixesAsync(CodeFixContext context)
     {
