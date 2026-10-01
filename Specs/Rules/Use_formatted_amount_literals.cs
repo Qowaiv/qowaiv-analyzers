@@ -6,7 +6,7 @@ namespace Rules.Use_formatted_amount_literals;
 public class Verify
 {
     [Test]
-    public void Rule_for_classes() => new UseFormattedAmountLiterals()
+    public void Amounts() => new UseFormattedAmountLiterals()
         .ForCS()
         .AddSource(@"Cases/UseFormattedAmountLiterals.cs")
         .AddReference<Amount>()

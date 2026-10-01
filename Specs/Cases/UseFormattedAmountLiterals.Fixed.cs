@@ -21,4 +21,21 @@ class Literals
         _ = (-2_313.40).Amount();
         _ = (-13.40).Amount();
     }
+
+    void AsArgs()
+    {
+        Arguments(3.10.Amount());
+        Arguments(42.Amount());
+        Arguments(Amount.Zero, 3.14.Amount());
+    }
+
+    void Arguments(params Amount[] amounts) { }
+
+    void AsIndex()
+    {
+        _ = this[3.14.Amount()];
+        _ = this[42.Amount()];
+    }
+
+    int this[Amount index] => 42;
 }

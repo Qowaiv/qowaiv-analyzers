@@ -31,6 +31,30 @@ class Noncompliant
         _ = 2.74d.Amount(); // Noncompliant
         _ = 3.14m.Amount(); // Noncompliant
     }
+
+    void AsArgs()
+    {
+        Arguments(3.1.Amount()); // Noncompliant
+        //        ^^^^^^^^^^^^
+
+        Arguments((Amount)42); // Noncompliant
+        //        ^^^^^^^^^^
+        
+        Arguments(Amount.Zero, 3.14m.Amount()); // Noncompliant
+        //                     ^^^^^^^^^^^^^^
+    }
+
+    void Arguments(params Amount[] amounts) { }
+
+    void AsIndex()
+    {
+        _ = this[3.14m.Amount()]; // Noncompliant
+        //       ^^^^^^^^^^^^^^
+        _ = this[(Amount)42]; // Noncompliant
+        //       ^^^^^^^^^^
+    }
+
+    int this[Amount index] => 42;
 }
 
 public static class Compliant
