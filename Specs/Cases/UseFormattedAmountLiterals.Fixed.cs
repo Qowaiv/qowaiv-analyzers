@@ -6,7 +6,7 @@ class Literals
     {
         _ = 1_200.Amount();
         _ = 100.00.Amount();
-        _ = 88.00m.Amount();
+        _ = 88.00.Amount();
         _ = 23_000.00.Amount();
     }
 
