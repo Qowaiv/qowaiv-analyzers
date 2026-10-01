@@ -5,6 +5,14 @@ public static class Amount
     [Pure]
     public static string Format(string token)
     {
+        if ("eEbBxX".Any(token.Contains))
+        {
+            var parsed = SyntaxFactory.ParseToken(token);
+            return parsed.Value is string
+                ? token
+                : Format(parsed.ValueText);
+        }
+
         var sb = new StringBuilder(token.Length * 2);
         var length = token.Length;
         var prefix = token[^1];
