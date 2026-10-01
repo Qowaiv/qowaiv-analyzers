@@ -21,7 +21,7 @@ public static class Amount
         if (char.IsLetter(prefix))
             length--;
         else prefix = default;
-        
+
         Decimals();
         Integers();
 
@@ -63,7 +63,7 @@ public static class Amount
                 if (char.IsDigit(ch))
                 {
                     // we have a group of 3 and and a next digit, so add a seperator.
-                    if(len is 3)
+                    if (len is 3)
                     {
                         sb.Insert(0, '_');
                         len = 0;
