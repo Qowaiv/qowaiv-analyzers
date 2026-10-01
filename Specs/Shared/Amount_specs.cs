@@ -17,9 +17,12 @@ public class Helper
     [TestCase("000_123")]
     public void IsFormatted(string token) => Amount.IsFormatted(token).Should().BeTrue();
 
+    [TestCase("23d", "23")]
+    [TestCase("23.4D", "23.40")]
+    [TestCase("1_458.3m", "1_458.30")]
+    [TestCase("1_458.3M", "1_458.30")]
     [TestCase(".23", "0.23")]
     [TestCase("1.234", "1.234")]
-    [TestCase("_234", "234")]
     [TestCase("1_234.", "1_234.00")]
     [TestCase("1_234.3", "1_234.30")]
     [TestCase("_458.3m", "458.30m")]

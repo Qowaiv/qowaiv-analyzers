@@ -10,8 +10,7 @@ public static class UUID
     };
 
     public static string Next() => Convert
-        .ToBase64String(Guid.NewGuid().ToByteArray())
-        .Substring(0, 22)
+        .ToBase64String(Guid.NewGuid().ToByteArray())[..22]
         .Replace('+', '-')
         .Replace('/', '_');
 }

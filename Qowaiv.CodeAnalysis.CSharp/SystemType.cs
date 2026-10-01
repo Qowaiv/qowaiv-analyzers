@@ -5,7 +5,7 @@ public sealed partial class SystemType : IEquatable<SystemType>
     private SystemType(string fullName, SpecialType specialType = SpecialType.None)
     {
         FullName = fullName;
-        ShortName = Last(fullName.Split('.'));
+        ShortName = fullName.Split('.')[^1];
         Type = specialType;
     }
 
@@ -46,6 +46,4 @@ public sealed partial class SystemType : IEquatable<SystemType>
         => new(type.FullMetaDataName, type.SpecialType);
 
     public static SystemType Parse(string str) => new(str);
-
-    private static string Last(string[] array) => array[array.Length - 1];
 }
