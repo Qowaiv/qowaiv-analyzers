@@ -89,7 +89,7 @@ jobs:
       - name: DotNet Pack
         if: startsWith(github.ref, 'refs/tags/')
         run: |
-          dotnet pack qowaiv-analyzers.slnx -v normal --no-build --no-restore -c Release --output packages
+          dotnet pack qowaiv-analyzers.slnx -v normal --no-restore -c Release --output packages
    
       - name: Upload Artifact
         if: startsWith(github.ref, 'refs/tags/')
