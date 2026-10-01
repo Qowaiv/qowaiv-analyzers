@@ -7,9 +7,13 @@ public sealed class FormatAmount() : CodeFix(Rule.UseFormattedAmountLiterals.Id)
 {
     public override async Task RegisterCodeFixesAsync(CodeFixContext context)
     {
-        if (await context.ChangeDocumentContext() is { Node: { } expression } change)
+        if (await context.ChangeDocumentContext() is { Node: { } parent } change)
         {
-            change.RegisterFix("Format amount", context, d => Change(expression, d));
+            change.RegisterFix(
+                "Format amount",
+                context,
+                // It is unclear where the argument syntax is comming from, but this works.
+                d => Change(parent is ArgumentSyntax arg ? arg.Expression : parent, d));
         }
     }
 

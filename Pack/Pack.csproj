@@ -75,6 +75,8 @@ v2.*
     </ToBeReleased>
     <PackageReleaseNotes>
       <![CDATA[
+v2.7.1
+- QW0031: Code fix did not work for arguments. (BUG)
 v2.7.0
 - QW0031: Format amount literals. (NEW RULE)
 - Rules and Code Fixes in different DLLs. (ENHANCEMENT)
