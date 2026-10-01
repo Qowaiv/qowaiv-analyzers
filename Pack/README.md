@@ -51,7 +51,7 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/) (s
 * Use Qowaiv.Clock.TimeProvider ([QW0018](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0018.md))
 * Add leading zero(s) ([QW0021](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0021.md))
 * Generate GUIDs ([QW0022](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0022.md), [QW0023](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0023.md), [QW0024](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0024.md))
-* Format amount ([QW0031](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0031.md))
+* Format amount literals ([QW0031](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0031.md))
 * 
 ## Configuration
 Some of the rules are not intended for (unit) test code. Unit tests that set
