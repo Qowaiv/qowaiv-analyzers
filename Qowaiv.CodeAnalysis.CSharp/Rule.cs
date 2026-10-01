@@ -332,6 +332,17 @@ public static partial class Rule
        tags: [PrimitiveObsession, .. SVO, "data annotations"],
        analyzeTestCode: false);
 
+     public static DescriptorContainer UseFormattedAmountLiterals => New(
+        id: 0031,
+        title: "Use formatted amount literals",
+        message: "Format this amount by using group separators",
+        description:
+            "Numeric literals used with `Qowaiv.Financial.Amount` should use formatting for " +
+            "improved readability. This includes proper thousand separators and decimal places.",
+        category: Category.Design,
+        tags: ["Clarity"],
+        analyzeTestCode: true);
+
     public static DescriptorContainer DefineOnlyOneRequiredAttribute => New(
         id: 0100,
         title: "Define only one Required attribute",

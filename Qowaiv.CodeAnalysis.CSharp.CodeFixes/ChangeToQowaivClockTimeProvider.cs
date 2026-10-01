@@ -9,10 +9,9 @@ public sealed class ChangeToQowaivClockTimeProvider() : CodeFix(Rule.UseQowaivCl
     /// <inheritdoc />
     public override async Task RegisterCodeFixesAsync(CodeFixContext context)
     {
-        if (await context.ChangeDocumentContext() is { } changeDoc
-            && changeDoc.Node is ExpressionSyntax expression)
+        if (await context.ChangeDocumentContext() is { Node: ExpressionSyntax expression } change)
         {
-            changeDoc.RegisterFix("Use Qowaiv.Clock.TimeProvider", context, c => ChangeDocument(expression, c));
+            change.RegisterFix("Use Qowaiv.Clock.TimeProvider", context, c => ChangeDocument(expression, c));
         }
     }
 

@@ -127,6 +127,11 @@ public partial class SystemType
         public static readonly SystemType LocalDateTime = new("Qowaiv.LocalDateTime");
         public static readonly SystemType Uuid = new("Qowaiv.Uuid");
 
+        public static class Financial
+        {
+            public static readonly SystemType Amount = new("Qowaiv.Financial.Amount");
+        }
+
         public static class Validation
         {
             public static class DataAnnotations

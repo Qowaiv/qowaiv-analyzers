@@ -16,9 +16,9 @@
       },
       "CodeAnalysis.TestTools": {
         "type": "Direct",
-        "requested": "[5.0.0, )",
-        "resolved": "5.0.0",
-        "contentHash": "dISAIBmBJkcYGg7hef50bqDFsYw/5zvafzbvsRpJGeUgh94k1gupbsrbsndybmDQM0ncNux9wguCG0EErUj4Jw==",
+        "requested": "[5.1.0, )",
+        "resolved": "5.1.0",
+        "contentHash": "aZmpVsjvE7LdAoJ3LtuL7Mr5Xct9nmWYUmfCC8AoZQWWPNLS6do5/hSBKtf9DUmw4/MbckyhyGJWJf5TPAQOJA==",
         "dependencies": {
           "Buildalyzer": "9.0.0",
           "Buildalyzer.Workspaces": "9.0.0",
@@ -30,11 +30,11 @@
           "Microsoft.CodeAnalysis.Workspaces.MSBuild": "5.0.0",
           "Microsoft.IO.Redist": "6.1.3",
           "MsBuildPipeLogger.Logger": "1.1.6",
-          "NuGet.Common": "7.3.1",
-          "NuGet.Frameworks": "7.3.1",
-          "NuGet.Packaging": "7.3.1",
-          "NuGet.Protocol": "7.3.1",
-          "System.Security.Cryptography.Xml": "10.0.7"
+          "NuGet.Common": "7.9.0",
+          "NuGet.Frameworks": "7.9.0",
+          "NuGet.Packaging": "7.9.0",
+          "NuGet.Protocol": "7.9.0",
+          "System.Security.Cryptography.Xml": "10.0.12"
         }
       },
       "coverlet.collector": {
@@ -120,6 +120,12 @@
           "Microsoft.Testing.Extensions.VSTestBridge": "2.1.0",
           "Microsoft.Testing.Platform.MSBuild": "2.1.0"
         }
+      },
+      "PolySharp": {
+        "type": "Direct",
+        "requested": "[1.16.0, )",
+        "resolved": "1.16.0",
+        "contentHash": "3kdIIceBPumwjw279FuiVMfVENT2cGASXJgcigdySsbX2dJB8ofUgG6i47yqF/k1qu6fvNR3csrSekZPviR6kQ=="
       },
       "Qowaiv": {
         "type": "Direct",

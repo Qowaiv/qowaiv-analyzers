@@ -8,12 +8,12 @@ public sealed class AddTrailingZerosToDates() : CodeFix(Rule.UseLeadingZerosToDe
     /// <inheritdoc />
     public override async Task RegisterCodeFixesAsync(CodeFixContext context)
     {
-        if (await context.ChangeDocumentContext() is { } changeDoc && changeDoc.Node is ArgumentSyntax arg)
+        if (await context.ChangeDocumentContext() is { Node: ArgumentSyntax arg } change)
         {
             // We use the provided message to get the required number of leading zeros.
             var title = context.Diagnostics[0].GetMessage().Substring(0, 19).Trim();
             var count = title[4] - '0';
-            changeDoc.RegisterFix(title, context, doc => Change(arg, count, doc));
+            change.RegisterFix(title, context, doc => Change(arg, count, doc));
         }
     }
 
