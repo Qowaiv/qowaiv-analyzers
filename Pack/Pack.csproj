@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -66,16 +66,18 @@
   </Target>
 
   <PropertyGroup Label="Version and release notes">
-    <Version>2.6.1</Version>
+    <Version>2.7.0</Version>
     <ToBeReleased>
       <![CDATA[
 v2.*
-- Rules and Code Fixes in different DLLs. (ENHANCEMENT)
-- QW0031: Format amount literals. (NEW RULE)
+- ?
       ]]>
     </ToBeReleased>
     <PackageReleaseNotes>
       <![CDATA[
+v2.7.0
+- QW0031: Format amount literals. (NEW RULE)
+- Rules and Code Fixes in different DLLs. (ENHANCEMENT)
 v2.6.1
 - QW0025: Use compliant UUID literals. (FP)
 v2.6.0
