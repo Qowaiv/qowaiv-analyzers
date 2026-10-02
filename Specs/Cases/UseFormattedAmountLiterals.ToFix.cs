@@ -26,7 +26,9 @@ class Literals
     {
         Arguments(3.1.Amount());
         Arguments((Amount)42);
-        Arguments(Amount.Zero, 3.14m.Amount());
+        Arguments(
+            Amount.Zero,
+            3.14m.Amount());
     }
 
     void Arguments(params Amount[] amounts) { }
