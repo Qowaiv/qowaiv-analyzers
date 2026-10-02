@@ -19,7 +19,7 @@ public sealed class FormatAmount() : CodeFix(Rule.UseFormattedAmountLiterals.Id)
 
     [Pure]
     private static Task<Document> Change(SyntaxNode parent, ChangeDocumentContext context) 
-        => context.ReplaceNode(parent, Resolve(parent, false) ?? parent);
+        => context.ReplaceNode(parent, Resolve(parent, false)?.WithTriviaFrom(parent) ?? parent);
 
     [Pure]
     private static InvocationExpressionSyntax? Resolve(SyntaxNode? node, bool negate) => node switch
