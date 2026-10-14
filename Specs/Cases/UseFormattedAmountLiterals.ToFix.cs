@@ -12,30 +12,35 @@ class Literals
 
     void MissFormatted()
     {
-        _ = 12_00.Amount();
-        _ = 122_23_100.42.Amount();
+        _ = 12_00m.Amount();
+        _ = 122_23_100.42m.Amount();
     }
 
     void Negative()
     {
-        _ = (-2313.4).Amount();
-        _ = (Amount)(-13.4);
+        _ = (-13.4m).Amount();
+        _ = (Amount)(-13.4m);
+    }
+
+    void Suffixes()
+    {
+        _ = 2.740.Amount();
+        _ = 2.74d.Amount();
+        _ = 3.14D.Amount();
     }
 
     void AsArgs()
     {
         Arguments(3.1.Amount());
         Arguments((Amount)42);
-        Arguments(
-            Amount.Zero,
-            3.14m.Amount());
+        Arguments(Amount.Zero, 3.14.Amount());
     }
 
     void Arguments(params Amount[] amounts) { }
 
     void AsIndex()
     {
-        _ = this[3.14m.Amount()];
+        _ = this[3.14.Amount()];
         _ = this[(Amount)42];
     }
 
