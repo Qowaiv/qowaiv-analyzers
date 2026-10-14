@@ -66,15 +66,18 @@
   </Target>
 
   <PropertyGroup Label="Version and release notes">
-    <Version>2.7.1</Version>
+    <Version>2.7.2</Version>
     <ToBeReleased>
       <![CDATA[
 v2.*
-- QWO0031: Keep trivia for replaced node. (IMPROVEMENT)
+- ?
       ]]>
     </ToBeReleased>
     <PackageReleaseNotes>
       <![CDATA[
+v2.7.2
+- QW0031: Prefer m suffix due to .NET 11.0 changes.
+- QW0031: Keep trivia for replaced node. (IMPROVEMENT)
 v2.7.1
 - QW0031: Code fix did not work for arguments. (BUG)
 v2.7.0

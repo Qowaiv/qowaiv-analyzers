@@ -21,8 +21,8 @@ public static class Amount
 
         if (char.IsLetter(suffix))
         {
-            if (suffix is 'd' or 'D' || TrimDecimalSuffix(token, suffix))
-                suffix = default;
+            if (suffix is 'd' or 'D')
+                suffix = 'm';
 
             length--;
         }
@@ -39,6 +39,9 @@ public static class Amount
         void Decimals()
         {
             if (dot is -1) return;
+
+            if (suffix is default(char))
+                suffix = 'm';
 
             sb.Append('.');
 
@@ -88,12 +91,4 @@ public static class Amount
     [Pure]
     public static bool IsFormatted(string token)
         => token == Format(token);
-
-    /// <summary>True if the decimal suffix does not effect the value of the number.</summary>
-    [Pure]
-    private static bool TrimDecimalSuffix(string token, char suffix)
-        => suffix is 'm' or 'M'
-        && SyntaxFactory.ParseToken(token).Value is decimal dec
-        && SyntaxFactory.ParseToken(token[..^1]).Value is double dbl
-        && dec == (decimal)dbl;
 }

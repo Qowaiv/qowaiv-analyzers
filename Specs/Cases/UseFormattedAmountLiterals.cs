@@ -14,22 +14,23 @@ class Noncompliant
 
     void MissFormatted()
     {
-        _ = 12_00.Amount(); //         Noncompliant
-        _ = 122_23_100.42.Amount(); // Noncompliant
+        _ = 12_00m.Amount(); //         Noncompliant
+        _ = 122_23_100.42m.Amount(); // Noncompliant
     }
 
     void Negative()
     {
-        _ = (-13.4).Amount(); // Noncompliant
+        _ = (-13.4m).Amount(); // Noncompliant
+        //  ^^^^^^^^^^^^^^^^^ 
+        _ = (Amount)(-13.4m); //  Noncompliant
         //  ^^^^^^^^^^^^^^^^ 
-        _ = (Amount)(-13.4); //  Noncompliant
-        //  ^^^^^^^^^^^^^^^ 
     }
 
-    void SuffixesNotNeeded()
+    void Suffixes()
     {
+        _ = 2.740.Amount(); // Noncompliant
         _ = 2.74d.Amount(); // Noncompliant
-        _ = 3.14m.Amount(); // Noncompliant
+        _ = 3.14D.Amount(); // Noncompliant
     }
 
     void AsArgs()
@@ -40,16 +41,16 @@ class Noncompliant
         Arguments((Amount)42); // Noncompliant
         //        ^^^^^^^^^^
         
-        Arguments(Amount.Zero, 3.14m.Amount()); // Noncompliant
-        //                     ^^^^^^^^^^^^^^
+        Arguments(Amount.Zero, 3.14.Amount()); // Noncompliant
+        //                     ^^^^^^^^^^^^^
     }
 
     void Arguments(params Amount[] amounts) { }
 
     void AsIndex()
     {
-        _ = this[3.14m.Amount()]; // Noncompliant
-        //       ^^^^^^^^^^^^^^
+        _ = this[3.14.Amount()]; // Noncompliant
+        //       ^^^^^^^^^^^^^
         _ = this[(Amount)42]; // Noncompliant
         //       ^^^^^^^^^^
     }
@@ -67,9 +68,9 @@ public static class Compliant
     static void Formatted()
     {
         _ = 1_200.Amount();
-        _ = 100.03.Amount();
-        _ = 23_000.234.Amount();
-        _ = (-8_413.42).Amount();
+        _ = 100.03m.Amount();
+        _ = 23_000.234m.Amount();
+        _ = (-8_413.42m).Amount();
     }
 
     static void NotAmounts()
@@ -88,4 +89,3 @@ public static class Compliant
 
     public static decimal Amount(this string s) => 42;
 }
-
