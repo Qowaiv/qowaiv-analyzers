@@ -343,6 +343,18 @@ public static partial class Rule
         tags: ["Clarity"],
         analyzeTestCode: true);
 
+    // Reference https://0.30000000000000004.com/
+    public static DescriptorContainer RoundDoubleAfterConvertsionToDecimal => New(
+        id: 0032,
+        title: "Round converted double values",
+        message: "Round this converted result",
+        description:
+            "In .NET 11.0, the casting from double to decimal has changed; the " +
+            "result is not longer rounded, so floating decimals are there.",
+        category: Category.Bug,
+        tags: ["Clarity"],
+        analyzeTestCode: true);
+
     public static DescriptorContainer DefineOnlyOneRequiredAttribute => New(
         id: 0100,
         title: "Define only one Required attribute",
