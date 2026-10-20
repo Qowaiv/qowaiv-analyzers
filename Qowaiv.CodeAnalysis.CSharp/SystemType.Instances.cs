@@ -9,12 +9,14 @@ public partial class SystemType
         public static readonly SystemType Object = New(typeof(object), SpecialType.System_Object);
         public static readonly SystemType String = New(typeof(string), SpecialType.System_String);
         public static readonly SystemType Decimal = New(typeof(decimal), SpecialType.System_Decimal);
+        public static readonly SystemType Double = New(typeof(double), SpecialType.System_Double);
         public static readonly SystemType Int32 = New(typeof(int), SpecialType.System_Int32);
         public static readonly SystemType DateTime = New(typeof(global::System.DateTime), SpecialType.System_DateTime);
         public static readonly SystemType Enum = New(typeof(global::System.Enum), SpecialType.System_Enum);
         public static readonly SystemType Void = New(typeof(void), SpecialType.System_Void);
 
         public static readonly SystemType Attribute = typeof(global::System.Attribute);
+        public static readonly SystemType Convert = typeof(global::System.Convert);
         public static readonly SystemType BinaryData = new("System.BinaryData");
         public static readonly SystemType DateOnly = new("System.DateOnly");
         public static readonly SystemType DateTimeKind = typeof(global::System.DateTimeKind);

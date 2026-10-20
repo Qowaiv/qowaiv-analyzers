@@ -69,8 +69,8 @@
     <Version>2.7.2</Version>
     <ToBeReleased>
       <![CDATA[
-v2.*
-- ?
+v2.8.0
+- QW0032: Round converted double values. (NEW RULE)
       ]]>
     </ToBeReleased>
     <PackageReleaseNotes>

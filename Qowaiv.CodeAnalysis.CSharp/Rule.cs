@@ -343,16 +343,17 @@ public static partial class Rule
         tags: ["Clarity"],
         analyzeTestCode: true);
 
-    // Reference https://0.30000000000000004.com/
-    public static DescriptorContainer RoundDoubleAfterConvertsionToDecimal => New(
+    public static DescriptorContainer RoundDoubleAfterConversionToDecimal => New(
         id: 0032,
         title: "Round converted double values",
         message: "Round this converted result",
         description:
-            "In .NET 11.0, the casting from double to decimal has changed; the " +
-            "result is not longer rounded, so floating decimals are there.",
+            "In .NET 11.0, the conversion from double to decimal is correctly " +
+            "rounded instead of being truncated to 15 significant digits. " +
+            "Values like 1.23 now convert to 1.229999999999999982236431606. " +
+            "This changed behavior should be evaluated case by case.",
         category: Category.Bug,
-        tags: ["Clarity"],
+        tags: ["Bug"],
         analyzeTestCode: true);
 
     public static DescriptorContainer DefineOnlyOneRequiredAttribute => New(
