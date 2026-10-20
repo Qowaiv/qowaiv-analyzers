@@ -105,6 +105,10 @@ public static class SymbolExtensions
             => !type.Is(other);
 
         [Pure]
+        public bool IsAny(SystemType type1, SystemType type2)
+            => type.Is(type1) || type.Is(type2);
+
+        [Pure]
         public bool IsAny(params SystemType[] types)
             => Array.Exists(types, type.Is);
 
