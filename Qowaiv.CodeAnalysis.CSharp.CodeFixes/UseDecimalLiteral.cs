@@ -1,3 +1,5 @@
+using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
+
 namespace Qowaiv.CodeAnalysis.CodeFixes;
 
 [ExportCodeFixProvider(LanguageNames.CSharp)]
@@ -5,38 +7,31 @@ public sealed class UseDecimalLiteral() : CodeFix(Rule.RoundDoubleAfterConversio
 {
     public override async Task RegisterCodeFixesAsync(CodeFixContext context)
     {
-        if (await context.ChangeDocumentContext() is { Node: { } node } change
-            && Literal(node) is { } literal)
-        {
+        if (await context.ChangeDocumentContext() is { Node: { } node } change && Strip(node) is { } literal)
             change.RegisterFix("Use decimal literal", context, d => Change(node, literal, d));
-        }
     }
 
     [Pure]
     private static Task<Document> Change(SyntaxNode node, LiteralExpressionSyntax literal, ChangeDocumentContext context)
     {
-        var updated = literal.WithToken(SyntaxFactory.Literal(DecimalTokenText(literal), decimal.Parse(literal.Token.ValueText, CultureInfo.InvariantCulture)));
+        var token = Trim(literal.Token.Text);
+        var updated = literal.WithToken(Literal(token, (decimal)ParseToken(token).Value!));
         return context.ReplaceNode(node, updated.WithTriviaFrom(node));
     }
 
     [Pure]
-    private static string DecimalTokenText(LiteralExpressionSyntax literal)
-    {
-        var text = literal.Token.Text;
-        return text.EndsWith("d", StringComparison.OrdinalIgnoreCase)
-            ? $"{text[..^1]}m"
-            : $"{text}m";
-    }
+    private static string Trim(string text)
+        => text[^1] is 'd' or 'D' ? $"{text[..^1]}m" : $"{text}m";
 
     [Pure]
-    private static LiteralExpressionSyntax? Literal(SyntaxNode node) => node switch
+    private static LiteralExpressionSyntax? Strip(SyntaxNode node) => node switch
     {
-        LiteralExpressionSyntax literal => literal,
-        CastExpressionSyntax cast => Literal(cast.Expression),
-        BaseObjectCreationExpressionSyntax creation when creation.ArgumentList is { Arguments.Count: 1 } list
-            => list.Arguments[0].Expression as LiteralExpressionSyntax,
-        InvocationExpressionSyntax invocation when invocation.ArgumentList is { Arguments.Count: 1 } list
-            => list.Arguments[0].Expression as LiteralExpressionSyntax,
-        _ => null,
+        CastExpressionSyntax cast
+            => Strip(cast.Expression),
+        BaseObjectCreationExpressionSyntax { ArgumentList.Arguments: { Count: 1 } args }
+            => args[0].Expression as LiteralExpressionSyntax,
+        InvocationExpressionSyntax { ArgumentList.Arguments: { Count: 1 } args }
+            => args[0].Expression as LiteralExpressionSyntax,
+        _ => node as LiteralExpressionSyntax,
     };
 }
