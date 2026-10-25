@@ -1,7 +1,7 @@
 <Solution>
   <Project Path=".net.csproj" />
-  <Project Path="Pack/Pack.csproj" />
-  <Project Path="Qowaiv.CodeAnalysis.CSharp.CodeFixes/Qowaiv.CodeAnalysis.CSharp.CodeFixes.csproj" />
-  <Project Path="Qowaiv.CodeAnalysis.CSharp/Qowaiv.CodeAnalysis.CSharp.csproj" />
-  <Project Path="Specs/Specs.csproj" />
+  <Project Path="src/Qowaiv.CodeAnalysis.CSharp/Qowaiv.CodeAnalysis.CSharp.csproj" />
+  <Project Path="src/Qowaiv.CodeAnalysis.CSharp.CodeFixes/Qowaiv.CodeAnalysis.CSharp.CodeFixes.csproj" />
+  <Project Path="src/Qowaiv.CodeAnalysis.Pack/Qowaiv.CodeAnalysis.Pack.csproj" />
+  <Project Path="src/Specs.CodeAnalysis/Specs.CodeAnalysis.csproj" />
 </Solution>

@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="../Pack/Properties/ProductInfo.cs" Link="Properties/ProductInfo.cs" />
+    <Compile Include="../Qowaiv.CodeAnalysis.Pack/Properties/ProductInfo.cs" Link="Properties/ProductInfo.cs" />
   </ItemGroup>
   
   <ItemGroup>
