@@ -32,7 +32,7 @@
 
   <ItemGroup Label="Package files">
     <None Pack="true" PackagePath="/" Update="tools/*.ps1" />
-    <None Pack="true" PackagePath="/" Include="../design/package-icon.png" />
+    <None Pack="true" PackagePath="/" Include="../../design/package-icon.png" />
     <None Pack="true" PackagePath="/" Include="README.md" />
     <None Pack="true" PackagePath="analyzers/" Include="$(OutputPath)/Qowaiv.CodeAnalysis.CSharp.dll" Link="analyzers/Qowaiv.CodeAnalysis.CSharp.dll" />
     <None Pack="true" PackagePath="analyzers/" Include="$(OutputPath)/Qowaiv.CodeAnalysis.CSharp.CodeFixes.dll" Link="analyzers/Qowaiv.CodeAnalysis.CSharp.CodeFixes.dll" />
