@@ -43,6 +43,7 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 * [**QW0029** - Prefer strongly typed identifiers over primitives](rules/QW0029.md)
 * [**QW0030** - Prefer single value objects over data annotations](rules/QW0030.md)
 * [**QW0031** - Format amount literals](rules/QW0031.md)
+* [**QW0032** - Round converted double values](rules/QW0032.md)
 
 ### Data Annotation rules
 * [**QW0100** - Define only one Required attribute](rules/QW0100.md)
@@ -64,6 +65,7 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/)
 * Generate GUIDs ([QW0022](rules/QW0022.md), [QW0023](rules/QW0023.md), [QW0024](rules/QW0024.md))
 * Generate UUIDs ([QW0025](rules/QW0025.md), [QW0026](rules/QW0026.md), [QW0027](rules/QW0027.md))
 * Format amount ([QW0031](rules/QW0031.md))
+* Use decimal suffix ([QW0032](rules/QW0032.md))
 
 ## Configuration
 Some of the rules are not intended for (unit) test code. Unit tests that set

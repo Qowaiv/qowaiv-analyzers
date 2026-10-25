@@ -24,6 +24,21 @@ public static class SyntaxNodeExtensions
             VariableDeclaratorSyntax n /*.....*/ => n.Identifier.Text,
             _ => null,
         };
+
+        [Pure]
+        public SyntaxNode? TrimParenthesis()
+        {
+            if (node == null) return null;
+
+            var trim = node;
+
+            while (trim is ParenthesizedExpressionSyntax parenthesized)
+            {
+                trim = parenthesized.Parent;
+            }
+
+            return trim;
+        }
     }
 
     extension(SyntaxNode node)

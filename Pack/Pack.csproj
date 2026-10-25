@@ -66,7 +66,7 @@
   </Target>
 
   <PropertyGroup Label="Version and release notes">
-    <Version>2.7.2</Version>
+    <Version>2.8.0</Version>
     <ToBeReleased>
       <![CDATA[
 v2.*
@@ -75,6 +75,8 @@ v2.*
     </ToBeReleased>
     <PackageReleaseNotes>
       <![CDATA[
+v2.8.0
+- QW0032: Round converted double values. (NEW RULE)
 v2.7.2
 - QW0031: Prefer m suffix due to .NET 11.0 changes.
 - QW0031: Keep trivia for replaced node. (IMPROVEMENT)

@@ -32,6 +32,7 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/) (s
 * [**QW0029** - Prefer strongly typed identifiers over primitives](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0029.md)
 * [**QW0030** - Prefer single value objects over data annotations](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0030.md)
 * [**QW0031** - Format amount literals](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0031.md)
+* [**QW0032** - Round converted double values](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0032.md)
 
 ### Data Annotation rules
 * [**QW0100** - Define only one Required attribute](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0100.md)
@@ -52,7 +53,8 @@ Contains [Roslyn](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/) (s
 * Add leading zero(s) ([QW0021](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0021.md))
 * Generate GUIDs ([QW0022](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0022.md), [QW0023](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0023.md), [QW0024](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0024.md))
 * Format amount literals ([QW0031](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0031.md))
-* 
+* Use decimal suffix ([QW0032](https://github.com/Qowaiv/qowaiv-analyzers/tree/main/rules/QW0032.md))
+
 ## Configuration
 Some of the rules are not intended for (unit) test code. Unit tests that set
 `IsTestProject` to `true` are excluded. When setting `IsTestProject` is undesirable,

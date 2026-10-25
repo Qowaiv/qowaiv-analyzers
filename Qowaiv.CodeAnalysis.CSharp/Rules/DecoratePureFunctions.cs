@@ -13,9 +13,7 @@ public sealed class DecoratePureFunctions() : CodingRule(Rule.DecoratePureFuncti
         // The read-only keyword should be enough.
         if (declaration.Modifiers.Any(SyntaxKind.ReadOnlyKeyword)) return;
 
-        var symbol = context.SemanticModel.GetDeclaredSymbol(declaration);
-
-        if (symbol is IMethodSymbol method
+        if (context.SemanticModel.GetDeclaredSymbol(declaration) is IMethodSymbol method
             && ReturnsResult(method.ReturnType)
             && NoGuard(method)
             && HasNoRefOutParemeter(method.Parameters)

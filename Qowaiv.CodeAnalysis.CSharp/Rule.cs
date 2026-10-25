@@ -343,6 +343,19 @@ public static partial class Rule
         tags: ["Clarity"],
         analyzeTestCode: true);
 
+    public static DescriptorContainer RoundDoubleAfterConversionToDecimal => New(
+        id: 0032,
+        title: "Round converted double values",
+        message: "Round this converted result",
+        description:
+            "In .NET 11.0, the conversion from double to decimal is correctly " +
+            "rounded instead of being truncated to 15 significant digits. " +
+            "Values like 1.23 now convert to 1.229999999999999982236431606. " +
+            "This changed behavior should be evaluated case by case.",
+        category: Category.Bug,
+        tags: ["Bug"],
+        analyzeTestCode: true);
+
     public static DescriptorContainer DefineOnlyOneRequiredAttribute => New(
         id: 0100,
         title: "Define only one Required attribute",
