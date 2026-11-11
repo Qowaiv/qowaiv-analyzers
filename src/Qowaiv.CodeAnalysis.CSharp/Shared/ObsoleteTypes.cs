@@ -60,7 +60,7 @@ public abstract class ObsoleteTypes(ImmutableArray<SyntaxKind> syntaxKinds, Desc
     {
         foreach (var node in syntax.SubTypes())
         {
-            if (context.SemanticModel.GetSymbolInfo(node).Symbol is INamedTypeSymbol type)
+            if (context.SemanticModel.GetSymbolInfo(node, context.CancellationToken).Symbol is INamedTypeSymbol type)
             {
                 Report(context, node, type);
             }
