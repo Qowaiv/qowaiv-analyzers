@@ -1,4 +1,5 @@
 using Qowaiv.Financial;
+using System;
 
 class Noncompliant
 {
@@ -85,7 +86,68 @@ public static class Compliant
         _ = (Amount)amount;
     }
 
+    [Obsolete]
+    static void ObsoleteMethod()
+    {
+        _ = 1200.Amount(); // Compliant {{Obsolete methods are ignored.}}
+    }
+
+    [Obsolete]
+    static void WithLambda()
+    {
+        Func<Amount> lambda = () => 100.0.Amount(); // Compliant {{Obsolete methods are ignored.}}
+    }
+
+    [Obsolete]
+    static void WithLocalFunction()
+    {
+        Amount Local() => 100.0.Amount(); // Compliant {{Obsolete methods are ignored.}}
+        _ = Local();
+    }
+
+    [Obsolete]
+    static readonly Amount ObsoleteField = 100.0.Amount(); // Compliant {{Obsolete fields are ignored.}}
+
+    [Obsolete]
+    static Amount ObsoleteProperty { get; set; } = 100.0.Amount(); // Compliant {{Obsolete properties are ignored.}}
+
+    [Obsolete("Will be dropped when the next major version is released.")]
+    public sealed class Will_be_dropped
+    {
+        public void double_Amount_humanizer()
+            => _ = 12.00.Amount().Equals(0.Amount()); // Compliant {{Obsolete classes are ignored.}}
+    }
+
+    [Obsolete]
+    public class ObsoleteOuter
+    {
+        public class Nested
+        {
+            public void Unformatted() => _ = 88.0m.Amount(); // Compliant {{Obsolete classes are ignored.}}
+        }
+    }
+
     public static decimal Other(this double d) => (decimal)d;
 
     public static decimal Amount(this string s) => 42;
+}
+
+[Obsolete]
+class ObsoleteClassWithProperty
+{
+    Amount Property { get; set; } = 100.0.Amount(); // Compliant {{Obsolete classes are ignored.}}
+}
+
+partial class WithPartialMethod
+{
+    [Obsolete]
+    partial void Method();
+}
+
+partial class WithPartialMethod
+{
+    partial void Method()
+    {
+        _ = 1200.Amount(); // Compliant {{Obsolete methods are ignored.}}
+    }
 }

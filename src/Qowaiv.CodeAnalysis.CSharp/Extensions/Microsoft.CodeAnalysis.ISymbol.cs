@@ -8,6 +8,26 @@ public static class SymbolExtensions
 
         public bool IsProtected => symbol.DeclaredAccessibility == Accessibility.Protected;
 
+        /// <summary>Indicates that the symbol, or any of its containing symbols, is marked as obsolete.</summary>
+        public bool IsObsolete
+        {
+            get
+            {
+                var current = symbol;
+
+                while (current is { })
+                {
+                    if (current.GetAttributes().Any(attr => attr.AttributeClass.Is(SystemType.System.ObsoleteAttribute)))
+                    {
+                        return true;
+                    }
+                    current = current.ContainingSymbol;
+                }
+
+                return false;
+            }
+        }
+
         // https://github.com/dotnet/roslyn/blob/2a594fa2157a734a988f7b5dbac99484781599bd/src/Workspaces/SharedUtilitiesAndExtensions/Compiler/Core/Extensions/ISymbolExtensions.cs#L93
         [ExcludeFromCodeCoverage]
         public ImmutableArray<ISymbol> ExplicitOrImplicitInterfaceImplementations
