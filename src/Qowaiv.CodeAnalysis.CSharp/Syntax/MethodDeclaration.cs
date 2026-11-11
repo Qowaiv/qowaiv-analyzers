@@ -21,8 +21,16 @@ public sealed class MethodDeclaration(BaseMethodDeclarationSyntax methodNode, Se
     /// <summary>Returns true if the method is decorated with the <c>readonly</c>> modifier.</summary>
     public bool IsReadOnly => Modifiers.Contains(SyntaxKind.ReadOnlyKeyword);
 
-    public bool IsObsolete => Attributes.Any(a => a.IsObsoleteAttribute)
-            || (IsPartial && Symbol is { IsObsolete: true });
+    public bool IsObsolete
+        => Attributes.Any(a => a.IsObsoleteAttribute)
+        || DeclaringType.IsObsolete
+        || (IsPartial && Symbol is { IsObsolete: true });
+
+    public TypeDeclaration DeclaringType => field ??= TypedNode
+       .Ancestors()
+       .Select(node => node.TryTypeDeclaration(SemanticModel))
+       .OfType<TypeDeclaration>()
+       .First();
 
     [Pure]
     protected override IMethodSymbol? GetSymbol(SemanticModel semanticModel)
