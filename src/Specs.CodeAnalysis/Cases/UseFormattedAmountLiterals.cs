@@ -19,6 +19,15 @@ class Noncompliant
         _ = 122_23_100.42m.Amount(); // Noncompliant
     }
 
+    [System.Diagnostics.Contracts.Pure]
+    void DecoratedOtherwise() => _ = 1200.Amount(); // Noncompliant {{Format this amount by using group separators}}
+
+    [JustDecorated]
+    static Amount DecoratedProperty { get; set; } = 100.0.Amount(); // Noncompliant {{Format this amount by using group separators}}
+
+    [JustDecorated]
+    static readonly Amount DecoratedField = 100.0.Amount(); // Noncompliant {{Format this amount by using group separators}}
+
     void Negative()
     {
         _ = (-13.4m).Amount(); // Noncompliant
@@ -150,4 +159,30 @@ partial class WithPartialMethod
     {
         _ = 1200.Amount(); // Compliant {{Obsolete methods are ignored.}}
     }
+}
+
+class WithObsoleteConstructorAndOperator
+{
+    [Obsolete]
+    WithObsoleteConstructorAndOperator()
+    {
+        _ = 1200.Amount(); // Compliant {{Obsolete methods are ignored.}}
+    }
+
+    [Obsolete]
+    public static WithObsoleteConstructorAndOperator operator +(
+        WithObsoleteConstructorAndOperator left,
+        WithObsoleteConstructorAndOperator right)
+    {
+        _ = 1200.Amount(); // Compliant {{Obsolete methods are ignored.}}
+        return left;
+    }
+}
+
+class JustDecorated : Attribute { }
+
+[JustDecorated]
+class DecoratedClass
+{
+    void Unformatted() => _ = 1200.Amount(); // Noncompliant {{Format this amount by using group separators}}
 }

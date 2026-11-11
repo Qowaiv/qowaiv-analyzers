@@ -41,29 +41,25 @@ public sealed class UseFormattedAmountLiterals() : CodingRule(Rule.UseFormattedA
         bool IsObsoleteDeclaration(SyntaxNode ancestor)
             => ancestor switch
             {
-                // The type declaration resolves its symbol lazily, and only
-                // when it has attributes or is partial.
+                // The abstractions check the attributes of the declaration
+                // semantically, and only resolve their symbol when the
+                // declaration is partial, as the attributes of a partial
+                // declaration can be declared on another part.
                 TypeDeclarationSyntax type
                     => type.TypeDeclaration(context.SemanticModel).IsObsolete,
 
-                // The symbol of a property is only resolved when it has
-                // attributes, or when it is partial, as the attributes of a
-                // partial member can be declared on another part.
                 PropertyDeclarationSyntax property
-                    when property.AttributeLists.Count > 0 || property.Modifiers.Any(SyntaxKind.PartialKeyword)
                     => property.PropertyDeclaration(context.SemanticModel).IsObsolete,
 
-                // The symbol of a method is only resolved when it has
-                // attributes, or when it is partial.
                 BaseMethodDeclarationSyntax method
-                    when method.AttributeLists.Count > 0 || method.Modifiers.Any(SyntaxKind.PartialKeyword)
-                    => context.SemanticModel.GetDeclaredSymbol(method, context.CancellationToken) is { IsObsolete: true },
+                    => method.MethodDeclaration(context.SemanticModel).IsObsolete,
 
                 // For a field, the attributes are on the field declaration,
                 // while the symbol is declared by the variable declarator.
                 VariableDeclaratorSyntax declarator
-                    when declarator.Parent?.Parent is FieldDeclarationSyntax { AttributeLists.Count: > 0 }
-                    => context.SemanticModel.GetDeclaredSymbol(declarator, context.CancellationToken) is { IsObsolete: true },
+                    when declarator.Parent?.Parent is FieldDeclarationSyntax field
+                    => field.MemberDeclaration(context.SemanticModel).Attributes
+                        .Any(attribute => attribute.IsObsoleteAttribute),
 
                 _ => false,
             };

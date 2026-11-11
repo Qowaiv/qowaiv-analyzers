@@ -16,6 +16,8 @@ public sealed class PropertyDeclaration : SyntaxAbstraction<IPropertySymbol>
 
     public bool IsOverride => Modifiers.Contains(SyntaxKind.OverrideKeyword);
 
+    public bool IsPartial => Modifiers.Contains(SyntaxKind.PartialKeyword);
+
     public INamedTypeSymbol? ContainingSymbol => LazyContainingSymbol.Value;
 
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -33,7 +35,8 @@ public sealed class PropertyDeclaration : SyntaxAbstraction<IPropertySymbol>
        .SelectMany(a => a.Attributes)
        .Select(a => new AttributeDecoration(a, SemanticModel));
 
-    public bool IsObsolete => Symbol is { IsObsolete: true };
+    public bool IsObsolete => Attributes.Any(a => a.IsObsoleteAttribute)
+            || (IsPartial && Symbol is { IsObsolete: true });
 
     /// <summary>True when defined by an interface, or base class.</summary>
     public bool IsContractual => !Modifiers.Contains(SyntaxKind.NewKeyword)
