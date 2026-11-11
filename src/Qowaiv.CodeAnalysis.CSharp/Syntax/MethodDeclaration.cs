@@ -1,13 +1,9 @@
 namespace Qowaiv.CodeAnalysis.Syntax;
 
-public sealed class MethodDeclaration : SyntaxAbstraction<IMethodSymbol>
+public sealed class MethodDeclaration(BaseMethodDeclarationSyntax methodNode, SemanticModel semanticModel) 
+    : SyntaxAbstraction<IMethodSymbol>(methodNode, semanticModel)
 {
-    public MethodDeclaration(BaseMethodDeclarationSyntax methodNode, SemanticModel semanticModel) : base(methodNode, semanticModel)
-    {
-        TypedNode = methodNode;
-    }
-
-    public BaseMethodDeclarationSyntax TypedNode { get; }
+    public BaseMethodDeclarationSyntax TypedNode { get; } = methodNode;
 
     public IEnumerable<SyntaxKind> Modifiers => TypedNode.Modifiers.Select(m => m.Kind());
 
@@ -17,8 +13,24 @@ public sealed class MethodDeclaration : SyntaxAbstraction<IMethodSymbol>
 
     public bool IsPartial => Modifiers.Contains(SyntaxKind.PartialKeyword);
 
-    public bool IsObsolete => Attributes.Any(a => a.IsObsoleteAttribute)
-            || (IsPartial && Symbol is { IsObsolete: true });
+    /// <summary>Returns true if the method is declared with the <c>void</c> return type.</summary>
+    public bool IsVoid => TypedNode is MethodDeclarationSyntax method
+        && method.ReturnType is PredefinedTypeSyntax predefined
+        && predefined.Keyword.IsKind(SyntaxKind.VoidKeyword);
+
+    /// <summary>Returns true if the method is decorated with the <c>readonly</c>> modifier.</summary>
+    public bool IsReadOnly => Modifiers.Contains(SyntaxKind.ReadOnlyKeyword);
+
+    public bool IsObsolete
+        => Attributes.Any(a => a.IsObsoleteAttribute)
+        || DeclaringType.IsObsolete
+        || (IsPartial && Symbol is { IsObsolete: true });
+
+    public TypeDeclaration DeclaringType => field ??= TypedNode
+       .Ancestors()
+       .Select(node => node.TryTypeDeclaration(SemanticModel))
+       .OfType<TypeDeclaration>()
+       .First();
 
     [Pure]
     protected override IMethodSymbol? GetSymbol(SemanticModel semanticModel)

@@ -8,16 +8,15 @@ public sealed class DecoratePureFunctions() : CodingRule(Rule.DecoratePureFuncti
 
     private static void Report(SyntaxNodeAnalysisContext context)
     {
-        var declaration = context.Node.Cast<MethodDeclarationSyntax>();
+        var declaration = context.Node.MethodDeclaration(context.SemanticModel);
 
-        // The read-only keyword should be enough.
-        if (declaration.Modifiers.Any(SyntaxKind.ReadOnlyKeyword)) return;
+        // The read-only keyword should be enough, and void methods are impure per definition.
+        if (declaration.IsReadOnly || declaration.IsVoid || declaration.IsObsolete) return;
 
-        if (context.SemanticModel.GetDeclaredSymbol(declaration) is IMethodSymbol method
+        if (declaration.Symbol is { } method
             && ReturnsResult(method.ReturnType)
             && NoGuard(method)
-            && HasNoRefOutParemeter(method.Parameters)
-            && !method.IsObsolete
+            && HasNoRefOutParameter(method.Parameters)
             && NotDecorated(method.GetAttributes()))
         {
             context.ReportDiagnostic(Rule.DecoratePureFunctions, declaration.ChildTokens().First(t => t.IsKind(SyntaxKind.IdentifierToken)));
@@ -25,11 +24,10 @@ public sealed class DecoratePureFunctions() : CodingRule(Rule.DecoratePureFuncti
     }
 
     private static bool ReturnsResult(ITypeSymbol type)
-        => type.IsNot(SystemType.System.Void)
-        && type.IsNot(SystemType.System.Threading.Task)
+        => type.IsNot(SystemType.System.Threading.Task)
         && type.IsNot(SystemType.System.Threading.ValueTask);
 
-    private static bool HasNoRefOutParemeter(IEnumerable<IParameterSymbol> parameters)
+    private static bool HasNoRefOutParameter(IEnumerable<IParameterSymbol> parameters)
         => parameters.All(par => par.RefKind != RefKind.Out && par.RefKind != RefKind.Ref);
 
     private static bool NoGuard(IMethodSymbol method)
