@@ -11,6 +11,8 @@ public sealed class UseSystemDateOnly() : ObsoleteTypes(
     ]
     , Rule.UseSystemDateOnly)
 {
+    protected override FrozenSet<string> CandidateNames { get; } = new[] { SystemType.Qowaiv.Date.ShortName }.ToFrozenSet();
+
     protected override void Report(SyntaxNodeAnalysisContext context, SyntaxNode node, INamedTypeSymbol type)
     {
         if ((type.NotNullable ?? type).Is(SystemType.Qowaiv.Date))

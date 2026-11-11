@@ -70,7 +70,7 @@
     <ToBeReleased>
       <![CDATA[
 v2.*
-- ?
+- QW0010, QW0019, QW0020: Early exit on name mismatch. (PERFORMANCE)
       ]]>
     </ToBeReleased>
     <PackageReleaseNotes>

@@ -12,6 +12,8 @@ public sealed class PreferXmlLinq() : ObsoleteTypes(
     ]
     , Rule.PreferXmlLinq)
 {
+    protected override FrozenSet<string> CandidateNames { get; } = Usages.Keys.Select(key => key.ShortName).ToFrozenSet();
+
     protected override void Report(SyntaxNodeAnalysisContext context, SyntaxNode node, INamedTypeSymbol type)
     {
         if (Usages.Keys.FirstOrDefault(type.Is) is { } obsolete)

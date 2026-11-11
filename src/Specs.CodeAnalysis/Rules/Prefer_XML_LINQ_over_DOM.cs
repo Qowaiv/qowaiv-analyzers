@@ -8,4 +8,11 @@ public class Verify
         .AddSource(@"Cases/UseSystemXmlLinq.cs")
         .AddReference<System.Xml.XmlDocument>()
         .Verify();
+
+    [Test]
+    public void Rule_without_usings() => new PreferXmlLinq()
+        .ForCS()
+        .AddSources(@"Cases/UseSystemXmlLinq.Gate.cs", @"Cases/UseSystemXmlLinq.GlobalUsings.cs")
+        .AddReference<System.Xml.XmlDocument>()
+        .Verify();
 }
