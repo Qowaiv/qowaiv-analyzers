@@ -6,6 +6,7 @@ public abstract partial class TypeDeclaration(SyntaxNode node, SemanticModel sem
     public abstract SyntaxList<AttributeListSyntax> AttributeLists { get; }
 
     public abstract SyntaxToken Identifier { get; }
+    public abstract bool IsValueType { get; }
 
     public IEnumerable<AttributeDecoration> Attributes => AttributeLists
         .SelectMany(a => a.Attributes)

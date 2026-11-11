@@ -51,6 +51,16 @@ public class PublicCompliant(int id)
     }
 }
 
+public struct OnStruct
+{
+    public long Id { get; init; }
+}
+
+public record struct OnRecordStruct
+{
+    public long Id { get; init; }
+}
+
 public class ByInterface : Identity
 {
     public long Id { get; init; }
