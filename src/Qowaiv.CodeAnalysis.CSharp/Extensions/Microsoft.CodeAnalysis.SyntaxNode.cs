@@ -69,6 +69,10 @@ public static class SyntaxNodeExtensions
             => new(node.Cast<PropertyDeclarationSyntax>(), model);
 
         [Pure]
+        public MethodDeclaration MethodDeclaration(SemanticModel model)
+            => new(node.Cast<BaseMethodDeclarationSyntax>(), model);
+
+        [Pure]
         public TypeDeclaration TypeDeclaration(SemanticModel model)
             => TryTypeDeclaration(node, model)
             ?? throw new InvalidOperationException($"Unexpected {node.GetType().Name}, expected a type declaration.");

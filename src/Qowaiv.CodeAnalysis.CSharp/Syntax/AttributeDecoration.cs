@@ -12,6 +12,13 @@ public sealed class AttributeDecoration(AttributeSyntax node, SemanticModel sema
         => Name.Matches(name)
         || Name.Matches(name + "Attribute");
 
+    /// <summary>
+    /// Returns true if the decoration is the System.ObsoleteAttribute.
+    /// </summary>
+    public bool IsObsoleteAttribute
+        => HasName("Obsolete")
+        || HasName("System.Obsolete");
+
     protected override INamedTypeSymbol? GetSymbol(SemanticModel semanticModel)
         => semanticModel.GetSymbolInfo(TypedNode).Symbol is IMethodSymbol symbol
         ? symbol.ReceiverType as INamedTypeSymbol

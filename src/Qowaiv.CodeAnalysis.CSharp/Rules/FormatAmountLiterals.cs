@@ -15,7 +15,8 @@ public sealed class UseFormattedAmountLiterals() : CodingRule(Rule.UseFormattedA
     {
         var node = context.Node.Cast<LiteralExpressionSyntax>();
 
-        if ((Cast() ?? UnformattedExpression()) is { } parent)
+        if ((Cast() ?? UnformattedExpression()) is { } parent
+            && !IsObsoleteCode())
         {
             context.ReportDiagnostic(Diagnostic, parent);
         }
@@ -33,6 +34,35 @@ public sealed class UseFormattedAmountLiterals() : CodingRule(Rule.UseFormattedA
             && !Amount.IsFormatted(node.Token.Text)
             ? expression.Parent
             : null;
+
+        bool IsObsoleteCode()
+            => node.Ancestors().Any(IsObsoleteDeclaration);
+
+        bool IsObsoleteDeclaration(SyntaxNode ancestor)
+            => ancestor switch
+            {
+                // The abstractions check the attributes of the declaration
+                // semantically, and only resolve their symbol when the
+                // declaration is partial, as the attributes of a partial
+                // declaration can be declared on another part.
+                TypeDeclarationSyntax type
+                    => type.TypeDeclaration(context.SemanticModel).IsObsolete,
+
+                PropertyDeclarationSyntax property
+                    => property.PropertyDeclaration(context.SemanticModel).IsObsolete,
+
+                BaseMethodDeclarationSyntax method
+                    => method.MethodDeclaration(context.SemanticModel).IsObsolete,
+
+                // For a field, the attributes are on the field declaration,
+                // while the symbol is declared by the variable declarator.
+                VariableDeclaratorSyntax declarator
+                    when declarator.Parent?.Parent is FieldDeclarationSyntax field
+                    => field.MemberDeclaration(context.SemanticModel).Attributes
+                        .Any(attribute => attribute.IsObsoleteAttribute),
+
+                _ => false,
+            };
     }
 
     private static SyntaxNode? Trim(SyntaxNode? node) => node switch

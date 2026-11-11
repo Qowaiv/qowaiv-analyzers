@@ -31,8 +31,8 @@ public abstract partial class TypeDeclaration(SyntaxNode node, SemanticModel sem
     public bool IsPublic => Modifiers.Contains(SyntaxKind.PublicKeyword)
             || (IsPartial && Symbol?.IsPublic is true);
 
-    public bool IsObsolete => (IsPartial || Attributes.Any())
-            && Symbol is { IsObsolete: true };
+    public bool IsObsolete => Attributes.Any(a => a.IsObsoleteAttribute)
+            || (IsPartial && Symbol is { IsObsolete: true });
 
     public abstract IEnumerable<SyntaxKind> Modifiers { get; }
 
