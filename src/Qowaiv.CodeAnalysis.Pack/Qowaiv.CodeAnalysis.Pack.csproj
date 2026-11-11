@@ -71,6 +71,7 @@
       <![CDATA[
 v2.*
 - QW0010, QW0019, QW0020: Early exit on name mismatch. (PERFORMANCE)
+- QW0031: Do not report on obsolete code. (FP)
       ]]>
     </ToBeReleased>
     <PackageReleaseNotes>
