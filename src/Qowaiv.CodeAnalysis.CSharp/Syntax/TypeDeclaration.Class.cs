@@ -6,6 +6,7 @@ public partial class TypeDeclaration
     {
         private readonly ClassDeclarationSyntax TypedNode = node;
 
+        public override bool IsValueType => false;
         public override SyntaxList<AttributeListSyntax> AttributeLists => TypedNode.AttributeLists;
 
         public override SyntaxToken Identifier => TypedNode.Identifier;

@@ -6,6 +6,8 @@ public partial class TypeDeclaration
     {
         private readonly StructDeclarationSyntax TypedNode = node;
 
+        public override bool IsValueType => true;
+
         public override SyntaxList<AttributeListSyntax> AttributeLists => TypedNode.AttributeLists;
 
         public override SyntaxToken Identifier => TypedNode.Identifier;

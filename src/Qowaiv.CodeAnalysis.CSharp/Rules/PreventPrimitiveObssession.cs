@@ -14,6 +14,7 @@ public sealed class PreventPrimitiveObssession() : CodingRule(
     {
         if (context.Node.PropertyDeclaration(context.SemanticModel) is not
             {
+                DeclaringType.IsValueType: false,
                 IsInstance: true,
                 IsObsolete: false,
                 IsContractual: false,

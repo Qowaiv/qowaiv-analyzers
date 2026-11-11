@@ -6,6 +6,8 @@ public partial class TypeDeclaration
     {
         private readonly RecordDeclarationSyntax TypedNode = node;
 
+        public override bool IsValueType => TypedNode.ClassOrStructKeyword.IsKind(SyntaxKind.StructKeyword);
+
         public override SyntaxList<AttributeListSyntax> AttributeLists => TypedNode.AttributeLists;
 
         public override SyntaxToken Identifier => TypedNode.Identifier;
