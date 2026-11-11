@@ -8,4 +8,11 @@ public class Verify
         .AddSource(@"Cases/UseSystemDateOnly.cs")
         .AddReference<Qowaiv.Date>()
         .Verify();
+
+    [Test]
+    public void Rule_without_usings() => new UseSystemDateOnly()
+        .ForCS()
+        .AddSources(@"Cases/UseSystemDateOnly.Gate.cs", @"Cases/UseSystemDateOnly.GlobalUsings.cs")
+        .AddReference<Qowaiv.Date>()
+        .Verify();
 }

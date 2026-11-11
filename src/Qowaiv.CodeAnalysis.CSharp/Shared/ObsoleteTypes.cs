@@ -5,6 +5,18 @@ public abstract class ObsoleteTypes(ImmutableArray<SyntaxKind> syntaxKinds, Desc
 {
     protected abstract void Report(SyntaxNodeAnalysisContext context, SyntaxNode node, INamedTypeSymbol type);
 
+    /// <summary>
+    /// The short names of the types the rule deals with. Type references that do
+    /// not end in one of these (and are no using alias) are not bound.
+    /// </summary>
+    protected virtual FrozenSet<string> CandidateNames => FrozenSet<string>.Empty;
+
+    /// <summary>
+    /// A token shared by the namespaces of the involved types. Files that do not
+    /// import such a namespace are skipped as a whole, without binding.
+    /// </summary>
+    protected virtual string? NamespaceToken => null;
+
     protected override void Register(AnalysisContext context)
     {
         foreach (var kind in SyntaxKinds)
@@ -27,7 +39,10 @@ public abstract class ObsoleteTypes(ImmutableArray<SyntaxKind> syntaxKinds, Desc
 
     private void ReportAttribute(SyntaxNodeAnalysisContext context)
     {
-        if (new AttributeDecoration(context.Node.Cast<AttributeSyntax>(), context.SemanticModel).Symbol is { } symbol)
+        var attribute = context.Node.Cast<AttributeSyntax>();
+
+        if (IsInvolvedAttribute(attribute.Name, UsingDirectives.For(context.SemanticModel.SyntaxTree, context.Compilation))
+            && new AttributeDecoration(attribute, context.SemanticModel).Symbol is { } symbol)
         {
             Report(context, context.Node, symbol);
         }
@@ -58,12 +73,64 @@ public abstract class ObsoleteTypes(ImmutableArray<SyntaxKind> syntaxKinds, Desc
 
     private void Report(TypeSyntax? syntax, SyntaxNodeAnalysisContext context)
     {
+        var usings = UsingDirectives.For(context.SemanticModel.SyntaxTree, context.Compilation);
+        var permissive = NamespaceToken is { } token && usings.Imports(token);
+
         foreach (var node in syntax.SubTypes())
         {
-            if (context.SemanticModel.GetSymbolInfo(node).Symbol is INamedTypeSymbol type)
+            if (IsInvolved(node, usings, permissive)
+                && context.SemanticModel.GetSymbolInfo(node, context.CancellationToken).Symbol is INamedTypeSymbol type)
             {
                 Report(context, node, type);
             }
+        }
+    }
+
+    /// <summary>
+    /// Cheap (string only) check to avoid binding type references that can not
+    /// denote an involved type. Anything that can not be determined is passed on.
+    /// </summary>
+    [Pure]
+    private bool IsInvolved(TypeSyntax node, UsingDirectives usings, bool permissive)
+    {
+        if (NamespaceToken is { } token)
+        {
+            // The types live in namespaces sharing the token: the reference is
+            // involved if the file imports one, or spells the namespace out.
+            return permissive || node.Mentions(token);
+        }
+        else if (CandidateNames.Count == 0)
+        {
+            return true; // No filter configured.
+        }
+        else
+        {
+            // A type is referred to by its own name, or through a using alias.
+            return node.SimpleName() is not { } name
+                || CandidateNames.Contains(name)
+                || usings.IsAlias(name);
+        }
+    }
+
+    /// <inheritdoc cref="IsInvolved(TypeSyntax, UsingDirectives, bool)"/>
+    [Pure]
+    private bool IsInvolvedAttribute(NameSyntax name, UsingDirectives usings)
+    {
+        if (NamespaceToken is { } token)
+        {
+            return usings.Imports(token) || name.Mentions(token);
+        }
+        else if (CandidateNames.Count == 0)
+        {
+            return true;
+        }
+        else
+        {
+            // The Attribute suffix may be left out, so both spellings can denote the type.
+            return name.SimpleName() is not { } simple
+                || CandidateNames.Contains(simple)
+                || CandidateNames.Contains(simple + "Attribute")
+                || usings.IsAlias(simple);
         }
     }
 

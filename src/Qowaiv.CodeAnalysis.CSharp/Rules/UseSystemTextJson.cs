@@ -14,6 +14,8 @@ public sealed class UseSystemTextJson() : ObsoleteTypes(
     ]
     , Rule.UseSystemTextJson)
 {
+    protected override string? NamespaceToken => "Newtonsoft";
+
     protected override void Register(AnalysisContext context)
     {
         RegisterSyntaxNodeAction(context, ReportExpressionStatement, SyntaxKind.ExpressionStatement);
